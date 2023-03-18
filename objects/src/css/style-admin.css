@@ -1,0 +1,1180 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('./font/fontawesome-free-6.3.0-web/css/all.css');
+@import url('./font/themify-icons/themify-icons.css');
+@import url('./css/Grid-system.css');
+@import url('./css/toast-message.css');
+
+/* --------Stylesheet for the common component ------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary-color: #eb984c;
+    --button-color: #df8129;
+    --background-color: #f3f3f3;
+}
+
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+
+.btn {
+    background-color: var(--primary-color);
+    width: 60px;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 2.4rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* --------Stylesheet for the Navigation component ------*/
+.nav-container {
+    width: 100%;
+    background-image: linear-gradient(to bottom, #fdac61, #ffd391);
+}
+
+.navbar {
+    height: 8.2vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.header--logo {
+    display: block;
+    width: 140px;
+    height: 80px;
+    background-image: url(./img/login-home.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.header-search__input {
+    display: inline-block;
+    flex-grow: 1;
+    height: 5vh;
+    border-radius: 10px;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    margin: 0 16px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.header-search__button {
+    height: 5vh;
+    width: 5vh;
+    font-size: 2.5rem;
+    background-color: #df8129;
+    border: none;
+    border-radius: 20%;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.header-btn {
+    color: #fff;
+    font-weight: 500;
+    background-color: var(--button-color);
+    min-width: 60px;
+    height: 5vh;
+    padding: 12px;
+    font-size: 1.8rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    font-size: 1.8rem;
+    align-items: center;
+}
+
+.header-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+.header--btn-icon {
+    margin: 0 10px 0 4px;
+    font-size: 2.6rem;
+}
+
+.header--btn-name {
+    margin-bottom: 0;
+}
+
+/* --------Stylesheet for the Home component ------*/
+.home__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 0;
+}
+
+#home__banner {
+    margin: 30px 0 20px 0;
+}
+
+.home__banner-image {
+    height: 520px;
+    width: 100%;
+    background-image: url(./img/flash-sale-img/img-01.jpg);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 12px;
+}
+
+#home__list {
+    position: relative;
+    padding-bottom: 30px;
+    margin: 20px 0;
+}
+
+#home__list::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 2px;
+    background-color: #ccc;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+}
+
+.home__list-label,
+.home__flash-sale-label,
+.home__featured-label {
+    padding: 20px 0 40px 0;
+    font-size: 3.6rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.home__list-product {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+}
+
+.home__list-product-item {
+    padding: 20px;
+    display: flex;
+    width: 24%;
+    list-style-type: none;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* box-shadow:  1px 2px rgba(0,0,0,0.1); */
+    box-shadow: 0 1px 1px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    background-color: #fff;
+    user-select: none;
+
+}
+
+.home__list-product-item:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.home__list-product-name {
+    font-size: 2.4rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    line-height: 2.4rem;
+}
+
+.home__list-product-img-1 {
+    background-image: url(./img/list-img/smartphone-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40%;
+    height: 100px;
+}
+
+.home__list-product-img-2 {
+    background-image: url(./img/list-img/laptop-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40%;
+    height: 100px;
+}
+
+.home__list-product-img-3 {
+    background-image: url(./img/list-img/tablet-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40%;
+    height: 100px;
+}
+
+.home__list-product-img-4 {
+    background-image: url(./img/list-img/accessories-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    width: 40%;
+    height: 100px;
+}
+
+#home__flash-sale {}
+
+.home__flash-sale-label {
+    margin-top: 30px;
+
+}
+
+
+.home__flash-sale-container {
+    margin-top: 20px;
+    background-image: linear-gradient(to right, #ffead0, #fcb69f);
+    width: 100%;
+    max-height: 900px;
+    border-radius: 20px;
+    box-shadow: 1px 2px #fcb69f;
+    padding: 20px 20px 40px 20px;
+    display: block;
+    overflow: hidden;
+}
+
+.home__flash-sale-header {
+    width: 100%;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.home__flash-sale-title {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: bold;
+    width: 50%;
+}
+
+.home__flash-sale-time {
+    display: inline-block;
+    font-size: 3rem;
+    width: 50%;
+    padding-left: 10px;
+}
+
+.home__flash-sale-list {
+    display: flex;
+    justify-content:space-between;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.home__flash-sale-item {
+    border-radius: 20px;
+    background-color: #fff;
+    list-style: none;
+    height: 360px;
+    width: 19%;
+    margin-bottom: 12px;
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.home__flash-sale-item:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+
+#home__featured {
+    display: block;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.home__featured-label {
+
+}
+    
+.home__featured-type {
+    display: inline-block;
+    height: 60px;
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-top: 8px;
+    
+}
+    
+.home__featured-brand-list {
+    display: inline-block;
+    float: right;
+}
+    
+.home__featured-brand-item {
+    font-weight: 500;
+    list-style: none;
+    min-width:60px;
+    height: 40px;    
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    background-color: #fff;
+    line-height: 50%;
+    padding: 4px 8px;
+    margin-left: 6px;
+}
+    
+.home__featured-list {
+    display: flex;
+    justify-content:space-between;
+    margin: 0 0 40px 0;
+    flex-wrap: wrap;
+    max-height: 370px;
+}
+    
+.home__featured-item {
+    border-radius: 20px;
+    background-color: #fff;
+    list-style: none;
+    height: 360px;
+    width: 19%;
+    margin-bottom: 12px;
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.home__featured-item:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+    cursor: pointer;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+    
+
+
+
+/* --------Stylesheet for the Register Page component ------*/
+.register__title {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.register__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register__form {
+    width: 60%;
+    height: 480px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 0;
+    background-color: #f0dbd8;
+    border-radius: 40px;
+}
+
+.register__label {
+    font-size: 1.8rem;
+}
+
+.register__input {
+    width: 80%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    outline: none;
+    border: 1px solid #ba6347;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.register__input-retype {
+    width: 80%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    outline: none;
+    border: 1px solid #ba6347;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.register__accept {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.register__accept-btn {
+    font-size: 2rem;
+    line-height: 1.4rem;
+    margin-right: 4px;
+    outline: none;
+    justify-self: center;
+    align-items: center;
+    height: 1.4rem;
+    width: 10px;
+}
+
+.register__direct {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.register__question {}
+
+.register__back-login {
+    padding-left: 4px;
+    color: #52bd00;
+    cursor: pointer;
+}
+
+.register__back-login:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.register__copyright {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.register__copyright label {
+    font-size: 1.4rem;
+}
+
+/* --------Stylesheet for the MainPage component ------*/
+.user-login {
+    display: block;
+    width: 100%;
+    line-height: 2rem;
+    font-size: 2rem;
+    text-align: right;
+    padding-right: 20px;
+    margin: 2px 0;
+    user-select: none;
+}
+
+.user-login-info {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: center;
+}
+
+.user-login-info-icon {
+    padding-left: 10px;
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+    margin-right: 10px;
+}
+
+.user-login-info-icon:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    color: #ccc;
+}
+
+
+.user-login-name {
+    font-weight: 600;
+    color: green;
+    padding: 0px 0px 0 4px;
+
+}
+
+.user-login-balence {
+    font-weight: 600;
+    color: red;
+    padding: 0px 0px 0 4px;
+}
+
+.logout-btn {
+    font-size: 1.6rem;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid rgb(101, 155, 124);
+    background-color: #f0524d;
+    color: #fff;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.main__container {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    height: 640px;
+}
+
+.main__sidebar-one {
+    flex: 3;
+    background-image: url(./img/img-main-product.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    background-color: #f0dbd9;
+}
+
+.main__content {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+}
+
+.main__sidebar-two {
+    flex: 1;
+    background-color: #94dad5;
+    margin-bottom: 16px;
+    background-image: url(./img/img-main-bidding.jpg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 40%;
+}
+
+.main__sidebar-three {
+    flex: 1;
+    display: flex;
+
+}
+
+.main__items {
+    padding: 20px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
+    transform: translateY(0);
+}
+
+.main__items:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+}
+
+.main__items-label {
+    display: inline-block;
+    width: 100%;
+    font-size: 3.6rem;
+    padding: 10px 0 20px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.main__items-description {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 10px 0 20px 0;
+    text-align: center;
+}
+
+.main__items-img {}
+
+
+.main__fund {
+    flex: 1;
+    margin-right: 16px;
+    background-color: #ffcab8;
+    background-image: url(./img/img-main-fund.jpg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 40%;
+}
+
+.main__contact {
+    flex: 1;
+    background-color: #ebe8e8;
+    background-image: url(./img/img-main-contact.jpg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 70%;
+}
+
+/* ---------------- Stylesheet for the List */
+
+.product__container {
+    display: block;
+    width: 100%;
+}
+
+.product__title {
+    margin-bottom: 10px;
+    padding-bottom: 20px
+}
+
+.product__panel {
+    width: 100%;
+    background-image: url(./img/background-panel.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 100px;
+}
+
+.product__sort {
+    display: inline-block;
+    width: 100%;
+    margin: 10px 10px 20px 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+.product__sort-title {
+    width: 100px;
+    display: inline-block;
+    font-size: 1.6rem;
+}
+
+.product__sort-btn {
+    padding: 4px 8px;
+    margin: 0 10px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1.4rem;
+}
+
+.product__sort-btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.product__list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.product__item {
+    background-color: #fff;
+    height: 400px;
+    margin: 10px 4px;
+    width: 19%;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+.product__item-img {
+    width: 95%;
+    height: 70%;
+    background-image: url("./img/product_img.png");
+    background-color: #f4dfcf;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 5px;
+
+}
+
+.product__item-favorite {
+    text-align: center;
+    padding: 4px 20px;
+    position: absolute;
+    min-width: 60px;
+    top: 10px;
+    left: -4px;
+    background-color: red;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.product__item-favorite:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    transform: rotate(-45deg);
+    top: 16px;
+    left: 2px;
+    z-index: -1;
+}
+
+.product__item-title {
+    margin-left: 10px;
+    padding: 20px 10px 20px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.product__item-price {
+    margin-left: 10px;
+    padding: 20px 10px;
+    font-size: 1.6rem;
+    text-align: right;
+    color: red;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* --------Stylesheet for the Products component ------*/
+
+.product__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product__title {
+    font-size: 3.2rem;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
+}
+
+.product__table-container {
+    width: 95%;
+    margin: 0 0 30px 0;
+    border-collapse: collapse;
+}
+
+.product__table-container table {
+    width: 95%;
+    border: 1px solid #576f72;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.product__row-data>td {
+    display: none;
+}
+
+.product__row-bidded>td {
+    display: none;
+}
+
+tr,
+td,
+th {
+    border: 1px solid #576f72;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.8rem;
+}
+
+.product__body-data--empty {
+    padding: 20px;
+    font-size: 2rem;
+    text-align: center;
+    width: 95%;
+    border-bottom: 1px solid #576f72;
+    border-left: 1px solid #576f72;
+    border-right: 1px solid #576f72;
+
+}
+
+.editIcon {
+    color: green;
+    height: 20px;
+    cursor: pointer;
+    zoom: 1.2;
+    outline: none;
+    border: none;
+}
+
+.editIcon:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.product__table-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.products__cta {
+    width: 30%;
+    padding: 20px;
+    color: #fff;
+    margin: 60px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* --------Stylesheet for the AddProducts & BidProducts component ------*/
+
+
+.addproduct__container,
+.bidproduct__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-product-title,
+.bid-product-title {
+    font-size: 3.2rem;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
+}
+
+.add-product-label {
+    width: 960px;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.add-product-input {
+    display: block;
+    width: 80%;
+    font-size: 2.4rem;
+    margin: 10px 0;
+}
+
+.addproduct__container h2,
+.bidproduct__container h2 {
+    margin-bottom: 30px;
+
+}
+
+.addProduct__form,
+.bidProduct__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.addProduct__cta,
+.bidProduct__cta {
+    width: 200px;
+    padding: 10px;
+    font-size: 2rem;
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: rgb(67, 143, 67);
+    cursor: pointer;
+}
+
+.bid-product-label {
+    width: 960px;
+    font-size: 2.4rem;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.bidProduct__name {
+    font-weight: 600;
+    color: green;
+    padding-left: 10px;
+}
+
+.bid-product-price-label {
+    width: 960px;
+    font-size: 2.4rem;
+    margin: 10px 0;
+    display: block;
+    align-items: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* ------------fund Page------------------ */
+.fund {
+    width: 100%;
+}
+
+.fund__header {
+    display: inline-block;
+    font-size: 3.2rem;
+    width: 100%;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+
+.fund__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fund__groupbox {
+    width: 60%;
+    margin: 20px 0;
+    background-color: #e6f4ff;
+    padding: 30px 40px 60px;
+    border-radius: 16px;
+}
+
+.fund__info {
+    display: flex;
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    height: 60px;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #726c6c;
+}
+
+.fund__person {
+    width: 50%;
+    display: flex;
+}
+
+
+.fund__person-avatar {
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    background-image: url(./img/fund-person.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    border-radius: 50%;
+}
+
+.fund__person-username {
+    padding: 10px 10px 10px 20px;
+    flex-grow: 4;
+    height: 60px;
+    font-size: 2.4rem;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: green;
+    font-weight: bold;
+}
+
+.fund__balence-info {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.fund__balence-title {
+    width: 140px;
+    font-size: 2.4rem;
+    padding: 10px;
+}
+
+.fund__person-balence {
+    padding: 10px 10px 10px 20px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    font-size: 2.6rem;
+    margin-right: 30px;
+    text-align: left;
+    color: red;
+    font-weight: bold;
+}
+
+.fund__person-balence span {
+    margin-left: 4px;
+}
+
+.fund__icon {
+    justify-self: flex-end;
+    width: 40px;
+    font-size: 3rem;
+    padding-left: 30px;
+}
+
+
+.fund__person-username::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #ccc;
+    top: 0;
+    right: 0;
+}
+
+.fund__balence {
+    padding: 10px 10px 10px 20px;
+    flex-grow: 4;
+    height: 60px;
+    font-size: 1.6rem;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+
+.fund__item {
+    padding: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.fund__tilte_cash {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.fund__input-cash {
+    padding: 12px 16px 12px;
+    border-radius: 10px;
+    ;
+    outline: none;
+    font-size: 1.6rem;
+    width: 50%;
+    border: 1px solid #ccc;
+}
+
+/* ------------Contact Page------------------ */
+.contact {
+    width: 100%;
+}
+
+.contact__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact__item {
+    padding: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.contact__title {
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 20px 0 20px 0;
+}
+
+.contact__description {
+    max-width: 570px;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.contact__icon {
+    line-height: 1.6rem;
+    font-weight: 500;
+    padding-right: 5px;
+}
+
+.contact__phone {}
+
+.contact__email {}
+
+.contact__address {}
+
+.contact__social {}
+
+.contact__social-icon {
+    font-size: 3rem;
+    padding-right: 12px;
+    transform: translateY(0);
+}
+
+.contact__social-icon:hover {
+    cursor: pointer;
+    font-size: 3.4rem;
+    transform: translateY(-3px)
+}
+
+/* --------Stylesheet for the Footer component ------*/
+.footer-container {
+    width: 100%;
+    min-height: 300px;
+    background-color: #fff;
+    margin: 40px 0 60px 0;
+}
+
+.app-copyright {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+}
