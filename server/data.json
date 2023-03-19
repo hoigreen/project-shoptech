@@ -76,7 +76,8 @@
             "fullname": "Võ Văn Bình",
             "email": "binh_kunfg142@gmail.com",
             "phone": "0982291103",
-            "address": "Thanh Oai, Hà Nội"
+            "address": "Thanh Oai, Hà Nội",
+            "statusLogin": false
         },
         {
             "userID": "G002",
@@ -102,7 +103,8 @@
                     "id": "P001",
                     "quantity": 1
                 }
-            ]
+            ],
+            "statusLogin": true
         }
     ],
     "products": [

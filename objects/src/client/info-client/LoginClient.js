@@ -29,7 +29,7 @@ const LoginClient = ({ socket }) => {
         // if (details.username == '123456' &&
         //     details.password == '123456') {
         //     navigate('/home');
-        //     window.localStorage.setItem('usernameLogged', user.username);
+        //     window.localStorage.setItem('userLogged', user.username);
         //     alert("Đăng nhập thành công");
         // }
         users.map((user, index) => {
@@ -101,50 +101,85 @@ const LoginClient = ({ socket }) => {
             <div className='container'>
                 <div className="grid wide">
                     <div className="login-client__box">
-                    
-                        <label className="login-client__title">ĐĂNG NHẬP TÀI KHOẢN THÀNH VIÊN SHOPTECH</label>
-                        <div className="login-client__container">
-                            <form className="login-client__form" onSubmit={handleSubmit}>
-                                <label className="login-client__label-login">Đăng nhập tài khoản</label>
-                                <label className="login-client__label" htmlFor="username">Vui lòng nhập tên tài khoản</label>
-                                <input
-                                    type="text"
-                                    name="username"
-                                    className="login-client__input"
-                                    onChange={e => setDetails({ ...details, username: e.target.value })}
-                                    value={details.username}
-                                    required
-                                    minLength={5}
-                                    placeholder="Username ..."
-                                />
-
-                                <label className="login-client__label login-client__label--password" htmlFor="password">Vui lòng nhập mật khẩu</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    className="login-client__input"
-                                    onChange={e => setDetails({ ...details, password: e.target.value })}
-                                    value={details.password}
-                                    required
-                                    minLength={6}
-                                    placeholder="Password ..."
-                                />
-                                <button className="btn">ĐĂNG NHẬP</button>
-                            </form>
-                        <div className="login-client__direct">
-                            <div>
-                                <label className="login-client__question">Nếu bạn chưa có tài khoản trước đây?</label>
-                                <a
-                                    className="login-client__register"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href = '/register';
-                                    }}
-                                >
-                                    Đăng ký ngay</a>
+                        <div className="login-client__col-1">
+                            <div className="login-client__panel">
+                                <div className="login-client__panel-img"></div>
+                                <label className="login-client__panel-title">Trở thành thành viên</label>
+                                <p className="login-client__panel-desb">Tận hưởng trải nghiệm và ưu đãi tuyệt vời khi trở thành thành viên của gia đình ShopTECH!!!</p>
+                            </div>
+                            <div className="login-client__panel-controll">
+                                <button className="login-client__panel-btn"></button>
+                                <button className="login-client__panel-btn"></button>
+                                <button className="login-client__panel-btn"></button>
+                                <button className="login-client__panel-btn"></button>
                             </div>
                         </div>
+
+                        <div className="login-client__col-2">
+                            <div className="login-client__container">
+                                <form className="login-client__form" onSubmit={handleSubmit}>
+                                    <label className="login-client__label-login">Đăng nhập tài khoản</label>
+                                    <label className="login-client__label" htmlFor="username">Vui lòng nhập tên tài khoản</label>
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        className="login-client__input"
+                                        onChange={e => setDetails({ ...details, username: e.target.value })}
+                                        value={details.username}
+                                        required
+                                        minLength={5}
+                                        placeholder="Username ..."
+                                    />
+
+                                    <label className="login-client__label" htmlFor="password">Vui lòng nhập mật khẩu</label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        className="login-client__input"
+                                        onChange={e => setDetails({ ...details, password: e.target.value })}
+                                        value={details.password}
+                                        required
+                                        minLength={6}
+                                        placeholder="Password ..."
+                                    />
+                                    <a className="login-client__forgot">Bạn quên mật khẩu?</a>
+                                    <button className="login-client__btn">ĐĂNG NHẬP</button>
+                                </form>
+                                <p className="login-client__label-or">__________hoặc__________</p>
+
+                                <div className="login-client__direct">
+                                    <button className='login-client__direct-btn'>
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png'
+                                            width='32' className="login-client__direct-img" />
+                                        <label className="login-client__direct-label">Facebook</label>
+                                    </button>
+
+                                    <button className='login-client__direct-btn'>
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/588px-Google_%22G%22_Logo.svg.png'
+                                            width='30' className="login-client__direct-img" />
+                                        <label className="login-client__direct-label">Google</label>
+                                    </button>
+
+                                    <button className='login-client__direct-btn'>
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png'
+                                            width='32' className="login-client__direct-img" />
+                                        <label className="login-client__direct-label">Instagram</label>
+                                    </button>
+                                    <div>
+                                        <label className="login-client__question">Nếu bạn chưa có tài khoản trước đây?</label>
+                                        <a
+                                            className="login-client__register"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                window.location.href = '/register';
+                                            }}
+                                        >
+                                            Đăng ký ngay</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>

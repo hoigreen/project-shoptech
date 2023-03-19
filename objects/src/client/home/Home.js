@@ -26,7 +26,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        const fetchProducts = () => {
+        const fetchAPIs = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
                 setProducts(data.products)
                 setUsers(data.users)
@@ -34,14 +34,13 @@ const Home = () => {
                 setLoading(false)
             })
         }
-        fetchProducts()
+        fetchAPIs()
     }, [])
 
     const navigate = useNavigate();
 
     window.onload = () => {
         var countDownDate = new Date(`3 ${timeEnd}, 2023 00:00:00`).getTime();
-
         const countdown = setInterval(() => {
             var now = new Date().getTime();
             var timeleft = countDownDate - now;

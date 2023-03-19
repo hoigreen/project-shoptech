@@ -5,7 +5,20 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 
 const Nav = ({ socket }) => {
+    const [users, setUsers] = useState([])
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        const fetchAPI = () => {
+            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+                setUsers(data.users)
+            })
+        }
+        fetchAPI()
+    }, [])
+
     const navigate = useNavigate();
+
     return (
         <div className="nav-container">
             <nav className="navbar grid wide">
@@ -26,7 +39,15 @@ const Nav = ({ socket }) => {
                     <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
                     <p className="header--btn-name">Giỏ hàng</p>
                 </button>
-                <button className="header-btn">
+                <button className="header-btn" onClick={(e) => {
+                    if (window.localStorage.getItem('statusLogged') === true) {
+                        navigate("/account")
+                    }
+                    else {
+                        navigate("/login")
+                    }
+
+                }}>
                     <i className="header--btn-icon fa-solid fa-user"></i>
                     <p className="header--btn-name">Thành viên</p>
                 </button>
