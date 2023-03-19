@@ -39,7 +39,6 @@ const LoginClient = ({ socket }) => {
                 alert("Đăng nhập thành công");
                 navigate('/account');
             }
-            console.log(window.localStorage.getItem('statusLogged'))
         })
         showErrorToast();
     };

@@ -24,9 +24,11 @@ import ReceiveImage from './admin/uploadImages/ReceiveImage';
 
 // Client components
 import Home from './client/home/Home';
-import RegisterPage from './client/info-client/RegisterClient';
+
+import RegisterClient from './client/info-client/RegisterClient';
+import LoginClient from './client/info-client/LoginClient';
+
 import ListProduct from './client/products/ListProduct';
-import LoginPage from './client/info-client/LoginClient';
 import SmartPhone from './client/products/SmartPhone';
 import Laptop from './client/products/Laptop';
 import Tablet from './client/products/Tablet';
@@ -99,8 +101,8 @@ function App() {
                     <Route path="/tablet" element={<Tablet socket={socket} />} />
                     <Route path="/accessories" element={<Accessories socket={socket} />} />
 
-                    <Route path="/login" element={<LoginPage socket={socket} />} />
-                    <Route path="/register" element={<RegisterPage socket={socket} />} />
+                    <Route path="/login" element={<LoginClient socket={socket} />} />
+                    <Route path="/register" element={<RegisterClient socket={socket} />} />
 
                     <Route path="/result" element={<ResultSearch socket={socket} />} />
 

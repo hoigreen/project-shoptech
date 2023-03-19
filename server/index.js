@@ -135,11 +135,6 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("editInfoPromoteResponse", data)
     })
 
-    socket.on("setStatusLoginUser", data => {
-        findUserToSetStatus(data.userID, objectData["users"], data.statusLogin)
-        socket.broadcast.emit("setStatusLoginUserResponse", data)
-    })
-
     socket.on('addProduct', (data) => {
         objectData["products"].push(data)
         const stringData = JSON.stringify(objectData, null, 2)
@@ -161,7 +156,7 @@ socketIO.on('connection', (socket) => {
 
 
     //--------------------- Socket Client ---------------------------- //
-    socket.on('register', (data) => {
+    socket.on('registerClient', (data) => {
         objectData["users"].push(data)
         const stringData = JSON.stringify(objectData, null, 2)
         fs.writeFile("data.json", stringData, (err) => {
@@ -170,14 +165,9 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("registerResponse", data)
     });
 
-    socket.on("setOwner", data => {
-        findOwnerAfterWin(data.name, objectData["products"], data.last_bidder)
-        socket.broadcast.emit("setOwnerResponse", data)
-    })
-
-    socket.on("fund", data => {
-        findAccountToFund(data.username, objectData["users"], data.balence)
-        socket.broadcast.emit("findAccountToFundResponse", data)
+    socket.on("setStatusLoginUser", data => {
+        findUserToSetStatus(data.userID, objectData["users"], data.statusLogin)
+        socket.broadcast.emit("setStatusLoginUserResponse", data)
     })
 
     socket.on('countdown', data => {
@@ -193,8 +183,6 @@ socketIO.on('connection', (socket) => {
         console.log('🔥: A user disconnected');
     });
 });
-
-
 
 app.get("/api", (req, res) => {
     const data = fs.readFileSync("data.json")

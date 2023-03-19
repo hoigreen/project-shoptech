@@ -3,6 +3,8 @@
 @import url('./font/themify-icons/themify-icons.css');
 @import url('./css/Grid-system.css');
 @import url('./css/toast-message.css');
+@import url('./css/style-validator.css');
+
 
 /* --------Stylesheet for the common component ------*/
 
@@ -40,6 +42,51 @@ body {
 .container {
     width: 100%;
     margin-top: 105px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes topToDown {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes downToTop {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes modalFadein {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(100%);
+    }
 }
 
 input {
@@ -100,16 +147,6 @@ input {
 
 .modal__cover.modal--open {
     display: flex;
-}
-
-@keyframes modalFadein {
-    from {
-        transform: scale(0);
-    }
-
-    to {
-        transform: scale(100%);
-    }
 }
 
 .modal {
@@ -1562,7 +1599,11 @@ tbody {
     overflow: hidden;
 }
 
+
+
+
 .login-client__col-1 {
+    animation: topToDown linear 1.5s;
     width: 50%;
     height: 100%;
     background-color: var(--primary-color);
@@ -1619,6 +1660,7 @@ tbody {
 }
 
 .login-client__col-2 {
+    animation: downToTop linear 1.5s;
     width: 50%;
     height: 100%;
     background-color: #fff;
@@ -1640,7 +1682,7 @@ tbody {
 
 .login-client__label-login {
     display: block;
-    font-size: 4rem;
+    font-size: 3.6rem;
     font-weight: 600;
     text-align: center;
     width: 100%;
@@ -1663,9 +1705,9 @@ tbody {
     font-size: 2rem;
     text-align: left;
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 10px;
+
 }
 
 .login-client__input {
@@ -1762,7 +1804,7 @@ tbody {
     margin: 30px 0 10px;
     padding: 4px;
     font-size: 1.4rem;
-    color:rgb(0, 0, 0, 0.8)
+    color: rgb(0, 0, 0, 0.8)
 }
 
 .login-client__register {
@@ -1777,6 +1819,109 @@ tbody {
 .login-client__register:hover {
     color: var(--button-color);
     cursor: pointer;
+}
+
+/* --------Stylesheet for the Register Page component ------*/
+.register__title {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.register__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register__form {
+    width: 60%;
+    height: 480px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 0;
+    background-color: #f0dbd8;
+    border-radius: 40px;
+}
+
+.register__label {
+    font-size: 1.8rem;
+}
+
+.register__input {
+    width: 80%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    outline: none;
+    border: 1px solid #ba6347;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.register__input-retype {
+    width: 80%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    outline: none;
+    border: 1px solid #ba6347;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.register__accept {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.register__accept-btn {
+    font-size: 2rem;
+    line-height: 1.4rem;
+    margin-right: 4px;
+    outline: none;
+    justify-self: center;
+    align-items: center;
+    height: 1.4rem;
+    width: 10px;
+}
+
+.register__direct {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.register__question {}
+
+.register__back-login {
+    padding-left: 4px;
+    color: #52bd00;
+    cursor: pointer;
+}
+
+.register__back-login:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.register__copyright {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.register__copyright label {
+    font-size: 1.4rem;
 }
 
 
@@ -2347,108 +2492,7 @@ tbody {
 
 
 
-/* --------Stylesheet for the Register Page component ------*/
-.register__title {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    font-size: 4rem;
-    font-weight: 600;
-    padding-top: 20px;
-}
 
-.register__container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.register__form {
-    width: 60%;
-    height: 480px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px 0;
-    background-color: #f0dbd8;
-    border-radius: 40px;
-}
-
-.register__label {
-    font-size: 1.8rem;
-}
-
-.register__input {
-    width: 80%;
-    padding: 14px 20px;
-    border-radius: 12px;
-    margin: 15px 0;
-    outline: none;
-    border: 1px solid #ba6347;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-}
-
-.register__input-retype {
-    width: 80%;
-    padding: 14px 20px;
-    border-radius: 12px;
-    margin: 15px 0;
-    outline: none;
-    border: 1px solid #ba6347;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-}
-
-.register__accept {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-}
-
-.register__accept-btn {
-    font-size: 2rem;
-    line-height: 1.4rem;
-    margin-right: 4px;
-    outline: none;
-    justify-self: center;
-    align-items: center;
-    height: 1.4rem;
-    width: 10px;
-}
-
-.register__direct {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    font-size: 1.4rem;
-}
-
-.register__question {}
-
-.register__back-login {
-    padding-left: 4px;
-    color: #52bd00;
-    cursor: pointer;
-}
-
-.register__back-login:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-.register__copyright {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-}
-
-.register__copyright label {
-    font-size: 1.4rem;
-}
 
 /* --------Stylesheet for the MainPage component ------*/
 .user-login {
