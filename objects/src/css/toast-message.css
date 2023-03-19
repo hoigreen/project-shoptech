@@ -4,6 +4,12 @@
     right: 32px;
 }
 
+#toast-with-navbar {
+    position: fixed;
+    top: calc(32px + 80px);
+    right: 32px;
+}
+
 .toast {
     display: flex;
     align-items: center;

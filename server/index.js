@@ -98,6 +98,19 @@ function findPromote(idKey, myArray, namePromote, timeStartPromote, timeEndPromo
     })
 }
 
+function findUserToSetStatus(idKey, myArray, statusLoginUser) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].userID === idKey) {
+            myArray[i].statusLogin = statusLoginUser;
+        }
+    }
+    const stringData = JSON.stringify(objectData, null, 2)
+    fs.writeFile("data.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
 
@@ -120,6 +133,11 @@ socketIO.on('connection', (socket) => {
     socket.on("editInfoPromote", data => {
         findPromote(data.id, objectData["promotes"], data.name, data.timeStart, data.timeEnd, data.percent, data.apply)
         socket.broadcast.emit("editInfoPromoteResponse", data)
+    })
+
+    socket.on("setStatusLoginUser", data => {
+        findUserToSetStatus(data.userID, objectData["users"], data.statusLogin)
+        socket.broadcast.emit("setStatusLoginUserResponse", data)
     })
 
     socket.on('addProduct', (data) => {

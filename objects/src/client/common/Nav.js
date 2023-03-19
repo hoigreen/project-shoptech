@@ -40,7 +40,7 @@ const Nav = ({ socket }) => {
                     <p className="header--btn-name">Giỏ hàng</p>
                 </button>
                 <button className="header-btn" onClick={(e) => {
-                    if (window.localStorage.getItem('statusLogged') === true) {
+                    if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
                         navigate("/account")
                     }
                     else {

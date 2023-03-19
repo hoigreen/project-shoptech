@@ -7,8 +7,10 @@ import Nav from '../common/Nav'
 const LoginClient = ({ socket }) => {
     const [users, setUsers] = useState([])
     const [user, setUser] = useState([])
+    const [userID, setUserID] = useState('')
+    const [statusLogin, setStatusLogin] = useState('')
 
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchProducts = () => {
@@ -26,21 +28,24 @@ const LoginClient = ({ socket }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (details.username == '123456' &&
-        //     details.password == '123456') {
-        //     navigate('/home');
-        //     window.localStorage.setItem('userLogged', user.username);
-        //     alert("Đăng nhập thành công");
-        // }
         users.map((user, index) => {
-            console.log(123)
+            if (details.username == user.username &&
+                details.password == user.password) {
+                setUserID(user.userID)
+                setStatusLogin("Đã đăng nhập");
+                socket.emit("setStatusLoginUser", { userID: userID, statusLogin: statusLogin })
+                window.localStorage.setItem('userLogged', user.username);
+                window.localStorage.setItem('statusLogged', statusLogin);
+                alert("Đăng nhập thành công");
+                navigate('/account');
+            }
+            console.log(window.localStorage.getItem('statusLogged'))
         })
-        //showErrorToast();
-        console.log(users)
+        showErrorToast();
     };
 
     function toast({ title = "", message = "", type = "info", duration = 3000 }) {
-        const main = document.getElementById("toast");
+        const main = document.getElementById("toast-with-navbar");
         if (main) {
             const toast = document.createElement("div");
 
@@ -96,7 +101,7 @@ const LoginClient = ({ socket }) => {
 
     return (
         <div>
-            <div id="toast"></div>
+            <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <div className='container'>
                 <div className="grid wide">
@@ -171,7 +176,7 @@ const LoginClient = ({ socket }) => {
                                             className="login-client__register"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                window.location.href = '/register';
+                                                navigate('/register');
                                             }}
                                         >
                                             Đăng ký ngay</a>
