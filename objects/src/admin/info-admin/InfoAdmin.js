@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom'
 
 const InfoAdmin = ({ socket }) => {
     const [admins, setAdmins] = useState([])
@@ -17,8 +16,6 @@ const InfoAdmin = ({ socket }) => {
     const [emailAdminEdit, setEmailAdminEdit] = useState('')
     const [phoneAdminEdit, setPhoneAdminEdit] = useState('')
     const [addressAdminEdit, setAddressAdminEdit] = useState('')
-
-    const [error, setError] = useState(false)
 
     const navigate = useNavigate();
 

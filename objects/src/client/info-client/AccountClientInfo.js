@@ -3,14 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
 import Footer from '../common/Footer';
 
-
-const AccountClient = ({ socket }) => {
+const AccountClientInfo = ({ socket }) => {
     const [users, setUsers] = useState([])
     const [user, setUser] = useState([])
-    const [userID, setUserID] = useState('')
     const [username, setUsername] = useState('')
-    const [fullname, setFullname] = useState('')
+    const [userID, setUserID] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
+
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
+
+    const [fullnameEdit, setFullnameEdit] = useState('')
+    const [emailEdit, setEmailEdit] = useState('')
+    const [phoneEdit, setPhoneEdit] = useState('')
+    const [addressEdit, setAddressEdit] = useState('')
+
 
     useEffect(() => {
         const fetchAPIs = () => {
@@ -21,14 +30,16 @@ const AccountClient = ({ socket }) => {
         fetchAPIs()
     }, [])
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         users.map((user, index) => {
             if (user.username === window.localStorage.getItem("userLogged")) {
+                setUserID(user.userID)
                 setUsername(user.username);
-                setFullname(user.fullname)
-                setAvatarUrl(user.avatarUrl)
+                setFullname(user.fullname);
+                setAvatarUrl(user.avatarUrl);
+                setEmail(user.email);
+                setPhone(user.phone);
+                setAddress(user.address);
             }
         })
     })
@@ -45,6 +56,16 @@ const AccountClient = ({ socket }) => {
         })
     }
 
+    const handleEditInfo = (e) => {
+        e.preventDefault()
+        if (window.confirm("Bạn muốn sửa đổi thông tin cá nhân!") == true) {
+            socket.emit("editInfoCustomer", { userID: userID, fullname: fullnameEdit, email: emailEdit, phone: phoneEdit, address: addressEdit })
+            window.alert("Thành công!")
+            window.location.href = window.location.href;
+        }
+    }
+
+    const navigate = useNavigate();
     return (
         <div>
             <Nav socket={socket} />
@@ -53,11 +74,11 @@ const AccountClient = ({ socket }) => {
                     <div className="account-info__container">
                         <div className="account__sidebar">
                             <ul className="account__sidebar-list">
-                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => { navigate('/account') }}>
+                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account') }}>
                                     <i className="account__sidebar-item-icon fa fa-home"></i>
                                     <label className="account__sidebar-label">Trang chủ</label>
                                 </li>
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account/info') }}>
+                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => { navigate('/account/info') }}>
                                     <i className="account__sidebar-item-icon fa fa-user"></i>
                                     <label className="account__sidebar-label">Thông tin cá nhân</label>
                                 </li>
@@ -84,45 +105,42 @@ const AccountClient = ({ socket }) => {
                                 }} className="account__box-info-avatar"></div>
                                 <label className="account__box-info-label">Xin chào</label>
                                 <label className="account__box-info-fullname">{fullname}</label>
-                                <div className='account__box-info-list'>
-                                    <div className='account__box-info-item'>
-                                        <label className='account__box-info-item-label'>Sản phẩm đã mua</label>
-                                        <i className='account__box-info-item-icon fa fa-cart-arrow-down'></i>
-                                        <p className='account__box-info-item-data'>5</p>
-                                    </div>
+                                <label className="account__box-info-header">THÔNG TIN CÁ NHÂN</label>
 
-                                    <div className='account__box-info-item'>
-                                        <label className='account__box-info-item-label'>Đơn hàng đã hoàn thành</label>
-                                        <i className='account__box-info-item-icon fa fa-list-alt'></i>
-                                        <p className='account__box-info-item-data'>2</p>
-                                    </div>
+                                <label className="account__box-info-title">Họ và tên đầy đủ:</label>
+                                <input className="account__box-info-input"
+                                    defaultValue={fullname}
+                                    name="fullname"
+                                    onChange={(e) => { setFullnameEdit(e.target.value) }}
+                                />
 
-                                    <div className='account__box-info-item'>
-                                        <label className='account__box-info-item-label'>Tổng giá trị mua hàng tại website</label>
-                                        <i className='account__box-info-item-icon fa fa-credit-card'></i>
-                                        <p className='account__box-info-item-data'>1.229.000 đ</p>
-                                    </div>
-                                </div>
-                            </div>
+                                <label className="account__box-info-title">Email:</label>
+                                <input className="account__box-info-input"
+                                    defaultValue={email}
+                                    name="emai"
+                                    onChange={(e) => { setEmailEdit(e.target.value) }}
+                                />
 
-                            <div className='account__box-option'>
-                                <div className='account__box-option-item account__box-option-item--color-pink'>
-                                    <div className='account__box-option-item-img account__box-option-item-img--cart'>1</div>
-                                    <label className='account__box-option-item-title'>Thông tin giỏ hàng</label>
-                                    <button className='account__box-option-item-btn'>Xem chi tiết</button>
-                                </div>
+                                <label className="account__box-info-title">Số điện thoại:</label>
+                                <input className="account__box-info-input"
+                                type="number"
+                                    defaultValue={phone}
+                                    name="phone"
+                                    onChange={(e) => { setPhoneEdit(e.target.value) }}
+                                />
 
-                                <div className='account__box-option-item account__box-option-item--color-yellow'>
-                                    <div className='account__box-option-item-img account__box-option-item-img--order'></div>
-                                    <label className='account__box-option-item-title'>Đơn hàng của bạn</label>
-                                    <button className='account__box-option-item-btn'>Xem chi tiết</button>
-                                </div>
+                                <label className="account__box-info-title">Địa chỉ liên hệ:</label>
+                                <input className="account__box-info-input"
+                                    defaultValue={address}
+                                    name="address"
+                                    onChange={(e) => { setAddressEdit(e.target.value) }}
+                                />
 
-                                <div className='account__box-option-item account__box-option-item--color-green'>
-                                    <div className='account__box-option-item-img account__box-option-item-img--history'>1</div>
-                                    <label className='account__box-option-item-title'>Lịch sử mua hàng</label>
-                                    <button className='account__box-option-item-btn'>Xem chi tiết</button>
-                                </div>
+
+                                <button className="account__box-info-btn" onClick={handleEditInfo}>Cập nhật thông tin</button>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -135,4 +153,4 @@ const AccountClient = ({ socket }) => {
     )
 }
 
-export default AccountClient;
+export default AccountClientInfo

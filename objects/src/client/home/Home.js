@@ -10,13 +10,8 @@ const socket = socketIO.connect('http://localhost:4000');
 const Home = () => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState([])
-    const [imageLink, setImageLink] = useState('')
     const [timeStart, setTimeStartSale] = useState(15)
     const [timeEnd, setTimeEndSale] = useState(24)
-
-
-    const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
 
     const [promotes, setPromotes] = useState([])
     const [promote, setPromote] = useState([])
@@ -29,7 +24,6 @@ const Home = () => {
         const fetchAPIs = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
                 setProducts(data.products)
-                setUsers(data.users)
                 setPromotes(data.promotes)
                 setLoading(false)
             })
@@ -175,7 +169,14 @@ const Home = () => {
 
                                 <ul className="home__flash-sale-list">
                                     {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                        <li className="home__flash-sale-item" key={index}>
+                                        <li
+                                            className="home__flash-sale-item"
+                                            key={index}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                navigate(`/${product.name}`)
+                                            }}
+                                        >
                                             <div style={{
                                                 background: `url(${product.imageLink})`,
                                                 backgroundColor: "transparent",
@@ -200,7 +201,7 @@ const Home = () => {
                             <div className="home__featured-label">⚡⚡⚡ Sản phẩm nổi bật ⚡⚡⚡</div>
 
                             <div className='home__featured-banner-phone'></div>
-                            <div className="home__featured-type">ĐIỆN THOẠI</div>
+                            <div className="home__featured-type" onClick={(e) => { navigate('/smartphone') }}>ĐIỆN THOẠI</div>
                             <div className="home__featured-brand-list">
                                 <button className="home__product-brand-item">Apple</button>
                                 <button className="home__product-brand-item">Samsung</button>
@@ -212,7 +213,14 @@ const Home = () => {
                             </div>
                             <ul className="home__featured-list">
                                 {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li className="product__sell-item--smartphone" key={index}>
+                                    <li
+                                        className="product__sell-item--smartphone"
+                                        key={index}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            navigate(`/${product.name}`)
+                                        }}
+                                    >
                                         <div style={{
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
@@ -232,8 +240,8 @@ const Home = () => {
                                 ))}
                             </ul>
 
-                            <div className='home__featured-banner-tablet'></div>
-                            <div className="home__featured-type">MÁY TÍNH BẢNG</div>
+                            <div className='home__featured-banner-tablet' onClick={(e) => { navigate('/tablet') }}></div>
+                            <div className="home__featured-type " onClick={(e) => { navigate('/tablet') }}>MÁY TÍNH BẢNG</div>
                             <div className="home__featured-brand-list">
                                 <button className="home__product-brand-item">Apple</button>
                                 <button className="home__product-brand-item">Samsung</button>
@@ -245,7 +253,14 @@ const Home = () => {
                             </div>
                             <ul className="home__featured-list">
                                 {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li className="product__sell-item--tablet" key={index}>
+                                    <li
+                                        className="product__sell-item--tablet"
+                                        key={index}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            navigate(`/${product.name}`)
+                                        }}
+                                    >
                                         <div style={{
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
@@ -265,8 +280,8 @@ const Home = () => {
                                 ))}
                             </ul>
 
-                            <div className='home__featured-banner-laptop'></div>
-                            <div className="home__featured-type">MÁY TÍNH XÁCH TAY</div>
+                            <div className='home__featured-banner-laptop' onClick={(e) => { navigate('/laptop') }}></div>
+                            <div className="home__featured-type" onClick={(e) => { navigate('/laptop') }}>MÁY TÍNH XÁCH TAY</div>
                             <div className="home__featured-brand-list">
                                 <button className="home__product-brand-item">Apple Macbook</button>
                                 <button className="home__product-brand-item">ASUS</button>
@@ -278,7 +293,14 @@ const Home = () => {
                             </div>
                             <ul className="home__featured-list">
                                 {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li className="product__sell-item--laptop" key={index}>
+                                    <li
+                                        className="product__sell-item--laptop"
+                                        key={index}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            navigate(`/${product.name}`)
+                                        }}
+                                    >
                                         <div style={{
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
@@ -298,8 +320,8 @@ const Home = () => {
                                 ))}
                             </ul>
 
-                            <div className='home__featured-banner-acc'></div>
-                            <div className="home__featured-type">PHỤ KIỆN CÔNG NGHỆ</div>
+                            <div className='home__featured-banner-acc' onClick={(e) => { navigate('/accessories') }}></div>
+                            <div className="home__featured-type" onClick={(e) => { navigate('/accessories') }}>PHỤ KIỆN CÔNG NGHỆ</div>
                             <div className="home__featured-brand-list">
                                 <button className="home__product-brand-item">Tai nghe</button>
                                 <button className="home__product-brand-item">Cáp sạc</button>
@@ -310,7 +332,14 @@ const Home = () => {
                             </div>
                             <ul className="home__featured-list">
                                 {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li className="product__sell-item--accessories" key={index}>
+                                    <li
+                                        className="product__sell-item--accessories"
+                                        key={index}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            navigate(`/${product.name}`)
+                                        }}
+                                    >
                                         <div style={{
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",

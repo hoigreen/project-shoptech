@@ -82,32 +82,6 @@ const InfoCustomer = ({ socket }) => {
         })
     })
 
-    const handleEdit = (e) => {
-        const editBtns = document.querySelectorAll('.table__edit-btn')
-        const modalCover = document.querySelector('.modal__cover')
-        const modal = document.querySelector('.modal')
-        const modalClose = document.querySelector('.modal__btn-close')
-
-        const showEditInfo = () => {
-            modalCover.classList.add('modal--open')
-        }
-        const hideEditInfo = () => {
-            modalCover.classList.remove('modal--open')
-        }
-
-        for (const editBtn of editBtns) {
-            editBtn.addEventListener('click', showEditInfo)
-        }
-        modalClose.addEventListener('click', hideEditInfo)
-        modalCover.addEventListener('click', hideEditInfo)
-        modal.addEventListener('click', (event) => {
-            event.stopPropagation()
-        })
-        users.map((user, index) => {
-            console.log(123)
-        })
-    }
-
     const handleConfirmChange = (e) => {
         e.preventDefault()
         if (window.confirm("Bạn muốn sửa đổi thông tin khách hàng!") == true) {

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
-import Validator from '../others/Validator';
 import Footer from '../common/Footer';
 
 const RegisterClient = ({ socket }) => {
     const [users, setUsers] = useState([])
     const [user, setUser] = useState([])
     const [userID, setUserID] = useState('')
+    const [avatarUrlRegister, setAvatarUrlRegister] = useState('')
     const [usernameRegister, setUsernameRegister] = useState('')
     const [passwordRegister, setPasswordRegister] = useState('')
-    const [fullNameRegister, setFullNameRegister] = useState('')
+    const [fullnameRegister, setFullnameRegister] = useState('')
     const [emailRegister, setEmailRegister] = useState('')
     const [phoneRegister, setPhoneRegister] = useState('')
     const [addressRegister, setAddressRegister] = useState('')
@@ -164,6 +164,7 @@ const RegisterClient = ({ socket }) => {
         users.map((user, index) => {
             if (index = users.length) {
                 setUserID(`G00${index + 1}`);
+                setAvatarUrlRegister("http://localhost:4000/uploads/customers/img-avatar-empty.png")
                 setStatusLogin("Chưa đăng nhập");
             }
             index = index + 1;
@@ -174,8 +175,10 @@ const RegisterClient = ({ socket }) => {
         if (window.confirm('Bạn chắc chắn những thông tin bạn nhập vào là chính xác!') == true) {
             socket.emit("registerClient", {
                 userID,
+                avatarUrl: avatarUrlRegister,
                 username: usernameRegister,
                 password: passwordRegister,
+                fullname: fullnameRegister,
                 email: emailRegister,
                 phone: phoneRegister,
                 address: addressRegister,
@@ -245,8 +248,8 @@ const RegisterClient = ({ socket }) => {
                                             name="fullname"
                                             type="text"
                                             placeholder="VD: Lê Ninh ..."
-                                            onChange={(e) => setFullNameRegister(e.target.value)}
-                                            value={fullNameRegister}
+                                            onChange={(e) => setFullnameRegister(e.target.value)}
+                                            value={fullnameRegister}
                                             className="form-control">
                                         </input>
                                         <span className="form-message"></span>

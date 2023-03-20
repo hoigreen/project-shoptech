@@ -157,11 +157,11 @@ const Dashboard = () => {
 
                     <div className="admin__header-admin">
                         <div className="admin__header-info">
-                        Hello,
-                        <span className="admin__header-name">{fullname}</span>
-                        --
-                        </div>    
-                        <div style={{backgroundImage: `url(${avatarUrl})`}} className="admin__header-avatar"></div>
+                            Hello,
+                            <span className="admin__header-name">{fullname}</span>
+                            --
+                        </div>
+                        <div style={{ backgroundImage: `url(${avatarUrl})` }} className="admin__header-avatar"></div>
 
                         <div className='admin__header-option'>
                             <div className="admin__header-option-item" onClick={handleNevigateInfo} >Thông tin cá nhân</div>
@@ -217,7 +217,7 @@ const Dashboard = () => {
 
                     <div className='admin__list'>
                         {loading ? <p>Đang kết nối đến server ... </p> : admins.map((admin, index) => (
-                                <div className='admin__item'>
+                            <div className='admin__item'>
                                 <label className='admin__item-id'>{admin.adminID}</label>
                                 <div className='admin__item-avatar'>
                                     <div style={{
@@ -226,7 +226,7 @@ const Dashboard = () => {
                                         className='admin__item-img'></div>
                                 </div>
                                 <label className='admin__item-admin-name'>{admin.adminName}</label>
-    
+
                                 <div className='admin__item-info'>
                                     <label className='admin__item-info-label'>Họ và tên:</label>
                                     <p className='admin__item-info-content'>{admin.fullname}</p>
@@ -244,9 +244,9 @@ const Dashboard = () => {
                                     <p className='admin__item-info-content'>{admin.address || "Trống!"} </p>
                                 </div>
                             </div>
-                            ))}
+                        ))}
                     </div>
-                    
+
                 </div>
             </div>
         </div>

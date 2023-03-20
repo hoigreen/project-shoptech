@@ -10,13 +10,10 @@ const LoginClient = ({ socket }) => {
     const [userID, setUserID] = useState('')
     const [statusLogin, setStatusLogin] = useState('')
 
-    const [loading, setLoading] = useState(false)
-
     useEffect(() => {
         const fetchProducts = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
                 setUsers(data.users)
-                setLoading(false)
             })
         }
         fetchProducts()
@@ -32,10 +29,9 @@ const LoginClient = ({ socket }) => {
             if (details.username == user.username &&
                 details.password == user.password) {
                 setUserID(user.userID)
-                setStatusLogin("Đã đăng nhập");
-                socket.emit("setStatusLoginUser", { userID: userID, statusLogin: statusLogin })
                 window.localStorage.setItem('userLogged', user.username);
                 window.localStorage.setItem('statusLogged', statusLogin);
+                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: statusLogin })
                 alert("Đăng nhập thành công");
                 navigate('/account');
             }
@@ -128,7 +124,11 @@ const LoginClient = ({ socket }) => {
                                         type="text"
                                         name="username"
                                         className="login-client__input"
-                                        onChange={e => setDetails({ ...details, username: e.target.value })}
+                                        onChange={e => {
+                                            setDetails({ ...details, username: e.target.value });
+                                            setStatusLogin("Đã đăng nhập")
+                                            console.log(statusLogin);
+                                        }}
                                         value={details.username}
                                         required
                                         minLength={5}
