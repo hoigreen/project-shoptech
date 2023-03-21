@@ -88,7 +88,7 @@ const Login = () => {
     return (
         <div className='login--admin-container'>
             <div id="toast"></div>
-            
+
             <div className="login__logo"></div>
             <div className="login__box">
                 <label className="login__label-login">Đăng nhập tài khoản</label>
@@ -123,8 +123,6 @@ const Login = () => {
             <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
                 Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
         </div>
-
-
     );
 };
 

@@ -5,6 +5,7 @@
 @import url('./css/toast-message.css');
 @import url('./css/style-validator.css');
 @import url('./css/account-client.css');
+@import url('./css/nav.css');
 
 
 /* --------Stylesheet for the common component ------*/
@@ -1482,110 +1483,6 @@ tbody {
 
 /* ---------------------------------------------------------- */
 /* --------Stylesheet for the Client component ------*/
-/* --------Stylesheet for the Navigation component ------*/
-.nav-container {
-    position: fixed;
-    z-index: 10;
-    width: 100%;
-    background-image: linear-gradient(to bottom, #fdac61, #ffd391);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    top: 0;
-
-}
-
-.navbar {
-    height: 80px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    margin-bottom: 20px;
-    margin-top: 0;
-}
-
-.header--logo {
-    display: block;
-    width: 140px;
-    height: 80px;
-    background-image: url(./img/client/login-home.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-    background-color: transparent;
-    cursor: pointer;
-    user-select: none;
-}
-
-.header-search {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    justify-content: space-between;
-}
-
-.header-search__input {
-    display: inline-block;
-    flex-grow: 1;
-    height: 46px;
-    border-radius: 10px;
-    outline: none;
-    border: 0;
-    padding: 10px;
-    margin: 0 16px;
-    font-size: 1.6rem;
-    font-weight: 500;
-}
-
-.header-search__button {
-    height: 46px;
-    width: 46px;
-    font-size: 2.5rem;
-    background-color: #df8129;
-    border: none;
-    border-radius: 20%;
-    color: #fff;
-    margin-right: 10px;
-}
-
-.header-search__button:hover {
-    opacity: 0.9;
-    cursor: pointer;
-}
-
-.header-btn {
-    color: #fff;
-    font-weight: 500;
-    background-color: var(--button-color);
-    min-width: 60px;
-    height: 46px;
-    padding: 12px;
-    font-size: 1.8rem;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    display: flex;
-    font-size: 1.8rem;
-    align-items: center;
-}
-
-.header-btn:hover {
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-
-.header--btn-icon {
-    margin: 0 10px 0 4px;
-    font-size: 2.6rem;
-}
-
-.header--btn-name {
-    margin-bottom: 0;
-}
-
-
 /* --------Stylesheet for the Hot Promote component ------*/
 .hot-promote__container {
     margin-top: 80px;

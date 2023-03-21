@@ -1,0 +1,185 @@
+/* --------Stylesheet for the common component ------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary-color: #eb984c;
+    --button-color: #df8129;
+    --background-color: #f3f3f3;
+    --text-color: #222222;
+    --background-login-color: #ffd3aa;
+}
+
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 100%;
+    margin-top: 105px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes topToDown {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes downToTop {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes modalFadein {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(100%);
+    }
+}
+
+/* --------Stylesheet for the Navigation component ------*/
+.nav-container {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    background-image: linear-gradient(to bottom, #fdac61, #ffd391);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    top: 0;
+
+}
+
+.navbar {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.header--logo {
+    display: block;
+    width: 140px;
+    height: 80px;
+    background-image: url(../img/client/login-home.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.header-search__input {
+    display: inline-block;
+    flex-grow: 1;
+    height: 46px;
+    border-radius: 10px;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    margin: 0 16px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.header-search__button {
+    height: 46px;
+    width: 46px;
+    font-size: 2.5rem;
+    background-color: #df8129;
+    border: none;
+    border-radius: 20%;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.header-search__button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.header-btn {
+    color: #fff;
+    font-weight: 500;
+    background-color: var(--button-color);
+    min-width: 60px;
+    height: 46px;
+    padding: 12px;
+    font-size: 1.8rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    font-size: 1.8rem;
+    align-items: center;
+}
+
+.header-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+.header--btn-icon {
+    margin: 0 10px 0 4px;
+    font-size: 2.6rem;
+}
+
+.header--btn-name {
+    margin-bottom: 0;
+}

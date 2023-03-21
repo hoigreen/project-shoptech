@@ -103,7 +103,7 @@ function App() {
                     <Route path="/tablet" element={<Tablet socket={socket} />} />
                     <Route path="/accessories" element={<Accessories socket={socket} />} />
                     <Route
-                        path="/:name"
+                        path="/product/:name"
                         element={<InfoProductClient socket={socket} />}
                     />
 

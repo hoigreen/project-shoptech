@@ -116,7 +116,7 @@ const AccountClient = ({ socket }) => {
                                     <div className='account__box-info-item'>
                                         <label className='account__box-info-item-label'>Đơn hàng đang giao</label>
                                         <i className='account__box-info-item-icon fa fa-cart-arrow-down'></i>
-                                        <p className='account__box-info-item-data'>{countOrderDriving}</p>
+                                        <p className='account__box-info-item-data'>{countOrderDriving || "0"}</p>
                                     </div>
 
                                     <div className='account__box-info-item'>
