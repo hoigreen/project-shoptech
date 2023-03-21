@@ -65,7 +65,7 @@ const PromotePage = () => {
                 setAvatarUrl(admin.avatarUrl);
             }
         })
-    })  
+    })
 
     const handleAddPromote = (event) => {
         event.preventDefault()

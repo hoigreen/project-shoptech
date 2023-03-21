@@ -6,16 +6,21 @@ import Footer from '../common/Footer';
 
 const AccountClient = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
-    const [userID, setUserID] = useState('')
+
     const [username, setUsername] = useState('')
     const [fullname, setFullname] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
+
+    const [orders, setOrders] = useState([])
+    const [countOrderDriving, setCountOrderDriving] = useState()
+    const [countOrder, setCountOrder] = useState()
+    const [countPriceOrder, setCountPriceOrder] = useState()
 
     useEffect(() => {
         const fetchAPIs = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
                 setUsers(data.users)
+                setOrders(data.orders)
             })
         }
         fetchAPIs()
@@ -29,6 +34,29 @@ const AccountClient = ({ socket }) => {
                 setUsername(user.username);
                 setFullname(user.fullname)
                 setAvatarUrl(user.avatarUrl)
+            }
+        })
+
+        // Show thông tin số đơn hàng đang giao
+        let sumCountOrderDriving = 0;
+        orders.map((order, index) => {
+            if (order.owner == window.localStorage.getItem("userLogged")) {
+                if (order.status === "Đang giao hàng") {
+                    sumCountOrderDriving ++;
+                    setCountOrderDriving(sumCountOrderDriving)
+                }
+            }
+        })
+
+        // Show thông tin số đơn hàng đã mua và số tiền mua hàng tích lũy
+        let sumCountOrder = 0;
+        let sumCountPriceOrder = 0;
+        orders.map((order, index) => {
+            if (order.owner == window.localStorage.getItem("userLogged")) {
+                sumCountOrder += 1;
+                sumCountPriceOrder += Number(order.price);
+                setCountOrder(sumCountOrder)
+                setCountPriceOrder(sumCountPriceOrder)
             }
         })
     })
@@ -86,21 +114,21 @@ const AccountClient = ({ socket }) => {
                                 <label className="account__box-info-fullname">{fullname}</label>
                                 <div className='account__box-info-list'>
                                     <div className='account__box-info-item'>
-                                        <label className='account__box-info-item-label'>Sản phẩm đã mua</label>
+                                        <label className='account__box-info-item-label'>Đơn hàng đang giao</label>
                                         <i className='account__box-info-item-icon fa fa-cart-arrow-down'></i>
-                                        <p className='account__box-info-item-data'>5</p>
+                                        <p className='account__box-info-item-data'>{countOrderDriving}</p>
                                     </div>
 
                                     <div className='account__box-info-item'>
                                         <label className='account__box-info-item-label'>Đơn hàng đã hoàn thành</label>
                                         <i className='account__box-info-item-icon fa fa-list-alt'></i>
-                                        <p className='account__box-info-item-data'>2</p>
+                                        <p className='account__box-info-item-data'>{countOrder}</p>
                                     </div>
 
                                     <div className='account__box-info-item'>
                                         <label className='account__box-info-item-label'>Tổng giá trị mua hàng tại website</label>
                                         <i className='account__box-info-item-icon fa fa-credit-card'></i>
-                                        <p className='account__box-info-item-data'>1.229.000 đ</p>
+                                        <p className='account__box-info-item-data'>{Number(countPriceOrder).toLocaleString()} đ</p>
                                     </div>
                                 </div>
                             </div>
@@ -109,19 +137,19 @@ const AccountClient = ({ socket }) => {
                                 <div className='account__box-option-item account__box-option-item--color-pink'>
                                     <div className='account__box-option-item-img account__box-option-item-img--cart'>1</div>
                                     <label className='account__box-option-item-title'>Thông tin giỏ hàng</label>
-                                    <button className='account__box-option-item-btn'>Xem chi tiết</button>
+                                    <button className='account__box-option-item-btn' onClick={(e) => { navigate('/cart') }}>Xem chi tiết</button>
                                 </div>
 
                                 <div className='account__box-option-item account__box-option-item--color-yellow'>
                                     <div className='account__box-option-item-img account__box-option-item-img--order'></div>
                                     <label className='account__box-option-item-title'>Đơn hàng của bạn</label>
-                                    <button className='account__box-option-item-btn'>Xem chi tiết</button>
+                                    <button className='account__box-option-item-btn' onClick={(e) => { navigate('/order') }}>Xem chi tiết</button>
                                 </div>
 
                                 <div className='account__box-option-item account__box-option-item--color-green'>
                                     <div className='account__box-option-item-img account__box-option-item-img--history'>1</div>
                                     <label className='account__box-option-item-title'>Lịch sử mua hàng</label>
-                                    <button className='account__box-option-item-btn'>Xem chi tiết</button>
+                                    <button className='account__box-option-item-btn' onClick={(e) => { navigate('/account/history') }}>Xem chi tiết</button>
                                 </div>
                             </div>
                         </div>

@@ -363,7 +363,7 @@ body {
 }
 
 .account__box-info {
-    padding: 10px;
+    padding: 10px 10px 30px;
     display: block;
     text-align: center;
     width: 100%;
@@ -572,3 +572,76 @@ body {
     opacity: 0.8;
     cursor: pointer;
 }
+
+.account__box-info-counting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 20px;
+    grid-gap: 80px;
+    gap: 80px;
+}
+
+.account__box-info-counting-item {
+    font-size: 1.6rem;
+}
+
+.account__box-info-counting-icon {
+    width: 60px;
+    height: 60px;
+    margin: auto;
+}
+
+.account__box-info-counting-icon--purchased {
+    background-image: url(../img/client/account-img/img-purchased.png)
+}
+
+.account__box-info-counting-icon--shopping {
+    background-image: url(../img/client/account-img/img-shopping.png)
+}
+
+.account__box-info-counting-title {
+    display: block;
+    margin-top: 8px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.account__box-info-counting-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--button-color);;
+    margin-top: 14px;
+}
+
+.account__box-info-fillter-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0;
+}
+
+.account__box-info-fillter {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.account__box-info-fillter-btn {
+    padding: 10px 20px 4px;
+    font-size: 1.6rem;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+
+.account__box-info-fillter-btn--active {
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: bold;
+    color: var(--button-color);
+}
+

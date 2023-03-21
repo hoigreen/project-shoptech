@@ -692,7 +692,7 @@ thead {
 .table .table__thead-primary td {
     border: none;
     padding: 20px;
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     font-weight: 600;
     color: white;
     text-align: center;
@@ -718,7 +718,7 @@ tbody {
     border-right: none;
     border-left: none;
     border-image: initial;
-    padding: 30px;
+    padding: 20px;
     font-size: 1.7rem;
     background: rgb(255, 255, 255);
     border-bottom: 4px solid rgb(248, 249, 253);
@@ -728,6 +728,26 @@ tbody {
 
 .table__edit-btn {
     user-select: none;
+}
+
+.table-td-element {
+    display: flex;
+    align-items: center;
+}
+
+.table-td__img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+}
+
+.table-td__label {
+    display: block;
+    max-width: 120px;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 600;
 }
 
 .admin__list {

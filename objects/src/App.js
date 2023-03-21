@@ -29,6 +29,7 @@ import RegisterClient from './client/info-client/RegisterClient';
 import LoginClient from './client/info-client/LoginClient';
 import AccountClient from './client/info-client/AccountClient';
 import AccountClientInfo from './client/info-client/AccountClientInfo';
+import AccountHistory from './client/info-client/AccountHistory';
 
 import SmartPhone from './client/products/SmartPhone';
 import Laptop from './client/products/Laptop';
@@ -110,6 +111,7 @@ function App() {
                     <Route path="/register" element={<RegisterClient socket={socket} />} />
                     <Route path="/account" element={<AccountClient socket={socket} />} />
                     <Route path="/account/info" element={<AccountClientInfo socket={socket} />} />
+                    <Route path="/account/history" element={<AccountHistory socket={socket} />} />
 
                     <Route path="/result" element={<ResultSearch socket={socket} />} />
 
