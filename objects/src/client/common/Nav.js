@@ -41,12 +41,13 @@ const Nav = ({ socket }) => {
                 </button>
                 <button className="header-btn" onClick={(e) => {
                     if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
+                        const elementNavOption = document.querySelector('.nav__option-box');
+                        elementNavOption.style.display = 'block';
                         navigate("/account")
                     }
                     else {
                         navigate("/login")
                     }
-
                 }}>
                     <i className="header--btn-icon fa-solid fa-user"></i>
                     <p className="header--btn-name">Thành viên</p>
@@ -59,6 +60,10 @@ const Nav = ({ socket }) => {
                     <i className="header--btn-icon fa-solid fa-phone"></i>
                     <p className="header--btn-name">Hỗ trợ</p>
                 </button>
+                <ul className="nav__option-box">
+                    <li className="nav__option-item">Thông tin tài khoản</li>
+                    <li className="nav__option-item">Đăng xuất</li>
+                </ul>
             </nav>
         </div>
 

@@ -41,6 +41,10 @@ import ResultSearch from './client/search/ResultSearch';
 import Cart from './client/cart/Cart';
 import CartPayment from './client/cart/CartPayment';
 
+import OrderLookup from './client/order/OrderLookup';
+import OrderLookupResult from './client/order/OrderLookupResult';
+
+
 import ContactPage from './client/contact/ContactPage';
 
 const socket = socketIO.connect('http://localhost:4000');
@@ -113,14 +117,20 @@ function App() {
                     <Route path="/account/info" element={<AccountClientInfo socket={socket} />} />
                     <Route path="/account/history" element={<AccountHistory socket={socket} />} />
 
-                    <Route path="/result" element={<ResultSearch socket={socket} />} />
+                    <Route path="/result/" element={<ResultSearch socket={socket} />} />
 
                     <Route path="/cart" element={<Cart socket={socket} />} />
                     <Route
                         path="/cart/payment"
                         element={<CartPayment socket={socket} />}
                     />
-                    
+
+                    <Route path="/order-lookup" element={<OrderLookup socket={socket} />} />
+                    <Route path="/order-lookup/:username/:orderID" 
+                    element={<OrderLookupResult socket={socket} />} />
+
+
+
                     <Route path="/contact" element={<ContactPage socket={socket} />} />
                 </Routes>
             </div>

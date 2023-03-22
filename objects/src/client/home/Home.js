@@ -10,8 +10,8 @@ const socket = socketIO.connect('http://localhost:4000');
 const Home = () => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState([])
-    const [timeStart, setTimeStartSale] = useState(15)
-    const [timeEnd, setTimeEndSale] = useState(24)
+    const [timeStart, setTimeStartSale] = useState(20)
+    const [timeEnd, setTimeEndSale] = useState(30)
 
     const [promotes, setPromotes] = useState([])
     const [promote, setPromote] = useState([])

@@ -284,5 +284,15 @@
       "price": "40000000",
       "status": "Giao hàng thành công"
     }
+  ],
+  "comments": [
+    {
+      "content": "Alo 1234",
+      "owner": "nkhanh12",
+      "ownerName": "Nguyễn Ngọc Khánh Ly",
+      "time": "2023-03-14",
+      "reply": "Ok",
+      "status": "Đã phản hổi"
+    }
   ]
 }
