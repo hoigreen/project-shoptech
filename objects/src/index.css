@@ -6,6 +6,10 @@
 @import url('./css/style-validator.css');
 @import url('./css/account-client.css');
 @import url('./css/nav.css');
+@import url('./css/smartphone-client.css');
+@import url('./css/laptop-client.css');
+@import url('./css/tablet-client.css');
+@import url('./css/accessories-client.css');
 
 
 /* --------Stylesheet for the common component ------*/

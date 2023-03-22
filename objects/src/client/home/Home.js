@@ -174,7 +174,7 @@ const Home = () => {
                                             key={index}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                navigate(`/${product.name}`)
+                                                navigate(`/product/${product.name}`)
                                             }}
                                         >
                                             <div style={{
@@ -218,7 +218,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/${product.name}`)
+                                            navigate(`/product/${product.name}`)
                                         }}
                                     >
                                         <div style={{
@@ -258,7 +258,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/${product.name}`)
+                                            navigate(`/product/${product.name}`)
                                         }}
                                     >
                                         <div style={{
@@ -298,7 +298,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/${product.name}`)
+                                            navigate(`/product/${product.name}`)
                                         }}
                                     >
                                         <div style={{
@@ -337,7 +337,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/${product.name}`)
+                                            navigate(`/product/${product.name}`)
                                         }}
                                     >
                                         <div style={{
