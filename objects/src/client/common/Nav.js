@@ -58,7 +58,7 @@ const Nav = ({ socket }) => {
                 </button>
                 <button className="header-btn">
                     <i className="header--btn-icon fa-solid fa-phone"></i>
-                    <p className="header--btn-name">Hỗ trợ</p>
+                    <p className="header--btn-name">Hỏi đáp</p>
                 </button>
                 <ul className="nav__option-box">
                     <li className="nav__option-item">Thông tin tài khoản</li>

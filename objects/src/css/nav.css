@@ -178,11 +178,12 @@ body {
 
 .header--btn-icon {
     margin: 0 10px 0 4px;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
 }
 
 .header--btn-name {
     margin-bottom: 0;
+    font-size: 1.6rem;
 }
 
 .nav__option-box {

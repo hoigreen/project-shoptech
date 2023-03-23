@@ -1,0 +1,279 @@
+/* --------Stylesheet for the common component ------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary-color: #eb984c;
+    --button-color: #df8129;
+    --background-color: #f3f3f3;
+    --text-color: #222222;
+    --background-login-color: #ffd3aa;
+}
+
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 100%;
+    margin-top: 105px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes topToDown {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes downToTop {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes modalFadein {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(100%);
+    }
+}
+
+/* --------Stylesheet for the Info Product Client component ------*/
+.info-product__container {
+
+}
+
+.info-product__header {
+    
+}
+
+.info-product__header-name {
+
+}
+
+.info-product__header-star {
+
+}
+
+.info-product__header-voters {
+
+}
+
+.info-product__box {
+
+}
+
+.info-product__image-group {
+
+}
+
+.info-product__image-primary {
+
+}
+
+.info-product__image-label {
+
+}
+
+.info-product__image-list {
+
+}
+
+.info-product__image-item {
+
+}
+
+.info-product__policy {
+
+}
+
+.info-product__policy-item {
+
+}
+
+.info-product__policy-item-icon {
+
+}
+
+.info-product__policy-item-conttent {
+
+}
+
+.info-product__policy-item-btn {
+
+}
+
+.info-product__detail {
+
+}
+
+.info-product__detail-label {
+
+}
+
+.info-product__detail-price {
+
+}
+
+.info-product__detail-old-price {
+
+}
+
+.info-product__detail-percent {
+
+}
+
+.info-product__detail-installment {
+
+}
+
+.info-product__detail-option {
+
+}
+
+.info-product__detail-option-item {
+
+}
+
+.info-product__detail-option {
+
+}
+
+.info-product__detail-option-item {
+
+}
+
+.info-product__detail-promote {
+
+}
+
+.info-product__detail-promote-item {
+
+}
+
+.info-product__detail-payment {
+
+}
+
+.info-product__detail-payment-item {
+
+}
+
+.info-product__similar {
+
+}
+
+.info-product__review-container {
+
+}
+
+.info-product__review {
+
+}
+
+.info-product__review-header {
+
+}
+
+.info-product__review-box {
+
+}
+
+.info-product__review-star {
+
+}
+
+.info-product__review-star-icon {
+
+}
+
+.info-product__review-number {
+
+}
+
+.info-product__review-list {
+
+}
+
+.info-product__review-item {
+
+}
+
+.info-product__review-item-title {
+
+}
+
+.info-product__review-item-info {
+
+}
+
+.info-product__review-item-avatar {
+
+}
+
+.info-product__review-item-fullname {
+
+}
+
+.info-product__review-item-time {
+
+}
+
+.info-product__review-item-vote {
+
+}
+
+.info-product__review-item-vote-title {
+
+}
+
+.info-product__review-item-vote-start {
+
+}
+
+.info-product__review-item-vote-content {
+
+}
