@@ -16,8 +16,8 @@
       "adminName": "baxigovap",
       "password": "123456",
       "fullname": "Nguyễn Thành Hưng",
-      "email": "2051120111@ut.edu.vn",
-      "phone": "390105230",
+      "email": "2051120131@ut.edu.vn",
+      "phone": "0357003927",
       "address": "Gò Vấp"
     },
     {
@@ -109,7 +109,7 @@
       "email": "ktranlt129@gmai.com",
       "phone": "0772912291",
       "address": "321B, Phan Văn Trị, TPHCM",
-      "statusLogin": "Đã đăng nhập"
+      "statusLogin": "Chưa đăng nhập"
     },
     {
       "userID": "G004",
@@ -236,6 +236,15 @@
       "star": 3.5,
       "hotDeal": false,
       "featured": true
+    },
+    {
+      "id": "",
+      "name": "abc",
+      "type": "1",
+      "price": "1",
+      "option": "1",
+      "color": "1",
+      "status": "1"
     }
   ],
   "promotes": [
@@ -283,6 +292,31 @@
       ],
       "price": "40000000",
       "status": "Giao hàng thành công"
+    },
+    {
+      "orderID": "P12V209",
+      "owner": "nkhanh12",
+      "method": "Giao tận nơi",
+      "time": "2023-03-14",
+      "note": "",
+      "lists": [
+        {
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "productID": "P001",
+          "productName": "Iphone 13 2023 - 256GB",
+          "quantity": 1,
+          "totalPrice": "20000000"
+        },
+        {
+          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
+          "productID": "P002",
+          "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
+          "quantity": 1,
+          "totalPrice": "20000000"
+        }
+      ],
+      "price": "40000000",
+      "status": "Đang giao hàng"
     }
   ],
   "comments": [
