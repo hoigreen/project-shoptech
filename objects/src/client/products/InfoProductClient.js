@@ -10,34 +10,63 @@ const InfoProductClient = ({ socket }) => {
                 <div className="grid wide">
                     <div className="info-product__container">
                         <div className="info-product__header">
-
-                            <label className="info-product__header-name">Iphone 13</label>
-                            <p className="info-product__header-star">4.1 star</p>
+                            <label className="info-product__header-name">Laptop Acer Swift 3 SF314 512 56QN i5 1240P/16GB/512GB/Win11 (NX.K0FSV.002)</label>
+                            <p className="info-product__header-star">(4.1 ⭐)</p>
                             <p className="info-product__header-voters">(143 lượt bình chọn)</p>
                         </div>
 
                         <div className="info-product__box">
                             <div className="info-product__image-group">
-                                <div className="info-product__image-primary"></div>
+                                <div className="info-product__image-primary"
+                                    style={{
+                                        backgroundImage: "url(https://cdn.tgdd.vn/Products/Images/44/285765/Slider/vi-vn-acer-swift-3-sf314-512-56qn-i5-nxk0fsv002-2.jpg)",
+                                        backgroundPosition: "center center",
+                                        backgroundColor: "transparent",
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundSize: "cover"
+                                    }}></div>
                                 <label className="info-product__image-label">Những hình ảnh của sản phẩm</label>
                                 <ul className="info-product__image-list">
                                     <li className='info-product__image-item'></li>
+                                    <li className='info-product__image-item'></li>
+                                    <li className='info-product__image-item'></li>
+                                    <li className='info-product__image-item'></li>
+                                    <li className='info-product__image-item'></li>
                                 </ul>
                                 <div className="info-product__policy">
+                                    <label className="info-product__policy-header">CHÍNH SÁCH CỦA SẢN PHẨM</label>
                                     <div className="info-product__policy-item">
-                                        <i className="info-product__policy-item-icon"></i>
-                                        <p className="info-product__policy-item-conttent"></p>
-                                        <button className="info-product__policy-item-btn">Xem chi tiết</button>
+                                        <i className="info-product__policy-item-icon fa fa-wrench"></i>
+                                        <p className="info-product__policy-item-content">
+                                            Bảo hành chính hãng <span style={{ fontWeight: 'bold' }}>12 tháng </span> tại trung tâm bảo hành ủy quyền của hệ thống cửa hàng của ShopTech
+                                            <button className="info-product__policy-item-btn">(Xem chi tiết)</button>
+                                        </p>
+                                    </div>
+                                    <div className="info-product__policy-item">
+                                        <i className="info-product__policy-item-icon fa fa-refresh"></i>
+                                        <p className="info-product__policy-item-content">
+                                            <span style={{ fontWeight: 'bold' }}>1 ĐỔI 1 </span>trong vòng 30 ngày đầu sử dụng và <span style={{ fontWeight: 'bold' }}>HỎNG GÌ ĐỔI NẤY </span> trong 90 ngày
+                                            <button className="info-product__policy-item-btn">(Xem chi tiết)</button>
+                                        </p>
+                                    </div>
+                                    <div className="info-product__policy-item">
+                                        <i className="info-product__policy-item-icon fa fa-retweet"></i>
+                                        <p className="info-product__policy-item-content">
+                                            Chính sách <span style={{ fontWeight: 'bold' }}>Trade-in lên đời </span> luôn hỗ trợ cho mọi sản phẩm
+                                            <button className="info-product__policy-item-btn">(Xem chi tiết)</button>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className='info-product__detail'>
-                                <label className='info-product__detail-label'></label>
-                                <label className='info-product__detail-price'></label>
-                                <label className='info-product__detail-old-price'></label>
-                                <label className='info-product__detail-percent'></label>
-                                <label className='info-product__detail-installment'></label>
+                                <label className='info-product__detail-label'>Giá sản phẩm:</label>
+                                <div className='info-product__detail-price'>
+                                    <label className='info-product__detail-current-price'>19.200.129 đ</label>
+                                    <label className='info-product__detail-old-price'>20,000,000 đ</label>
+                                    <label className='info-product__detail-percent'>-12%</label>
+                                </div>
+                                    <label className='info-product__detail-installment'>Trả góp 0%</label>
                                 <div className='info-product__detail-option'>
                                     <div className='info-product__detail-option-item'></div>
                                 </div>

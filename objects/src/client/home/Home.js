@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Nav from '../common/Nav';
 import HotPromote from '../common/HotPromote';
@@ -174,7 +174,7 @@ const Home = () => {
                                             key={index}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                navigate(`/product/${product.name}`)
+                                                window.location.href = `/product/${product.name}`
                                             }}
                                         >
                                             <div style={{
@@ -218,7 +218,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/product/${product.name}`)
+                                            window.location.href = `/product/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -258,7 +258,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/product/${product.name}`)
+                                            window.location.href = `/product/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -298,7 +298,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/product/${product.name}`)
+                                            window.location.href = `/product/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -337,37 +337,37 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            navigate(`/product/${product.name}`)
+                                            window.location.href = `/product/${product.name}`
                                         }}
                                     >
-                                        <div style={{
-                                            background: `url(${product.imageLink})`,
-                                            backgroundColor: "transparent",
-                                            backgroundPosition: "center center",
-                                            backgroundSize: "95%",
-                                            backgroundRepeat: "no-repeat"
-                                        }} className='product__sell-item-img'></div>
-                                        <label className='product__sell-item-label'>{product.name}</label>
-                                        <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                        <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                        <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star'>{product.star}</span>
-                                            <span className='product__sell-item-star-icon'>⭐</span>
-                                        </label>
-                                    </li>
+                            <div style={{
+                                background: `url(${product.imageLink})`,
+                                backgroundColor: "transparent",
+                                backgroundPosition: "center center",
+                                backgroundSize: "95%",
+                                backgroundRepeat: "no-repeat"
+                            }} className='product__sell-item-img'></div>
+                            <label className='product__sell-item-label'>{product.name}</label>
+                            <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                            <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                            <label className='product__sell-item-sold'>
+                                Đánh giá:
+                                <span className='product__sell-item-star'>{product.star}</span>
+                                <span className='product__sell-item-star-icon'>⭐</span>
+                            </label>
+                        </li>
                                 ))}
-                            </ul>
+                    </ul>
 
-                        </div>
-                    </div>
                 </div>
             </div>
+        </div>
+            </div >
 
             <Footer />
             <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
                 Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
-        </div>
+        </div >
 
 
 

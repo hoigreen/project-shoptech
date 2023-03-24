@@ -1645,18 +1645,19 @@ tbody {
 }
 
 .home__list-product-name {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     text-align: center;
     display: flex;
     align-items: center;
     line-height: 2.4rem;
+    margin-left: 6px;
 }
 
 .home__list-product-img-1 {
     background-image: url(./img/client/list-img/smartphone-img.png);
     background-position: center;
     background-repeat: no-repeat;
-    width: 40%;
+    width: 35%;
     height: 100px;
 }
 
@@ -1664,7 +1665,7 @@ tbody {
     background-image: url(./img/client/list-img/laptop-img.png);
     background-position: center;
     background-repeat: no-repeat;
-    width: 40%;
+    width: 35%;
     height: 100px;
 }
 
@@ -1672,7 +1673,7 @@ tbody {
     background-image: url(./img/client/list-img/tablet-img.png);
     background-position: center;
     background-repeat: no-repeat;
-    width: 40%;
+    width: 35%;
     height: 100px;
 }
 
@@ -1681,7 +1682,7 @@ tbody {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 90%;
-    width: 40%;
+    width: 35%;
     height: 100px;
 }
 
