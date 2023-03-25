@@ -1,0 +1,50 @@
+/* --------Stylesheet for the common component ------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary-color: #eb984c;
+    --button-color: #df8129;
+    --background-color: #f3f3f3;
+    --text-color: #222222;
+    --background-login-color: #ffd3aa;
+}
+
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 100%;
+}
+
+.breadcrumbs__container {
+    position:fixed;
+    top: 60px;
+    left: 0;
+    z-index: 20;
+    background-color: #fff;
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.1), 0 2px 6px 2px rgba(60,64,67,.15);
+}
+.breadcrumbs {
+}

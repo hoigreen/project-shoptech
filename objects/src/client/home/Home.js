@@ -101,8 +101,8 @@ const Home = () => {
     return (
         <div>
             <Nav socket={socket} />
-            <HotPromote socket={socket} />
             <div className=''>
+                <HotPromote socket={socket} />
                 <div className="grid wide">
                     <div className="home__container">
                         <ul id="home-promote">
@@ -340,28 +340,28 @@ const Home = () => {
                                             window.location.href = `/product/${product.name}`
                                         }}
                                     >
-                            <div style={{
-                                background: `url(${product.imageLink})`,
-                                backgroundColor: "transparent",
-                                backgroundPosition: "center center",
-                                backgroundSize: "95%",
-                                backgroundRepeat: "no-repeat"
-                            }} className='product__sell-item-img'></div>
-                            <label className='product__sell-item-label'>{product.name}</label>
-                            <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                            <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                            <label className='product__sell-item-sold'>
-                                Đánh giá:
-                                <span className='product__sell-item-star'>{product.star}</span>
-                                <span className='product__sell-item-star-icon'>⭐</span>
-                            </label>
-                        </li>
+                                        <div style={{
+                                            background: `url(${product.imageLink})`,
+                                            backgroundColor: "transparent",
+                                            backgroundPosition: "center center",
+                                            backgroundSize: "95%",
+                                            backgroundRepeat: "no-repeat"
+                                        }} className='product__sell-item-img'></div>
+                                        <label className='product__sell-item-label'>{product.name}</label>
+                                        <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                        <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                        <label className='product__sell-item-sold'>
+                                            Đánh giá:
+                                            <span className='product__sell-item-star'>{product.star}</span>
+                                            <span className='product__sell-item-star-icon'>⭐</span>
+                                        </label>
+                                    </li>
                                 ))}
-                    </ul>
+                            </ul>
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
             </div >
 
             <Footer />

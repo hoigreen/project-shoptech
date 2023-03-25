@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
 
 
 const Footer = ({ socket }) => {
-    const navigate = useNavigate();
-
-    const [notification, setNotification] = useState('');
 
     return (
         <div className="footer-container">

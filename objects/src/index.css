@@ -6,6 +6,7 @@
 @import url('./css/style-validator.css');
 @import url('./css/account-client.css');
 @import url('./css/nav.css');
+@import url('./css/breadcrumbs.css');
 @import url('./css/smartphone-client.css');
 @import url('./css/laptop-client.css');
 @import url('./css/tablet-client.css');
@@ -1486,11 +1487,14 @@ tbody {
 
 
 
+
+
+
 /* ---------------------------------------------------------- */
 /* --------Stylesheet for the Client component ------*/
 /* --------Stylesheet for the Hot Promote component ------*/
 .hot-promote__container {
-    margin-top: 80px;
+    margin-top: 60px;
     width: 100%;
     display: block;
     background-color: transparent;
@@ -1501,11 +1505,12 @@ tbody {
     display: block;
     height: 450px;
     margin: 0 auto;
-    background-position: left;
-    background-size: contain;
+    background-position: center;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-clip: border-box;
     background-image: url("./img/client/home-img/img-home-banner.png");
+    transform-origin: center;
 }
 
 /* --------Stylesheet for the Home component ------*/
