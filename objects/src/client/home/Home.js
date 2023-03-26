@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Nav from '../common/Nav';
 import HotPromote from '../common/HotPromote';
@@ -9,13 +9,10 @@ const socket = socketIO.connect('http://localhost:4000');
 
 const Home = () => {
     const [products, setProducts] = useState([])
-    const [product, setProduct] = useState([])
     const [timeStart, setTimeStartSale] = useState(20)
     const [timeEnd, setTimeEndSale] = useState(30)
 
     const [promotes, setPromotes] = useState([])
-    const [promote, setPromote] = useState([])
-
 
     const [loading, setLoading] = useState(true)
 

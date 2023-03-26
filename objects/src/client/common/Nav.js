@@ -43,10 +43,10 @@ const Nav = ({ socket }) => {
                     if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
                         const elementNavOption = document.querySelector('.nav__option-box');
                         elementNavOption.style.display = 'block';
-                        navigate("/account")
+                        window.location.href = ("/account")
                     }
                     else {
-                        navigate("/login")
+                        window.location.href = ("/login")
                     }
                 }}>
                     <i className="header--btn-icon fa-solid fa-user"></i>
