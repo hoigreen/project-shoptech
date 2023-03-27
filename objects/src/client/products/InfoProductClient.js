@@ -165,6 +165,49 @@ const InfoProductClient = ({ socket }) => {
         })
     }
 
+    const changeImage = (fileName) => {
+        const imageElement = document.querySelector(".info-product__image-primary")
+        imageElement.style.backgroundImage = `url(${fileName})`
+
+        const imgItems = document.querySelectorAll('.info-product__image-item')
+        imgItems.forEach((imgItem, index) => {
+            imgItem.onclick = () => {
+                const imgItemActive = document.querySelector(".info-product__image-item.info-product__image-item--active")
+                if (imgItemActive) {
+                    imgItemActive.classList.remove("info-product__image-item--active")
+                    imgItem.classList.add('info-product__image-item--active')
+                } else {
+                    imgItem.classList.add('.info-product__image-item--active')
+                }
+            }
+        })
+    }
+
+    const arrayImage = []
+    products.map((product, index) => {
+        if (name === product.name) {
+            arrayImage.push(product.imagePrimary, product.imageLink)
+            imageList.map((imageItem, i) => {
+                arrayImage.push(imageItem.link)
+            })
+        }
+    })
+    let indexImageInArray = 0;
+    const handleNextImage = () => {
+        if (indexImageInArray >= arrayImage.length) indexImageInArray = -1;
+        indexImageInArray++;
+        const imageElement = document.querySelector(".info-product__image-primary")
+        imageElement.style.backgroundImage = `url(${arrayImage[indexImageInArray]})`
+    }
+    const handlePrevImage = () => {
+        if (indexImageInArray <= 0) indexImageInArray = arrayImage.length;
+        indexImageInArray--;
+        const imageElement = document.querySelector(".info-product__image-primary")
+        imageElement.style.backgroundImage = `url(${arrayImage[indexImageInArray]})`
+    }
+
+
+
 
     return (
         <div>
@@ -187,8 +230,15 @@ const InfoProductClient = ({ socket }) => {
                                         backgroundPosition: "center center",
                                         backgroundColor: "transparent",
                                         backgroundRepeat: "no-repeat",
-                                        backgroundSize: "cover"
-                                    }}></div>
+                                        backgroundSize: "contain"
+                                    }}>
+                                    <div className="info-product__image-pre-btn--prev" onClick={handlePrevImage}>
+                                        <i className="fa fa-arrow-left"></i>
+                                    </div>
+                                    <div className="info-product__image-pre-btn--next" onClick={handleNextImage}>
+                                        <i className="fa fa-arrow-right"></i>
+                                    </div>
+                                </div>
                                 <label className="info-product__image-label">Những hình ảnh của sản phẩm</label>
                                 <ul className="info-product__image-list">
                                     <li style={{
@@ -197,7 +247,10 @@ const InfoProductClient = ({ socket }) => {
                                         backgroundColor: "transparent",
                                         backgroundRepeat: "no-repeat",
                                         backgroundSize: "100%"
-                                    }} className='info-product__image-item info-product__image-item--active'>
+                                    }} className='info-product__image-item info-product__image-item--active'
+                                        onClick={(e) => {
+                                            changeImage(imageLink)
+                                        }}>
                                     </li>
 
                                     {loading ? <p>Đang kết nối đến server ... </p> : imageList.map((image, i) => (
@@ -207,7 +260,10 @@ const InfoProductClient = ({ socket }) => {
                                             backgroundColor: "transparent",
                                             backgroundRepeat: "no-repeat",
                                             backgroundSize: "100%"
-                                        }} className='info-product__image-item'>
+                                        }} className='info-product__image-item'
+                                            onClick={(e) => {
+                                                changeImage(image.link)
+                                            }}>
                                         </li>
                                     ))}
                                 </ul>
