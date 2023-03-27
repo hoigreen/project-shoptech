@@ -47,31 +47,31 @@ const Footer = ({ socket }) => {
                 <div className='footer__col'>
                     <div className='footer__col-group'>
                         <label className='footer__label'>Tổng đài viên hỗ trợ 24/7 <span style={{ fontWeight: "300", color: "red" }}>(Miễn phí tư vấn)</span></label>
-                        <p href='/' className='footer__text'>
+                        <div href='/' className='footer__text'>
                             <p className='footer__text-title'>Hỗ trợ mua hàng:</p>
                             <span style={{ fontWeight: "bold", color: "blue", paddingRight: "6px" }}>1800 3234</span>
                             (24/7)
-                        </p>
-                        <p href='/' className='footer__text'>
+                        </div>
+                        <div href='/' className='footer__text'>
                             <p className='footer__text-title'>Hỗ trợ kỹ thuật:</p>
                             <span style={{ fontWeight: "bold", color: "blue", paddingRight: "6px" }}>1800 1234</span>
                             (Giờ hành chính)
-                        </p>
-                        <p href='/' className='footer__text'>
+                        </div>
+                        <div href='/' className='footer__text'>
                             <p className='footer__text-title'>Giải quyết khiếu nại:</p>
                             <span style={{ fontWeight: "bold", color: "blue", paddingRight: "6px" }}>1800 4321</span>
                             (24/7)
-                        </p>
-                        <p href='/' className='footer__text'>
+                        </div>
+                        <div href='/' className='footer__text'>
                             <p className='footer__text-title'>Bảo hành sản phẩm:</p>
                             <span style={{ fontWeight: "bold", color: "blue", paddingRight: "6px" }}>1800 3234</span>
                             (Giờ hành chính)
-                        </p>
-                        <p href='/' className='footer__text'>
+                        </div>
+                        <div href='/' className='footer__text'>
                             <p className='footer__text-title'>Vấn đề khác:</p>
                             <span style={{ fontWeight: "bold", color: "blue", paddingRight: "6px" }}>1800 3234</span>
                             (Giờ hành chính)
-                        </p>
+                        </div>
                     </div>
                 </div>
 

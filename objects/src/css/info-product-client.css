@@ -81,6 +81,18 @@ body {
     }
 }
 
+@keyframes toRight {
+    0% {
+        transform: translateX(-10%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 /* --------Stylesheet for the Info Product Client component ------*/
 .info-product__container {
     background-color: #fff;
@@ -147,6 +159,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
 .info-product__image-pre-btn--prev {
@@ -426,6 +439,7 @@ body {
     color: #d70018;
     font-weight: 600;
     font-size: 2.4rem;
+    line-height: 2.8rem;
     padding: 10px;
     text-align: center;
 }
@@ -493,6 +507,14 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 8px;
+}
+
+.info-product__detail-payment-describe {
+    display: block;
+    padding: 4px 0;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.5rem;
 }
 
 .info-product__detail-payment-btn-cart {

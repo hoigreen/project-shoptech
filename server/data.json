@@ -1,421 +1,423 @@
 {
-    "admins": [
+  "admins": [
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD01.png",
+      "adminID": "AD01",
+      "adminName": "hoigreen",
+      "password": "admin123",
+      "fullname": "Trương Quốc Hội",
+      "email": "2051120121@ut.edu.vn",
+      "phone": "0343694755",
+      "address": "Củ Chi, TPHCM"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD02.png",
+      "adminID": "AD02",
+      "adminName": "baxigovap",
+      "password": "123456",
+      "fullname": "Nguyễn Thành Hưng",
+      "email": "2051120131@ut.edu.vn",
+      "phone": "0357003927",
+      "address": "Gò Vấp"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD03.png",
+      "adminID": "AD03",
+      "adminName": "manhthu59-n3",
+      "password": "123456",
+      "fullname": "Nguyễn Ngọc Huy",
+      "email": "2051120125@ut.edu.vn",
+      "phone": "391102593",
+      "address": "Bình Chánh"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD04.png",
+      "adminID": "AD04",
+      "adminName": "tuthicamnhung",
+      "password": "123456",
+      "fullname": "Từ Thị Cẩm Nhung",
+      "email": "20511201**@ut.edu.vn",
+      "phone": "391102593",
+      "address": "Quận 12"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD05.png",
+      "adminID": "AD05",
+      "adminName": "gialai",
+      "password": "123456",
+      "fullname": "Võ Đức Minh Hưng",
+      "email": "2051120132@ut.edu.vn",
+      "phone": "391102593",
+      "address": "Quận 12"
+    }
+  ],
+  "users": [
+    {
+      "userID": "G001",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-G001.png",
+      "username": "bbinh19",
+      "password": "1231934ab",
+      "cart": [
         {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD01.png",
-            "adminID": "AD01",
-            "adminName": "hoigreen",
-            "password": "admin123",
-            "fullname": "Trương Quốc Hội",
-            "email": "2051120121@ut.edu.vn",
-            "phone": "0343694755",
-            "address": "Củ Chi, TPHCM"
+          "id": "P001",
+          "quantity": 1
         },
         {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD02.png",
-            "adminID": "AD02",
-            "adminName": "baxigovap",
-            "password": "123456",
-            "fullname": "Nguyễn Thành Hưng",
-            "email": "2051120131@ut.edu.vn",
-            "phone": "0357003927",
-            "address": "Gò Vấp"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD03.png",
-            "adminID": "AD03",
-            "adminName": "manhthu59-n3",
-            "password": "123456",
-            "fullname": "Nguyễn Ngọc Huy",
-            "email": "2051120125@ut.edu.vn",
-            "phone": "391102593",
-            "address": "Bình Chánh"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD04.png",
-            "adminID": "AD04",
-            "adminName": "tuthicamnhung",
-            "password": "123456",
-            "fullname": "Từ Thị Cẩm Nhung",
-            "email": "20511201**@ut.edu.vn",
-            "phone": "391102593",
-            "address": "Quận 12"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD05.png",
-            "adminID": "AD05",
-            "adminName": "gialai",
-            "password": "123456",
-            "fullname": "Võ Đức Minh Hưng",
-            "email": "2051120132@ut.edu.vn",
-            "phone": "391102593",
-            "address": "Quận 12"
+          "id": "P001",
+          "quantity": 1
         }
-    ],
-    "users": [
+      ],
+      "order": [
         {
-            "userID": "G001",
-            "avatarUrl": "http://localhost:4000/uploads/customers/img-G001.png",
-            "username": "bbinh19",
-            "password": "1231934ab",
-            "cart": [
-                {
-                    "id": "P001",
-                    "quantity": 1
-                },
-                {
-                    "id": "P001",
-                    "quantity": 1
-                }
-            ],
-            "order": [
-                {
-                    "id": "P001",
-                    "quantity": 1
-                }
-            ],
-            "fullname": "Võ Văn Bình",
-            "email": "binh_kunfg142@gmail.com",
-            "phone": "0982291103",
-            "address": "Thanh Oai, Hà Nội",
-            "statusLogin": "Chưa đăng nhập"
-        },
-        {
-            "userID": "G002",
-            "avatarUrl": "http://localhost:4000/uploads/customers/img-G002.png",
-            "username": "hova12",
-            "password": "121212",
-            "fullname": "Nguyễn Ngọc Sơn",
-            "address": "Gia Lai",
-            "email": "son1024@gmail.com",
-            "phone": "0983110392",
-            "cart": [
-                {
-                    "id": "P001",
-                    "quantity": 1
-                },
-                {
-                    "id": "P001",
-                    "quantity": 1
-                }
-            ],
-            "statusLogin": "Chưa đăng nhập"
-        },
-        {
-            "userID": "G003",
-            "username": "nkhanh12",
-            "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
-            "password": "121212a",
-            "fullname": "Nguyễn Ngọc Khánh Ly",
-            "email": "ktranlt129@gmai.com",
-            "phone": "0772912291",
-            "address": "321B, Phan Văn Trị, TPHCM",
-            "statusLogin": "Chưa đăng nhập"
-        },
-        {
-            "userID": "G004",
-            "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
-            "username": "kkk_192",
-            "password": "121212",
-            "fullname": "Võ Ngọc Duy Khiêm",
-            "email": "kkk129.q2@gmail.com",
-            "phone": "0591025392",
-            "address": "Trâu Quỳ, TP Đà Nẵng",
-            "statusLogin": "Chưa đăng nhập"
-        },
-        {
-            "userID": "G005",
-            "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
-            "username": "aduong91",
-            "password": "121212",
-            "fullname": "Phan Ánh Dương",
-            "email": "aduong939@gmail.com",
-            "phone": "0329211022",
-            "address": "Cần Đước, Long An",
-            "statusLogin": "Chưa đăng nhập"
+          "id": "P001",
+          "quantity": 1
         }
-    ],
-    "products": [
+      ],
+      "fullname": "Võ Văn Bình",
+      "email": "binh_kunfg142@gmail.com",
+      "phone": "0982291103",
+      "address": "Thanh Oai, Hà Nội",
+      "statusLogin": "Chưa đăng nhập"
+    },
+    {
+      "userID": "G002",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-G002.png",
+      "username": "hova12",
+      "password": "121212",
+      "fullname": "Nguyễn Ngọc Sơn",
+      "address": "Gia Lai",
+      "email": "son1024@gmail.com",
+      "phone": "0983110392",
+      "cart": [
         {
-            "imagePrimary": "http://localhost:4000/uploads/products/img-primary-P001.png",
-            "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-            "imageList": [
-                {
-                    "link": "http://localhost:4000/uploads/products/img2-P001.png"
-                },
-                {
-                    "link": "http://localhost:4000/uploads/products/img3-P001.png"
-                },
-                {
-                    "link": "http://localhost:4000/uploads/products/img4-P001.png"
-                },
-                {
-                    "link": "http://localhost:4000/uploads/products/img5-P001.png"
-                }
-            ],
-            "id": "P001",
-            "name": "Iphone 13 2023 - 256GB",
-            "type": "Điện thoại",
-            "brand": "Apple",
-            "price": "20000000",
-            "option": [
-                {
-                    "data": "256GB ROM",
-                    "link": "123",
-                    "price": 20000000
-                },
-                {
-                    "data": "512GB ROM",
-                    "link": "123",
-                    "price": 27800000
-                },
-                {
-                    "data": "1TB ROM",
-                    "link": "123",
-                    "price": 41000000
-                }
-            ],
-            "color": [
-                {
-                    "data": "Hồng cánh xen"
-                },
-                {
-                    "data": "Xanh biển cả"
-                },
-                {
-                    "data": "Đen huyền bí"
-                },
-                {
-                    "data": "Trắng tinh khôi"
-                },
-                {
-                    "data": "Đỏ quý phái"
-                }
-            ],
-            "status": "Sẵn hàng",
-            "star": 4,
-            "voter": 149,
-            "hotDeal": true,
-            "featured": true,
-            "percent": 5
+          "id": "P001",
+          "quantity": 1
         },
         {
-            "imagePrimary": "http://localhost:4000/uploads/products/img-primary-P002.png",
-            "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
-            "imageList": [
-                {
-                    "link": "http://localhost:4000/uploads/products/img2-P002.png"
-                },
-                {
-                    "link": "http://localhost:4000/uploads/products/img3-P002.png"
-                }
-            ],
-            "id": "P002",
-            "name": "Điện thoại Samsung Galaxy S23 5G 128GB",
-            "type": "Điện thoại",
-            "brand": "Samsung",
-            "price": "18390000",
-            "option": [
-                {
-                    "data": "256GB / 12GB",
-                    "link": "123",
-                    "price": 18390000
-                },
-                {
-                    "data": "512GB / 12GB",
-                    "link": "123",
-                    "price": 23390000
-                },
-                {
-                    "data": "1TB / 12GB",
-                    "link": "123",
-                    "price": 31390000
-                }
-            ],
-            "color": [
-                {
-                    "data": "Đen lịch lãm"
-                },
-                {
-                    "data": "Xanh biển cả"
-                },
-                {
-                    "data": "Trắng thanh lịch"
-                }
-            ],
-            "status": "Sẵn hàng",
-            "star": 5,
-            "voter": 1,
-            "hotDeal": true,
-            "featured": true,
-            "percent": 5
-        },
-        {
-            "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
-            "id": "P003",
-            "name": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-            "type": "Máy tính xách tay",
-            "price": "34950000",
-            "option": "16GB DDR4-3200Mhz ",
-            "color": "Đen",
-            "status": "Sẵn hàng",
-            "star": 4.1,
-            "hotDeal": true,
-            "featured": true
-        },
-        {
-            "imageLink": "http://localhost:4000/uploads/products/img-P004.png",
-            "id": "P004",
-            "name": "Apple AirPods Max | Chính hãng Apple Việt Nam",
-            "type": "Phụ kiện",
-            "price": "9590000",
-            "option": "Sạc không dây",
-            "color": "Trắng ngọc trai",
-            "status": "Sẵn hàng",
-            "featured": true
-        },
-        {
-            "imageLink": "http://localhost:4000/uploads/products/img-P005.png",
-            "id": "P005",
-            "name": "Củ sạc Samsung 25W kèm cáp Type-C to Type-C",
-            "type": "Phụ kiện",
-            "price": "450000",
-            "option": "Combo Sạc + Cáp sạc",
-            "color": "Đen",
-            "status": "Sẵn hàng",
-            "star": 4.1,
-            "hotDeal": true,
-            "featured": true
-        },
-        {
-            "imageLink": "http://localhost:4000/uploads/products/img-P006.png",
-            "id": "P006",
-            "name": "Máy tính bảng iPad Pro M1 11 inch WiFi/Cellular 1TB/2TB",
-            "type": "Máy tính bảng",
-            "price": "50990000",
-            "option": "Cellular + 2TB",
-            "color": "Trắng",
-            "status": "Sẵn hàng",
-            "star": 3.8,
-            "hotDeal": true,
-            "featured": true
-        },
-        {
-            "imageLink": "http://localhost:4000/uploads/products/img-P007.png",
-            "id": "P007",
-            "name": "Điện thoại OPPO Find N2 Flip 2023 - 12GB/512GB",
-            "type": "Điện thoại",
-            "price": "17990000",
-            "option": "12GB + 512GB",
-            "color": "Trắng",
-            "status": "Sẵn hàng",
-            "star": 4.7,
-            "hotDeal": true,
-            "featured": true
-        },
-        {
-            "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
-            "id": "P008",
-            "name": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
-            "type": "Phụ kiện",
-            "price": "989000",
-            "option": "Kết nối USB có dây",
-            "color": "Đen bóng bẩy",
-            "status": "Sẵn hàng",
-            "star": 3.5,
-            "hotDeal": false,
-            "featured": true
-        },
-        {
-            "id": "",
-            "name": "abc",
-            "type": "1",
-            "price": "1",
-            "option": "1",
-            "color": "1",
-            "status": "1"
+          "id": "P001",
+          "quantity": 1
         }
-    ],
-    "promotes": [
+      ],
+      "statusLogin": "Chưa đăng nhập"
+    },
+    {
+      "userID": "G003",
+      "username": "nkhanh12",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "password": "121212a",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "statusLogin": "Chưa đăng nhập"
+    },
+    {
+      "userID": "G004",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "kkk_192",
+      "password": "121212",
+      "fullname": "Võ Ngọc Duy Khiêm",
+      "email": "kkk129.q2@gmail.com",
+      "phone": "0591025392",
+      "address": "Trâu Quỳ, TP Đà Nẵng",
+      "statusLogin": "Chưa đăng nhập"
+    },
+    {
+      "userID": "G005",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "aduong91",
+      "password": "121212",
+      "fullname": "Phan Ánh Dương",
+      "email": "aduong939@gmail.com",
+      "phone": "0329211022",
+      "address": "Cần Đước, Long An",
+      "statusLogin": "Chưa đăng nhập"
+    }
+  ],
+  "products": [
+    {
+      "imagePrimary": "http://localhost:4000/uploads/products/img-primary-P001.png",
+      "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+      "imageList": [
         {
-            "imageLink": "http://localhost:4000/uploads/promotes/img-PM001.png",
-            "id": "PM001",
-            "name": "Chào 08/03, bùng nổ săn sale cho những đóa hoa 💐💐",
-            "timeStart": "2023-03-03",
-            "timeEnd": "2023-03-08",
-            "percent": 5,
-            "apply": "Điện thoại, Máy tính xách tay"
+          "link": "http://localhost:4000/uploads/products/img2-P001.png"
         },
         {
-            "imageLink": "http://localhost:4000/uploads/promotes/img-PM002.png",
-            "id": "PM002",
-            "name": "Ngàn lời yêu thương dành cho người đàn ông của bạn - Valentine Trắng",
-            "timeStart": "2023-03-14",
-            "timeEnd": "2023-03-21",
-            "percent": 8,
-            "apply": "Phụ kiện"
-        }
-    ],
-    "orders": [
-        {
-            "orderID": "P12V209",
-            "owner": "nkhanh12",
-            "method": "Giao tận nơi",
-            "time": "2023-03-14",
-            "note": "",
-            "lists": [
-                {
-                    "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-                    "productID": "P001",
-                    "productName": "Iphone 13 2023 - 256GB",
-                    "quantity": 1,
-                    "totalPrice": "20000000"
-                },
-                {
-                    "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
-                    "productID": "P002",
-                    "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
-                    "quantity": 1,
-                    "totalPrice": "20000000"
-                }
-            ],
-            "price": "40000000",
-            "status": "Giao hàng thành công"
+          "link": "http://localhost:4000/uploads/products/img3-P001.png"
         },
         {
-            "orderID": "P12V209",
-            "owner": "nkhanh12",
-            "method": "Giao tận nơi",
-            "time": "2023-03-14",
-            "note": "",
-            "lists": [
-                {
-                    "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-                    "productID": "P001",
-                    "productName": "Iphone 13 2023 - 256GB",
-                    "quantity": 1,
-                    "totalPrice": "20000000"
-                },
-                {
-                    "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
-                    "productID": "P002",
-                    "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
-                    "quantity": 1,
-                    "totalPrice": "20000000"
-                }
-            ],
-            "price": "40000000",
-            "status": "Đang giao hàng"
-        }
-    ],
-    "comments": [
+          "link": "http://localhost:4000/uploads/products/img4-P001.png"
+        },
         {
-            "nameProductVoted": "Iphone 13 2023 - 256GB",
-            "owner": "nkhanh12",
-            "ownerAvatar": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
-            "ownerName": "Nguyễn Ngọc Khánh Ly",
-            "time": "17:12 2023-03-14",
-            "content": "Tôi không muốn nói tới sản phẩm này, vì mỗi lần nhắc đến nó nack của tôi lại bị nhức 💌😍😍😍. Tuy vậy tôi vẫn chưa hài lòng ở việc sản phẩm này không có gì để chê cả",
-            "starVoted": 4
+          "link": "http://localhost:4000/uploads/products/img5-P001.png"
         }
-    ]
+      ],
+      "id": "P001",
+      "name": "Iphone 13 2023 - 256GB",
+      "enType": "smartphone",
+      "type": "Điện thoại",
+      "brand": "Apple",
+      "price": "20000000",
+      "option": [
+        {
+          "data": "256GB ROM",
+          "link": "123",
+          "price": 20000000
+        },
+        {
+          "data": "512GB ROM",
+          "link": "123",
+          "price": 27800000
+        },
+        {
+          "data": "1TB ROM",
+          "link": "123",
+          "price": 41000000
+        }
+      ],
+      "color": [
+        {
+          "data": "Hồng cánh xen"
+        },
+        {
+          "data": "Xanh biển cả"
+        },
+        {
+          "data": "Đen huyền bí"
+        },
+        {
+          "data": "Trắng tinh khôi"
+        },
+        {
+          "data": "Đỏ quý phái"
+        }
+      ],
+      "status": "Sẵn hàng",
+      "star": 4,
+      "voter": 149,
+      "hotDeal": true,
+      "featured": true,
+      "percent": 5
+    },
+    {
+      "imagePrimary": "http://localhost:4000/uploads/products/img-primary-P002.png",
+      "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
+      "imageList": [
+        {
+          "link": "http://localhost:4000/uploads/products/img2-P002.png"
+        },
+        {
+          "link": "http://localhost:4000/uploads/products/img3-P002.png"
+        }
+      ],
+      "id": "P002",
+      "name": "Điện thoại Samsung Galaxy S23 5G 128GB",
+      "enType": "smartphone",
+      "type": "Điện thoại",
+      "brand": "Samsung",
+      "price": "18390000",
+      "option": [
+        {
+          "data": "256GB / 12GB",
+          "link": "123",
+          "price": 18390000
+        },
+        {
+          "data": "512GB / 12GB",
+          "link": "123",
+          "price": 23390000
+        },
+        {
+          "data": "1TB / 12GB",
+          "link": "123",
+          "price": 31390000
+        }
+      ],
+      "color": [
+        {
+          "data": "Đen lịch lãm"
+        },
+        {
+          "data": "Xanh biển cả"
+        },
+        {
+          "data": "Trắng thanh lịch"
+        }
+      ],
+      "status": "Sẵn hàng",
+      "star": 5,
+      "voter": 1,
+      "hotDeal": true,
+      "featured": true,
+      "percent": 5
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+      "id": "P003",
+      "name": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+      "type": "Máy tính xách tay",
+      "price": "34950000",
+      "option": "16GB DDR4-3200Mhz ",
+      "color": "Đen",
+      "status": "Sẵn hàng",
+      "star": 4.1,
+      "hotDeal": true,
+      "featured": true
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/products/img-P004.png",
+      "id": "P004",
+      "name": "Apple AirPods Max | Chính hãng Apple Việt Nam",
+      "type": "Phụ kiện",
+      "price": "9590000",
+      "option": "Sạc không dây",
+      "color": "Trắng ngọc trai",
+      "status": "Sẵn hàng",
+      "featured": true
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/products/img-P005.png",
+      "id": "P005",
+      "name": "Củ sạc Samsung 25W kèm cáp Type-C to Type-C",
+      "type": "Phụ kiện",
+      "price": "450000",
+      "option": "Combo Sạc + Cáp sạc",
+      "color": "Đen",
+      "status": "Sẵn hàng",
+      "star": 4.1,
+      "hotDeal": true,
+      "featured": true
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/products/img-P006.png",
+      "id": "P006",
+      "name": "Máy tính bảng iPad Pro M1 11 inch WiFi/Cellular 1TB/2TB",
+      "type": "Máy tính bảng",
+      "price": "50990000",
+      "option": "Cellular + 2TB",
+      "color": "Trắng",
+      "status": "Sẵn hàng",
+      "star": 3.8,
+      "hotDeal": true,
+      "featured": true
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/products/img-P007.png",
+      "id": "P007",
+      "name": "Điện thoại OPPO Find N2 Flip 2023 - 12GB/512GB",
+      "type": "Điện thoại",
+      "price": "17990000",
+      "option": "12GB + 512GB",
+      "color": "Trắng",
+      "status": "Sẵn hàng",
+      "star": 4.7,
+      "hotDeal": true,
+      "featured": true
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+      "id": "P008",
+      "name": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+      "type": "Phụ kiện",
+      "price": "989000",
+      "option": "Kết nối USB có dây",
+      "color": "Đen bóng bẩy",
+      "status": "Sẵn hàng",
+      "star": 3.5,
+      "hotDeal": false,
+      "featured": true
+    },
+    {
+      "id": "",
+      "name": "abc",
+      "type": "1",
+      "price": "1",
+      "option": "1",
+      "color": "1",
+      "status": "1"
+    }
+  ],
+  "promotes": [
+    {
+      "imageLink": "http://localhost:4000/uploads/promotes/img-PM001.png",
+      "id": "PM001",
+      "name": "Chào 08/03, bùng nổ săn sale cho những đóa hoa 💐💐",
+      "timeStart": "2023-03-03",
+      "timeEnd": "2023-03-08",
+      "percent": 5,
+      "apply": "Điện thoại, Máy tính xách tay"
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/promotes/img-PM002.png",
+      "id": "PM002",
+      "name": "Ngàn lời yêu thương dành cho người đàn ông của bạn - Valentine Trắng",
+      "timeStart": "2023-03-14",
+      "timeEnd": "2023-03-21",
+      "percent": 8,
+      "apply": "Phụ kiện"
+    }
+  ],
+  "orders": [
+    {
+      "orderID": "P12V209",
+      "owner": "nkhanh12",
+      "method": "Giao tận nơi",
+      "time": "2023-03-14",
+      "note": "",
+      "lists": [
+        {
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "productID": "P001",
+          "productName": "Iphone 13 2023 - 256GB",
+          "quantity": 1,
+          "totalPrice": "20000000"
+        },
+        {
+          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
+          "productID": "P002",
+          "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
+          "quantity": 1,
+          "totalPrice": "20000000"
+        }
+      ],
+      "price": "40000000",
+      "status": "Giao hàng thành công"
+    },
+    {
+      "orderID": "P12V209",
+      "owner": "nkhanh12",
+      "method": "Giao tận nơi",
+      "time": "2023-03-14",
+      "note": "",
+      "lists": [
+        {
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "productID": "P001",
+          "productName": "Iphone 13 2023 - 256GB",
+          "quantity": 1,
+          "totalPrice": "20000000"
+        },
+        {
+          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
+          "productID": "P002",
+          "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
+          "quantity": 1,
+          "totalPrice": "20000000"
+        }
+      ],
+      "price": "40000000",
+      "status": "Đang giao hàng"
+    }
+  ],
+  "comments": [
+    {
+      "nameProductVoted": "Iphone 13 2023 - 256GB",
+      "owner": "nkhanh12",
+      "ownerAvatar": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "ownerName": "Nguyễn Ngọc Khánh Ly",
+      "time": "17:12 2023-03-14",
+      "content": "Tôi không muốn nói tới sản phẩm này, vì mỗi lần nhắc đến nó nack của tôi lại bị nhức 💌😍😍😍. Tuy vậy tôi vẫn chưa hài lòng ở việc sản phẩm này không có gì để chê cả",
+      "starVoted": 4
+    }
+  ]
 }

@@ -53,6 +53,7 @@ const Home = () => {
         }, 1000)
     }
 
+
     useEffect(() => {
         // show thông tin sản phẩm hot deal
         products.map((product, index) => {
@@ -171,7 +172,7 @@ const Home = () => {
                                             key={index}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                window.location.href = `/product/${product.name}`
+                                                window.location.href = `/${product.enType}/${product.name}`
                                             }}
                                         >
                                             <div style={{
@@ -215,7 +216,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.name}`
+                                            window.location.href = `/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -255,7 +256,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.name}`
+                                            window.location.href = `/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -295,7 +296,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.name}`
+                                            window.location.href = `/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -334,7 +335,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.name}`
+                                            window.location.href = `/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{

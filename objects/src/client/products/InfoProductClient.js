@@ -83,7 +83,6 @@ const InfoProductClient = ({ socket }) => {
                 starOfProduct = product.star;
             }
         })
-
         const elementStarProductHeader = document.querySelector(".info-product__header-star")
         const elementStarProduct = document.querySelector(".info-product__rating-star-icon")
         if (starOfProduct < 1) {
@@ -105,7 +104,6 @@ const InfoProductClient = ({ socket }) => {
             elementStarProductHeader.textContent = `★★★★★`
             elementStarProduct.textContent = `★ ★ ★ ★ ★`
         }
-
     }
 
     const handleLoadStarVoted = () => {
@@ -168,6 +166,7 @@ const InfoProductClient = ({ socket }) => {
     const changeImage = (fileName) => {
         const imageElement = document.querySelector(".info-product__image-primary")
         imageElement.style.backgroundImage = `url(${fileName})`
+        imageElement.style.animation = `toRight 0.2s linear`
 
         const imgItems = document.querySelectorAll('.info-product__image-item')
         imgItems.forEach((imgItem, index) => {
@@ -197,7 +196,9 @@ const InfoProductClient = ({ socket }) => {
         if (indexImageInArray >= arrayImage.length) indexImageInArray = -1;
         indexImageInArray++;
         const imageElement = document.querySelector(".info-product__image-primary")
+        imageElement.style.animation = 'toRight 0.3s linear';
         imageElement.style.backgroundImage = `url(${arrayImage[indexImageInArray]})`
+
     }
     const handlePrevImage = () => {
         if (indexImageInArray <= 0) indexImageInArray = arrayImage.length;
@@ -326,7 +327,7 @@ const InfoProductClient = ({ socket }) => {
                                 <div className='info-product__detail-promote'>
                                     <label className='info-product__detail-promote-label'>
                                         <i className='info-product__detail-promote-label-icon fa fa-gift'></i>
-                                        KHUYẾN MÃI RIÊNG CHO SẢN PHẨM
+                                        ƯU MÃI RIÊNG CHO SẢN PHẨM
                                     </label>
                                     <div className='info-product__detail-promote-item'>
                                         <p className='info-product__detail-promote-item-index'>1</p>
@@ -346,14 +347,18 @@ const InfoProductClient = ({ socket }) => {
                                     ))}
                                 </div>
                                 <div className='info-product__detail-payment'>
-                                    <button className='info-product__detail-payment-btn'>MUA NGAY</button>
+                                    <button className='info-product__detail-payment-btn'>MUA NGAY
+                                        <p className='info-product__detail-payment-describe'>Nhận tại cửa hàng hoặc giao hàng tận nơi</p>
+                                    </button>
                                     <button className='info-product__detail-payment-btn-cart'>
                                         <i className="info-product__detail-payment-btn-icon fa fa-cart-plus"></i>
                                         Thêm vào giỏ hàng
+                                        <p className='info-product__detail-payment-describe'>Thêm sản phẩm để mua sau</p>
                                     </button>
                                     <button className='info-product__detail-payment-btn-installment'>
                                         <i className="info-product__detail-payment-btn-icon fa fa-credit-card"></i>
                                         MUA TRẢ GÓP 0%
+                                        <p className='info-product__detail-payment-describe'>Xét duyệt online trong 5 phút</p>
                                     </button>
                                 </div>
                             </div>
@@ -368,7 +373,8 @@ const InfoProductClient = ({ socket }) => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.name}`
+                                            window.location.href = `/${product.enType}/${product.name}`
+
                                         }}
                                     >
                                         <div style={{
@@ -431,11 +437,8 @@ const InfoProductClient = ({ socket }) => {
                                     </li>
                                 ))}
                             </ul>
-
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <Footer socket={socket} />
