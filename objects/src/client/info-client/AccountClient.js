@@ -42,7 +42,7 @@ const AccountClient = ({ socket }) => {
         orders.map((order, index) => {
             if (order.owner == window.localStorage.getItem("userLogged")) {
                 if (order.status === "Đang giao hàng") {
-                    sumCountOrderDriving ++;
+                    sumCountOrderDriving++;
                     setCountOrderDriving(sumCountOrderDriving)
                 }
             }
@@ -68,7 +68,7 @@ const AccountClient = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
                 window.localStorage.removeItem("userLogged")
                 window.localStorage.removeItem("statusLogged")
-                navigate("/login")
+                window.location.href = ("/login")
             }
         })
     }

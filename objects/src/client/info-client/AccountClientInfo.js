@@ -51,7 +51,7 @@ const AccountClientInfo = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
                 window.localStorage.removeItem("userLogged")
                 window.localStorage.removeItem("statusLogged")
-                navigate("/login")
+                window.location.href = ("/login")
             }
         })
     }
@@ -123,7 +123,7 @@ const AccountClientInfo = ({ socket }) => {
 
                                 <label className="account__box-info-title">Số điện thoại:</label>
                                 <input className="account__box-info-input"
-                                type="number"
+                                    type="number"
                                     defaultValue={phone}
                                     name="phone"
                                     onChange={(e) => { setPhoneEdit(e.target.value) }}

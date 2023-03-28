@@ -43,7 +43,7 @@ const Nav = ({ socket }) => {
                     if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
                         const elementNavOption = document.querySelector('.nav__option-box');
                         elementNavOption.style.display = 'block';
-                        window.location.href = ("/account")
+                        navigate("/account")
                     }
                     else {
                         window.location.href = ("/login")
