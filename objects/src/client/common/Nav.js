@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-
 
 const Nav = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
 
     useEffect(() => {
         const fetchAPI = () => {
@@ -35,7 +31,8 @@ const Nav = ({ socket }) => {
                     </button>
                 </div>
 
-                <button className="header-btn">
+                <button className="header-btn header-btn__cart" onClick={e => { window.location.href = ("/cart") }}>
+                    <div className="header-btn__red-dot">0</div>
                     <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
                     <p className="header--btn-name">Giỏ hàng</p>
                 </button>

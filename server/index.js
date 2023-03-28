@@ -110,6 +110,19 @@ function findUserToSetStatus(idKey, myArray, statusLoginUser) {
     })
 }
 
+function findUserToAddToCart(idKey, myArray, cartToAdd) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].userID === idKey) {
+            var data = myArray[i].cart
+            data.push(cartToAdd)
+        }
+    }
+    const stringData = JSON.stringify(objectData, null, 2)
+    fs.writeFile("data.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
 
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
@@ -169,6 +182,20 @@ socketIO.on('connection', (socket) => {
         findUserToSetStatus(data.userID, objectData["users"], data.statusLogin)
         socket.broadcast.emit("setStatusLoginUserResponse", data)
     })
+
+    socket.on("addProductToCart", data => {
+        findUserToAddToCart(data.userID, objectData["users"], data.cart)
+        socket.broadcast.emit("addProductToCartResponse", data)
+    })
+
+    socket.on('addProductToCart2', (data) => {
+        objectData["users"].cart.push(data)
+        const stringData = JSON.stringify(objectData, null, 2)
+        fs.writeFile("data.json", stringData, (err) => {
+            console.error(err)
+        })
+        socket.broadcast.emit("addProductToCart2Response", data)
+    });
 
     socket.on('countdown', data => {
         objectData["products"].replace(data.time)

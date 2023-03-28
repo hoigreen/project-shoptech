@@ -5,13 +5,17 @@ import Footer from '../common/Footer'
 import Breadcrumbs from '../common/Breadcrumbs'
 
 const InfoProductClient = ({ socket }) => {
+    const [users, setUsers] = useState([])
+
     const [products, setProducts] = useState([])
+    const [productID, setProductID] = useState('')
     const { name } = useParams()
     const [imagePrimary, setImagePrimary] = useState('')
     const [imageLink, setImageLink] = useState('')
     const [imageList, setImageList] = useState([])
     const [type, setType] = useState('')
     const [option, setOption] = useState([])
+    const [optionEdit, setOptionEdit] = useState('')
     const [color, setColor] = useState([])
     const [colorEdit, setColorEdit] = useState([])
     const [price, setPrice] = useState('')
@@ -31,6 +35,7 @@ const InfoProductClient = ({ socket }) => {
     useEffect(() => {
         const fetchAPIs = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+                setUsers(data.users)
                 setProducts(data.products)
                 setPromotes(data.promotes)
                 setComments(data.comments)
@@ -44,6 +49,7 @@ const InfoProductClient = ({ socket }) => {
         // show thông tin sản phẩm
         products.map((product, index) => {
             if (name === product.name) {
+                setProductID(product.id)
                 setImagePrimary(product.imagePrimary);
                 setImageLink(product.imageLink);
                 setImageList(product.imageList);
@@ -72,11 +78,19 @@ const InfoProductClient = ({ socket }) => {
                 infoVote.style.display = "block";
             }
         })
-    })
 
-    window.onload = () => {
+        handleFormatCrumbs()
         handleLoadStarProduct()
         handleLoadStarVoted()
+    })
+
+    const handleFormatCrumbs = () => {
+        const crumbLinks = document.querySelectorAll(".crumb-link");
+        crumbLinks.forEach(crumbLink => {
+            if (crumbLink.innerHTML.includes("%")) {
+                crumbLink.style.display = "none"
+            }
+        })
     }
 
     const handleLoadStarProduct = () => {
@@ -118,23 +132,25 @@ const InfoProductClient = ({ socket }) => {
         })
 
         const elementStarVoted = document.querySelector(".info-product__review-item-vote-start")
-        if (starVoted < 1) {
-            elementStarVoted.textContent = `☆☆☆☆☆`
-        } else if (starVoted < 2) {
-            elementStarVoted.textContent = `★☆☆☆☆`
-        } else if (starVoted < 3) {
-            elementStarVoted.textContent = `★★☆☆☆`
-        } else if (starVoted < 4) {
-            elementStarVoted.textContent = `★★★☆☆`
-        } else if (starVoted < 5) {
-            elementStarVoted.textContent = `★★★★☆`
-        } else {
-            elementStarVoted.textContent = `★★★★★`
+        if (elementStarVoted) {
+            if (starVoted < 1) {
+                elementStarVoted.textContent = `☆☆☆☆☆`
+            } else if (starVoted < 2) {
+                elementStarVoted.textContent = `★☆☆☆☆`
+            } else if (starVoted < 3) {
+                elementStarVoted.textContent = `★★☆☆☆`
+            } else if (starVoted < 4) {
+                elementStarVoted.textContent = `★★★☆☆`
+            } else if (starVoted < 5) {
+                elementStarVoted.textContent = `★★★★☆`
+            } else {
+                elementStarVoted.textContent = `★★★★★`
+            }
         }
 
     }
 
-    const handleSelectOption = (data) => {
+    const handleSelectOption = (optionData, data) => {
         const optionList = document.querySelector(".info-product__detail-option");
         const optionItems = optionList.querySelectorAll('.info-product__detail-option-item')
         document.querySelector(".info-product__detail-current-price").textContent = `${Number(data).toLocaleString()} đ`
@@ -154,6 +170,7 @@ const InfoProductClient = ({ socket }) => {
                 }
             }
         })
+        setOptionEdit(optionData)
         setPriceEdit(data)
     }
 
@@ -218,11 +235,80 @@ const InfoProductClient = ({ socket }) => {
         imageElement.style.backgroundImage = `url(${arrayImage[indexImageInArray]})`
     }
 
+    const toast = ({ title = "", message = "", type = "info", duration = 3000 }) => {
+        const main = document.getElementById("toast-with-navbar");
+        if (main) {
+            const toast = document.createElement("div");
+            // Auto remove toast
+            const autoRemoveId = setTimeout(function () {
+                main.removeChild(toast);
+            }, duration + 1000);
+            // Remove toast when clicked
+            toast.onclick = function (e) {
+                if (e.target.closest(".toast__close")) {
+                    main.removeChild(toast);
+                    clearTimeout(autoRemoveId);
+                }
+            };
+            const icons = {
+                success: "ti-check-box",
+                info: "ti-info",
+                warning: "ti-close",
+                error: "ti-close"
+            };
+            const icon = icons[type];
+            const delay = (duration / 1000).toFixed(2);
+            toast.classList.add("toast", `toast--${type}`);
+            toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+            toast.innerHTML = `
+                      <div class="toast__icon">
+                          <i class="${icon}"></i>
+                      </div>
+                      <div class="toast__body">
+                          <h3 class="toast__title">${title}</h3>
+                          <p class="toast__msg">${message}</p>
+                      </div>
+                      <div class="toast__close">
+                          <i class="ti-close"></i>
+                      </div>
+                  `;
+            main.appendChild(toast);
+        }
+    }
+
+    const showSuccessMessage = () => {
+        toast({ title: 'Thêm thành công', message: 'Sản phẩm của bạn đã được thêm vào giỏ hàng, Xem ngay nào!', type: 'success', duration: 3000 })
+    }
+
+    const handleClickAddToCart = () => {
+        users.map((user, index) => {
+            if (window.localStorage.getItem("userLogged") === user.username) {
+                socket.emit("addProductToCart",
+                    {
+                        userID: user.userID,
+                        cart: 
+                            {
+                                imageLink: imageLink,
+                                id: productID,
+                                productName: name,
+                                option: optionEdit,
+                                color: colorEdit,
+                                price: priceEdit,
+                                percent: percent,
+                                quantity: 1
+                            }
+                    })
+            }
+        })
+        showSuccessMessage();
+    }
+
 
 
 
     return (
         <div>
+            <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <Breadcrumbs />
             <div className="container">
@@ -321,7 +407,7 @@ const InfoProductClient = ({ socket }) => {
                                     <label className='info-product__detail-label'>Chọn phiên bản:</label>
                                     {loading ? <p>Đang kết nối đến server ... </p> : option.map((o, i) => (
                                         <div key={i} className='info-product__detail-option-item' onClick={() => {
-                                            handleSelectOption(o.price)
+                                            handleSelectOption(o.data, o.price)
                                         }}>
                                             <div className='info-product__detail-option-item-content'>{o.data}</div>
                                             <div className='info-product__detail-option-item-price'>{Number(o.price).toLocaleString()} đ</div>
@@ -366,7 +452,7 @@ const InfoProductClient = ({ socket }) => {
                                     <button className='info-product__detail-payment-btn'>MUA NGAY
                                         <p className='info-product__detail-payment-describe'>Nhận tại cửa hàng hoặc giao hàng tận nơi</p>
                                     </button>
-                                    <button className='info-product__detail-payment-btn-cart'>
+                                    <button className='info-product__detail-payment-btn-cart' onClick={handleClickAddToCart}>
                                         <i className="info-product__detail-payment-btn-icon fa fa-cart-plus"></i>
                                         Thêm vào giỏ hàng
                                         <p className='info-product__detail-payment-describe'>Thêm sản phẩm để mua sau</p>

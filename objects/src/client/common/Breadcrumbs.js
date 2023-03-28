@@ -14,7 +14,9 @@ const Breadcrumbs = ({ socket }) => {
 
             return (
                 <div className="crumb" key={crumb}>
-                    <Link className="crumb-link" to={currentLink}>{capitalizeFirstLetter(crumb)}</Link>
+                    <Link className="crumb-link" to={currentLink}>{
+                    capitalizeFirstLetter(crumb)
+                    }</Link>
                 </div>
             )
         })
@@ -34,6 +36,7 @@ const Breadcrumbs = ({ socket }) => {
                     <span style={{ margin: "0 10px 0 0" }}>//</span>
                     {crumbs}
                     {name}
+                    
                 </div>
             </div>
         </div>
