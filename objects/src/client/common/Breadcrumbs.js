@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, Link, useParams } from 'react-router-dom';
 
 const Breadcrumbs = ({ socket }) => {
-    const {name} = useParams()
+    const { name } = useParams()
     const location = useLocation()
 
     let currentLink = ''
@@ -14,10 +14,14 @@ const Breadcrumbs = ({ socket }) => {
 
             return (
                 <div className="crumb" key={crumb}>
-                    <Link className="crumb-link" to={currentLink}>{crumb}</Link>
+                    <Link className="crumb-link" to={currentLink}>{capitalizeFirstLetter(crumb)}</Link>
                 </div>
             )
         })
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     return (
         <div className="breadcrumbs__container">

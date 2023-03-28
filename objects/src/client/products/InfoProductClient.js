@@ -13,10 +13,13 @@ const InfoProductClient = ({ socket }) => {
     const [type, setType] = useState('')
     const [option, setOption] = useState([])
     const [color, setColor] = useState([])
+    const [colorEdit, setColorEdit] = useState([])
     const [price, setPrice] = useState('')
+    const [priceEdit, setPriceEdit] = useState('')
     const [percent, setPercent] = useState()
     const [starProduct, setStarProduct] = useState()
     const [voterProduct, setVoterProduct] = useState()
+    const [quantity, setQuantity] = useState(1)
 
     const [promotes, setPromotes] = useState([])
 
@@ -131,9 +134,15 @@ const InfoProductClient = ({ socket }) => {
 
     }
 
-    const handleSelectOption = (e) => {
+    const handleSelectOption = (data) => {
         const optionList = document.querySelector(".info-product__detail-option");
         const optionItems = optionList.querySelectorAll('.info-product__detail-option-item')
+        document.querySelector(".info-product__detail-current-price").textContent = `${Number(data).toLocaleString()} đ`
+        const colorList = document.querySelectorAll(".info-product__detail-option")[1]
+        const colorItemPrices = colorList.querySelectorAll(".info-product__detail-option-item-price")
+        colorItemPrices.forEach((colorItemPrice, i) => {
+            colorItemPrice.innerHTML = `${Number(data).toLocaleString()} đ`
+        })
         optionItems.forEach((optionItem, index) => {
             optionItem.onclick = () => {
                 const optionItemActive = optionList.querySelector(".info-product__detail-option-item.info-product__detail-option-item--active")
@@ -145,9 +154,10 @@ const InfoProductClient = ({ socket }) => {
                 }
             }
         })
+        setPriceEdit(data)
     }
 
-    const handleSelectColor = (e) => {
+    const handleSelectColor = (data) => {
         const colorList = document.querySelectorAll(".info-product__detail-option")[1];
         const colorItems = colorList.querySelectorAll('.info-product__detail-option-item')
         colorItems.forEach((colorItem, index) => {
@@ -161,6 +171,7 @@ const InfoProductClient = ({ socket }) => {
                 }
             }
         })
+        setColorEdit(data)
     }
 
     const changeImage = (fileName) => {
@@ -187,7 +198,7 @@ const InfoProductClient = ({ socket }) => {
         if (name === product.name) {
             arrayImage.push(product.imagePrimary, product.imageLink)
             imageList.map((imageItem, i) => {
-                arrayImage.push(imageItem.link)
+                arrayImage.push(imageItem)
             })
         }
     })
@@ -255,15 +266,16 @@ const InfoProductClient = ({ socket }) => {
                                     </li>
 
                                     {loading ? <p>Đang kết nối đến server ... </p> : imageList.map((image, i) => (
-                                        <li style={{
-                                            backgroundImage: `url(${image.link})`,
-                                            backgroundPosition: "center center",
-                                            backgroundColor: "transparent",
-                                            backgroundRepeat: "no-repeat",
-                                            backgroundSize: "100%"
-                                        }} className='info-product__image-item'
+                                        <li key={i}
+                                            style={{
+                                                backgroundImage: `url(${image})`,
+                                                backgroundPosition: "center center",
+                                                backgroundColor: "transparent",
+                                                backgroundRepeat: "no-repeat",
+                                                backgroundSize: "100%"
+                                            }} className='info-product__image-item'
                                             onClick={(e) => {
-                                                changeImage(image.link)
+                                                changeImage(image)
                                             }}>
                                         </li>
                                     ))}
@@ -308,7 +320,9 @@ const InfoProductClient = ({ socket }) => {
                                 <div className='info-product__detail-option'>
                                     <label className='info-product__detail-label'>Chọn phiên bản:</label>
                                     {loading ? <p>Đang kết nối đến server ... </p> : option.map((o, i) => (
-                                        <div className='info-product__detail-option-item' onClick={handleSelectOption}>
+                                        <div key={i} className='info-product__detail-option-item' onClick={() => {
+                                            handleSelectOption(o.price)
+                                        }}>
                                             <div className='info-product__detail-option-item-content'>{o.data}</div>
                                             <div className='info-product__detail-option-item-price'>{Number(o.price).toLocaleString()} đ</div>
                                         </div>
@@ -318,8 +332,10 @@ const InfoProductClient = ({ socket }) => {
                                 <div className='info-product__detail-option'>
                                     <label className='info-product__detail-label'>Chọn màu sắc:</label>
                                     {loading ? <p>Đang kết nối đến server ... </p> : color.map((c, i) => (
-                                        <div className='info-product__detail-option-item' onClick={handleSelectColor}>
-                                            <div className='info-product__detail-option-item-content'>{c.data}</div>
+                                        <div className='info-product__detail-option-item' onClick={() => {
+                                            handleSelectColor(c)
+                                        }}>
+                                            <div className='info-product__detail-option-item-content'>{c}</div>
                                             <div className='info-product__detail-option-item-price'>{Number(price).toLocaleString()} đ</div>
                                         </div>
                                     ))}
@@ -402,7 +418,7 @@ const InfoProductClient = ({ socket }) => {
                                 <label className="info-product__rating-label">ĐÁNH GIÁ SẢN PHẨM</label>
                                 <p className="info-product__rating-star">{Number(starProduct).toFixed(1)}/5</p>
                                 <p className="info-product__rating-star-icon"></p>
-                                <p className="info-product__rating-number">1 lượt đánh giá</p>
+                                <p className="info-product__rating-number">{voterProduct} lượt đánh giá</p>
                             </div>
 
                             <ul className="info-product__review-list">
