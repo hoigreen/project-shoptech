@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Nav = ({ socket }) => {
     const [users, setUsers] = useState([])
+    const [cartUser, setCartUser] = useState([])
+    const [countQuantity, setCountQuantity] = useState()
 
     useEffect(() => {
         const fetchAPI = () => {
@@ -12,6 +14,15 @@ const Nav = ({ socket }) => {
         }
         fetchAPI()
     }, [])
+
+    useEffect(() => {
+        users.map((user, index) => {
+            if (user.username === window.localStorage.getItem("userLogged")) {
+                setCartUser(user.cart);
+                setCountQuantity(cartUser.length)
+            }
+        })
+    })
 
     const navigate = useNavigate();
 
@@ -32,7 +43,7 @@ const Nav = ({ socket }) => {
                 </div>
 
                 <button className="header-btn header-btn__cart" onClick={e => { window.location.href = ("/cart") }}>
-                    <div className="header-btn__red-dot">0</div>
+                    <div className="header-btn__red-dot">{countQuantity}</div>
                     <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
                     <p className="header--btn-name">Giỏ hàng</p>
                 </button>

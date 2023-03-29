@@ -35,6 +35,8 @@ app.use('/uploads', express.static('./uploads'));
 //     res.send("Uploaded");
 // });
 
+
+//  --------------------------- ADMIN Method -------------------------------------
 function findAdmin(idKey, myArray, fullnameAdmin, emailAdmin, phoneAdmin, addressAdmin) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].adminID === idKey) {
@@ -98,6 +100,10 @@ function findPromote(idKey, myArray, namePromote, timeStartPromote, timeEndPromo
     })
 }
 
+
+
+
+//  -------------------------Client Method ------------------------------------------
 function findUserToSetStatus(idKey, myArray, statusLoginUser) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
@@ -113,8 +119,76 @@ function findUserToSetStatus(idKey, myArray, statusLoginUser) {
 function findUserToAddToCart(idKey, myArray, cartToAdd) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
-            var data = myArray[i].cart
-            data.push(cartToAdd)
+            var data = myArray[i].cart;
+            if (data.length != 0) {
+                for (var j = 0; j < data.length; j++) {
+                    if (JSON.stringify(data[j]) === JSON.stringify(cartToAdd)) {
+                        return;
+                    }
+                    if (data[j].id == cartToAdd.id &&
+                        data[j].option == cartToAdd.option &&
+                        data[j].color == cartToAdd.color) {
+                        return;
+                    }
+                }
+                data.push(cartToAdd);
+            }
+            else {
+                data.push(cartToAdd)
+            }
+        }
+    }
+    const stringData = JSON.stringify(objectData, null, 2)
+    fs.writeFile("data.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findProductToAddQuantity(idKey, myArray, indexProduct) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].userID === idKey) {
+            var data = myArray[i].cart;
+            for (var j = 0; j < data.length; j++) {
+                if (data[j].indexProduct === indexProduct) {
+                    data[j].quantity = data[j].quantity + 1;
+                }
+            }
+        }
+    }
+    const stringData = JSON.stringify(objectData, null, 2)
+    fs.writeFile("data.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findProductToMinusQuantity(idKey, myArray, indexProduct) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].userID === idKey) {
+            var data = myArray[i].cart;
+            for (var j = 0; j < data.length; j++) {
+                if (data[j].indexProduct === indexProduct) {
+                    if (data[j].quantity == 1)
+                        return
+                    data[j].quantity = data[j].quantity - 1;
+                }
+            }
+        }
+    }
+    const stringData = JSON.stringify(objectData, null, 2)
+    fs.writeFile("data.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findProductToRemoveInCart(idKey, myArray, indexProduct) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].userID === idKey) {
+            var data = myArray[i].cart;
+            for (var j = 0; j < data.length; j++) {
+                if (data[j].indexProduct === indexProduct) {
+                    data.splice(j, 1)
+                }
+            }
         }
     }
     const stringData = JSON.stringify(objectData, null, 2)
@@ -124,6 +198,11 @@ function findUserToAddToCart(idKey, myArray, cartToAdd) {
 }
 
 
+
+
+
+
+//  Socket method
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
 
@@ -179,7 +258,7 @@ socketIO.on('connection', (socket) => {
     });
 
     socket.on("setStatusLoginUser", data => {
-        findUserToSetStatus(data.userID, objectData["users"], data.statusLogin)
+        findUserToSetStatus(data.userID, objectData["users"])
         socket.broadcast.emit("setStatusLoginUserResponse", data)
     })
 
@@ -188,24 +267,23 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("addProductToCartResponse", data)
     })
 
-    socket.on('addProductToCart2', (data) => {
-        objectData["users"].cart.push(data)
-        const stringData = JSON.stringify(objectData, null, 2)
-        fs.writeFile("data.json", stringData, (err) => {
-            console.error(err)
-        })
-        socket.broadcast.emit("addProductToCart2Response", data)
-    });
+    socket.on("addQuantityProductInCart", (data, indexProduct) => {
+        findProductToAddQuantity(data.userID, objectData["users"], indexProduct)
+        socket.broadcast.emit("addQuantityProductInCartResponse", data)
+    })
 
-    socket.on('countdown', data => {
-        objectData["products"].replace(data.time)
-        const stringData = JSON.stringify(objectData, null, 2)
-        fs.writeFile("data.json", stringData, (err) => {
-            console.error(err)
-        })
-        socket.broadcast.emit("countdown", data)
-    });
+    socket.on("minusQuantityProductInCart", (data, indexProduct) => {
+        findProductToMinusQuantity(data.userID, objectData["users"], indexProduct)
+        socket.broadcast.emit("minusQuantityProductInCartResponse", data)
+    })
 
+    socket.on("removeProductInCart", (data, indexProduct) => {
+        findProductToRemoveInCart(data.userID, objectData["users"], indexProduct)
+        socket.broadcast.emit("removeProductInCartResponse", data)
+    })
+
+
+    // disconnect
     socket.on('disconnect', () => {
         console.log('🔥: A user disconnected');
     });

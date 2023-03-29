@@ -6,6 +6,7 @@ import Breadcrumbs from '../common/Breadcrumbs'
 
 const InfoProductClient = ({ socket }) => {
     const [users, setUsers] = useState([])
+    const [cartUser, setCartUser] = useState([])
 
     const [products, setProducts] = useState([])
     const [productID, setProductID] = useState('')
@@ -46,6 +47,11 @@ const InfoProductClient = ({ socket }) => {
     }, [])
 
     useEffect(() => {
+        users.map((user, index) => {
+            if (user.username === window.localStorage.getItem("userLogged")) {
+                setCartUser(user.cart);
+            }
+        })
         // show thông tin sản phẩm
         products.map((product, index) => {
             if (name === product.name) {
@@ -280,14 +286,24 @@ const InfoProductClient = ({ socket }) => {
         toast({ title: 'Thêm thành công', message: 'Sản phẩm của bạn đã được thêm vào giỏ hàng, Xem ngay nào!', type: 'success', duration: 3000 })
     }
 
+    const showErrorMessage = () => {
+        toast({ title: 'Không thể thêm sản phẩm vào giỏ hàng', message: 'Bạn vui lòng chọn đủ phiên bản và màu sắc của sản phẩm!', type: 'error', duration: 3000 })
+    }
+
+
     const handleClickAddToCart = () => {
-        users.map((user, index) => {
-            if (window.localStorage.getItem("userLogged") === user.username) {
-                socket.emit("addProductToCart",
-                    {
-                        userID: user.userID,
-                        cart: 
+        const elementClickActive = document.querySelector(".info-product__detail-option-item.info-product__detail-option-item--active")
+        console.log(elementClickActive)
+        if (elementClickActive) {
+            users.map((user, index) => {
+                if (window.localStorage.getItem("userLogged") === user.username) {
+                    var indexProduct = cartUser.length + 1;
+                    socket.emit("addProductToCart",
+                        {
+                            userID: user.userID,
+                            cart:
                             {
+                                indexProduct: indexProduct,
                                 imageLink: imageLink,
                                 id: productID,
                                 productName: name,
@@ -297,10 +313,17 @@ const InfoProductClient = ({ socket }) => {
                                 percent: percent,
                                 quantity: 1
                             }
-                    })
-            }
-        })
-        showSuccessMessage();
+                        }
+                    )
+                }
+            })
+            showSuccessMessage();
+            window.location.href = window.location.href
+        }
+        else {
+            showErrorMessage();
+        }
+
     }
 
 

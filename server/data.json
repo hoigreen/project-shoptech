@@ -110,38 +110,7 @@
       "phone": "0772912291",
       "address": "321B, Phan Văn Trị, TPHCM",
       "statusLogin": "Đã đăng nhập",
-      "cart": [
-        {
-          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-          "id": "P001",
-          "productName": "Iphone 13 2023 - 256GB",
-          "option": "256GB ROM",
-          "color": "Xanh biển cả",
-          "price": 20000000,
-          "percent": 5,
-          "quantity": 1
-        },
-        {
-          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-          "id": "P001",
-          "productName": "Iphone 13 2023 - 256GB",
-          "option": "256GB ROM",
-          "color": "Hồng cánh xen",
-          "price": 20000000,
-          "percent": 5,
-          "quantity": 1
-        },
-        {
-          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-          "id": "P001",
-          "productName": "Iphone 13 2023 - 256GB",
-          "option": "256GB ROM",
-          "color": "Xanh biển cả",
-          "price": 20000000,
-          "percent": 5,
-          "quantity": 1
-        }
-      ]
+      "cart": []
     },
     {
       "userID": "G004",
@@ -177,7 +146,7 @@
         "http://localhost:4000/uploads/products/img5-P001.png"
       ],
       "id": "P001",
-      "name": "Iphone 13 2023 - 256GB",
+      "name": "Apple Iphone 13 - 2023",
       "enType": "smartphone",
       "type": "Điện thoại",
       "brand": "Apple",
@@ -218,7 +187,7 @@
         "http://localhost:4000/uploads/products/img3-P002.png"
       ],
       "id": "P002",
-      "name": "Điện thoại Samsung Galaxy S23 5G 128GB",
+      "name": "Điện thoại Samsung Galaxy S23 5G",
       "enType": "smartphone",
       "type": "Điện thoại",
       "brand": "Samsung",

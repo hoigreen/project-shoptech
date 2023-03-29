@@ -8,6 +8,7 @@
     position: fixed;
     top: calc(32px + 80px);
     right: 32px;
+    z-index: 10;
 }
 
 .toast {
@@ -50,7 +51,7 @@
 }
 
 .toast__icon,
-toast__close {
+.toast__close {
     padding: 0 16px;
 }
 
