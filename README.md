@@ -1,2 +1,2 @@
 # github-project-shoptech
-Website ban cac san pham cong nghe - Nhom 7 - CDTT 2
+Website bán các sản phẩm công nghệ - Nhóm 07 - Đồ án CĐTT 2 - UTH
