@@ -176,7 +176,19 @@
       "email": "mimiueo98@yahoo.com.vn",
       "phone": "0778291192",
       "address": "An Phú Tân, Trà Vinh",
-      "cart": []
+      "cart": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Đen huyền bí",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
     }
   ],
   "products": [

@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../common/Nav'
-import Footer from '../common/Footer'
 import Breadcrumbs from '../common/Breadcrumbs'
 
 const Cart = ({ socket }) => {
     const [users, setUsers] = useState([])
     const [cartUser, setCartUser] = useState([])
     const [countTotalPrice, setCountTotalPrice] = useState()
-
-    // const [products, setProducts] = useState([])
-    // const [imageLink, setImageLink] = useState('')
-    // const [option, setOption] = useState()
-    // const [color, setColor] = useState()
-
-    // const [price, setPrice] = useState('')
-    // const [percent, setPercent] = useState()
-    // const [quantity, setQuantity] = useState(1)
 
     const [loading, setLoading] = useState(true)
 
@@ -44,14 +34,17 @@ const Cart = ({ socket }) => {
         })
         setCountTotalPrice(countPriceAll)
 
+
         // show điều kiện giỏ hàng
         for (let i = 0; i < 5; i++) {
             if (cartUser.length == 0) {
                 document.querySelector('.cart__container--empty').style.display = 'flex';
+                document.querySelector('.cart__control-container').style.display = 'none';
             }
             else {
                 document.querySelector('.cart__container').style.display = 'flex';
-                document.querySelector('.cart__container--empty').style.display = 'none';
+                document.querySelector('.cart__control-container').style.display = 'flex';
+                document.querySelector('.cart__container--empty').style.display = 'none'
             }
         }
 
@@ -94,6 +87,22 @@ const Cart = ({ socket }) => {
             }
         })
         window.location.reload()
+    }
+
+    const handleClickRemoveAll = () => {
+        if (window.confirm("Bạn có chắc muốn xóa toàn bộ sản phẩm trong giỏ hàng")) {
+            users.map((user, index) => {
+                if (window.localStorage.getItem("userLogged") === user.username) {
+                    socket.emit("removeAllInCart",
+                        {
+                            userID: user.userID,
+                        }
+                    )
+                }
+            })
+            alert("Đã xóa thành công!")
+            window.location.reload()
+        }
     }
 
     return (
@@ -146,25 +155,24 @@ const Cart = ({ socket }) => {
                                 </li>
                             ))}
                         </ul>
+                    </div>
+                </div>
 
-                        <div className="cart__control-container">
-                            <div className="cart__control-total">
-                                <label className="cart__control-total-label">Tổng tiền giỏ hàng:</label>
-                                <p className="cart__control-total-price">{Number(countTotalPrice).toLocaleString() || 0} đ</p>
-                            </div>
-                            <div className='cart__control-box'>
-                                <button className="cart__control-btn cart__control-btn--payment">Thanh toán giỏ hàng</button>
-                                <button className="cart__control-btn cart__control-btn--more" onClick={(e) => { window.location.href = "/home" }}>Chọn thêm sản phẩm</button>
-                                <button className="cart__control-btn cart__control-btn--remove-all">
-                                    <i className="cart__control-icon fa fa-trash"></i>
-                                    Xóa tất cả đơn hàng</button>
-                            </div>
-                        </div>
-
+                <div className="cart__control-container">
+                    <div className="cart__control-total">
+                        <label className="cart__control-total-label">Tổng tiền giỏ hàng:</label>
+                        <p className="cart__control-total-price">{Number(countTotalPrice).toLocaleString() || 0} đ</p>
+                    </div>
+                    <div className='cart__control-box'>
+                        <button className="cart__control-btn cart__control-btn--payment" onClick={(e) => { window.location.href = "/cart/info" }}>Tiến hành đặt hàng</button>
+                        <button className="cart__control-btn cart__control-btn--more" onClick={(e) => { window.location.href = "/home" }}>Chọn thêm sản phẩm</button>
+                        <button className="cart__control-btn cart__control-btn--remove-all" onClick={handleClickRemoveAll}>
+                            <i className="cart__control-icon fa fa-trash"></i>
+                            Xóa tất cả đơn hàng</button>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     );
 

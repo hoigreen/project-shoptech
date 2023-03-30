@@ -38,8 +38,12 @@ import Accessories from './client/products/Accessories';
 import InfoProductClient from './client/products/InfoProductClient';
 
 import ResultSearch from './client/search/ResultSearch';
+
 import Cart from './client/cart/Cart';
-import CartPayment from './client/cart/CartPayment';
+import CartInfo from './client/cart/CartInfo'
+import Giftcode from './client/cart/Giftcode';
+import CartConfirm from './client/cart/CartConfirm'
+import Payment from './client/cart/Payment';
 
 import OrderLookup from './client/order/OrderLookup';
 import OrderLookupResult from './client/order/OrderLookupResult';
@@ -99,9 +103,11 @@ function App() {
 
                 {/* ------------------------------------- Route Client ------------------------------------- */}
                 <Routes>
+                    {/* Home */}
                     <Route path="/" element={<Home socket={socket} />} />
                     <Route path="/home" element={<Home socket={socket} />} />
 
+                    {/* Product */}
                     <Route path="/smartphone" element={<SmartPhone socket={socket} />} />
                     <Route path="/laptop" element={<Laptop socket={socket} />} />
                     <Route path="/tablet" element={<Tablet socket={socket} />} />
@@ -111,23 +117,27 @@ function App() {
                         element={<InfoProductClient socket={socket} />}
                     />
 
+                    {/* Account */}
                     <Route path="/login" element={<LoginClient socket={socket} />} />
                     <Route path="/register" element={<RegisterClient socket={socket} />} />
                     <Route path="/account" element={<AccountClient socket={socket} />} />
                     <Route path="/account/info" element={<AccountClientInfo socket={socket} />} />
                     <Route path="/account/history" element={<AccountHistory socket={socket} />} />
 
+                    {/* Search Product */}
                     <Route path="/result/" element={<ResultSearch socket={socket} />} />
 
+
+                    {/* Cart and Payment */}
                     <Route path="/cart" element={<Cart socket={socket} />} />
-                    <Route
-                        path="/cart/payment"
-                        element={<CartPayment socket={socket} />}
-                    />
+                    <Route path="/cart/info" element={<CartInfo socket={socket} />} />
+                    <Route path="/cart/info/giftcode" element={<Giftcode socket={socket} />} />
+                    <Route path="/cart/info/giftcode/confirm" element={<CartConfirm socket={socket} />} />
+                    <Route path="/cart/info/giftcode/confirm/payment" element={<Payment socket={socket} />} />
 
                     <Route path="/order-lookup" element={<OrderLookup socket={socket} />} />
-                    <Route path="/order-lookup/:username/:orderID" 
-                    element={<OrderLookupResult socket={socket} />} />
+                    <Route path="/order-lookup/:username/:orderID"
+                        element={<OrderLookupResult socket={socket} />} />
 
 
 

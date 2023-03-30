@@ -31,11 +31,6 @@ body {
     background-color: var(--background-color);
 }
 
-.container {
-    width: 100%;
-    margin-top: 105px;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -132,7 +127,7 @@ body {
     width: 70%;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 20px auto;
+    margin: 20px auto 210px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 1px 1px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
@@ -171,6 +166,7 @@ body {
 
 .cart__title {
     display: block;
+    padding: 8px 0 4px;
     text-align: center;
     font-size: 2.7rem;
     color: var(--button-color);
@@ -318,7 +314,7 @@ body {
 
 .cart__control-container {
     display: flex;
-    width: 100%;
+    width: 40%;
     margin: 30px 10px 0;
     flex-wrap: wrap;
     justify-content: center;
@@ -326,12 +322,19 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border: 1px solid #ccc;
+    position: fixed;
+    right: 50%;
+    transform: translateX(50%);
+    max-width: 720px;
+    bottom: 0;
+    background-color: #fff;
+    box-shadow: 0 1px 1px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
 
 .cart__control-total {
     display: flex;
     width: 100%;
-    margin: 10px;
+    margin: 16px 10px;
     justify-content: space-between;
     align-items: center;
     font-size: 1.8rem;
@@ -395,4 +398,52 @@ body {
     width: 49.5%;
     background-color: #d70018;
     color: #fff;
+}
+
+
+/* cart-info */
+.cart-info__form {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-info__group {
+    display: block;
+    margin-bottom: 30px
+}
+
+.cart-info__label {
+    display: block;
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-left: 10px;
+    margin:10px 0;
+    padding: 4px 0;
+}
+
+.cart-info__input {
+    font-size: 1.8rem;
+    padding: 12px 20px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.cart-info__input-radio-container {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 12px 6px 20px 0;
+}
+
+.cart-info__input-radio {
+    display: inline-block;
+    margin-right: 4px;
+    margin-left: 2px;
+    width: 20px;
+}
+.cart-info__input-radio-describe {
+    font-size: 1.8rem;
+    margin-right: 20px;
 }

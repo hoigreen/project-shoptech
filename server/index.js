@@ -197,6 +197,19 @@ function findProductToRemoveInCart(idKey, myArray, indexProduct) {
     })
 }
 
+function findUserToRemoveCart(idKey, myArray) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].userID === idKey) {
+            var cartUser = myArray[i].cart;
+            cartUser.splice(0, Number(cartUser.length))
+        }
+    }
+    const stringData = JSON.stringify(objectData, null, 2)
+    fs.writeFile("data.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
 
 
 
@@ -280,6 +293,11 @@ socketIO.on('connection', (socket) => {
     socket.on("removeProductInCart", (data, indexProduct) => {
         findProductToRemoveInCart(data.userID, objectData["users"], indexProduct)
         socket.broadcast.emit("removeProductInCartResponse", data)
+    })
+
+    socket.on("removeAllInCart", data => {
+        findUserToRemoveCart(data.userID, objectData["users"])
+        socket.broadcast.emit("removeAllInCartResponse", data)
     })
 
 

@@ -98,15 +98,6 @@ body {
     }
 }
 
-input {
-    -webkit-appearance: none;
-    box-shadow: none !important;
-}
-
-:-webkit-autofill {
-    color: #fff !important;
-}
-
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;

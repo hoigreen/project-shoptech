@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CartPayment = ({ socket }) => {
+const Payment = ({ socket }) => {
 
     const navigate = useNavigate();
 
@@ -13,4 +13,4 @@ const CartPayment = ({ socket }) => {
 
 };
 
-export default CartPayment;
+export default Payment;
