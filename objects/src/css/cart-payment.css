@@ -286,6 +286,11 @@ body {
     cursor: pointer;
 }
 
+.cart__item-quantity-edit:hover,
+.cart__item-remove:hover {
+    opacity: 0.8;
+}
+
 .cart__item-quantity-input {
     width: 40px;
     border: 1px solid #ccc;

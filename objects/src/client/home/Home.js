@@ -9,7 +9,7 @@ const socket = socketIO.connect('http://localhost:4000');
 
 const Home = () => {
     const [products, setProducts] = useState([])
-    const [timeStart, setTimeStartSale] = useState(20)
+    const [timeStart, setTimeStartSale] = useState(1)
     const [timeEnd, setTimeEndSale] = useState(30)
 
     const [promotes, setPromotes] = useState([])
@@ -31,7 +31,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     window.onload = () => {
-        var countDownDate = new Date(`3 ${timeEnd}, 2023 00:00:00`).getTime();
+        var countDownDate = new Date(`4 ${timeEnd}, 2023 00:00:00`).getTime();
         const countdown = setInterval(() => {
             var now = new Date().getTime();
             var timeleft = countDownDate - now;
@@ -161,7 +161,7 @@ const Home = () => {
                                     </div>
                                     <div className='home__flash-sale-header-col'>
                                         <div className="home__flash-sale-time">Thời gian khuyến mãi</div>
-                                        <div className='home__flash-sale-time-valid'>{timeStart} - {timeEnd}/3/2023</div>
+                                        <div className='home__flash-sale-time-valid'>{timeStart} - {timeEnd}/4/2023</div>
                                     </div>
                                 </div>
 

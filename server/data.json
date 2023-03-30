@@ -57,22 +57,7 @@
       "avatarUrl": "http://localhost:4000/uploads/customers/img-G001.png",
       "username": "bbinh19",
       "password": "1231934ab",
-      "cart": [
-        {
-          "id": "P001",
-          "quantity": 1
-        },
-        {
-          "id": "P001",
-          "quantity": 1
-        }
-      ],
-      "order": [
-        {
-          "id": "P001",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "fullname": "Võ Văn Bình",
       "email": "binh_kunfg142@gmail.com",
       "phone": "0982291103",
@@ -90,15 +75,17 @@
       "phone": "0983110392",
       "cart": [
         {
-          "id": "P001",
-          "quantity": 1
-        },
-        {
-          "id": "P001",
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "id": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+          "option": "32GB DDR4-3200Mhz",
+          "color": "Đen tuyền",
+          "price": 38790000,
+          "percent": 3,
           "quantity": 1
         }
-      ],
-      "statusLogin": "Chưa đăng nhập"
+      ]
     },
     {
       "userID": "G003",
@@ -109,8 +96,41 @@
       "email": "ktranlt129@gmai.com",
       "phone": "0772912291",
       "address": "321B, Phan Văn Trị, TPHCM",
-      "statusLogin": "Đã đăng nhập",
-      "cart": []
+      "cart": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
+          "id": "P002",
+          "productName": "Điện thoại Samsung Galaxy S23 5G",
+          "option": "512GB / 12GB",
+          "color": "Trắng thanh lịch",
+          "price": 23390000,
+          "percent": 5,
+          "quantity": 1
+        },
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "id": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+          "option": "32GB DDR4-3200Mhz",
+          "color": "Đen tuyền",
+          "price": 38790000,
+          "percent": 3,
+          "quantity": 1
+        },
+        {
+          "indexProduct": 3,
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "id": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+          "option": "16GB DDR4-3200Mhz",
+          "color": "Đen tuyền",
+          "price": 34950000,
+          "percent": 3,
+          "quantity": 1
+        }
+      ]
     },
     {
       "userID": "G004",
@@ -121,7 +141,8 @@
       "email": "kkk129.q2@gmail.com",
       "phone": "0591025392",
       "address": "Trâu Quỳ, TP Đà Nẵng",
-      "statusLogin": "Chưa đăng nhập"
+      "statusLogin": "Chưa đăng nhập",
+      "cart": []
     },
     {
       "userID": "G005",
@@ -132,7 +153,30 @@
       "email": "aduong939@gmail.com",
       "phone": "0329211022",
       "address": "Cần Đước, Long An",
-      "statusLogin": "Chưa đăng nhập"
+      "statusLogin": "Chưa đăng nhập",
+      "cart": []
+    },
+    {
+      "userID": "G006",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "aduong",
+      "password": "121212",
+      "fullname": "Võ Dương Minh",
+      "email": "dminh3932@gmail.com",
+      "phone": "0972201102",
+      "address": "Thanh Oai, Hà Nội",
+      "cart": []
+    },
+    {
+      "userID": "G007",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "remi000",
+      "password": "121212",
+      "fullname": "Lê Dĩnh My",
+      "email": "mimiueo98@yahoo.com.vn",
+      "phone": "0778291192",
+      "address": "An Phú Tân, Trà Vinh",
+      "cart": []
     }
   ],
   "products": [
@@ -339,19 +383,12 @@
   ],
   "orders": [
     {
-      "orderID": "P12V209",
+      "orderID": "P205V3",
       "owner": "nkhanh12",
       "method": "Giao tận nơi",
       "time": "2023-03-14",
       "note": "",
       "lists": [
-        {
-          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-          "productID": "P001",
-          "productName": "Iphone 13 2023 - 256GB",
-          "quantity": 1,
-          "totalPrice": "20000000"
-        },
         {
           "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
           "productID": "P002",
@@ -360,7 +397,7 @@
           "totalPrice": "20000000"
         }
       ],
-      "price": "40000000",
+      "price": "20000000",
       "status": "Giao hàng thành công"
     },
     {
@@ -378,14 +415,14 @@
           "totalPrice": "20000000"
         },
         {
-          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
-          "productID": "P002",
-          "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "productID": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
           "quantity": 1,
-          "totalPrice": "20000000"
+          "totalPrice": "34950000"
         }
       ],
-      "price": "40000000",
+      "price": "54950000",
       "status": "Đang giao hàng"
     }
   ],

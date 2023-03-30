@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
 import Footer from '../common/Footer';
+import Breadcrumbs from '../common/Breadcrumbs';
 
 const AccountClientInfo = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -69,6 +70,7 @@ const AccountClientInfo = ({ socket }) => {
     return (
         <div>
             <Nav socket={socket} />
+            <Breadcrumbs socket={socket} />
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
@@ -146,9 +148,6 @@ const AccountClientInfo = ({ socket }) => {
                     </div>
                 </div>
             </div>
-            <Footer />
-            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
-                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
         </div>
     )
 }

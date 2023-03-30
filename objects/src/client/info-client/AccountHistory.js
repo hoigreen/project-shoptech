@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Breadcrumbs from '../common/Breadcrumbs';
 import Nav from '../common/Nav';
 
 const AccountHistory = ({ socket }) => {
@@ -93,6 +94,7 @@ const AccountHistory = ({ socket }) => {
     return (
         <div>
             <Nav socket={socket} />
+            <Breadcrumbs socket={socket} />
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">

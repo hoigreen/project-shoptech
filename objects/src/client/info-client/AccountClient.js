@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
 import Footer from '../common/Footer';
+import Breadcrumbs from '../common/Breadcrumbs';
 
 
 const AccountClient = ({ socket }) => {
@@ -76,6 +77,7 @@ const AccountClient = ({ socket }) => {
     return (
         <div>
             <Nav socket={socket} />
+            <Breadcrumbs socket={socket} />
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
@@ -122,13 +124,13 @@ const AccountClient = ({ socket }) => {
                                     <div className='account__box-info-item'>
                                         <label className='account__box-info-item-label'>Đơn hàng đã hoàn thành</label>
                                         <i className='account__box-info-item-icon fa fa-list-alt'></i>
-                                        <p className='account__box-info-item-data'>{countOrder}</p>
+                                        <p className='account__box-info-item-data'>{countOrder || 0}</p>
                                     </div>
 
                                     <div className='account__box-info-item'>
                                         <label className='account__box-info-item-label'>Tổng giá trị mua hàng tại website</label>
                                         <i className='account__box-info-item-icon fa fa-credit-card'></i>
-                                        <p className='account__box-info-item-data'>{Number(countPriceOrder).toLocaleString()} đ</p>
+                                        <p style={{color: 'red'}} className='account__box-info-item-data'>{Number(countPriceOrder).toLocaleString()} đ</p>
                                     </div>
                                 </div>
                             </div>
@@ -156,9 +158,6 @@ const AccountClient = ({ socket }) => {
                     </div>
                 </div>
             </div>
-            <Footer />
-            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
-                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
         </div>
     )
 }

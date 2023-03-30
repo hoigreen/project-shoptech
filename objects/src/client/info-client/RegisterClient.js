@@ -14,7 +14,7 @@ const RegisterClient = ({ socket }) => {
     const [emailRegister, setEmailRegister] = useState('')
     const [phoneRegister, setPhoneRegister] = useState('')
     const [addressRegister, setAddressRegister] = useState('')
-    const [statusLogin, setStatusLogin] = useState('')
+    const [statusLogin, setStatusLogin] = useState("")
 
     useEffect(() => {
         const fetchProducts = () => {
@@ -172,6 +172,7 @@ const RegisterClient = ({ socket }) => {
     })
 
     const handleSubmit = (e) => {
+        const cartEmpty = []
         if (window.confirm('Bạn chắc chắn những thông tin bạn nhập vào là chính xác!') == true) {
             socket.emit("registerClient", {
                 userID,
@@ -182,7 +183,8 @@ const RegisterClient = ({ socket }) => {
                 email: emailRegister,
                 phone: phoneRegister,
                 address: addressRegister,
-                statusLogin
+                statusLogin: statusLogin,
+                cart: cartEmpty
             });
             window.alert('Đăng ký thành công! Đang quay trở lại trang đăng nhập')
             navigate('/login');
@@ -333,12 +335,6 @@ const RegisterClient = ({ socket }) => {
 
                 </div>
             </div>
-
-            <Footer />
-            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
-                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
-
-
         </div>
     );
 

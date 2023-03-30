@@ -35,7 +35,7 @@ const LoginClient = ({ socket }) => {
                 alert("Đăng nhập thành công");
                 window.location.href = ('/account');
             }
-            return
+            return;
         })
         showErrorToast();
     };
@@ -118,7 +118,6 @@ const LoginClient = ({ socket }) => {
                                         onChange={e => {
                                             setDetails({ ...details, username: e.target.value });
                                             setStatusLogin("Đã đăng nhập")
-                                            console.log(statusLogin);
                                         }}
                                         value={details.username}
                                         required
@@ -179,10 +178,6 @@ const LoginClient = ({ socket }) => {
 
                 </div>
             </div>
-
-            <Footer />
-            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
-                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
         </div>
 
 

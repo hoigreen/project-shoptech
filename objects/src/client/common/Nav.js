@@ -26,6 +26,18 @@ const Nav = ({ socket }) => {
 
     const navigate = useNavigate();
 
+    const handleLoggout = (e) => {
+        e.preventDefault();
+        users.map((user, index) => {
+            if (window.localStorage.getItem("userLogged") === user.username) {
+                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
+                window.localStorage.removeItem("userLogged")
+                window.localStorage.removeItem("statusLogged")
+                window.location.href = ("/login")
+            }
+        })
+    }
+
     return (
         <div className="nav-container">
             <nav className="navbar grid wide">
@@ -43,15 +55,14 @@ const Nav = ({ socket }) => {
                 </div>
 
                 <button className="header-btn header-btn__cart" onClick={e => { window.location.href = ("/cart") }}>
-                    <div className="header-btn__red-dot">{countQuantity}</div>
+                    <div className="header-btn__red-dot">{countQuantity || 0}</div>
                     <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
                     <p className="header--btn-name">Giỏ hàng</p>
                 </button>
                 <button className="header-btn" onClick={(e) => {
                     if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
                         const elementNavOption = document.querySelector('.nav__option-box');
-                        elementNavOption.style.display = 'block';
-                        navigate("/account")
+                        elementNavOption.style.display = 'block';                        
                     }
                     else {
                         window.location.href = ("/login")
@@ -69,8 +80,10 @@ const Nav = ({ socket }) => {
                     <p className="header--btn-name">Hỏi đáp</p>
                 </button>
                 <ul className="nav__option-box">
-                    <li className="nav__option-item">Thông tin tài khoản</li>
-                    <li className="nav__option-item">Đăng xuất</li>
+                    <li className="nav__option-item" onClick={() => {
+                        window.location.href = "/account/"
+                    }}>Tài khoản của bạn</li>
+                    <li className="nav__option-item" style={{color: "red"}} onClick={handleLoggout}>Đăng xuất</li>
                 </ul>
             </nav>
         </div>
