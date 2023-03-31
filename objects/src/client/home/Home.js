@@ -172,7 +172,7 @@ const Home = () => {
                                             key={index}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                window.location.href = `/${product.enType}/${product.name}`
+                                                window.location.href = `/product/${product.enType}/${product.name}`
                                             }}
                                         >
                                             <div style={{
@@ -216,7 +216,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/${product.enType}/${product.name}`
+                                            window.location.href = `/product/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -256,7 +256,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/${product.enType}/${product.name}`
+                                            window.location.href = `/product/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -296,7 +296,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/${product.enType}/${product.name}`
+                                            window.location.href = `/product/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
@@ -335,7 +335,7 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/${product.enType}/${product.name}`
+                                            window.location.href = `/product/${product.enType}/${product.name}`
                                         }}
                                     >
                                         <div style={{
