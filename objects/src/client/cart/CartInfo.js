@@ -4,6 +4,18 @@ import Breadcrumbs from '../common/Breadcrumbs'
 
 const CartInfo = ({ socket }) => {
     const [users, setUsers] = useState([])
+    const [fullname, setFullName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
+    const [methodReceive, setMethodReceive] = useState('')
+
+    const [fullnameEdit, setFullNameEdit] = useState('')
+    const [emailEdit, setEmailEdit] = useState('')
+    const [phoneEdit, setPhoneEdit] = useState('')
+    const [addressEdit, setAddressEdit] = useState('')
+    const [noteEdit, setNoteEdit] = useState('')
+
     const [cartUser, setCartUser] = useState([])
     const [countTotalPrice, setCountTotalPrice] = useState()
 
@@ -24,6 +36,10 @@ const CartInfo = ({ socket }) => {
         users.map((user, index) => {
             if (user.username === window.localStorage.getItem("userLogged")) {
                 setCartUser(user.cart);
+                setFullName(user.fullname);
+                setEmail(user.email);
+                setPhone(user.phone);
+                setAddress(user.address);
             }
         })
 
@@ -36,7 +52,87 @@ const CartInfo = ({ socket }) => {
 
     })
 
-    const handleSubmit = () => { }
+    const handleCheckDefaultInfo = () => {
+        const checkboxDefaultInfo = document.querySelector(".cart-info__input-default-info")
+        const inputElement = document.querySelectorAll(".cart-info__input")
+        if (checkboxDefaultInfo.checked) {
+            inputElement[0].value = `${fullname}`
+            inputElement[1].value = `${email}`
+            inputElement[2].value = `${phone}`
+            setFullNameEdit(fullname)
+            setEmailEdit(email)
+            setPhoneEdit(phone)
+        }
+        else {
+            inputElement[0].value = ``
+            inputElement[1].value = ``
+            inputElement[2].value = ``
+            setFullNameEdit('')
+            setEmailEdit('')
+            setPhoneEdit('')
+        }
+    }
+
+    const handleCheckMethodReceiveAtStore = (e) => {
+        const inputElement = document.querySelectorAll(".cart-info__input")
+        const listRadio = document.querySelectorAll(".cart-info__input-radio")
+        const listDescribe = document.querySelectorAll(".cart-info__input-radio-describe")
+        if (e.target.checked) {
+            inputElement[3].classList.add("cart-info__input--disabled")
+            inputElement[3].disabled = true
+            listDescribe[3].classList.add("cart-info__input-radio-describe--disabled")
+            listRadio[3].disabled = true
+            setMethodReceive('Nhận tại cửa hàng')
+        }
+    }
+
+    const handleCheckMethodReceiveAtAddress = (e) => {
+        const inputElement = document.querySelectorAll(".cart-info__input")
+        const listRadio = document.querySelectorAll(".cart-info__input-radio")
+        const listDescribe = document.querySelectorAll(".cart-info__input-radio-describe")
+        if (e.target.checked) {
+            inputElement[3].classList.remove("cart-info__input--disabled")
+            inputElement[3].disabled = false
+            listDescribe[3].classList.remove("cart-info__input-radio-describe--disabled")
+            listRadio[3].disabled = false
+            setMethodReceive('Nhận hàng tại nhà')
+        }
+    }
+
+    const handleCheckDefaultAddress = () => {
+        const checkboxDefaultAddress = document.querySelector(".cart-info__input-default-address")
+        const inputElement = document.querySelectorAll(".cart-info__input")
+        if (checkboxDefaultAddress.checked) {
+            inputElement[3].value = `${address}`
+            setAddressEdit(address)
+        }
+        else {
+            inputElement[3].value = ``
+            setAddressEdit("")
+        }
+    }
+
+    const handleNextStep = () => {
+        // console.log(fullnameEdit, emailEdit, phoneEdit, methodReceive, addressEdit, noteEdit)
+        if (fullnameEdit != '' && emailEdit != '' && phoneEdit != '' && methodReceive != '' && addressEdit != '') {
+            window.localStorage.setItem("fullnameCache", fullnameEdit)
+            window.localStorage.setItem("emailCache", emailEdit)
+            window.localStorage.setItem("phoneCache", phoneEdit)
+            window.localStorage.setItem("methodCache", methodReceive)
+            window.localStorage.setItem("addressCache", addressEdit)
+            window.localStorage.setItem("noteCache", noteEdit)
+            console.log(window.localStorage.getItem("fullnameCache"))
+            console.log(window.localStorage.getItem("emailCache"))
+            console.log(window.localStorage.getItem("phoneCache"))
+            console.log(window.localStorage.getItem("methodCache"))
+            console.log(window.localStorage.getItem("addressCache"))
+            console.log(window.localStorage.getItem("noteCache"))
+            window.location.href = "/cart/info/giftcode"
+        }
+        else {
+            alert("Vui lòng điền đầy đủ thông tin")
+        }
+    }
 
 
     return (
@@ -64,11 +160,10 @@ const CartInfo = ({ socket }) => {
                                         name="fullname"
                                         type="text"
                                         placeholder="Họ và tên của bạn ... (Không được bỏ trống)"
-                                        //onChange={(e) => setUsernameRegister(e.target.value)}
-                                        //value={usernameRegister}
+                                        onChange={(e) => setFullNameEdit(e.target.value)}
+                                        value={fullnameEdit}
                                         className="form-control cart-info__input">
                                     </input>
-                                    <span className="form-message"></span>
                                 </div>
                                 <div className="form-group">
                                     <input
@@ -76,11 +171,10 @@ const CartInfo = ({ socket }) => {
                                         name="email"
                                         type="text"
                                         placeholder="Email ... (Không được bỏ trống)"
-                                        //onChange={(e) => setUsernameRegister(e.target.value)}
-                                        //value={usernameRegister}
+                                        onChange={(e) => setEmailEdit(e.target.value)}
+                                        value={emailEdit}
                                         className="form-control cart-info__input">
                                     </input>
-                                    <span className="form-message"></span>
                                 </div>
                                 <div className="form-group">
                                     <input
@@ -88,14 +182,13 @@ const CartInfo = ({ socket }) => {
                                         name="phone"
                                         type="number"
                                         placeholder="Nhập số điện thoại (Không được để trống)"
-                                        //onChange={(e) => setUsernameRegister(e.target.value)}
-                                        //value={usernameRegister}
+                                        onChange={(e) => setPhoneEdit(e.target.value)}
+                                        value={phoneEdit}
                                         className="form-control cart-info__input">
                                     </input>
-                                    <span className="form-message"></span>
                                 </div>
                                 <div className="cart-info__input-radio-container">
-                                    <input name="info-default" type="checkbox" className="cart-info__input-radio"></input>
+                                    <input name="info-default" type="checkbox" className="cart-info__input-radio cart-info__input-default-info" onClick={handleCheckDefaultInfo}></input>
                                     <label className='cart-info__input-radio-describe' style={{ color: 'blue' }}>Sử dụng thông tin cá nhân mặc định</label>
                                 </div>
                             </div>
@@ -103,29 +196,29 @@ const CartInfo = ({ socket }) => {
                             <div className="cart-info__group">
                                 <label className="cart-info__label">Chọn hình thức nhận hàng</label>
                                 <div className="cart-info__input-radio-container">
-                                    <input name="info-default" type="radio" className="cart-info__input-radio"></input>
+                                    <input name="info-default" type="radio" className="cart-info__input-radio" onClick={handleCheckMethodReceiveAtStore}></input>
                                     <label className='cart-info__input-radio-describe'>Nhận tại cửa hàng</label>
                                 </div>
 
                                 <div className="cart-info__input-radio-container">
-                                    <input name="info-default" type="radio" className="cart-info__input-radio"></input>
+                                    <input name="info-default" type="radio" className="cart-info__input-radio" onClick={handleCheckMethodReceiveAtAddress}></input>
                                     <label className='cart-info__input-radio-describe'>Giao hàng tận nơi (Trong vòng 1h)</label>
                                 </div>
                                 <div className="form-group">
                                     <input
-                                        id="phone"
-                                        name="phone"
+                                        id="address"
+                                        name="address"
                                         type="text"
                                         placeholder="Nhập địa chỉ nhận hàng (Bắt buộc)"
-                                        //onChange={(e) => setUsernameRegister(e.target.value)}
-                                        //value={usernameRegister}
-                                        className="form-control cart-info__input">
+                                        onChange={(e) => setAddressEdit(e.target.value)}
+                                        value={addressEdit}
+                                        className="form-control cart-info__input cart-info__input--disabled"
+                                        disabled>
                                     </input>
-                                    <span className="form-message"></span>
                                 </div>
                                 <div className="cart-info__input-radio-container">
-                                    <input name="info-default" type="checkbox" className="cart-info__input-radio"></input>
-                                    <label className='cart-info__input-radio-describe' style={{ color: 'blue' }}>Sử dụng thông tin địa chỉ mặc định</label>
+                                    <input name="info-default" type="checkbox" className="cart-info__input-radio cart-info__input-default-address" onClick={handleCheckDefaultAddress}></input>
+                                    <label className='cart-info__input-radio-describe cart-info__input-radio-describe--red cart-info__input-radio-describe--disabled'>Sử dụng thông tin địa chỉ mặc định</label>
                                 </div>
                             </div>
 
@@ -135,17 +228,16 @@ const CartInfo = ({ socket }) => {
                                     <input
                                         id="note"
                                         name="note"
-                                        type="text"
+                                        type="text  "
                                         placeholder="Ghi chú (Tùy chọn)"
-                                        //onChange={(e) => setUsernameRegister(e.target.value)}
-                                        //value={usernameRegister}
+                                        onChange={(e) => setNoteEdit(e.target.value)}
+                                        value={noteEdit}
                                         className="form-control cart-info__input">
                                     </input>
-                                    <span className="form-message"></span>
                                 </div>
                                 <div className="cart-info__input-radio-container">
                                     <input name="info-default" type="checkbox" className="cart-info__input-radio"></input>
-                                    <label className='cart-info__input-radio-describe'>Xác nhận thông tin bạn nhập là chính xác</label>
+                                    <label className='cart-info__input-radio-describe'>Xác nhận thông tin bạn nhập vào là chính xác</label>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +282,7 @@ const CartInfo = ({ socket }) => {
                         <p className="cart__control-total-price">{Number(countTotalPrice).toLocaleString() || 0} đ</p>
                     </div>
                     <div className='cart__control-box'>
-                        <button className="cart__control-btn cart__control-btn--payment" onClick={(e) => { window.location.href = "/cart/info" }}>Bước tiếp theo</button>
+                        <button className="cart__control-btn cart__control-btn--payment" onClick={(e) => { handleNextStep() }}>Bước tiếp theo</button>
                         <button className="cart__control-btn cart__control-btn--more" style={{ width: "100%" }} onClick={(e) => { window.location.href = "/cart/" }}>Quay lại trang thông tin giỏ hàng</button>
                     </div>
                 </div>

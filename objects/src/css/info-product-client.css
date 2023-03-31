@@ -214,7 +214,6 @@ body {
 
 .info-product__image-list {
     display: flex;
-    width: 50%;
     margin: 20px auto 0;
     justify-content: center;
 }
@@ -227,6 +226,7 @@ body {
     border-radius: 6px;
     border: 1px solid #ccc;
     margin: 0 8px;
+    padding: 2px;
 }
 
 .info-product__image-item--active {
@@ -375,7 +375,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
     min-width: 31%;
-    max-width: 48%;
+    max-width: 32%;
     overflow: hidden;
     cursor: pointer;
     user-select: none;

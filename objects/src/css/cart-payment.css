@@ -420,7 +420,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     padding-left: 10px;
-    margin:10px 0;
+    margin: 10px 0;
     padding: 4px 0;
 }
 
@@ -429,6 +429,16 @@ body {
     padding: 12px 20px;
     margin: 0;
     font-weight: 400;
+}
+
+.cart-info__input--disabled {
+    background-color: #eee;
+    user-select: none;
+    cursor: not-allowed;
+}
+
+.cart-info__input--disabled:hover {
+    border-color: #ccc;
 }
 
 .cart-info__input-radio-container {
@@ -443,9 +453,18 @@ body {
     margin-left: 2px;
     width: 20px;
 }
+
 .cart-info__input-radio-describe {
     font-size: 1.8rem;
     margin-right: 20px;
+}
+
+.cart-info__input-radio-describe--red {
+    color: red
+}
+
+.cart-info__input-radio-describe--disabled {
+    color: #ccc
 }
 
 .block-process {
@@ -465,7 +484,7 @@ body {
 
 .block-process__item {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
 }
 

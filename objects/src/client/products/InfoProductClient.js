@@ -367,7 +367,7 @@ const InfoProductClient = ({ socket }) => {
                                         backgroundPosition: "center center",
                                         backgroundColor: "transparent",
                                         backgroundRepeat: "no-repeat",
-                                        backgroundSize: "100%"
+                                        backgroundSize: "contain"
                                     }} className='info-product__image-item info-product__image-item--active'
                                         onClick={(e) => {
                                             changeImage(imageLink)
@@ -381,7 +381,7 @@ const InfoProductClient = ({ socket }) => {
                                                 backgroundPosition: "center center",
                                                 backgroundColor: "transparent",
                                                 backgroundRepeat: "no-repeat",
-                                                backgroundSize: "100%"
+                                                backgroundSize: "cover"
                                             }} className='info-product__image-item'
                                             onClick={(e) => {
                                                 changeImage(image)

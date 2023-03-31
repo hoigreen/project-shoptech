@@ -98,28 +98,6 @@
       "address": "321B, Phan Văn Trị, TPHCM",
       "cart": [
         {
-          "indexProduct": 1,
-          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
-          "id": "P002",
-          "productName": "Điện thoại Samsung Galaxy S23 5G",
-          "option": "512GB / 12GB",
-          "color": "Trắng thanh lịch",
-          "price": 23390000,
-          "percent": 5,
-          "quantity": 1
-        },
-        {
-          "indexProduct": 1,
-          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
-          "id": "P003",
-          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-          "option": "32GB DDR4-3200Mhz",
-          "color": "Đen tuyền",
-          "price": 38790000,
-          "percent": 3,
-          "quantity": 1
-        },
-        {
           "indexProduct": 3,
           "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
           "id": "P003",
@@ -128,6 +106,28 @@
           "color": "Đen tuyền",
           "price": 34950000,
           "percent": 3,
+          "quantity": 1
+        },
+        {
+          "indexProduct": 4,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Đen huyền bí",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        },
+        {
+          "indexProduct": 4,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "Không dây - Wireless",
+          "color": "Đen tuyền",
+          "price": 1190000,
+          "percent": 12,
           "quantity": 1
         }
       ]
@@ -360,17 +360,41 @@
       "featured": true
     },
     {
+      "imagePrimary": "http://localhost:4000/uploads/products/img-primary-P008.png",
       "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+      "imageList": [
+        "http://localhost:4000/uploads/products/img2-P008.png",
+        "http://localhost:4000/uploads/products/img3-P008.png",
+        "http://localhost:4000/uploads/products/img4-P008.png",
+        "http://localhost:4000/uploads/products/img5-P008.png",
+        "http://localhost:4000/uploads/products/img6-P008.png",
+        "http://localhost:4000/uploads/products/img7-P008.png",
+        "http://localhost:4000/uploads/products/img8-P008.png"
+      ],
       "id": "P008",
       "name": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+      "enType": "accessories",
       "type": "Phụ kiện",
       "price": "989000",
-      "option": "Kết nối USB có dây",
-      "color": "Đen bóng bẩy",
+      "option": [
+        {
+          "data": "USB có dây",
+          "price": 989000
+        },
+        {
+          "data": "Không dây - Wireless",
+          "price": 1190000
+        }
+      ],
+      "color": [
+        "Đen tuyền"
+      ],
       "status": "Sẵn hàng",
-      "star": 3.5,
+      "star": 0,
+      "voter": 0,
       "hotDeal": false,
-      "featured": true
+      "featured": true,
+      "percent": 12
     }
   ],
   "promotes": [
