@@ -52,7 +52,6 @@ const CartConfirm = ({ socket }) => {
 
     window.onload = () => {
         setOrderID(makeID(10))
-        window.localStorage.setItem('orderIDCache', orderID)
     }
 
     const makeID = (length) => {
@@ -70,16 +69,17 @@ const CartConfirm = ({ socket }) => {
     const handleNextStep = () => {
         if (countTotalPriceEdit) {
             window.localStorage.setItem("countTotalPriceCache", countTotalPriceEdit)
-            window.location.href = "/cart/info/giftcode/confirm"
+            window.localStorage.setItem('orderIDCache', orderID)
+            window.location.href = "/cart/info/giftcode/confirm/payment"
         }
         else {
             window.localStorage.setItem("countTotalPriceCache", countTotalPrice)
-            window.location.href = "/cart/info/giftcode/confirm"
+            window.localStorage.setItem('orderIDCache', orderID)
+            window.location.href = "/cart/info/giftcode/confirm/payment"
         }
     }
     return (
         <div>
-            <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">

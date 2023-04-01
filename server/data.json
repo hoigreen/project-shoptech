@@ -96,41 +96,7 @@
       "email": "ktranlt129@gmai.com",
       "phone": "0772912291",
       "address": "321B, Phan Văn Trị, TPHCM",
-      "cart": [
-        {
-          "indexProduct": 1,
-          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
-          "id": "P008",
-          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
-          "option": "USB có dây",
-          "color": "Đen tuyền",
-          "price": 989000,
-          "percent": 12,
-          "quantity": 1
-        },
-        {
-          "indexProduct": 2,
-          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-          "id": "P001",
-          "productName": "Apple Iphone 13 - 2023",
-          "option": "1TB ROM",
-          "color": "Đen huyền bí",
-          "price": 41000000,
-          "percent": 5,
-          "quantity": 1
-        },
-        {
-          "indexProduct": 3,
-          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
-          "id": "P003",
-          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-          "option": "16GB DDR4-3200Mhz",
-          "color": "Đen tuyền",
-          "price": 34950000,
-          "percent": 3,
-          "quantity": 1
-        }
-      ]
+      "cart": []
     },
     {
       "userID": "G004",
@@ -419,47 +385,280 @@
   ],
   "orders": [
     {
-      "orderID": "P205V3",
+      "orderID": "SPNSPMH4RF",
       "owner": "nkhanh12",
-      "method": "Giao tận nơi",
-      "time": "2023-03-14",
-      "note": "",
+      "fullname": "Nguyễn Ngọc Khánh Trân",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "323, Phan Văn Trị, TPHCM",
+      "note": "Giao nhà bên cạnh",
+      "price": "76939000",
+      "giftcodeApply": "49",
+      "time": "2023-4-1 23:38:32",
+      "status": "Đang giao hàng",
       "lists": [
         {
-          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
-          "productID": "P002",
-          "productName": "Điện thoại Samsung Galaxy S23 5G 128GB",
-          "quantity": 1,
-          "totalPrice": "20000000"
-        }
-      ],
-      "price": "20000000",
-      "status": "Giao hàng thành công"
-    },
-    {
-      "orderID": "P12V209",
-      "owner": "nkhanh12",
-      "method": "Giao tận nơi",
-      "time": "2023-03-14",
-      "note": "",
-      "lists": [
-        {
-          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
-          "productID": "P001",
-          "productName": "Iphone 13 2023 - 256GB",
-          "quantity": 1,
-          "totalPrice": "20000000"
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "USB có dây",
+          "color": "Đen tuyền",
+          "price": 989000,
+          "percent": 12,
+          "quantity": 1
         },
         {
+          "indexProduct": 2,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Đen huyền bí",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        },
+        {
+          "indexProduct": 3,
           "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
-          "productID": "P003",
+          "id": "P003",
           "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-          "quantity": 1,
-          "totalPrice": "34950000"
+          "option": "16GB DDR4-3200Mhz",
+          "color": "Đen tuyền",
+          "price": 34950000,
+          "percent": 3,
+          "quantity": 1
         }
-      ],
-      "price": "54950000",
-      "status": "Đang giao hàng"
+      ]
+    },
+    {
+      "orderID": "3ADAK4NGQT",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "27800000",
+      "giftcodeApply": "0",
+      "time": "2023-4-1 23:45:20",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 2,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "512GB ROM",
+          "color": "Đen huyền bí",
+          "price": 27800000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderID": "9UFM26VM2B",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "34950000",
+      "giftcodeApply": "0",
+      "time": "2023-4-1 23:46:37",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "id": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+          "option": "16GB DDR4-3200Mhz",
+          "color": "Đen tuyền",
+          "price": 34950000,
+          "percent": 3,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderID": "9BDJ90GZKH",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "41000000",
+      "giftcodeApply": "49",
+      "time": "2023-4-1 23:49:42",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Đen huyền bí",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderID": "Z1MLYBVOD2",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "41000000",
+      "giftcodeApply": "0",
+      "time": "2023-4-1 23:53:17",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Đen huyền bí",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderID": "YHFNA5F6DA",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "1978000",
+      "giftcodeApply": "0",
+      "time": "2023-4-1 23:56:14",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "USB có dây",
+          "color": "Đen tuyền",
+          "price": 989000,
+          "percent": 12,
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "orderID": "",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "61000000",
+      "giftcodeApply": "49",
+      "time": "2023-4-1 23:57:58",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Xanh biển cả",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        },
+        {
+          "indexProduct": 2,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "256GB ROM",
+          "color": "Xanh biển cả",
+          "price": 20000000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderID": "MN36DLN02O",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "20000000",
+      "giftcodeApply": "49",
+      "time": "2023-4-1 23:59:17",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 2,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "256GB ROM",
+          "color": "Xanh biển cả",
+          "price": 20000000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "orderID": "DX16DNK0GI",
+      "owner": "nkhanh12",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "method": "Nhận hàng tại nhà",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "note": "",
+      "price": "1190000",
+      "giftcodeApply": "49",
+      "time": "2023-4-2 0:1:4",
+      "status": "Đang giao hàng",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "Không dây - Wireless",
+          "color": "Đen tuyền",
+          "price": 1190000,
+          "percent": 12,
+          "quantity": 1
+        }
+      ]
     }
   ],
   "giftcodes": [

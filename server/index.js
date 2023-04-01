@@ -300,6 +300,15 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("removeAllInCartResponse", data)
     })
 
+    socket.on('addOrder', (data) => {
+        objectData["orders"].push(data)
+        const stringData = JSON.stringify(objectData, null, 2)
+        fs.writeFile("data.json", stringData, (err) => {
+            console.error(err)
+        })
+        socket.broadcast.emit("addOrderResponse", data)
+    });
+
 
     // disconnect
     socket.on('disconnect', () => {

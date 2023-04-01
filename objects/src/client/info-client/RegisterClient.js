@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
-import Footer from '../common/Footer';
 
 const RegisterClient = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
     const [userID, setUserID] = useState('')
     const [avatarUrlRegister, setAvatarUrlRegister] = useState('')
     const [usernameRegister, setUsernameRegister] = useState('')
