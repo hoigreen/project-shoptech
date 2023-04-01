@@ -24,7 +24,6 @@ const InfoProductClient = ({ socket }) => {
     const [percent, setPercent] = useState()
     const [starProduct, setStarProduct] = useState()
     const [voterProduct, setVoterProduct] = useState()
-    const [quantity, setQuantity] = useState(1)
 
     const [promotes, setPromotes] = useState([])
 

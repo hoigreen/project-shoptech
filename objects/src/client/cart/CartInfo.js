@@ -113,7 +113,6 @@ const CartInfo = ({ socket }) => {
     }
 
     const handleNextStep = () => {
-        // console.log(fullnameEdit, emailEdit, phoneEdit, methodReceive, addressEdit, noteEdit)
         if (fullnameEdit != '' && emailEdit != '' && phoneEdit != '' && methodReceive != '' && addressEdit != '') {
             window.localStorage.setItem("fullnameCache", fullnameEdit)
             window.localStorage.setItem("emailCache", emailEdit)
@@ -121,12 +120,6 @@ const CartInfo = ({ socket }) => {
             window.localStorage.setItem("methodCache", methodReceive)
             window.localStorage.setItem("addressCache", addressEdit)
             window.localStorage.setItem("noteCache", noteEdit)
-            console.log(window.localStorage.getItem("fullnameCache"))
-            console.log(window.localStorage.getItem("emailCache"))
-            console.log(window.localStorage.getItem("phoneCache"))
-            console.log(window.localStorage.getItem("methodCache"))
-            console.log(window.localStorage.getItem("addressCache"))
-            console.log(window.localStorage.getItem("noteCache"))
             window.location.href = "/cart/info/giftcode"
         }
         else {
@@ -161,7 +154,7 @@ const CartInfo = ({ socket }) => {
                                         type="text"
                                         placeholder="Họ và tên của bạn ... (Không được bỏ trống)"
                                         onChange={(e) => setFullNameEdit(e.target.value)}
-                                        value={fullnameEdit}
+                                        defaultValue={window.localStorage.getItem("fullnameCache")}
                                         className="form-control cart-info__input">
                                     </input>
                                 </div>
@@ -172,7 +165,7 @@ const CartInfo = ({ socket }) => {
                                         type="text"
                                         placeholder="Email ... (Không được bỏ trống)"
                                         onChange={(e) => setEmailEdit(e.target.value)}
-                                        value={emailEdit}
+                                        defaultValue={window.localStorage.getItem("emailCache")}
                                         className="form-control cart-info__input">
                                     </input>
                                 </div>
@@ -183,7 +176,7 @@ const CartInfo = ({ socket }) => {
                                         type="number"
                                         placeholder="Nhập số điện thoại (Không được để trống)"
                                         onChange={(e) => setPhoneEdit(e.target.value)}
-                                        value={phoneEdit}
+                                        defaultValue={window.localStorage.getItem("phoneCache")}
                                         className="form-control cart-info__input">
                                     </input>
                                 </div>
@@ -211,7 +204,7 @@ const CartInfo = ({ socket }) => {
                                         type="text"
                                         placeholder="Nhập địa chỉ nhận hàng (Bắt buộc)"
                                         onChange={(e) => setAddressEdit(e.target.value)}
-                                        value={addressEdit}
+                                        defaultValue={window.localStorage.getItem("addressCache")}
                                         className="form-control cart-info__input cart-info__input--disabled"
                                         disabled>
                                     </input>
@@ -231,50 +224,46 @@ const CartInfo = ({ socket }) => {
                                         type="text  "
                                         placeholder="Ghi chú (Tùy chọn)"
                                         onChange={(e) => setNoteEdit(e.target.value)}
-                                        value={noteEdit}
+                                        defaultValue={window.localStorage.getItem("noteCache")}
                                         className="form-control cart-info__input">
                                     </input>
-                                </div>
-                                <div className="cart-info__input-radio-container">
-                                    <input name="info-default" type="checkbox" className="cart-info__input-radio"></input>
-                                    <label className='cart-info__input-radio-describe'>Xác nhận thông tin bạn nhập vào là chính xác</label>
                                 </div>
                             </div>
                         </div>
 
-                        <ul className="block-process">
-                            <li className="block-process__item block-process__item--active">
-                                <i className='block-process__item-icon block-process__item-icon--active fa fa-shopping-cart '></i>
-                                <label className='block-process__item-label'>Chọn sản phẩm</label>
-                            </li>
-                            <i className='block-process__item-arrow block-process__item-arrow--active'>↓</i>
-
-                            <li className="block-process__item block-process__item--active">
-                                <i className='block-process__item-icon fa fa-user block-process__item-icon--active'></i>
-                                <label className='block-process__item-label'>Thông tin đơn hàng</label>
-                            </li>
-                            <i className='block-process__item-arrow block-process__item-arrow--active'>↓</i>
-
-                            <li className="block-process__item">
-                                <i className='block-process__item-icon fa fa-tag'></i>
-                                <label className='block-process__item-label'>Mã khuyến mãi</label>
-                            </li>
-                            <i className='block-process__item-arrow'>↓</i>
-
-                            <li className="block-process__item">
-                                <i className='block-process__item-icon fa fa-check'></i>
-                                <label className='block-process__item-label'>Xác nhận đơn hàng</label>
-                            </li>
-                            <i className='block-process__item-arrow'>↓</i>
-
-                            <li className="block-process__item">
-                                <i className='block-process__item-icon fa fa-credit-card'></i>
-                                <label className='block-process__item-label'>Thanh toán</label>
-                            </li>
-                        </ul>
                     </div>
 
                 </div>
+                <ul className="block-process" style={{ marginTop: '25px' }}>
+                    <li className="block-process__item block-process__item--active">
+                        <i className='block-process__item-icon block-process__item-icon--active fa fa-shopping-cart '></i>
+                        <label className='block-process__item-label'>Chọn sản phẩm</label>
+                    </li>
+                    <i className='block-process__item-arrow block-process__item-arrow--active'>↓</i>
+
+                    <li className="block-process__item block-process__item--active">
+                        <i className='block-process__item-icon fa fa-user block-process__item-icon--active'></i>
+                        <label className='block-process__item-label'>Thông tin đơn hàng</label>
+                    </li>
+                    <i className='block-process__item-arrow block-process__item-arrow--active'>↓</i>
+
+                    <li className="block-process__item">
+                        <i className='block-process__item-icon fa fa-tag'></i>
+                        <label className='block-process__item-label'>Mã khuyến mãi</label>
+                    </li>
+                    <i className='block-process__item-arrow'>↓</i>
+
+                    <li className="block-process__item">
+                        <i className='block-process__item-icon fa fa-check'></i>
+                        <label className='block-process__item-label'>Xác nhận đơn hàng</label>
+                    </li>
+                    <i className='block-process__item-arrow'>↓</i>
+
+                    <li className="block-process__item">
+                        <i className='block-process__item-icon fa fa-credit-card'></i>
+                        <label className='block-process__item-label'>Thanh toán</label>
+                    </li>
+                </ul>
 
                 <div className="cart__control-container">
                     <div className="cart__control-total">

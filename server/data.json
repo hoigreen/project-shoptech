@@ -98,18 +98,18 @@
       "address": "321B, Phan Văn Trị, TPHCM",
       "cart": [
         {
-          "indexProduct": 3,
-          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
-          "id": "P003",
-          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-          "option": "16GB DDR4-3200Mhz",
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "USB có dây",
           "color": "Đen tuyền",
-          "price": 34950000,
-          "percent": 3,
+          "price": 989000,
+          "percent": 12,
           "quantity": 1
         },
         {
-          "indexProduct": 4,
+          "indexProduct": 2,
           "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
           "id": "P001",
           "productName": "Apple Iphone 13 - 2023",
@@ -120,14 +120,14 @@
           "quantity": 1
         },
         {
-          "indexProduct": 4,
-          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
-          "id": "P008",
-          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
-          "option": "Không dây - Wireless",
+          "indexProduct": 3,
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "id": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+          "option": "16GB DDR4-3200Mhz",
           "color": "Đen tuyền",
-          "price": 1190000,
-          "percent": 12,
+          "price": 34950000,
+          "percent": 3,
           "quantity": 1
         }
       ]
@@ -460,6 +460,14 @@
       ],
       "price": "54950000",
       "status": "Đang giao hàng"
+    }
+  ],
+  "giftcodes": [
+    {
+      "id": "ADDENG123",
+      "describe": "Giảm thêm 5% cho tất cả sản phẩm dành cho khách hàng thân thiết",
+      "percentReduce": 49,
+      "applyFor": "Điện thoại di động, Máy tính xách tay, Máy tính bảng, Phụ kiện"
     }
   ],
   "comments": [
