@@ -120,16 +120,37 @@ const CartInfo = ({ socket }) => {
             window.localStorage.setItem("methodCache", methodReceive)
             window.localStorage.setItem("addressCache", addressEdit)
             window.localStorage.setItem("noteCache", noteEdit)
-            window.location.href = "/cart/info/giftcode"
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.href = '/cart/info/giftcode'
+            }, 1000)    
         }
         else {
             alert("Vui lòng điền đầy đủ thông tin")
         }
     }
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
 
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">

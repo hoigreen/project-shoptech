@@ -10,7 +10,7 @@ const socket = socketIO.connect('http://localhost:4000');
 const Home = () => {
     const [products, setProducts] = useState([])
     const [timeStart, setTimeStartSale] = useState(1)
-    const [timeEnd, setTimeEndSale] = useState(30)
+    const [timeEnd, setTimeEndSale] = useState(4)
 
     const [promotes, setPromotes] = useState([])
 
@@ -31,7 +31,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     window.onload = () => {
-        var countDownDate = new Date(`4 ${timeEnd}, 2023 00:00:00`).getTime();
+        var countDownDate = new Date(`5 ${timeEnd}, 2023 00:00:00`).getTime();
         const countdown = setInterval(() => {
             var now = new Date().getTime();
             var timeleft = countDownDate - now;
@@ -96,8 +96,26 @@ const Home = () => {
         })
     })
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <Nav socket={socket} />
             <div className=''>
                 <HotPromote socket={socket} />
@@ -161,7 +179,7 @@ const Home = () => {
                                     </div>
                                     <div className='home__flash-sale-header-col'>
                                         <div className="home__flash-sale-time">Thời gian khuyến mãi</div>
-                                        <div className='home__flash-sale-time-valid'>{timeStart} - {timeEnd}/4/2023</div>
+                                        <div className='home__flash-sale-time-valid'>{timeStart}/4/2023 - {timeEnd}/5/2023</div>
                                     </div>
                                 </div>
 
@@ -172,7 +190,10 @@ const Home = () => {
                                             key={index}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                window.location.href = `/product/${product.enType}/${product.name}`
+                                                handLoadingPage(1)
+                                                window.setTimeout(() => {
+                                                    window.location.href = `/product/${product.enType}/${product.name}`
+                                                }, 1000)
                                             }}
                                         >
                                             <div style={{
@@ -216,7 +237,10 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                            handLoadingPage(1)
+                                            window.setTimeout(() => {
+                                                window.location.href = `/product/${product.enType}/${product.name}`
+                                            }, 1000)
                                         }}
                                     >
                                         <div style={{
@@ -256,7 +280,10 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                            handLoadingPage(1)
+                                            window.setTimeout(() => {
+                                                window.location.href = `/product/${product.enType}/${product.name}`
+                                            }, 1000)
                                         }}
                                     >
                                         <div style={{
@@ -296,7 +323,10 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                            handLoadingPage(1)
+                                            window.setTimeout(() => {
+                                                window.location.href = `/product/${product.enType}/${product.name}`
+                                            }, 1000)
                                         }}
                                     >
                                         <div style={{
@@ -335,7 +365,10 @@ const Home = () => {
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                            handLoadingPage(1)
+                                            window.setTimeout(() => {
+                                                window.location.href = `/product/${product.enType}/${product.name}`
+                                            }, 1000)
                                         }}
                                     >
                                         <div style={{

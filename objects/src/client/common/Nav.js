@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Nav = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -24,8 +23,6 @@ const Nav = ({ socket }) => {
         })
     })
 
-    const navigate = useNavigate();
-
     const handleLoggout = (e) => {
         e.preventDefault();
         users.map((user, index) => {
@@ -33,59 +30,93 @@ const Nav = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
                 window.localStorage.removeItem("userLogged")
                 window.localStorage.removeItem("statusLogged")
-                window.location.href = ("/login")
+                handLoadingPage(1)
+                window.setTimeout(() => {
+                    window.location.href = `/login`
+                }, 1000)
             }
         })
     }
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
-        <div className="nav-container">
-            <nav className="navbar grid wide">
-                <div className="header--logo" onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = '/home';
-                }}>
+        <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
                 </div>
+            </div>
+            <div className="nav-container">
+                <nav className="navbar grid wide">
+                    <div className="header--logo" onClick={(e) => {
+                        e.preventDefault();
+                        window.location.href = '/home';
+                    }}>
+                    </div>
 
-                <div className="header-search">
-                    <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..."></input>
-                    <button className="header-search__button">
-                        <i className="fa ti-search"></i>
+                    <div className="header-search">
+                        <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..."></input>
+                        <button className="header-search__button">
+                            <i className="fa ti-search"></i>
+                        </button>
+                    </div>
+
+                    <button className="header-btn header-btn__cart" onClick={() => {
+                        handLoadingPage(1)
+                        window.setTimeout(() => {
+                            window.location.href = `/cart`
+                        }, 1000)
+                    }}>
+                        <div className="header-btn__red-dot">{countQuantity || 0}</div>
+                        <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
+                        <p className="header--btn-name">Giỏ hàng</p>
                     </button>
-                </div>
-
-                <button className="header-btn header-btn__cart" onClick={e => { window.location.href = ("/cart") }}>
-                    <div className="header-btn__red-dot">{countQuantity || 0}</div>
-                    <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
-                    <p className="header--btn-name">Giỏ hàng</p>
-                </button>
-                <button className="header-btn" onClick={(e) => {
-                    if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
-                        const elementNavOption = document.querySelector('.nav__option-box');
-                        elementNavOption.style.display = 'block';                        
-                    }
-                    else {
-                        window.location.href = ("/login")
-                    }
-                }}>
-                    <i className="header--btn-icon fa-solid fa-user"></i>
-                    <p className="header--btn-name">Thành viên</p>
-                </button>
-                <button className="header-btn">
-                    <i className="header--btn-icon fa-solid fa-history"></i>
-                    <p className="header--btn-name">Tra cứu đơn hàng</p>
-                </button>
-                <button className="header-btn">
-                    <i className="header--btn-icon fa-solid fa-phone"></i>
-                    <p className="header--btn-name">Hỏi đáp</p>
-                </button>
-                <ul className="nav__option-box">
-                    <li className="nav__option-item" onClick={() => {
-                        window.location.href = "/account/"
-                    }}>Tài khoản của bạn</li>
-                    <li className="nav__option-item" style={{color: "red"}} onClick={handleLoggout}>Đăng xuất</li>
-                </ul>
-            </nav>
+                    
+                    <button className="header-btn" onClick={(e) => {
+                        if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
+                            const elementNavOption = document.querySelector('.nav__option-box');
+                            elementNavOption.style.display = 'block';
+                        }
+                        else {
+                            handLoadingPage(1)
+                            window.setTimeout(() => {
+                                window.location.href = `/login`
+                            }, 1000)
+                        }
+                    }}>
+                        <i className="header--btn-icon fa-solid fa-user"></i>
+                        <p className="header--btn-name">Thành viên</p>
+                    </button>
+                    <button className="header-btn">
+                        <i className="header--btn-icon fa-solid fa-history"></i>
+                        <p className="header--btn-name">Tra cứu đơn hàng</p>
+                    </button>
+                    <button className="header-btn">
+                        <i className="header--btn-icon fa-solid fa-phone"></i>
+                        <p className="header--btn-name">Hỏi đáp</p>
+                    </button>
+                    <ul className="nav__option-box">
+                        <li className="nav__option-item" onClick={() => {
+                            handLoadingPage(1)
+                            window.setTimeout(() => {
+                                window.location.href = `/account`
+                            }, 1000)
+                        }}>Tài khoản của bạn</li>
+                        <li className="nav__option-item" style={{ color: "red" }} onClick={handleLoggout}>Đăng xuất</li>
+                    </ul>
+                </nav>
+            </div>
         </div>
 
     );

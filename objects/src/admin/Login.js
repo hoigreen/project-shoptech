@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { parsePath, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [admins, setAdmins] = useState([])
@@ -20,15 +20,22 @@ const Login = () => {
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
+        var boolCheck = false;
         admins.map((admin, index) => {
             if (details.adminName == admin.adminName &&
                 details.password == admin.password) {
-                navigate('/admin/dashboard');
                 window.localStorage.setItem('adminNameLogin', admin.adminName);
                 alert("Đăng nhập thành công");
+                handLoadingPage(1)
+                window.setTimeout(() => {
+                    window.location.href = `/admin/dashboard`
+                }, 1000)
+                boolCheck = true;
             }
         })
-        showErrorToast();
+        if (boolCheck === false) {
+            showErrorToast();
+        }
     };
 
     function toast({ title = "", message = "", type = "info", duration = 3000 }) {
@@ -85,9 +92,27 @@ const Login = () => {
         })
     }
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div className='login--admin-container'>
             <div id="toast"></div>
+
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
 
             <div className="login__logo"></div>
             <div className="login__box">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav'
-import Footer from '../common/Footer';
 
 
 const LoginClient = ({ socket }) => {
@@ -34,8 +33,8 @@ const LoginClient = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: statusLogin })
                 alert("Đăng nhập thành công");
                 window.location.href = ('/account');
+                return "Đăng nhập thành công";
             }
-            return;
         })
         showErrorToast();
     };

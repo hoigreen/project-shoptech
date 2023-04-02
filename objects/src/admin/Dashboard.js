@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
     const [adminID, setAdminID] = useState('')
     const [adminName, setAdminName] = useState('')
     const [fullname, setFullname] = useState('')
@@ -11,15 +10,12 @@ const Dashboard = () => {
     const [countAdmin, setCountAdmin] = useState(0)
 
     const [products, setProducts] = useState([])
-    const [product, setProduct] = useState([])
     const [countProduct, setCountProduct] = useState(0)
 
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
     const [customer, setCustomers] = useState(0)
 
     const [promotes, setPromotes] = useState([])
-    const [promote, setPromote] = useState([])
     const [countPromotes, setCountPromotes] = useState(0)
 
     const [loading, setLoading] = useState(true)
@@ -40,29 +36,43 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
 
-    const handleNevigateDashboard = (e) => {
-        e.preventDefault();
-        navigate(`/admin/dashboard`);
+    const handleNevigateDashboard = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/dashboard`);
+        }, 1000)
     }
-    const handleNevigateCustomer = (e) => {
-        e.preventDefault();
-        navigate(`/admin/customer`);
+    const handleNevigateCustomer = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/customer`)
+        }, 1000)
     }
-    const handleNevigateProduct = (e) => {
-        e.preventDefault();
-        navigate(`/admin/Product`);
+    const handleNevigateProduct = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/product`)
+        }, 1000)
     }
-    const handleNevigatePromote = (e) => {
-        e.preventDefault();
-        navigate(`/admin/Promote`);
+    const handleNevigatePromote = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/promote`)
+        }, 1000)
     }
-    const handleNevigateInfo = (e) => {
-        e.preventDefault();
-        navigate(`/admin/info-admin/${adminID}`)
+    const handleNevigateInfo = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/info-admin/${adminID}`)
+        }, 1000)
     }
 
     const LogOut = () => {
-        window.location.href = "/admin"
+        window.localStorage.removeItem('adminNameLogin')
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.href = `/admin`
+        }, 1000)
     }
 
     useEffect(() => {
@@ -109,8 +119,26 @@ const Dashboard = () => {
         })
     })
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div className='admin__container'>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <div id="sidebar">
                 <div className="sidebar__logo" onClick={(e) => {
                     e.preventDefault();

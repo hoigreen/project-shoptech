@@ -113,24 +113,27 @@ const Giftcode = ({ socket }) => {
     const checkGiftcode = () => {
         const main = document.querySelector(".detail-price__list");
         if (main) {
-            main.style.animation = `fadeIn ease 1.5s`;
-            main.innerHTML = `
-                <label class="detail-price__header">Chi tiết đơn hàng</label>
-                <li class='detail-price__item'>
-                    <label class="detail-price__item-label">Tổng giá trị giỏ hàng hiện tại: </label>
-                    <span class="detail-price__item-price">${Number(countTotalPrice).toLocaleString()} đ</span>
-                </li>
-
-                <li class='detail-price__item'>
-                    <label class="detail-price__item-label">Áp dụng mã giảm giá:</label>
-                    <span class="detail-price__item-price">-${percentReduce}% = -${(Number(countTotalPrice) * percentReduce / 100).toLocaleString()} đ</span>
-                </li>
-
-                <li class='detail-price__item detail-price__item-total'>
-                    <label class="detail-price__item-label">Thành tiền</label>
-                    <span class="detail-price__item-price" style={{ color: 'red' }}>${(Number(countTotalPrice) * (100 - percentReduce) / 100).toLocaleString()} đ</span>
-                </li>
-            `
+            handLoadingPage(1)
+            setTimeout(() => {
+                main.style.animation = `fadeIn ease 1.5s`;
+                main.innerHTML = `
+                    <label class="detail-price__header">Chi tiết đơn hàng</label>
+                    <li class='detail-price__item'>
+                        <label class="detail-price__item-label">Tổng giá trị giỏ hàng hiện tại: </label>
+                        <span class="detail-price__item-price">${Number(countTotalPrice).toLocaleString()} đ</span>
+                    </li>
+    
+                    <li class='detail-price__item'>
+                        <label class="detail-price__item-label">Áp dụng mã giảm giá:</label>
+                        <span class="detail-price__item-price">-${percentReduce}% = -${(Number(countTotalPrice) * percentReduce / 100).toLocaleString()} đ</span>
+                    </li>
+    
+                    <li class='detail-price__item detail-price__item-total'>
+                        <label class="detail-price__item-label">Thành tiền</label>
+                        <span class="detail-price__item-price" style={{ color: 'red' }}>${(Number(countTotalPrice) * (100 - percentReduce) / 100).toLocaleString()} đ</span>
+                    </li>
+                `
+            }, 1000)
         }
     }
 
@@ -139,17 +142,43 @@ const Giftcode = ({ socket }) => {
             window.localStorage.setItem("countTotalPriceCache", countTotalPriceEdit)
             window.localStorage.setItem("percentApply", percentReduce)
             window.localStorage.setItem("giftcodeApply", giftcodeID)
-            window.location.href = "/cart/info/giftcode/confirm"
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.href = "/cart/info/giftcode/confirm"
+            }, 1000)
+
         }
         else {
             window.localStorage.setItem("countTotalPriceCache", countTotalPrice)
             window.localStorage.setItem("giftcodeApply", '')
             window.localStorage.setItem("percentApply", 0)
-            window.location.href = "/cart/info/giftcode/confirm"
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.href = "/cart/info/giftcode/confirm"
+            }, 1000)
         }
     }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
+
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
@@ -185,7 +214,7 @@ const Giftcode = ({ socket }) => {
                     </div>
                 </div>
 
-                <ul className="block-process" style={{marginTop: '25px'}}>
+                <ul className="block-process" style={{ marginTop: '25px' }}>
                     <li className="block-process__item block-process__item--active">
                         <i className='block-process__item-icon block-process__item-icon--active fa fa-shopping-cart '></i>
                         <label className='block-process__item-label'>Chọn sản phẩm</label>

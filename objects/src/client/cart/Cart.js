@@ -60,7 +60,10 @@ const Cart = ({ socket }) => {
                 )
             }
         })
-        window.location.reload()
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.reload()
+        }, 1000)
     }
 
     const handleClickMinusQuantity = (indexProduct) => {
@@ -73,7 +76,10 @@ const Cart = ({ socket }) => {
                 )
             }
         })
-        window.location.reload()
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.reload()
+        }, 1000)
     }
 
     const handleClickRemoveProduct = (indexProduct) => {
@@ -86,7 +92,10 @@ const Cart = ({ socket }) => {
                 )
             }
         })
-        window.location.reload()
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.reload()
+        }, 1000)
     }
 
     const handleClickRemoveAll = () => {
@@ -100,13 +109,33 @@ const Cart = ({ socket }) => {
                     )
                 }
             })
-            alert("Đã xóa thành công!")
-            window.location.reload()
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         }
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
     }
 
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
@@ -164,7 +193,12 @@ const Cart = ({ socket }) => {
                         <p className="cart__control-total-price">{Number(countTotalPrice).toLocaleString() || 0} đ</p>
                     </div>
                     <div className='cart__control-box'>
-                        <button className="cart__control-btn cart__control-btn--payment" onClick={(e) => { window.location.href = "/cart/info" }}>Tiến hành đặt hàng</button>
+                        <button className="cart__control-btn cart__control-btn--payment" onClick={(e) => {
+                            handLoadingPage(1)
+                            window.setTimeout(() => {
+                                window.location.href = "/cart/info"
+                            }, 1000)
+                        }}>Tiến hành đặt hàng</button>
                         <button className="cart__control-btn cart__control-btn--more" onClick={(e) => { window.location.href = "/home" }}>Chọn thêm sản phẩm</button>
                         <button className="cart__control-btn cart__control-btn--remove-all" onClick={handleClickRemoveAll}>
                             <i className="cart__control-icon fa fa-trash"></i>

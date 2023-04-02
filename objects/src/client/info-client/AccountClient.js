@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
-import Footer from '../common/Footer';
 import Breadcrumbs from '../common/Breadcrumbs';
 
 
@@ -130,7 +129,7 @@ const AccountClient = ({ socket }) => {
                                     <div className='account__box-info-item'>
                                         <label className='account__box-info-item-label'>Tổng giá trị mua hàng tại website</label>
                                         <i className='account__box-info-item-icon fa fa-credit-card'></i>
-                                        <p style={{color: 'red'}} className='account__box-info-item-data'>{Number(countPriceOrder).toLocaleString()} đ</p>
+                                        <p style={{ color: 'red' }} className='account__box-info-item-data'>{Number(countPriceOrder).toLocaleString()} đ</p>
                                     </div>
                                 </div>
                             </div>

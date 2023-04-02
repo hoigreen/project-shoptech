@@ -29,29 +29,43 @@ const ProductPage = ({ socket }) => {
 
     const navigate = useNavigate();
 
-    const handleNevigateDashboard = (e) => {
-        e.preventDefault();
-        navigate(`/admin/dashboard`);
+    const handleNevigateDashboard = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/dashboard`);
+        }, 1000)
     }
-    const handleNevigateCustomer = (e) => {
-        e.preventDefault();
-        navigate(`/admin/customer`);
+    const handleNevigateCustomer = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/customer`)
+        }, 1000)
     }
-    const handleNevigateProduct = (e) => {
-        e.preventDefault();
-        navigate(`/admin/Product`);
+    const handleNevigateProduct = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/product`)
+        }, 1000)
     }
-    const handleNevigatePromote = (e) => {
-        e.preventDefault();
-        navigate(`/admin/Promote`);
+    const handleNevigatePromote = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/promote`)
+        }, 1000)
     }
-    const handleNevigateInfo = (e) => {
-        e.preventDefault();
-        navigate(`/admin/info-admin/${adminID}`)
+    const handleNevigateInfo = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/info-admin/${adminID}`)
+        }, 1000)
     }
 
     const LogOut = () => {
-        window.location.href = "/admin"
+        window.localStorage.removeItem('adminNameLogin')
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.href = `/admin`
+        }, 1000)
     }
 
     useEffect(() => {
@@ -75,11 +89,31 @@ const ProductPage = ({ socket }) => {
     })
 
     const handleClickBtnAdd = (e) => {
-        navigate("/admin/product/add")
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate("/admin/product/add")
+        }, 1000)
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
     }
 
     return (
         <div className='product__container'>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <div id="sidebar">
                 <div className="sidebar__logo" onClick={(e) => {
                     e.preventDefault();
@@ -127,16 +161,13 @@ const ProductPage = ({ socket }) => {
                             <span className="admin__header-name">{fullname}</span>
                             --
                         </div>
-
                         <div style={{ backgroundImage: `url(${avatarUrl})` }} className="admin__header-avatar"></div>
-
                         <div className='admin__header-option'>
                             <div className="admin__header-option-item" onClick={handleNevigateInfo} >Thông tin cá nhân</div>
                             <div className="admin__header-option-item" onClick={LogOut} style={{ color: 'red', fontWeight: 600 }}>Đăng xuất</div>
                         </div>
                     </div>
                 </div>
-
                 <div className="admin__title">
                     <label className='admin__tilte-label'>Chúc một ngày tốt lành, quản trị viên!</label>
                     <label className='admin__tilte-describe'>Trang quản lý sản phẩm</label>

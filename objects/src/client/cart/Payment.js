@@ -4,20 +4,17 @@ import Breadcrumbs from '../common/Breadcrumbs'
 
 const Payment = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [userID, setUserID] = useState('')
 
     const [cartUser, setCartUser] = useState([])
 
     const [orders, setOrders] = useState([])
 
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchAPIs = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
                 setUsers(data.users)
                 setOrders(data.orders)
-                setLoading(false)
             })
         }
         fetchAPIs()
@@ -27,7 +24,6 @@ const Payment = ({ socket }) => {
         users.map((user, index) => {
             if (user.username === window.localStorage.getItem("userLogged")) {
                 setCartUser(user.cart);
-                setUserID(user.id)
             }
         })
     })
@@ -102,11 +98,11 @@ const Payment = ({ socket }) => {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var dateTime = date + ' ' + time;
         orders.map((order, i) => {
-            if (order.orderID == window.localStorage.getItem("orderIDCache")) {
-                completePayment()
+            if (order.orderID === window.localStorage.getItem("orderIDCache")) {
+                showErrorMessage()
                 return;
             }
-            if (i == orders.length - 1) {
+            if (i === orders.length - 1) {
                 socket.emit("addOrder", {
                     orderID: window.localStorage.getItem("orderIDCache"),
                     owner: window.localStorage.getItem("userLogged"),
@@ -122,21 +118,6 @@ const Payment = ({ socket }) => {
                     status: "Đang giao hàng",
                     lists: cartUser
                 });
-                // for (var key in localStorage) {
-                //     console.log(key)
-
-                // }
-                users.map((user, index) => {
-                    if (window.localStorage.getItem("userLogged") === user.username) {
-                        socket.emit("removeAllInCart",
-                            {
-                                userID: user.userID,
-                            }
-                        )
-                        return;
-                    }
-                })
-
                 completePayment()
                 showSuccessMessage()
             }
@@ -155,9 +136,20 @@ const Payment = ({ socket }) => {
         localStorage.removeItem("giftcodeApply");
         localStorage.removeItem("percentApply");
         localStorage.removeItem("cartGuest");
-        socket.emit("removeAllInCart", { userID })
 
         const paymentBox = document.querySelector(".cart__container")
+        var countSeconds = 15;
+        const x = setInterval(() => {
+            var secondLeft = document.querySelector(".payment-done__redirect-second")
+            countSeconds -= 1;
+            console.log(countSeconds)
+            secondLeft.innerHTML = `${countSeconds} giây`
+            if (countSeconds <= 0) {
+                window.location.href = "/home";
+                clearInterval(x)
+            }
+        }, 1000)
+
         paymentBox.innerHTML = `
             <div class='payment-done__box'>
                 <div class="payment-done__icon checkmark-circle">
@@ -167,12 +159,9 @@ const Payment = ({ socket }) => {
                 <label class='payment-done__label'>Thanh toán đơn hàng thành công</label>
                 <p class='payment-done__describe'>Vui lòng đợi từ một chút để hệ thống xác nhận đơn hàng của bạn</p>
                 <p class='payment-done__thanks'>Cám ơn bạn đã mua hàng và sử dụng dịch vụ của ShopTECH</p>
+                <p class="payment-done__redirect"> Tự động chuyển hướng tới trang chủ sau <span class='payment-done__redirect-second'>${countSeconds} giây</span> ... </p>
             </div>
         `
-        window.setTimeout(function () {
-            window.location.href = "/home";
-
-        }, 7000);
     }
 
     return (
@@ -206,17 +195,17 @@ const Payment = ({ socket }) => {
                                 <ul className='payment__list'>
                                     <li className="payment__item payment__item--active" onClick={handleSelectMethod}>
                                         <label className='payment__item-label'>Thanh toán khi nhận hàng</label>
-                                        <img className='payment__item-img' src='https://cellphones.com.vn/cart/_nuxt/img/COD.7245762.png'></img>
+                                        <img className='payment__item-img' src='https://cellphones.com.vn/cart/_nuxt/img/COD.7245762.png' alt=''></img>
                                     </li>
 
                                     <li className="payment__item" onClick={handleSelectMethod}>
                                         <label className='payment__item-label'>Thanh toán qua ZaloPay</label>
-                                        <img className='payment__item-img' src='https://cellphones.com.vn/cart/_nuxt/img/zalopay.08ce522.png'></img>
+                                        <img className='payment__item-img' src='https://cellphones.com.vn/cart/_nuxt/img/zalopay.08ce522.png' alt=''></img>
                                     </li>
 
                                     <li className="payment__item" onClick={handleSelectMethod}>
                                         <label className='payment__item-label'>Thanh toán qua VNPay</label>
-                                        <img className='payment__item-img' src='https://cellphones.com.vn/cart/_nuxt/img/vnpay.c0bd59b.png'></img>
+                                        <img className='payment__item-img' src='https://cellphones.com.vn/cart/_nuxt/img/vnpay.c0bd59b.png' alt=''></img>
                                     </li>
                                 </ul>
                             </ul>

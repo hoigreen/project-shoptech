@@ -289,11 +289,19 @@ const InfoProductClient = ({ socket }) => {
         toast({ title: 'Không thể thêm sản phẩm vào giỏ hàng', message: 'Bạn vui lòng chọn đủ phiên bản và màu sắc của sản phẩm!', type: 'error', duration: 3000 })
     }
 
+    const showErrorNotLoginMessage = () => {
+        toast({ title: 'Bạn chưa đăng nhập vào ShopTECH', message: 'Vui lòng đăng nhập để sử dụng tính năng này!', type: 'error', duration: 4000 })
+    }
+
 
     const handleClickAddToCart = () => {
         const elementClickActive = document.querySelector(".info-product__detail-option-item.info-product__detail-option-item--active")
-        console.log(elementClickActive)
         if (elementClickActive) {
+            console.log(window.localStorage.getItem("userLogged"))
+            if (window.localStorage.getItem("userLogged") === null) {
+                showErrorNotLoginMessage()
+                return;
+            }
             users.map((user, index) => {
                 if (window.localStorage.getItem("userLogged") === user.username) {
                     var indexProduct = cartUser.length + 1;
@@ -317,23 +325,82 @@ const InfoProductClient = ({ socket }) => {
                 }
             })
             showSuccessMessage();
-            window.location.href = window.location.href
+            handLoadingPage(3)
+            window.setTimeout(() => {
+                window.location.href = window.location.href
+            }, 3000)
         }
         else {
             showErrorMessage();
         }
-
     }
 
+    const handleClickBuyNow = () => {
+        const elementClickActive = document.querySelector(".info-product__detail-option-item.info-product__detail-option-item--active")
+        if (elementClickActive) {
+            if (window.localStorage.getItem("userLogged") === null) {
+                showErrorNotLoginMessage()
+                return;
+            }
+            users.map((user, index) => {
+                if (window.localStorage.getItem("userLogged") === user.username) {
+                    var indexProduct = cartUser.length + 1;
+                    socket.emit("addProductToCart",
+                        {
+                            userID: user.userID,
+                            cart:
+                            {
+                                indexProduct: indexProduct,
+                                imageLink: imageLink,
+                                id: productID,
+                                productName: name,
+                                option: optionEdit,
+                                color: colorEdit,
+                                price: priceEdit,
+                                percent: percent,
+                                quantity: 1
+                            }
+                        }
+                    )
+                }
+            })
+            showSuccessMessage();
+            handLoadingPage(3)
+            window.setTimeout(() => {
+                window.location.href = '/cart/info'
+            }, 4)
+        }
+        else {
+            showErrorMessage();
+        }
+    }
 
-
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
 
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <Breadcrumbs />
             <div className="container">
+
+
                 <div className="grid wide">
                     <div className="info-product__container">
                         <div className="info-product__header">
@@ -471,7 +538,7 @@ const InfoProductClient = ({ socket }) => {
                                     ))}
                                 </div>
                                 <div className='info-product__detail-payment'>
-                                    <button className='info-product__detail-payment-btn'>MUA NGAY
+                                    <button className='info-product__detail-payment-btn' onClick={handleClickBuyNow}>MUA NGAY
                                         <p className='info-product__detail-payment-describe'>Nhận tại cửa hàng hoặc giao hàng tận nơi</p>
                                     </button>
                                     <button className='info-product__detail-payment-btn-cart' onClick={handleClickAddToCart}>

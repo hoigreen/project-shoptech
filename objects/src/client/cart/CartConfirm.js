@@ -70,16 +70,42 @@ const CartConfirm = ({ socket }) => {
         if (countTotalPriceEdit) {
             window.localStorage.setItem("countTotalPriceCache", countTotalPriceEdit)
             window.localStorage.setItem('orderIDCache', orderID)
-            window.location.href = "/cart/info/giftcode/confirm/payment"
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.href = "/cart/info/giftcode/confirm/payment"
+            }, 1000)
         }
         else {
             window.localStorage.setItem("countTotalPriceCache", countTotalPrice)
             window.localStorage.setItem('orderIDCache', orderID)
-            window.location.href = "/cart/info/giftcode/confirm/payment"
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.href = "/cart/info/giftcode/confirm/payment"
+            }, 1000)
         }
     }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        console.log(loading)
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
+
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
@@ -177,7 +203,7 @@ const CartConfirm = ({ socket }) => {
                         <div className="cart-info__group">
                             <div className="cart-info__input-radio-container">
                                 <input name="info-default" type="checkbox" className="cart-info__input-radio"></input>
-                                <label className='cart-info__input-radio-describe'>Vui lòng xác nhận thông tin bạn nhập vào là chính xác</label>
+                                <label className='cart-info__input-radio-describe' style={{ fontSize: "2rem", color: "red", fontWeight: "bold" }}>Vui lòng xác nhận thông tin bạn nhập vào là chính xác</label>
                             </div>
                         </div>
                     </div>
