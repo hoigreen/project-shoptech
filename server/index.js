@@ -15,6 +15,12 @@ const socketIO = require('socket.io')(http, {
 const savedData = fs.readFileSync("data.json")
 const objectData = JSON.parse(savedData)
 
+const savedDataAdmin = fs.readFileSync("datas/data-admin.json")
+const objectDataAdmin = JSON.parse(savedDataAdmin)
+
+const savedDataFeedback = fs.readFileSync("datas/data-feedback.json")
+const objectDataFeedback = JSON.parse(savedDataFeedback)
+
 app.use(cors())
 app.use('/uploads', express.static('./uploads'));
 

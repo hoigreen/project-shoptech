@@ -18,35 +18,44 @@ const ContactPage = () => {
                     </div>
                 </div>
             </div>
+
             <Nav />
             <Breadcrumbs />
             <div className="container">
                 <div className='grid wide'>
-                    <div className='contact'>
-                        <div className='contact__container'>
-                            <label className='contact__item contact__title'>Thông tin liên hệ</label>
-                            <label className='contact__item contact__description'>Bất kì câu hỏi hoặc nhận xét nào! Hãy liên hệ với Nhóm 3 chúng tôi qua những cách dưới đây.
-                                Sự hài lòng của bạn là vinh dự cho chúng tôi</label>
-                            <div className='contact__item contact__phone'>
-                                <i className='contact__icon ti-mobile'></i>
-                                (+84) 28 123456789
-                            </div>
-                            <div className='contact__item contact__email'>
-                                <i className='contact__icon ti-email'></i>
-                                nhom3_ltm@gmail.com</div>
-                            <div className='contact__item contact__address'>
-                                <i className='contact__icon ti-location-pin'></i>
-                                70 Tô Ký, P.Tân Chánh Hiệp, Q.12, TPHCM</div>
-                            <div className='contact__item contact__social'>
-                                <i className='contact__social-icon ti-facebook'></i>
-                                <i className='contact__social-icon ti-instagram'></i>
-                                <i className='contact__social-icon ti-twitter-alt'></i>
-                                <i className='contact__social-icon ti-dropbox'></i>
-                                <i className='contact__social-icon ti-sharethis'></i>
-                            </div>
-                        </div>
-
+                    <div className='contact__box'>
+                        <label className='contact__box-title'>LIÊN HỆ VỚI SHOPTECH</label>
+                        <form className='contact__box-form'>
+                            <input style={{
+                                color: "green",
+                                fontWeight: "bold",
+                            }}
+                                required
+                                className='contact__box-form-input'
+                                type='text'
+                                placeholder='Điền họ tên của bạn ...'
+                            />
+                            <input required className='contact__box-form-input' type='email' placeholder='Điền email ...' />
+                            <select required className='contact__box-form-select'>
+                                <option className='contact__box-form-option' value='...'>Chọn vấn đề góp ý</option>
+                                <option className='contact__box-form-option' value='...'>Vấn đề tài khoản</option>
+                                <option className='contact__box-form-option' value='...'>Vấn đề khuyến mãi</option>
+                                <option className='contact__box-form-option' value='...'>Cải thiện hệ thống</option>
+                                <option className='contact__box-form-option' value='...'>Vấn đề khác</option>
+                            </select>
+                            <label className='contact__box-form-label'>Nội dung</label>
+                            <textarea required className='contact__box-form-textbox' type='text' />
+                            <button className='contact__box-form-btn'>Gửi góp ý</button>
+                        </form>
                     </div>
+
+                    <ul className="contact__info-list">
+                        <li className="contact__info-item">
+                            <i className="contact__info-item-icon fa fa-location"></i>
+                            <label className="contact__info-item-title"></label>
+                            <p className="contact__info-item-content"></p>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

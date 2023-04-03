@@ -15,6 +15,8 @@
 @import url('./css/accessories-client.css');
 @import url('./css/info-product-client.css');
 @import url('./css/cart-payment.css');
+@import url('./css/contact.css');
+
 
 
 /* --------Stylesheet for the common component ------*/
@@ -1937,64 +1939,6 @@ tbody {
     transform: translateY(-3px);
 }
 
-
-/* ------------Contact Page------------------ */
-.contact {
-    width: 100%;
-}
-
-.contact__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact__item {
-    padding: 10px;
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-}
-
-.contact__title {
-    font-size: 3rem;
-    font-weight: 600;
-    margin: 20px 0 20px 0;
-}
-
-.contact__description {
-    max-width: 570px;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    text-align: center;
-    font-style: italic;
-}
-
-.contact__icon {
-    line-height: 1.6rem;
-    font-weight: 500;
-    padding-right: 5px;
-}
-
-.contact__phone {}
-
-.contact__email {}
-
-.contact__address {}
-
-.contact__social {}
-
-.contact__social-icon {
-    font-size: 3rem;
-    padding-right: 12px;
-    transform: translateY(0);
-}
-
-.contact__social-icon:hover {
-    cursor: pointer;
-    font-size: 3.4rem;
-    transform: translateY(-3px)
-}
 
 /* --------Stylesheet for the Footer component ------*/
 .footer-container {

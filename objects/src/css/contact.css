@@ -1,0 +1,94 @@
+.contact__box {
+    display: flex;
+    width: 720px;
+    margin: 30px auto;
+    padding: 40px;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .1), 0 2px 6px 2px rgba(60, 64, 67, .15)
+}
+
+.contact__box-title {
+    display: block;
+    width: 100%;
+    padding: 20px 20px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--button-color);
+}
+
+.contact__box-form {
+    display: block;
+    padding: 10px 30px;
+    width: 100%;
+}
+
+.contact__box-form-input {
+    display: block;
+    width: 80%;
+    padding: 10px 20px;
+    font-size: 1.8rem;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    margin: 10px auto 24px;
+}
+
+.contact__box-form-select {
+    display: block;
+    width: 80%;
+    padding: 10px 20px;
+    font-size: 1.8rem;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    margin: 10px auto 20px;
+}
+
+.contact__box-form-label {
+    display: block;
+    width: 80%;
+    padding: 10px 4px;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 20px auto 10px;
+}
+
+.contact__box-form-textbox {
+    display: block;
+    width: 80%;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    margin: 10px auto 20px;
+    height: 140px;
+    text-align: justify;
+    font-weight: 300;
+    overflow-y: scroll;
+}
+
+.contact__box-form-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 10px;
+}
+
+.contact__info-list {}
+
+.contact__info-item {}
+
+.contact__info-item-icon {}
+
+.contact__info-item-title {}
+
+.contact__info-item-content {}
