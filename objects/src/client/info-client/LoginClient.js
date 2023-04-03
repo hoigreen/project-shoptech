@@ -24,6 +24,7 @@ const LoginClient = ({ socket }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        var boolCheck = false;
         users.map((user, index) => {
             if (details.username == user.username &&
                 details.password == user.password) {
@@ -32,11 +33,16 @@ const LoginClient = ({ socket }) => {
                 window.localStorage.setItem('statusLogged', statusLogin);
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: statusLogin })
                 alert("Đăng nhập thành công");
-                window.location.href = ('/account');
-                return "Đăng nhập thành công";
+                handLoadingPage(1)
+                window.setTimeout(() => {
+                    window.location.href = ('/account');
+                }, 1000)
+                boolCheck = true;
             }
         })
-        showErrorToast();
+        if (boolCheck === false) {
+            showErrorToast();
+        }
     };
 
     const toast = ({ title = "", message = "", type = "info", duration = 3000 }) => {
@@ -84,8 +90,24 @@ const LoginClient = ({ socket }) => {
         toast({ title: 'Đăng nhập thất bại', message: 'Tên tài khoản hoặc mật khẩu không chính xác!', type: 'error', duration: 3000 })
     }
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <div className='container'>
@@ -164,7 +186,10 @@ const LoginClient = ({ socket }) => {
                                             className="login-client__register"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                navigate('/register');
+                                                handLoadingPage(1)
+                                                window.setTimeout(() => {
+                                                    navigate('/register');
+                                                }, 1000)
                                             }}
                                         >
                                             Đăng ký ngay</a>

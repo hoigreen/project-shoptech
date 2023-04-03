@@ -68,13 +68,32 @@ const AccountClient = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
                 window.localStorage.removeItem("userLogged")
                 window.localStorage.removeItem("statusLogged")
-                window.location.href = ("/login")
+                handLoadingPage(1)
+                window.setTimeout(() => {
+                    window.location.href = ("/login")
+                }, 1000)
             }
         })
     }
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="container">
@@ -86,15 +105,30 @@ const AccountClient = ({ socket }) => {
                                     <i className="account__sidebar-item-icon fa fa-home"></i>
                                     <label className="account__sidebar-label">Trang chủ</label>
                                 </li>
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account/info') }}>
+                                <li className="account__sidebar-item" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        navigate('/account/info');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-user"></i>
                                     <label className="account__sidebar-label">Thông tin cá nhân</label>
                                 </li>
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/cart') }}>
+                                <li className="account__sidebar-item" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        navigate('/cart');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-shopping-cart"></i>
                                     <label className="account__sidebar-label">Giỏ hàng</label>
                                 </li>
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account/history') }}>
+                                <li className="account__sidebar-item" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        navigate('/account/history');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-history"></i>
                                     <label className="account__sidebar-label">Lịch sử mua hàng</label>
                                 </li>
@@ -138,19 +172,34 @@ const AccountClient = ({ socket }) => {
                                 <div className='account__box-option-item account__box-option-item--color-pink'>
                                     <div className='account__box-option-item-img account__box-option-item-img--cart'>1</div>
                                     <label className='account__box-option-item-title'>Thông tin giỏ hàng</label>
-                                    <button className='account__box-option-item-btn' onClick={(e) => { navigate('/cart') }}>Xem chi tiết</button>
+                                    <button className='account__box-option-item-btn' onClick={(e) => {
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            navigate('/cart');
+                                        }, 1000)
+                                    }}>Xem chi tiết</button>
                                 </div>
 
                                 <div className='account__box-option-item account__box-option-item--color-yellow'>
                                     <div className='account__box-option-item-img account__box-option-item-img--order'></div>
                                     <label className='account__box-option-item-title'>Đơn hàng của bạn</label>
-                                    <button className='account__box-option-item-btn' onClick={(e) => { navigate('/order') }}>Xem chi tiết</button>
+                                    <button className='account__box-option-item-btn' onClick={(e) => {
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            navigate('/order');
+                                        }, 1000)
+                                    }}>Xem chi tiết</button>
                                 </div>
 
                                 <div className='account__box-option-item account__box-option-item--color-green'>
                                     <div className='account__box-option-item-img account__box-option-item-img--history'>1</div>
                                     <label className='account__box-option-item-title'>Lịch sử mua hàng</label>
-                                    <button className='account__box-option-item-btn' onClick={(e) => { navigate('/account/history') }}>Xem chi tiết</button>
+                                    <button className='account__box-option-item-btn' onClick={(e) => {
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            navigate('/account/history');
+                                        }, 1000)
+                                    }}>Xem chi tiết</button>
                                 </div>
                             </div>
                         </div>

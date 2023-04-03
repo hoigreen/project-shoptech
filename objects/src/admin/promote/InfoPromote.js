@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 
 const InfoPromote = ({ socket }) => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
     const [adminID, setAdminID] = useState('')
     const [fullname, setFullname] = useState('')
     const [avatarUrlAdmin, setAvatarUrlAdmin] = useState('')
@@ -13,7 +12,6 @@ const InfoPromote = ({ socket }) => {
     const { id } = useParams()
 
     const [promotes, setPromotes] = useState([])
-    const [promote, setPromote] = useState([])
 
     const [imageLink, setImageLink] = useState('')
     const [namePromote, setNamePromote] = useState('')
@@ -41,29 +39,43 @@ const InfoPromote = ({ socket }) => {
         fetchAPI()
     }, [])
 
-    const handleNevigateDashboard = (e) => {
-        e.preventDefault();
-        navigate(`/admin/dashboard`);
+    const handleNevigateDashboard = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/dashboard`);
+        }, 1000)
     }
-    const handleNevigateCustomer = (e) => {
-        e.preventDefault();
-        navigate(`/admin/customer`);
+    const handleNevigateCustomer = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/customer`)
+        }, 1000)
     }
-    const handleNevigateProduct = (e) => {
-        e.preventDefault();
-        navigate(`/admin/Product`);
+    const handleNevigateProduct = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/product`)
+        }, 1000)
     }
-    const handleNevigatePromote = (e) => {
-        e.preventDefault();
-        navigate(`/admin/Promote`);
+    const handleNevigatePromote = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/promote`)
+        }, 1000)
     }
-    const handleNevigateInfo = (e) => {
-        e.preventDefault();
-        navigate(`/admin/info-admin/${adminID}`)
+    const handleNevigateInfo = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/info-admin/${adminID}`)
+        }, 1000)
     }
 
     const LogOut = () => {
-        window.location.href = "/admin"
+        window.localStorage.removeItem('adminNameLogin')
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.href = `/admin`
+        }, 1000)
     }
 
     useEffect(() => {
@@ -101,12 +113,31 @@ const InfoPromote = ({ socket }) => {
                 apply: applyPromoteEdit
             })
             window.alert("Cập nhật thông tin thành công!")
-            navigate(`/admin/promote`)
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                navigate(`/admin/promote`)
+            }, 1000)
         }
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
     }
 
     return (
         <div className='customer__container'>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <div id="sidebar">
                 <div className="sidebar__logo" onClick={(e) => {
                     e.preventDefault();

@@ -121,7 +121,6 @@ const Dashboard = () => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")
@@ -243,7 +242,7 @@ const Dashboard = () => {
                 <div className='admin__group'>
                     <label className='dash__group-title'>Danh sách quản trị viên</label>
 
-                    <div className='admin__list'>
+                    <div className='admin__list' style={{justifyContent: "space-between"}}>
                         {loading ? <p>Đang kết nối đến server ... </p> : admins.map((admin, index) => (
                             <div className='admin__item'>
                                 <label className='admin__item-id'>{admin.adminID}</label>

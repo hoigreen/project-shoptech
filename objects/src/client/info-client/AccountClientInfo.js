@@ -52,7 +52,10 @@ const AccountClientInfo = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
                 window.localStorage.removeItem("userLogged")
                 window.localStorage.removeItem("statusLogged")
-                window.location.href = ("/login")
+                handLoadingPage(1)
+                window.setTimeout(() => {
+                    window.location.href = ('/login');
+                }, 1000)
             }
         })
     }
@@ -62,33 +65,75 @@ const AccountClientInfo = ({ socket }) => {
         if (window.confirm("Bạn muốn sửa đổi thông tin cá nhân!") == true) {
             socket.emit("editInfoCustomer", { userID: userID, fullname: fullnameEdit, email: emailEdit, phone: phoneEdit, address: addressEdit })
             window.alert("Thành công!")
-            window.location.href = window.location.href;
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.reload();
+            }, 1000)
         }
     }
 
     const navigate = useNavigate();
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
+
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
                         <div className="account__sidebar">
                             <ul className="account__sidebar-list">
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account') }}>
+                                <li className="account__sidebar-item" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        window.location.href = ('/account/');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-home"></i>
                                     <label className="account__sidebar-label">Trang chủ</label>
                                 </li>
-                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => { navigate('/account/info') }}>
+                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        navigate('/account/info');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-user"></i>
                                     <label className="account__sidebar-label">Thông tin cá nhân</label>
                                 </li>
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/cart') }}>
+                                <li className="account__sidebar-item" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        navigate('/cart');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-shopping-cart"></i>
                                     <label className="account__sidebar-label">Giỏ hàng</label>
                                 </li>
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account/history') }}>
+                                <li className="account__sidebar-item" onClick={(e) => {
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        navigate('/account/history');
+                                    }, 1000)
+                                }}>
                                     <i className="account__sidebar-item-icon fa fa-history"></i>
                                     <label className="account__sidebar-label">Lịch sử mua hàng</label>
                                 </li>

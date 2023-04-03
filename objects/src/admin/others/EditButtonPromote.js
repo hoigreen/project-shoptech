@@ -13,7 +13,6 @@ const EditButtonPromote = ({ promote }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")

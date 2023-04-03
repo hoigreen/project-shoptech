@@ -4,14 +4,12 @@ import EditButtonProduct from '../others/EditButtonProduct';
 
 const ProductPage = ({ socket }) => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
     const [adminID, setAdminID] = useState('')
     const [adminName, setAdminName] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
     const [fullname, setFullname] = useState('')
 
     const [products, setProducts] = useState([])
-    const [product, setProduct] = useState([])
     const [countProduct, setCountProduct] = useState(0)
 
     const [loading, setLoading] = useState(true)
@@ -97,7 +95,6 @@ const ProductPage = ({ socket }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")

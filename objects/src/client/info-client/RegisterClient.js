@@ -185,11 +185,32 @@ const RegisterClient = ({ socket }) => {
                 cart: cartEmpty
             });
             window.alert('Đăng ký thành công! Đang quay trở lại trang đăng nhập')
-            navigate('/login');
+            handLoadingPage(1)
+            window.setTimeout(() => {
+                window.location.href = ('/login');
+            }, 1000)
         }
     }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
+
             <Nav socket={socket} />
             <div className='container'>
                 <div className="grid wide">

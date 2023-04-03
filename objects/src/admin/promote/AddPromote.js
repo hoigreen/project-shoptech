@@ -33,11 +33,30 @@ const AddPromote = ({ socket }) => {
             percent,
             apply
         });
-        navigate('/admin/promote');
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate('/admin/promote');
+        }, 1000)
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
     }
 
     return (
         <div className="add-product__container">
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <div className="add__cover">
                 <div className="add add__promote-container">
                     <div className="add__header">THÊM CHƯƠNG TRÌNH KHUYẾN MÃI MỚI</div>

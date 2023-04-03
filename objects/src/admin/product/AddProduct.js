@@ -16,12 +16,12 @@ const AddProduct = ({ socket }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const fetchAPI = () => {
+        const fetchAPIs = () => {
             fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
                 setProducts(data.products)
             })
         }
-        fetchAPI()
+        fetchAPIs()
     }, [])
 
     const handleAddProduct = (e) => {
@@ -35,11 +35,30 @@ const AddProduct = ({ socket }) => {
             color,
             status
         });
-        navigate('/admin/product');
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate('/admin/product');
+        }, 1000)
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
     }
 
     return (
         <div className="add-product__container">
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <div className="add__cover">
                 <div className="add">
                     <div className="add__header">THÊM SẢN PHẨM MỚI</div>
