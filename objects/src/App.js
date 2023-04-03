@@ -135,8 +135,8 @@ function App() {
                     <Route path="/cart/info/giftcode/confirm" element={<CartConfirm socket={socket} />} />
                     <Route path="/cart/info/giftcode/confirm/payment" element={<Payment socket={socket} />} />
 
-                    <Route path="/order-lookup" element={<OrderLookup socket={socket} />} />
-                    <Route path="/order-lookup/:username/:orderID"
+                    <Route path="/order" element={<OrderLookup socket={socket} />} />
+                    <Route path="/order/:phone/:orderID"
                         element={<OrderLookupResult socket={socket} />} />
 
 

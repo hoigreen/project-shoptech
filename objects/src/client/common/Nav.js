@@ -65,12 +65,19 @@ const Nav = ({ socket }) => {
                     }}>
                     </div>
 
+                    <a href="Tel: 00000" className="header-btn header-btn__link">
+                        <i className="header--btn-icon fa-solid fa-phone"></i>
+                        <p className="header--btn-name">Gọi tư vấn
+                            <span className="header--btn-describe">1800.4433</span>
+                        </p>
+                    </a>
                     <div className="header-search">
                         <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..."></input>
                         <button className="header-search__button">
                             <i className="fa ti-search"></i>
                         </button>
                     </div>
+
 
                     <button className="header-btn header-btn__cart" onClick={() => {
                         handLoadingPage(1)
@@ -82,7 +89,7 @@ const Nav = ({ socket }) => {
                         <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
                         <p className="header--btn-name">Giỏ hàng</p>
                     </button>
-                    
+
                     <button className="header-btn" onClick={(e) => {
                         if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
                             const elementNavOption = document.querySelector('.nav__option-box');
@@ -98,13 +105,23 @@ const Nav = ({ socket }) => {
                         <i className="header--btn-icon fa-solid fa-user"></i>
                         <p className="header--btn-name">Thành viên</p>
                     </button>
-                    <button className="header-btn">
+                    <button className="header-btn" onClick={() => {
+                        handLoadingPage(1)
+                        window.setTimeout(() => {
+                            window.location.href = `/order`
+                        }, 1000)
+                    }}>
                         <i className="header--btn-icon fa-solid fa-history"></i>
-                        <p className="header--btn-name">Tra cứu đơn hàng</p>
+                        <p className="header--btn-name">Đơn hàng</p>
                     </button>
-                    <button className="header-btn">
-                        <i className="header--btn-icon fa-solid fa-phone"></i>
-                        <p className="header--btn-name">Hỏi đáp</p>
+                    <button className="header-btn" onClick={() => {
+                        handLoadingPage(1)
+                        window.setTimeout(() => {
+                            window.location.href = `/contact`
+                        }, 1000)
+                    }}>
+                        <i className="header--btn-icon fa-solid fa-question"></i>
+                        <p className="header--btn-name">Liên hệ</p>
                     </button>
                     <ul className="nav__option-box">
                         <li className="nav__option-item" onClick={() => {
