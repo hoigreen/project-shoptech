@@ -157,7 +157,6 @@ const RegisterClient = ({ socket }) => {
     }
 
     useEffect(() => {
-
         // Khởi tạo thông tin cho người dùng đăng ký mới
         users.map((user, index) => {
             if (index = users.length) {

@@ -1,0 +1,17 @@
+.order-lookup__box {
+    display: flex;
+    max-width: 800px;
+    min-width: 800px;
+    background-color: #fff;
+    margin: 10px auto;
+}
+
+.order-lookup__box-logo {}
+
+.order-lookup__box-col {}
+
+.order-lookup__box-label {}
+
+.order-lookup__box-input {}
+
+.order-lookup__box-img {}
