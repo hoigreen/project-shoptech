@@ -1,0 +1,10 @@
+{
+    "giftcodes": [
+        {
+          "id": "ADDENG123",
+          "describe": "Giảm thêm 5% cho tất cả sản phẩm dành cho khách hàng thân thiết",
+          "percentReduce": 49,
+          "applyFor": "Điện thoại di động, Máy tính xách tay, Máy tính bảng, Phụ kiện"
+        }
+      ]
+}

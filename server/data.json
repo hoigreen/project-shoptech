@@ -73,7 +73,19 @@
       "address": "Gia Lai",
       "email": "son1024@gmail.com",
       "phone": "0983110392",
-      "cart": []
+      "cart": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "Không dây - Wireless",
+          "color": "Đen tuyền",
+          "price": 1190000,
+          "percent": 12,
+          "quantity": 1
+        }
+      ]
     },
     {
       "userID": "G003",

@@ -22,11 +22,53 @@ const ContactPage = ({ socket }) => {
         fecthApiFeedbacks()
     }, [])
 
+    const toast = ({ title = "", message = "", type = "info", duration = 3000 }) => {
+        const main = document.getElementById("toast-with-navbar");
+        if (main) {
+            const toast = document.createElement("div");
+            const autoRemoveId = setTimeout(function () {
+                main.removeChild(toast);
+            }, duration + 1000);
+            toast.onclick = function (e) {
+                if (e.target.closest(".toast__close")) {
+                    main.removeChild(toast);
+                    clearTimeout(autoRemoveId);
+                }
+            };
+            const icons = {
+                success: "ti-check-box",
+                info: "ti-info",
+                warning: "ti-close",
+                error: "ti-close"
+            };
+            const icon = icons[type];
+            const delay = (duration / 1000).toFixed(2);
+            toast.classList.add("toast", `toast--${type}`);
+            toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+            toast.innerHTML = `
+                      <div class="toast__icon">
+                          <i class="${icon}"></i>
+                      </div>
+                      <div class="toast__body">
+                          <h3 class="toast__title">${title}</h3>
+                          <p class="toast__msg">${message}</p>
+                      </div>
+                      <div class="toast__close">
+                          <i class="ti-close"></i>
+                      </div>
+                  `;
+            main.appendChild(toast);
+        }
+    }
+
+    const showSuccessMessage = () => {
+        toast({ title: 'Gửi góp ý thành công', message: 'Cám ơn bạn với góp ý dành cho ShopTECH!', type: 'success', duration: 5000 })
+    }
+
     const form = useRef();
 
     const handleSend = (e) => {
         e.preventDefault();
-        console.log(name, email, type, content)
         if (window.confirm('Bạn chắc chắn muốn gửi những thông tin bạn nhập vào cho đội ngũ quản trị viên!') === true) {
             socket.emit("sendFeedbackFromGuest", {
                 name: name,
@@ -35,39 +77,23 @@ const ContactPage = ({ socket }) => {
                 content: content,
             });
             emailjs.sendForm('service_tz648gc', 'template_2tugvgr', form.current, 'zD-R_dG5L23lbkbpU')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
-            handLoadingPage(1)
-            window.setTimeout(() => {
-                window.location.reload()
-            }, 1000)
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                });
         }
-    }
-
-    const handLoadingPage = (second) => {
-        const loading = document.querySelector(".modal__cover")
-        loading.classList.add("modal--active")
-        window.setTimeout(() => {
-            loading.classList.remove("modal--active")
-        }, second * 1000)
+        showSuccessMessage()
+        setTimeout(() => {
+            window.location.reload()
+        }, 5000)
     }
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
             <Nav />
             <Breadcrumbs />
+            <div id="toast-with-navbar"></div>
             <div className="container">
                 <div className='grid wide'>
                     <ul className="contact__info-list">

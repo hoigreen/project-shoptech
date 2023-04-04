@@ -18,6 +18,24 @@ const objectData = JSON.parse(savedData)
 const savedDataAdmin = fs.readFileSync("datas/data-admin.json")
 const objectDataAdmin = JSON.parse(savedDataAdmin)
 
+const savedDataUser = fs.readFileSync("datas/data-user.json")
+const objectDataUser = JSON.parse(savedDataUser)
+
+const savedDataProduct = fs.readFileSync("datas/data-product.json")
+const objectDataProduct = JSON.parse(savedDataProduct)
+
+const savedDataPromote = fs.readFileSync("datas/data-promote.json")
+const objectDataPromote = JSON.parse(savedDataPromote)
+
+const savedDataOrder = fs.readFileSync("datas/data-order.json")
+const objectDataOrder = JSON.parse(savedDataOrder)
+
+const savedDataGiftcode = fs.readFileSync("datas/data-giftcode.json")
+const objectDataGiftcode = JSON.parse(savedDataGiftcode)
+
+const savedDataComment = fs.readFileSync("datas/data-comment.json")
+const objectDataComment = JSON.parse(savedDataComment)
+
 const savedDataFeedback = fs.readFileSync("datas/data-feedback.json")
 const objectDataFeedback = JSON.parse(savedDataFeedback)
 
