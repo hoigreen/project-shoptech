@@ -83,12 +83,57 @@
     border-radius: 10px;
 }
 
-.contact__info-list {}
+.contact__box-form-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
 
-.contact__info-item {}
 
-.contact__info-item-icon {}
+.contact__info-list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: transparent;
+    width: 100%;
+    list-style: none;
+}
 
-.contact__info-item-title {}
+.contact__info-item {
+    background-color: #fff;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .1), 0 2px 6px 2px rgba(60, 64, 67, .15)
 
-.contact__info-item-content {}
+}
+
+.contact__info-item-icon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    font-size: 5rem;
+    margin: 10px auto 20px;
+    color: var(--button-color);
+    text-align: center;
+}
+
+.contact__info-item-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    padding: 4px;
+    margin-bottom: 20px
+}
+
+.contact__info-item-content {
+    display: block;
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 2rem;
+    padding: 4px;
+    margin: 10px 0;
+}

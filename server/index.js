@@ -316,6 +316,17 @@ socketIO.on('connection', (socket) => {
     });
 
 
+    // Socket contact
+    socket.on('sendFeedbackFromGuest', (data) => {
+        objectDataFeedback["feedbacks"].push(data)
+        const stringDataFeedback = JSON.stringify(objectDataFeedback, null, 2)
+        fs.writeFile("datas/data-feedback.json", stringDataFeedback, (err) => {
+            console.error(err)
+        })
+        socket.broadcast.emit("sendFeedbackFromGuestResponse", data)
+    });
+
+
     // disconnect
     socket.on('disconnect', () => {
         console.log('🔥: A user disconnected');
@@ -326,6 +337,12 @@ app.get("/api", (req, res) => {
     const data = fs.readFileSync("data.json")
     const datas = JSON.parse(data)
     res.json(datas)
+});
+
+app.get("/api/feedbacks", (req, res) => {
+    const dataFeedback = fs.readFileSync("datas/data-feedback.json")
+    const dataFeedbacks = JSON.parse(dataFeedback)
+    res.json(dataFeedbacks)
 });
 
 http.listen(PORT, () => {
