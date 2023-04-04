@@ -23,11 +23,7 @@
 @import url('./css/contact.css');
 
 @import url('./css/order-lookup.css');
-
-
-
-
-
+@import url('./css/reponsive.css');
 
 /* --------Stylesheet for the common component ------*/
 
@@ -1351,19 +1347,19 @@ tbody {
 /* --------Stylesheet for the Client component ------*/
 /* --------Stylesheet for the Hot Promote component ------*/
 .hot-promote__container {
+    display: flex;
     margin-top: 60px;
     width: 100%;
-    display: block;
     background-color: transparent;
 }
 
 .hot-promote-img {
     width: 1930px;
-    display: block;
+    display: flex;
     height: 450px;
     margin: 0 auto;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-clip: border-box;
     background-image: url("./img/client/home-img/img-home-banner.png");
@@ -1383,7 +1379,6 @@ tbody {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    max-width: 1200px;
     width: 100%;
     position: relative;
 }

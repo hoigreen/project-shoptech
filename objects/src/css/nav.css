@@ -13,7 +13,6 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 20px 0;
     margin-bottom: 20px;
     margin-top: 0;
@@ -36,13 +35,12 @@
 .header-search {
     display: flex;
     align-items: center;
-    width: 38%;
     justify-content: space-between;
 }
 
 .header-search__input {
     display: inline-block;
-    flex-grow: 1;
+    width: 400px;
     height: 46px;
     border-radius: 10px;
     outline: none;
@@ -52,6 +50,14 @@
     font-size: 1.8rem;
     font-weight: 500;
     color: var(--button-color);
+
+}
+
+.header__btn-group {
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .header-search__button {
@@ -87,6 +93,11 @@
     font-size: 1.8rem;
     line-height: 2rem;
     align-items: center;
+    margin: 0px 6px;
+}
+
+.header-btn:last-child {
+    margin-right: 0;
 }
 
 .header-btn:hover {
