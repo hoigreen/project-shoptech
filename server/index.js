@@ -127,6 +127,8 @@ function findPromote(idKey, myArray, namePromote, timeStartPromote, timeEndPromo
 
 
 
+
+
 //  -------------------------Client Method ------------------------------------------
 function findUserToSetStatus(idKey, myArray, statusLoginUser) {
     for (let i = 0; i < myArray.length; i++) {
@@ -355,6 +357,12 @@ app.get("/api", (req, res) => {
     const data = fs.readFileSync("data.json")
     const datas = JSON.parse(data)
     res.json(datas)
+});
+
+app.get("/api/orders", (req, res) => {
+    const dataOrder = fs.readFileSync("datas/data-order.json")
+    const dataOrders = JSON.parse(dataOrder)
+    res.json(dataOrders)
 });
 
 app.get("/api/feedbacks", (req, res) => {
