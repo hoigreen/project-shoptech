@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const InfoAdmin = ({ socket }) => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
     const [adminName, setAdminName] = useState('')
     const [adminID, setAdminID] = useState('')
     const [avatarUrlAdmin, setAvatarUrlAdmin] = useState('')
@@ -21,7 +20,7 @@ const InfoAdmin = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
                 setAdmins(data.admins)
             })
         }
@@ -79,7 +78,10 @@ const InfoAdmin = ({ socket }) => {
     const handleConfirmChange = (e) => {
         e.preventDefault()
         socket.emit("editInfoAdmin", { adminID, fullname: fullnameEdit, email: emailAdminEdit, phone: phoneAdminEdit, address: addressAdminEdit })
-        window.location.href = window.location.href;
+        handLoadingPage(1)
+        setTimeout(() => {
+            window.location.href = window.location.href;
+        })
     }
 
     const handLoadingPage = (second) => {

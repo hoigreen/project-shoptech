@@ -46,7 +46,6 @@ import CartConfirm from './client/cart/CartConfirm'
 import Payment from './client/cart/Payment';
 
 import OrderLookup from './client/order/OrderLookup';
-import OrderLookupResult from './client/order/OrderLookupResult';
 
 
 import ContactPage from './client/contact/ContactPage';
@@ -136,8 +135,6 @@ function App() {
                     <Route path="/cart/info/giftcode/confirm/payment" element={<Payment socket={socket} />} />
 
                     <Route path="/order" element={<OrderLookup socket={socket} />} />
-                    <Route path="/order/:phone/:orderID"
-                        element={<OrderLookupResult socket={socket} />} />
 
 
 

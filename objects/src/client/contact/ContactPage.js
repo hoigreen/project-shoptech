@@ -66,7 +66,6 @@ const ContactPage = ({ socket }) => {
     }
 
     const form = useRef();
-
     const handleSend = (e) => {
         e.preventDefault();
         if (window.confirm('Bạn chắc chắn muốn gửi những thông tin bạn nhập vào cho đội ngũ quản trị viên!') === true) {

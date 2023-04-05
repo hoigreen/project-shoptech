@@ -11,16 +11,18 @@ const CartConfirm = ({ socket }) => {
 
     const [countTotalPriceEdit, setCountTotalPriceEdit] = useState()
     const [giftcodes, setGiftcodes] = useState([])
-    const [giftcodeID, setGiftcodeID] = useState('')
     const [orderID, setOrderID] = useState('')
-    const [percentReduce, setPercentReduce] = useState()
 
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
+                setLoading(false)
+            })
+
+            fetch("http://localhost:4000/api/giftcodes").then(res => res.json()).then(data => {
                 setGiftcodes(data.giftcodes)
                 setLoading(false)
             })
@@ -87,7 +89,6 @@ const CartConfirm = ({ socket }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")

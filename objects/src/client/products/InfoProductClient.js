@@ -34,10 +34,22 @@ const InfoProductClient = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
+                setLoading(false)
+            })
+
+            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
+                setLoading(false)
+            })
+
+            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
+                setLoading(false)
+            })
+
+            fetch("http://localhost:4000/api/comments").then(res => res.json()).then(data => {
                 setComments(data.comments)
                 setLoading(false)
             })
@@ -284,11 +296,9 @@ const InfoProductClient = ({ socket }) => {
     const showSuccessMessage = () => {
         toast({ title: 'Thêm thành công', message: 'Sản phẩm của bạn đã được thêm vào giỏ hàng, Xem ngay nào!', type: 'success', duration: 3000 })
     }
-
     const showErrorMessage = () => {
         toast({ title: 'Không thể thêm sản phẩm vào giỏ hàng', message: 'Bạn vui lòng chọn đủ phiên bản và màu sắc của sản phẩm!', type: 'error', duration: 3000 })
     }
-
     const showErrorNotLoginMessage = () => {
         toast({ title: 'Bạn chưa đăng nhập vào ShopTECH', message: 'Vui lòng đăng nhập để sử dụng tính năng này!', type: 'error', duration: 4000 })
     }

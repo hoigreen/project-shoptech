@@ -70,8 +70,8 @@ function findAdmin(idKey, myArray, fullnameAdmin, emailAdmin, phoneAdmin, addres
             myArray[i].address = addressAdmin;
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataAdmin, null, 2)
+    fs.writeFile("datas/data-admin.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -102,8 +102,8 @@ function findProduct(idKey, myArray, nameProduct, typeProduct, priceProduct, opt
             myArray[i].status = statusProduct;
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataProduct, null, 2)
+    fs.writeFile("datas/data-product.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -136,8 +136,8 @@ function findUserToSetStatus(idKey, myArray, statusLoginUser) {
             myArray[i].statusLogin = statusLoginUser;
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -164,8 +164,8 @@ function findUserToAddToCart(idKey, myArray, cartToAdd) {
             }
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -181,8 +181,8 @@ function findProductToAddQuantity(idKey, myArray, indexProduct) {
             }
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -200,8 +200,8 @@ function findProductToMinusQuantity(idKey, myArray, indexProduct) {
             }
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -217,8 +217,8 @@ function findProductToRemoveInCart(idKey, myArray, indexProduct) {
             }
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -230,8 +230,8 @@ function findUserToRemoveCart(idKey, myArray) {
             cartUser.splice(0, Number(cartUser.length))
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -247,7 +247,7 @@ socketIO.on('connection', (socket) => {
 
     //--------------------- Socket Admin ---------------------------- //
     socket.on("editInfoAdmin", data => {
-        findAdmin(data.adminID, objectData["admins"], data.fullname, data.email, data.phone, data.address)
+        findAdmin(data.adminID, objectDataAdmin["admins"], data.fullname, data.email, data.phone, data.address)
         socket.broadcast.emit("editInfoAdminResponse", data)
     })
 
@@ -257,7 +257,7 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoProduct", data => {
-        findProduct(data.id, objectData["products"], data.name, data.type, data.price, data.option, data.color, data.status)
+        findProduct(data.id, objectDataProduct["products"], data.name, data.type, data.price, data.option, data.color, data.status)
         socket.broadcast.emit("editInfoProductResponse", data)
     })
 
@@ -267,9 +267,9 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on('addProduct', (data) => {
-        objectData["products"].push(data)
-        const stringData = JSON.stringify(objectData, null, 2)
-        fs.writeFile("data.json", stringData, (err) => {
+        objectDataProduct["products"].push(data)
+        const stringData = JSON.stringify(objectDataProduct, null, 2)
+        fs.writeFile("datas/data-product.json", stringData, (err) => {
             console.error(err)
         })
         socket.broadcast.emit("addProductResponse", data)
@@ -288,48 +288,48 @@ socketIO.on('connection', (socket) => {
 
     //--------------------- Socket Client ---------------------------- //
     socket.on('registerClient', (data) => {
-        objectData["users"].push(data)
-        const stringData = JSON.stringify(objectData, null, 2)
-        fs.writeFile("data.json", stringData, (err) => {
+        objectDataUser["users"].push(data)
+        const stringData = JSON.stringify(objectDataUser, null, 2)
+        fs.writeFile("datas/data-user.json", stringData, (err) => {
             console.error(err)
         })
         socket.broadcast.emit("registerResponse", data)
     });
 
     socket.on("setStatusLoginUser", data => {
-        findUserToSetStatus(data.userID, objectData["users"])
+        findUserToSetStatus(data.userID, objectDataUser["users"])
         socket.broadcast.emit("setStatusLoginUserResponse", data)
     })
 
     socket.on("addProductToCart", data => {
-        findUserToAddToCart(data.userID, objectData["users"], data.cart)
+        findUserToAddToCart(data.userID, objectDataUser["users"], data.cart)
         socket.broadcast.emit("addProductToCartResponse", data)
     })
 
     socket.on("addQuantityProductInCart", (data, indexProduct) => {
-        findProductToAddQuantity(data.userID, objectData["users"], indexProduct)
+        findProductToAddQuantity(data.userID, objectDataUser["users"], indexProduct)
         socket.broadcast.emit("addQuantityProductInCartResponse", data)
     })
 
     socket.on("minusQuantityProductInCart", (data, indexProduct) => {
-        findProductToMinusQuantity(data.userID, objectData["users"], indexProduct)
+        findProductToMinusQuantity(data.userID, objectDataUser["users"], indexProduct)
         socket.broadcast.emit("minusQuantityProductInCartResponse", data)
     })
 
     socket.on("removeProductInCart", (data, indexProduct) => {
-        findProductToRemoveInCart(data.userID, objectData["users"], indexProduct)
+        findProductToRemoveInCart(data.userID, objectDataUser["users"], indexProduct)
         socket.broadcast.emit("removeProductInCartResponse", data)
     })
 
     socket.on("removeAllInCart", data => {
-        findUserToRemoveCart(data.userID, objectData["users"])
+        findUserToRemoveCart(data.userID, objectDataUser["users"])
         socket.broadcast.emit("removeAllInCartResponse", data)
     })
 
     socket.on('addOrder', (data) => {
-        objectData["orders"].push(data)
-        const stringData = JSON.stringify(objectData, null, 2)
-        fs.writeFile("data.json", stringData, (err) => {
+        objectDataOrder["orders"].push(data)
+        const stringData = JSON.stringify(objectDataOrder, null, 2)
+        fs.writeFile("datas/data-order.json", stringData, (err) => {
             console.error(err)
         })
         socket.broadcast.emit("addOrderResponse", data)

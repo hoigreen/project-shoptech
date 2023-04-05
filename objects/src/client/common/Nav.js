@@ -7,7 +7,7 @@ const Nav = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
             })
         }
@@ -40,7 +40,6 @@ const Nav = ({ socket }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")

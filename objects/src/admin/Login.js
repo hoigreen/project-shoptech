@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { parsePath, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
 
     useEffect(() => {
         const fetchAdmins = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
                 setAdmins(data.admins)
             })
         }
         fetchAdmins()
     }, [])
-
-    const navigate = useNavigate();
 
     const [details, setDetails] = useState({ adminName: "", password: "" })
 

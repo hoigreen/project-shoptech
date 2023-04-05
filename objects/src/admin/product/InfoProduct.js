@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 
 const InfoProduct = ({ socket }) => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
     const [adminID, setAdminID] = useState('')
     const [fullname, setFullname] = useState('')
     const [avatarUrlAdmin, setAvatarUrlAdmin] = useState('')
@@ -34,13 +33,16 @@ const InfoProduct = ({ socket }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchAPI = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+        const fetchAPIs = () => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
                 setAdmins(data.admins)
+            })
+
+            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
             })
         }
-        fetchAPI()
+        fetchAPIs()
     }, [])
 
     const handleNevigateDashboard = () => {
@@ -111,7 +113,11 @@ const InfoProduct = ({ socket }) => {
         e.preventDefault()
         if (window.confirm("Bạn muốn cập nhật thông tin sản phẩm?") == true) {
             socket.emit("editInfoProduct", {
-                id, name: nameProductEdit, type: typeProductEdit, price: priceProductEdit, option: optionProductEdit, color: colorProductEdit,
+                id, name: nameProductEdit,
+                type: typeProductEdit,
+                price: priceProductEdit,
+                option: optionProductEdit,
+                color: colorProductEdit,
                 status: statusProductEdit
             })
             window.alert("Thành công!")

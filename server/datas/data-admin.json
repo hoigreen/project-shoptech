@@ -1,54 +1,54 @@
 {
-    "admins": [
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD01.png",
-            "adminID": "AD01",
-            "adminName": "hoigreen",
-            "password": "admin123",
-            "fullname": "Trương Quốc Hội",
-            "email": "2051120121@ut.edu.vn",
-            "phone": "0343694755",
-            "address": "Củ Chi, TPHCM"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD02.png",
-            "adminID": "AD02",
-            "adminName": "baxigovap",
-            "password": "123456",
-            "fullname": "Nguyễn Thành Hưng",
-            "email": "2051120131@ut.edu.vn",
-            "phone": "0357003927",
-            "address": "Gò Vấp"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD03.png",
-            "adminID": "AD03",
-            "adminName": "manhthu59-n3",
-            "password": "123456",
-            "fullname": "Nguyễn Ngọc Huy",
-            "email": "2051120125@ut.edu.vn",
-            "phone": "391102593",
-            "address": "Bình Chánh"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD04.png",
-            "adminID": "AD04",
-            "adminName": "tuthicamnhung",
-            "password": "123456",
-            "fullname": "Từ Thị Cẩm Nhung",
-            "email": "20511201**@ut.edu.vn",
-            "phone": "391102593",
-            "address": "Quận 12"
-        },
-        {
-            "avatarUrl": "http://localhost:4000/uploads/admins/img-AD05.png",
-            "adminID": "AD05",
-            "adminName": "gialai",
-            "password": "123456",
-            "fullname": "Võ Đức Minh Hưng",
-            "email": "2051120132@ut.edu.vn",
-            "phone": "391102593",
-            "address": "Quận 12"
-        }
-    ]
+  "admins": [
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD01.png",
+      "adminID": "AD01",
+      "adminName": "hoigreen",
+      "password": "admin123",
+      "fullname": "Trương Quốc Hội",
+      "email": "2051120121@ut.edu.vn",
+      "phone": "0343694755",
+      "address": "Củ Chi, TP.HCM"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD02.png",
+      "adminID": "AD02",
+      "adminName": "baxigovap",
+      "password": "123456",
+      "fullname": "Nguyễn Thành Hưng",
+      "email": "2051120131@ut.edu.vn",
+      "phone": "0357003927",
+      "address": "Gò Vấp"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD03.png",
+      "adminID": "AD03",
+      "adminName": "manhthu59-n3",
+      "password": "123456",
+      "fullname": "Nguyễn Ngọc Huy",
+      "email": "2051120125@ut.edu.vn",
+      "phone": "391102593",
+      "address": "Bình Chánh"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD04.png",
+      "adminID": "AD04",
+      "adminName": "tuthicamnhung",
+      "password": "123456",
+      "fullname": "Từ Thị Cẩm Nhung",
+      "email": "20511201**@ut.edu.vn",
+      "phone": "391102593",
+      "address": "Quận 12"
+    },
+    {
+      "avatarUrl": "http://localhost:4000/uploads/admins/img-AD05.png",
+      "adminID": "AD05",
+      "adminName": "gialai",
+      "password": "123456",
+      "fullname": "Võ Đức Minh Hưng",
+      "email": "2051120132@ut.edu.vn",
+      "phone": "391102593",
+      "address": "Quận 12"
+    }
+  ]
 }

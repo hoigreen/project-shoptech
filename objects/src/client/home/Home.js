@@ -19,8 +19,12 @@ const Home = () => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
+                setLoading(false)
+            })
+
+            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
                 setLoading(false)
             })
@@ -98,7 +102,6 @@ const Home = () => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")

@@ -15,8 +15,11 @@ const Giftcode = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
+            })
+
+            fetch("http://localhost:4000/api/giftcodes").then(res => res.json()).then(data => {
                 setGiftcodes(data.giftcodes)
             })
         }
@@ -161,7 +164,6 @@ const Giftcode = ({ socket }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")

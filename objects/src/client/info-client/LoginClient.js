@@ -11,7 +11,7 @@ const LoginClient = ({ socket }) => {
 
     useEffect(() => {
         const fetchProducts = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
             })
         }

@@ -12,8 +12,11 @@ const Payment = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
+            })
+
+            fetch("http://localhost:4000/api/orders").then(res => res.json()).then(data => {
                 setOrders(data.orders)
             })
         }
@@ -68,11 +71,9 @@ const Payment = ({ socket }) => {
             main.appendChild(toast);
         }
     }
-
     const showSuccessMessage = () => {
         toast({ title: 'ĐẶT HÀNG THÀNH CÔNG', message: 'Đơn hàng của bạn đã được xác nhận, vui lòng kiểm tra đơn hàng trong tài khoản của bạn nhé!', type: 'success', duration: 5000 })
     }
-
     const showErrorMessage = () => {
         toast({ title: 'ĐẶT HÀNG THẤT BẠI', message: 'Đơn hàng của bạn đã được xác nhận, Vui lòng tạo đơn hàng khác nhé!', type: 'error', duration: 5000 })
     }
@@ -118,7 +119,10 @@ const Payment = ({ socket }) => {
                     status: "Đang giao hàng",
                     lists: cartUser
                 });
-                completePayment()
+                handLoadingPage(2)
+                setTimeout(() => {
+                    completePayment()
+                }, 2000)
                 showSuccessMessage()
             }
         })
@@ -164,9 +168,25 @@ const Payment = ({ socket }) => {
         `
     }
 
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
             <div id="toast-with-navbar"></div>
+            <div className="modal__cover">
+                <div className="modal">
+                    <div className="modal__body">
+                        <div className="modal__loading-spinner "></div>
+                        <div>Đang tải dữ liệu ...</div>
+                    </div>
+                </div>
+            </div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">

@@ -19,14 +19,11 @@ const CartInfo = ({ socket }) => {
     const [cartUser, setCartUser] = useState([])
     const [countTotalPrice, setCountTotalPrice] = useState()
 
-    const [loading, setLoading] = useState(true)
-
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
-                setLoading(false)
             })
         }
         fetchAPIs()
@@ -113,7 +110,7 @@ const CartInfo = ({ socket }) => {
     }
 
     const handleNextStep = () => {
-        if (fullnameEdit != '' && emailEdit != '' && phoneEdit != '' && methodReceive != '' && addressEdit != '') {
+        if (fullnameEdit !== '' && emailEdit !== '' && phoneEdit !== '' && methodReceive !== '' && addressEdit !== '') {
             window.localStorage.setItem("fullnameCache", fullnameEdit)
             window.localStorage.setItem("emailCache", emailEdit)
             window.localStorage.setItem("phoneCache", phoneEdit)
@@ -123,7 +120,7 @@ const CartInfo = ({ socket }) => {
             handLoadingPage(1)
             window.setTimeout(() => {
                 window.location.href = '/cart/info/giftcode'
-            }, 1000)    
+            }, 1000)
         }
         else {
             alert("Vui lòng điền đầy đủ thông tin")
@@ -132,7 +129,6 @@ const CartInfo = ({ socket }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")
