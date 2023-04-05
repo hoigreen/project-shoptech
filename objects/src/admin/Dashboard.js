@@ -22,16 +22,28 @@ const Dashboard = () => {
 
 
     useEffect(() => {
-        const fetchAPI = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+        const fetchAPIs = () => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
                 setAdmins(data.admins)
+                setLoading(false)
+            });
+
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
+                setLoading(false)
+            });
+
+            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
+                setLoading(false)
+            });
+
+            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
                 setLoading(false)
-            })
+            });
         }
-        fetchAPI()
+        fetchAPIs   ()
     }, [])
 
     const navigate = useNavigate();
@@ -242,7 +254,7 @@ const Dashboard = () => {
                 <div className='admin__group'>
                     <label className='dash__group-title'>Danh sách quản trị viên</label>
 
-                    <div className='admin__list' style={{justifyContent: "space-between"}}>
+                    <div className='admin__list' style={{ justifyContent: "space-between" }}>
                         {loading ? <p>Đang kết nối đến server ... </p> : admins.map((admin, index) => (
                             <div className='admin__item'>
                                 <label className='admin__item-id'>{admin.adminID}</label>

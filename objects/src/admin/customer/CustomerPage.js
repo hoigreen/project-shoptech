@@ -19,11 +19,15 @@ const CustomerPage = () => {
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
                 setAdmins(data.admins)
+                setLoading(false)
+            });
+
+            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
                 setLoading(false)
-            })
+            });
         }
         fetchAPI()
     }, [])

@@ -1,1 +1,22 @@
-{}
+{
+  "promotes": [
+    {
+      "imageLink": "http://localhost:4000/uploads/promotes/img-PM001.png",
+      "id": "PM001",
+      "name": "Happy Woman's Day - 8/3",
+      "timeStart": "2023-03-03",
+      "timeEnd": "2023-03-08",
+      "percent": 5,
+      "apply": "Điện thoại, Máy tính xách tay"
+    },
+    {
+      "imageLink": "http://localhost:4000/uploads/promotes/img-PM002.png",
+      "id": "PM002",
+      "name": "Ngàn lời yêu thương dành cho người đàn ông của bạn - Valentine Trắng",
+      "timeStart": "2023-03-14",
+      "timeEnd": "2023-03-21",
+      "percent": 8,
+      "apply": "Phụ kiện"
+    }
+  ]
+}

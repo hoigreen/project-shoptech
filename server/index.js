@@ -85,8 +85,8 @@ function findCustomer(idKey, myArray, fullnameCustomer, emailCustomer, phoneCust
             myArray[i].address = addressCustomer;
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataUser, null, 2)
+    fs.writeFile("datas/data-user.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -118,8 +118,8 @@ function findPromote(idKey, myArray, namePromote, timeStartPromote, timeEndPromo
             myArray[i].apply = applyPromote;
         }
     }
-    const stringData = JSON.stringify(objectData, null, 2)
-    fs.writeFile("data.json", stringData, (err) => {
+    const stringData = JSON.stringify(objectDataPromote, null, 2)
+    fs.writeFile("datas/data-promote.json", stringData, (err) => {
         console.error(err)
     })
 }
@@ -252,7 +252,7 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoCustomer", data => {
-        findCustomer(data.userID, objectData["users"], data.fullname, data.email, data.phone, data.address)
+        findCustomer(data.userID, objectDataUser["users"], data.fullname, data.email, data.phone, data.address)
         socket.broadcast.emit("editInfoCustomerResponse", data)
     })
 
@@ -262,7 +262,7 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoPromote", data => {
-        findPromote(data.id, objectData["promotes"], data.name, data.timeStart, data.timeEnd, data.percent, data.apply)
+        findPromote(data.id, objectDataPromote["promotes"], data.name, data.timeStart, data.timeEnd, data.percent, data.apply)
         socket.broadcast.emit("editInfoPromoteResponse", data)
     })
 
@@ -276,9 +276,9 @@ socketIO.on('connection', (socket) => {
     });
 
     socket.on('addPromote', (data) => {
-        objectData["promotes"].push(data)
-        const stringData = JSON.stringify(objectData, null, 2)
-        fs.writeFile("data.json", stringData, (err) => {
+        objectDataPromote["promotes"].push(data)
+        const stringData = JSON.stringify(objectDataPromote, null, 2)
+        fs.writeFile("datas/data-promote.json", stringData, (err) => {
             console.error(err)
         })
         socket.broadcast.emit("addPromoteResponse", data)
@@ -359,10 +359,40 @@ app.get("/api", (req, res) => {
     res.json(datas)
 });
 
+app.get("/api/admins", (req, res) => {
+    const dataAdmin = fs.readFileSync("datas/data-admin.json")
+    const dataAdmins = JSON.parse(dataAdmin)
+    res.json(dataAdmins)
+});
+
+app.get("/api/users", (req, res) => {
+    const dataUser = fs.readFileSync("datas/data-user.json")
+    const dataUsers = JSON.parse(dataUser)
+    res.json(dataUsers)
+});
+
+app.get("/api/products", (req, res) => {
+    const dataProduct = fs.readFileSync("datas/data-product.json")
+    const dataProducts = JSON.parse(dataProduct)
+    res.json(dataProducts)
+});
+
+app.get("/api/promotes", (req, res) => {
+    const dataPromote = fs.readFileSync("datas/data-promote.json")
+    const dataPromotes = JSON.parse(dataPromote)
+    res.json(dataPromotes)
+});
+
 app.get("/api/orders", (req, res) => {
     const dataOrder = fs.readFileSync("datas/data-order.json")
     const dataOrders = JSON.parse(dataOrder)
     res.json(dataOrders)
+});
+
+app.get("/api/giftcodes", (req, res) => {
+    const dataGiftcode = fs.readFileSync("datas/data-giftcode.json")
+    const dataGiftcodes = JSON.parse(dataGiftcode)
+    res.json(dataGiftcodes)
 });
 
 app.get("/api/feedbacks", (req, res) => {

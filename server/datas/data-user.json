@@ -1,3 +1,120 @@
 {
-    
+  "users": [
+    {
+      "userID": "G001",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-G001.png",
+      "username": "bbinh19",
+      "password": "1231934ab",
+      "cart": [],
+      "fullname": "Võ Văn Bình",
+      "email": "binh_kunfg142@gmail.com",
+      "phone": "0982291103",
+      "address": "Thanh Oai, Hà Nội",
+      "statusLogin": "Chưa đăng nhập"
+    },
+    {
+      "userID": "G002",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-G002.png",
+      "username": "hova12",
+      "password": "121212",
+      "fullname": "Nguyễn Ngọc Sơn",
+      "address": "Gia Lai",
+      "email": "son1024@gmail.com",
+      "phone": "0983110392",
+      "cart": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
+          "id": "P008",
+          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
+          "option": "Không dây - Wireless",
+          "color": "Đen tuyền",
+          "price": 1190000,
+          "percent": 12,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "userID": "G003",
+      "username": "nkhanh12",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "password": "121212a",
+      "fullname": "Nguyễn Ngọc Khánh Ly",
+      "email": "ktranlt129@gmai.com",
+      "phone": "0772912291",
+      "address": "321B, Phan Văn Trị, TPHCM",
+      "cart": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P002.png",
+          "id": "P002",
+          "productName": "Điện thoại Samsung Galaxy S23 5G",
+          "option": "1TB / 12GB",
+          "color": "Trắng thanh lịch",
+          "price": 31390000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "userID": "G004",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "kkk_192",
+      "password": "121212",
+      "fullname": "Võ Ngọc Duy Khiêm",
+      "email": "kkk129.q2@gmail.com",
+      "phone": "0591025392",
+      "address": "Trâu Quỳ, TP Đà Nẵng",
+      "statusLogin": "Chưa đăng nhập",
+      "cart": []
+    },
+    {
+      "userID": "G005",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "aduong91",
+      "password": "121212",
+      "fullname": "Phan Ánh Dương",
+      "email": "aduong939@gmail.com",
+      "phone": "0329211022",
+      "address": "Cần Đước, Long An",
+      "statusLogin": "Chưa đăng nhập",
+      "cart": []
+    },
+    {
+      "userID": "G006",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "aduong",
+      "password": "121212",
+      "fullname": "Võ Dương Minh",
+      "email": "dminh3932@gmail.com",
+      "phone": "0972201102",
+      "address": "Thanh Oai, Hà Nội",
+      "cart": []
+    },
+    {
+      "userID": "G007",
+      "avatarUrl": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "username": "remi000",
+      "password": "121212",
+      "fullname": "Lê Dĩnh My",
+      "email": "mimiueo98@yahoo.com.vn",
+      "phone": "0778291192",
+      "address": "An Phú Tân, Trà Vinh",
+      "cart": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P001.png",
+          "id": "P001",
+          "productName": "Apple Iphone 13 - 2023",
+          "option": "1TB ROM",
+          "color": "Đen huyền bí",
+          "price": 41000000,
+          "percent": 5,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
 }

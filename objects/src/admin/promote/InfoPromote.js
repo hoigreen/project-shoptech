@@ -31,10 +31,13 @@ const InfoPromote = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
                 setAdmins(data.admins)
+            });
+
+            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
-            })
+            });
         }
         fetchAPI()
     }, [])
@@ -103,7 +106,7 @@ const InfoPromote = ({ socket }) => {
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
-        if (window.confirm("Bạn muốn cập nhật thông tin chương trình khuyến mãi? này") == true) {
+        if (window.confirm("Bạn muốn cập nhật thông tin chương trình khuyến mãi này?") == true) {
             socket.emit("editInfoPromote", {
                 id,
                 name: namePromoteEdit,
