@@ -15,7 +15,7 @@
 
 
 .login-client__col-1 {
-    animation: topToDown linear 1.5s;
+    animation: topToDown linear .25s;
     width: 50%;
     height: 100%;
     background-color: var(--primary-color);
@@ -72,7 +72,7 @@
 }
 
 .login-client__col-2 {
-    animation: downToTop linear 1.5s;
+    animation: downToTop linear .25s;
     width: 50%;
     height: 100%;
     background-color: #fff;
