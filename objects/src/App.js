@@ -105,6 +105,7 @@ function App() {
                     {/* Home */}
                     <Route path="/" element={<Home socket={socket} />} />
                     <Route path="/home" element={<Home socket={socket} />} />
+                    <Route path="/product" element={<Home socket={socket} />} />
 
                     {/* Product */}
                     <Route path="/smartphone" element={<SmartPhone socket={socket} />} />
@@ -124,7 +125,7 @@ function App() {
                     <Route path="/account/history" element={<AccountHistory socket={socket} />} />
 
                     {/* Search Product */}
-                    <Route path="/result/" element={<ResultSearch socket={socket} />} />
+                    <Route path="/search/key=:keySearch" element={<ResultSearch socket={socket} />} />
 
 
                     {/* Cart and Payment */}
@@ -135,8 +136,6 @@ function App() {
                     <Route path="/cart/info/giftcode/confirm/payment" element={<Payment socket={socket} />} />
 
                     <Route path="/order" element={<OrderLookup socket={socket} />} />
-
-
 
                     <Route path="/contact" element={<ContactPage socket={socket} />} />
                 </Routes>

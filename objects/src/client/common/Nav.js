@@ -4,6 +4,7 @@ const Nav = ({ socket }) => {
     const [users, setUsers] = useState([])
     const [cartUser, setCartUser] = useState([])
     const [countQuantity, setCountQuantity] = useState()
+    const [keySearch, setKeySearch] = useState("")
 
     useEffect(() => {
         const fetchAPI = () => {
@@ -71,8 +72,19 @@ const Nav = ({ socket }) => {
                         </p>
                     </a>
                     <div className="header-search">
-                        <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..."></input>
-                        <button className="header-search__button">
+                        <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..." onChange={(e) => { setKeySearch(e.target.value) }}></input>
+                        <button className="header-search__button" onClick={
+                            (e) => {
+                                if (keySearch === '') {
+                                    alert("Vui lòng điền từ khóa cần tìm!")
+                                    return;
+                                }
+                                handLoadingPage(1)
+                                setTimeout(() => {
+                                    window.location.href = `/search/key=${keySearch}`
+                                })
+                            }
+                        }>
                             <i className="fa ti-search"></i>
                         </button>
                     </div>

@@ -203,7 +203,7 @@ const Home = () => {
                                                 background: `url(${product.imageLink})`,
                                                 backgroundColor: "transparent",
                                                 backgroundPosition: "center center",
-                                                backgroundSize: "95%",
+                                                backgroundSize: "contain",
                                                 backgroundRepeat: "no-repeat"
                                             }} className='home__flash-sale-item-img'></div>
                                             <label className='home__flash-sale-item-label'>{product.name}</label>
@@ -250,7 +250,7 @@ const Home = () => {
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
                                             backgroundPosition: "center center",
-                                            backgroundSize: "95%",
+                                            backgroundSize: "contain",
                                             backgroundRepeat: "no-repeat"
                                         }} className='product__sell-item-img'></div>
                                         <label className='product__sell-item-label'>{product.name}</label>
@@ -293,7 +293,7 @@ const Home = () => {
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
                                             backgroundPosition: "center center",
-                                            backgroundSize: "95%",
+                                            backgroundSize: "contain",
                                             backgroundRepeat: "no-repeat"
                                         }} className='product__sell-item-img'></div>
                                         <label className='product__sell-item-label'>{product.name}</label>
@@ -336,7 +336,7 @@ const Home = () => {
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
                                             backgroundPosition: "center center",
-                                            backgroundSize: "95%",
+                                            backgroundSize: "contain",
                                             backgroundRepeat: "no-repeat"
                                         }} className='product__sell-item-img'></div>
                                         <label className='product__sell-item-label'>{product.name}</label>
@@ -378,7 +378,7 @@ const Home = () => {
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
                                             backgroundPosition: "center center",
-                                            backgroundSize: "95%",
+                                            backgroundSize: "contain",
                                             backgroundRepeat: "no-repeat"
                                         }} className='product__sell-item-img'></div>
                                         <label className='product__sell-item-label'>{product.name}</label>
@@ -397,13 +397,10 @@ const Home = () => {
                     </div>
                 </div>
             </div >
-
             <Footer />
-            
+            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
+                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
         </div >
-
-
-
     );
 };
 

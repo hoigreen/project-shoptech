@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, Link, useParams } from 'react-router-dom';
 
 const Breadcrumbs = ({ socket }) => {
-    const { name } = useParams()
+    const { name, keySearch } = useParams()
     const location = useLocation()
 
     let currentLink = ''
@@ -15,7 +15,7 @@ const Breadcrumbs = ({ socket }) => {
             return (
                 <div className="crumb" key={crumb}>
                     <Link className="crumb-link" to={currentLink}>{
-                    capitalizeFirstLetter(crumb)
+                        capitalizeFirstLetter(crumb)
                     }</Link>
                 </div>
             )
@@ -35,8 +35,8 @@ const Breadcrumbs = ({ socket }) => {
                     </Link>
                     <span style={{ margin: "0 10px 0 0" }}>//</span>
                     {crumbs}
-                    {name}
-                    
+                    {name || "Kết quả tìm kiếm cho từ khóa: '" + keySearch + "'"}
+
                 </div>
             </div>
         </div>
