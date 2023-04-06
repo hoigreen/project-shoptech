@@ -40,10 +40,12 @@ const ResultSearch = ({ socket }) => {
 
     const handleSearch = () => {
         const listProducts = document.querySelector(".search-list__container")
+        const listArray = []
         products.map((product, index) => {
-            if ((product.name).includes(keySearch)) {
+            if ((String(product.name).toLowerCase()).includes(keySearch.toLowerCase())) {
+                listArray.push(product)
                 listProducts.innerHTML = `
-                ${loading ? <p>Đang kết nối đến server ... </p> : products.map((product, i) => (
+                ${loading ? <p>Đang kết nối đến server ... </p> : listArray.map((p, i) => (
                     `
                     <li
                     class="product__sell-item--tablet"
@@ -51,13 +53,13 @@ const ResultSearch = ({ socket }) => {
                     style='display:block;
                     margin: 10px 10px 12px;'>
 
-                    <img src=${product.imageLink} class='home__flash-sale-item-img' />
-                    <label class='product__sell-item-label'>${product.name}</label>
-                    <label class='product__sell-item-price'>${Number(product.price).toLocaleString()} ₫</label>
-                    <span class='product__sell-item-percent'>${(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                    <img src=${p.imageLink} class='home__flash-sale-item-img' />
+                    <label class='product__sell-item-label'>${p.name}</label>
+                    <label class='product__sell-item-price'>${Number(p.price).toLocaleString()} ₫</label>
+                    <span class='product__sell-item-percent'>${(Number(p.price) * 1.065).toLocaleString()}đ</span>
                     <label class='product__sell-item-sold'>
                         Đánh giá: 
-                        <span class='product__sell-item-star-icon'>${handleFormatStarProduct(product.star)}</span>
+                        <span class='product__sell-item-star-icon'>${handleFormatStarProduct(p.star)}</span>
                     </label>
                 </li>
                     `
@@ -69,10 +71,12 @@ const ResultSearch = ({ socket }) => {
 
     const handleClickSearchByType = (productType) => {
         const listProducts = document.querySelector(".search-list__container")
+        const listArray = []
         products.map((product, index) => {
-            if ((product.name).includes(keySearch) || product.enType === productType) {
+            if ((String(product.name).toLowerCase()).includes(keySearch.toLowerCase()) && product.enType === productType) {
+                listArray.push(product)
                 listProducts.innerHTML = `
-                ${loading ? <p>Đang kết nối đến server ... </p> : products.map((product, i) => (
+                ${loading ? <p>Đang kết nối đến server ... </p> : listArray.map((p, i) => (
                     `
                     <li
                     class="product__sell-item--tablet"
@@ -80,13 +84,13 @@ const ResultSearch = ({ socket }) => {
                     style='display:block;
                     margin: 10px 10px 12px;'>
 
-                    <img src=${product.imageLink} class='home__flash-sale-item-img' />
-                    <label class='product__sell-item-label'>${product.name}</label>
-                    <label class='product__sell-item-price'>${Number(product.price).toLocaleString()} ₫</label>
-                    <span class='product__sell-item-percent'>${(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                    <img src=${p.imageLink} class='home__flash-sale-item-img' />
+                    <label class='product__sell-item-label'>${p.name}</label>
+                    <label class='product__sell-item-price'>${Number(p.price).toLocaleString()} ₫</label>
+                    <span class='product__sell-item-percent'>${(Number(p.price) * 1.065).toLocaleString()}đ</span>
                     <label class='product__sell-item-sold'>
                         Đánh giá: 
-                        <span class='product__sell-item-star-icon'>${handleFormatStarProduct(product.star)}</span>
+                        <span class='product__sell-item-star-icon'>${handleFormatStarProduct(p.star)}</span>
                     </label>
                 </li>
                     `
@@ -156,9 +160,24 @@ const ResultSearch = ({ socket }) => {
                                     handleClickSearchByType("smartphone")
                                 }, 2000)
                             }}>Điện thoại</button>
-                            <button className="search-control__btn">Máy tính bảng</button>
-                            <button className="search-control__btn">Máy tính xách tay</button>
-                            <button className="search-control__btn">Phụ kiện</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+                                    handleClickSearchByType("tablet")
+                                }, 2000)
+                            }}>Máy tính bảng</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+                                    handleClickSearchByType("laptop")
+                                }, 2000)
+                            }}>Máy tính xách tay</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+                                    handleClickSearchByType("accessories")
+                                }, 2000)
+                            }}>Phụ kiện</button>
                         </div>
 
                         <ul className="search-list__container">
