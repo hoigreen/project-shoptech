@@ -44,6 +44,16 @@ const Tablet = ({ socket }) => {
         <div>
             <Nav socket={socket} />
             <div className='container'>
+                <div className="tablet__ladi-image">
+                    <div className="tablet__ladi-image-background">
+                        <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/banner_side-web-20230315064013-xgxik.png"></img>
+                    </div>
+                </div>
+                <div className="tablet__ladi2-image">
+                    <div className="tablet__ladi2-image-background">
+                        <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/thang-3-deal-tha-ga-20230306042957-ev9xk.png"></img>
+                    </div>
+                </div>
                 <div className='grid wide'>
                     <section className="tablet__event">
                         <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Tm/Tm_picture_986/tab-samsung_694_1200.png.webp" alt="" className="tablet__event-image" />
@@ -53,23 +63,11 @@ const Tablet = ({ socket }) => {
                             <img src="https://cdn.tgdd.vn/2023/04/banner/gatab-800-200-800x200.png" alt="" className="tablet__event-item" ></img>
                             <img src="https://cdn.tgdd.vn/2023/04/banner/Nokia-T20800-200-800x200.png" alt="" className="tablet__event-item" ></img>
                         </div>
-
+                        
                         <img className="tablet__event-image-gif" src="https://w.ladicdn.com/5bf3dc7edc60303c34e4991f/banner-ver-2023-8-11-20230214033025-h8scc.gif" alt="ảnh gif" ></img>
 
 
-                        <div className="tablet__ladi-image">
-                            <div className="tablet__ladi-image-background"></div>
-                        </div>
 
-                        <a href="https://shoptech.com/pages/khuyen-mai" target="_blank" id="IMAGE551" className="tablet__ladi2-element"
-                            data-replace-href="https://shoptech.com/pages/khuyen-mai">
-                            <div className="tablet__ladi2-image">
-                                <div className="tablet__ladi2-image-background"></div>
-                            </div>
-                        </a>
-                        <div className="tablet__ladi2-image">
-                            <div className="tablet__ladi2-image-background"></div>
-                        </div>
                         <div className="tablet__event-content">
                         </div>
                     </section>
@@ -85,7 +83,7 @@ const Tablet = ({ socket }) => {
                         <button className="home__product-brand-item">Masstel</button>
                         <button className="home__product-brand-item">Realme</button>
                     </div>
-        
+
                     <ul className="tablet__list-product">
                         <li className='product'>
                             <div className="tablet__item-label"></div>
