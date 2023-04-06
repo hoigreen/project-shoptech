@@ -100,6 +100,22 @@ const Home = () => {
         })
     })
 
+    const handleFormatStarProduct = (starOfProduct) => {
+        if (starOfProduct < 1) {
+            return `☆☆☆☆☆`
+        } else if (starOfProduct < 2) {
+            return `★☆☆☆☆`
+        } else if (starOfProduct < 3) {
+            return `★★☆☆☆`
+        } else if (starOfProduct < 4) {
+            return `★★★☆☆`
+        } else if (starOfProduct < 5) {
+            return `★★★★☆`
+        } else {
+            return `★★★★★`
+        }
+    }
+
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
@@ -199,13 +215,9 @@ const Home = () => {
                                                 }, 1000)
                                             }}
                                         >
-                                            <div style={{
-                                                background: `url(${product.imageLink})`,
-                                                backgroundColor: "transparent",
-                                                backgroundPosition: "center center",
-                                                backgroundSize: "contain",
-                                                backgroundRepeat: "no-repeat"
-                                            }} className='home__flash-sale-item-img'></div>
+                                            <img src={product.imageLink}
+                                                className='home__flash-sale-item-img'>
+                                            </img>
                                             <label className='home__flash-sale-item-label'>{product.name}</label>
                                             <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                             <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -246,20 +258,15 @@ const Home = () => {
                                             }, 1000)
                                         }}
                                     >
-                                        <div style={{
-                                            background: `url(${product.imageLink})`,
-                                            backgroundColor: "transparent",
-                                            backgroundPosition: "center center",
-                                            backgroundSize: "contain",
-                                            backgroundRepeat: "no-repeat"
-                                        }} className='product__sell-item-img'></div>
+                                        <img src={product.imageLink}
+                                            className='home__flash-sale-item-img'>
+                                        </img>
                                         <label className='product__sell-item-label'>{product.name}</label>
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star'>{product.star}</span>
-                                            <span className='product__sell-item-star-icon'>⭐</span>
+                                            Đánh giá: 
+                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
                                     </li>
                                 ))}
@@ -289,20 +296,15 @@ const Home = () => {
                                             }, 1000)
                                         }}
                                     >
-                                        <div style={{
-                                            background: `url(${product.imageLink})`,
-                                            backgroundColor: "transparent",
-                                            backgroundPosition: "center center",
-                                            backgroundSize: "contain",
-                                            backgroundRepeat: "no-repeat"
-                                        }} className='product__sell-item-img'></div>
+                                        <img src={product.imageLink}
+                                            className='home__flash-sale-item-img'>
+                                        </img>
                                         <label className='product__sell-item-label'>{product.name}</label>
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star'>{product.star}</span>
-                                            <span className='product__sell-item-star-icon'>⭐</span>
+                                            Đánh giá: 
+                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
                                     </li>
                                 ))}
@@ -332,20 +334,15 @@ const Home = () => {
                                             }, 1000)
                                         }}
                                     >
-                                        <div style={{
-                                            background: `url(${product.imageLink})`,
-                                            backgroundColor: "transparent",
-                                            backgroundPosition: "center center",
-                                            backgroundSize: "contain",
-                                            backgroundRepeat: "no-repeat"
-                                        }} className='product__sell-item-img'></div>
+                                        <img src={product.imageLink}
+                                            className='home__flash-sale-item-img'>
+                                        </img>
                                         <label className='product__sell-item-label'>{product.name}</label>
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star'>{product.star}</span>
-                                            <span className='product__sell-item-star-icon'>⭐</span>
+                                            Đánh giá: 
+                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
                                     </li>
                                 ))}
@@ -374,20 +371,15 @@ const Home = () => {
                                             }, 1000)
                                         }}
                                     >
-                                        <div style={{
-                                            background: `url(${product.imageLink})`,
-                                            backgroundColor: "transparent",
-                                            backgroundPosition: "center center",
-                                            backgroundSize: "contain",
-                                            backgroundRepeat: "no-repeat"
-                                        }} className='product__sell-item-img'></div>
+                                        <img src={product.imageLink}
+                                            className='home__flash-sale-item-img'>
+                                        </img>
                                         <label className='product__sell-item-label'>{product.name}</label>
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star'>{product.star}</span>
-                                            <span className='product__sell-item-star-icon'>⭐</span>
+                                            Đánh giá: 
+                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
                                     </li>
                                 ))}

@@ -1700,10 +1700,11 @@ tbody {
 }
 
 .home__flash-sale-item-img {
-    width: 212px;
-    height: 212px;
-    margin-bottom: 10px;
-    margin-left: -10px;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    margin: 0 auto 20px;
+    object-fit: contain;
 }
 
 .home__flash-sale-item-label {
@@ -1907,9 +1908,13 @@ tbody {
     text-decoration: line-through;
     padding: 4px 10px;
     margin: 4px 0;
+    font-style: italic;
+    color: #585858
 }
 
 .product__sell-item-sold {
+    width: 70%;
+    text-align: center;
     font-size: 1.6rem;
     font-weight: 300;
     display: block;
@@ -1917,6 +1922,7 @@ tbody {
     bottom: 8px;
     right: 50%;
     transform: translateX(50%);
+    font-weight: 600;
 }
 
 .product__sell-item-star {
@@ -1925,7 +1931,12 @@ tbody {
     font-weight: 500;
 }
 
-.product__sell-item-star-icon {}
+.product__sell-item-star-icon {
+    display: inline-block;
+    margin-left: 4px;
+    color: rgb(215, 136, 9);
+    font-size: 1.8rem;
+}
 
 .product__sell-item--smartphone,
 .product__sell-item--laptop,
@@ -1935,13 +1946,13 @@ tbody {
     background-color: #fff;
     list-style: none;
     height: 370px;
-    width: 18%;
     margin: 0 6px 12px;
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     position: relative;
     display: none;
     overflow: hidden;
+    width: 18%;
 }
 
 .product__sell-item--smartphone:hover,
@@ -1951,5 +1962,3 @@ tbody {
     cursor: pointer;
     transform: translateY(-3px);
 }
-
-
