@@ -8,10 +8,9 @@ import Breadcrumbs from '../common/Breadcrumbs';
 const ResultSearch = ({ socket }) => {
     const { keySearch } = useParams()
     const [products, setProducts] = useState([])
+    const [countProducts, setCountProducts] = useState()
 
     const [loading, setLoading] = useState(true)
-
-
 
     useEffect(() => {
         const fetchAPIs = () => {
@@ -51,10 +50,12 @@ const ResultSearch = ({ socket }) => {
                     class="product__sell-item--tablet"
                     key=${index}
                     style='display:block;
-                    margin: 10px 10px 12px;'>
+                    margin: 10px 10px 12px;'
+                    >
 
                     <img src=${p.imageLink} class='home__flash-sale-item-img' />
                     <label class='product__sell-item-label'>${p.name}</label>
+                    <label class='product__sell-item-label'>${p.enType}</label>
                     <label class='product__sell-item-price'>${Number(p.price).toLocaleString()} ₫</label>
                     <span class='product__sell-item-percent'>${(Number(p.price) * 1.065).toLocaleString()}đ</span>
                     <label class='product__sell-item-sold'>
@@ -67,6 +68,14 @@ const ResultSearch = ({ socket }) => {
                 `
             }
         })
+        listArray.splice(0, listArray.length)
+        const options = document.querySelectorAll(".product__sell-item--tablet")
+        options.forEach((option) => {
+            option.onclick = () => {
+                console.log(option)
+            }
+        })
+        setCountProducts(listArray.length)
     }
 
     const handleClickSearchByType = (productType) => {
@@ -98,6 +107,25 @@ const ResultSearch = ({ socket }) => {
                 `
             }
         })
+        document.querySelector('.search-header__count-number').innerHTML = `${listArray.length}`
+        if (listArray.length === 0) {
+            listProducts.innerHTML = `
+            <div class="search-list--empty"></div>`
+        }
+        listArray.splice(0, listArray.length)
+        const btnList = document.querySelector(".search-control");
+        const btnItems = btnList.querySelectorAll('.search-control__btn')
+        btnItems.forEach((btnItem, index) => {
+            btnItem.onclick = () => {
+                const btnItemActive = btnList.querySelector(".search-control__btn.search-control__btn--active")
+                if (btnItemActive) {
+                    btnItemActive.classList.remove("search-control__btn--active")
+                    btnItem.classList.add('search-control__btn--active')
+                } else {
+                    btnItem.classList.add('search-control__btn--active')
+                }
+            }
+        })
     }
 
     const handleFormatStarProduct = (starOfProduct) => {
@@ -116,6 +144,13 @@ const ResultSearch = ({ socket }) => {
         }
     }
 
+    const handleClickProduct = (productType, productName) => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            window.location.href = `/product/${productType}/${productName}`
+        }, 1000)
+    }
+
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
@@ -131,7 +166,7 @@ const ResultSearch = ({ socket }) => {
             <div className="modal__cover">
                 <div className="modal">
                     <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
+                        <div className="modal__loading-spinner"></div>
                         <div>Đang tải dữ liệu ...</div>
                     </div>
                 </div>
@@ -144,7 +179,7 @@ const ResultSearch = ({ socket }) => {
                             <label className="search-header__label">Kết quả tìm kiếm cho từ khóa:
                                 <span className='search-header__label-key'>"{keySearch}"</span>
                             </label>
-                            <p className='search-header__count'>Đã thấy <span style={{ fontWeight: "bold", fontStyle: "normal" }}>1000</span> kết quả phù hợp</p>
+                            <p className='search-header__count'>Đã thấy <span style={{ fontWeight: "bold", fontStyle: "normal" }} className='search-header__count-number'>{countProducts || 0}</span> kết quả phù hợp</p>
                         </div>
 
                         <div className="search-control">

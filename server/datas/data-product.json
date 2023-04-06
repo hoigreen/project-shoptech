@@ -146,6 +146,7 @@
             "id": "P006",
             "name": "Máy tính bảng iPad Pro M1 11 inch WiFi/Cellular 1TB/2TB",
             "type": "Máy tính bảng",
+            "enType": "tablet",
             "price": "50990000",
             "option": "Cellular + 2TB",
             "color": "Trắng",

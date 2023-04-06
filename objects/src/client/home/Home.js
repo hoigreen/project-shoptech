@@ -225,6 +225,7 @@ const Home = () => {
                                                 Đã bán
                                                 <span className='home__flash-sale-item-number'>{Math.floor((Number((Math.random() % 100 * (99 - 1)))))}</span>
                                             </label>
+                                            <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
                                         </li>
                                     ))}
                                 </ul>
@@ -265,9 +266,10 @@ const Home = () => {
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá: 
+                                            Đánh giá:
                                             <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
+                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
                                     </li>
                                 ))}
                             </ul>
@@ -303,9 +305,11 @@ const Home = () => {
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá: 
+                                            Đánh giá:
                                             <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
+                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
+
                                     </li>
                                 ))}
                             </ul>
@@ -341,9 +345,10 @@ const Home = () => {
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá: 
+                                            Đánh giá:
                                             <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
+                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
                                     </li>
                                 ))}
                             </ul>
@@ -361,7 +366,7 @@ const Home = () => {
                             <ul className="home__featured-list">
                                 {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
                                     <li
-                                        className="product__sell-item--accessories"
+                                        className="product__sell-item--accessories .hotIcons"
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
@@ -378,9 +383,10 @@ const Home = () => {
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
-                                            Đánh giá: 
+                                            Đánh giá:
                                             <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
+                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
                                     </li>
                                 ))}
                             </ul>
