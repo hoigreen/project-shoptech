@@ -42,72 +42,29 @@
     border-top: 1px solid #f1f1f1;
 
 }
-
-.tablet__ladi-image {
-    position: static;
+.tablet__ladi-image{
+    position: relative;
+    width: 80%;
+    height: 100%;
+}
+.tablet__ladi2-image{
+    position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    pointer-events: none;
 }
 
-.tablet__ladi-image-background {
-    -webkit-text-size-adjust: none;
-    direction: ltr;
-    color: inherit;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-size: cover;
-    background-attachment: scroll;
-    background-origin: content-box;
+.tablet__ladi-image-background img{
     position: fixed;
-    margin: auto;
-    pointer-events: none;
-    display: flex;
-    top: 250px;
-    left: 59px;
-    width: 170px;
-    height: 513.tablet__68px;
-    background-image: url("https://w.tablet__ladicdn.tablet__com/s500x850/5bf3dc7edc60303c34e4991f/banner_side-web-20230315064013-xgxik.tablet__png");
-}
+    width: 200px;
+    left: 79px;
 
-.tablet__ladi2-image-background {
-    -webkit-text-size-adjust: none;
-    direction: ltr;
-    color: inherit;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    background-repeat: no-repeat;
-    background-position: left top;
-    display: flex;
-    background-size: cover;
-    /* background-attachment: scroll; */
-    background-origin: content-box;
+}
+.tablet__ladi2-image-background img {
     position: fixed;
-    margin: 0 auto;
-    pointer-events: none;
-    top: 250px;
-    right: 59px;
-    width: 170px;
-    height: 513.tablet__68px;
-    background-image: url("https://w.tablet__ladicdn.tablet__com/s500x850/5bf3dc7edc60303c34e4991f/thang-3-deal-tha-ga-20230306042957-ev9xk.tablet__png");
-    /* background-image: url("https://w.tablet__ladicdn.tablet__com/s500x900/5bf3dc7edc60303c34e4991f/side-web-20230213133317-_tcfj.tablet__png"); */
+    width: 200px;
+    right: 79px;
 
 }
-
-
 .tablet__container-productbox {
     box-sizing: border-box;
     border: 100px, solid, #d91919;
