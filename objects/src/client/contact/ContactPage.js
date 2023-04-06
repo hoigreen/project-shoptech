@@ -75,6 +75,7 @@ const ContactPage = ({ socket }) => {
                 type: type,
                 content: content,
             });
+
             emailjs.sendForm('service_tz648gc', 'template_2tugvgr', form.current, 'zD-R_dG5L23lbkbpU')
                 .then((result) => {
                     console.log(result.text);
