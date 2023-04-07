@@ -49,6 +49,7 @@ import OrderLookup from './client/order/OrderLookup';
 
 
 import ContactPage from './client/contact/ContactPage';
+import FeedbackPage from './admin/feedback/FeedbackPage';
 
 const socket = socketIO.connect('http://localhost:4000');
 
@@ -94,6 +95,8 @@ function App() {
                         path="/admin/promote/add"
                         element={<AddPromote socket={socket} />}
                     />
+                    <Route path="/admin/feedback" element={<FeedbackPage socket={socket} />} />
+
                     <Route path="/admin/upload" element={<UploadImage socket={socket} />} />
                     <Route path="/admin/receive" element={<ReceiveImage socket={socket} />} />
                 </Routes>

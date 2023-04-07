@@ -55,7 +55,6 @@ const ResultSearch = ({ socket }) => {
 
                     <img src=${p.imageLink} class='home__flash-sale-item-img' />
                     <label class='product__sell-item-label'>${p.name}</label>
-                    <label class='product__sell-item-label'>${p.enType}</label>
                     <label class='product__sell-item-price'>${Number(p.price).toLocaleString()} ₫</label>
                     <span class='product__sell-item-percent'>${(Number(p.price) * 1.065).toLocaleString()}đ</span>
                     <label class='product__sell-item-sold'>
@@ -68,14 +67,14 @@ const ResultSearch = ({ socket }) => {
                 `
             }
         })
-        listArray.splice(0, listArray.length)
+        setCountProducts(listArray.length)
         const options = document.querySelectorAll(".product__sell-item--tablet")
-        options.forEach((option) => {
+        options.forEach((option, index) => {
             option.onclick = () => {
-                console.log(option)
+                window.location.href = `/product/${listArray[index].id}/${listArray[index].name}`
             }
         })
-        setCountProducts(listArray.length)
+        // listArray.splice(0, listArray.length)
     }
 
     const handleClickSearchByType = (productType) => {
@@ -112,7 +111,7 @@ const ResultSearch = ({ socket }) => {
             listProducts.innerHTML = `
             <div class="search-list--empty"></div>`
         }
-        listArray.splice(0, listArray.length)
+        // listArray.splice(0, listArray.length)
         const btnList = document.querySelector(".search-control");
         const btnItems = btnList.querySelectorAll('.search-control__btn')
         btnItems.forEach((btnItem, index) => {
@@ -124,6 +123,12 @@ const ResultSearch = ({ socket }) => {
                 } else {
                     btnItem.classList.add('search-control__btn--active')
                 }
+            }
+        })
+        const options = document.querySelectorAll(".product__sell-item--tablet")
+        options.forEach((option, index) => {
+            option.onclick = () => {
+                window.location.href = `/product/${listArray[index].id}/${listArray[index].name}`
             }
         })
     }

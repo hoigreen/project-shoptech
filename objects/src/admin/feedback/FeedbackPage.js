@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const FeedbackPage = () => {
     const [admins, setAdmins] = useState([])
     const [adminID, setAdminID] = useState('')
     const [adminName, setAdminName] = useState('')
@@ -19,32 +19,6 @@ const Dashboard = () => {
     const [countPromotes, setCountPromotes] = useState(0)
 
     const [loading, setLoading] = useState(true)
-
-
-    useEffect(() => {
-        const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
-                setAdmins(data.admins)
-                setLoading(false)
-            });
-
-            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
-                setUsers(data.users)
-                setLoading(false)
-            });
-
-            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
-                setProducts(data.products)
-                setLoading(false)
-            });
-
-            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
-                setPromotes(data.promotes)
-                setLoading(false)
-            });
-        }
-        fetchAPIs   ()
-    }, [])
 
     const navigate = useNavigate();
 
@@ -93,50 +67,6 @@ const Dashboard = () => {
         }, 1000)
     }
 
-    useEffect(() => {
-        // show admin đăng nhập
-        admins.map((admin, index) => {
-            if (admin.adminName == window.localStorage.getItem('adminNameLogin')) {
-                setAdminID(admin.adminID);
-                setAdminName(admin.adminName);
-                setFullname(admin.fullname);
-                setAvatarUrl(admin.avatarUrl);
-            }
-        })
-
-        // show số lượng khách hàng
-        users.map((user, index) => {
-            index = index + 1;
-            if (index = users.length) {
-                setCustomers(index);
-            }
-        })
-
-        // show số lượng sản phẩm
-        products.map((product, index) => {
-            index = index + 1;
-            if (index = products.length) {
-                setCountProduct(index);
-            }
-        })
-
-        // show số lượng quản trị viên
-        promotes.map((promote, index) => {
-            index = index + 1;
-            if (index = promotes.length) {
-                setCountPromotes(index);
-            }
-        })
-
-        // show số lượng quản trị viên
-        admins.map((admin, index) => {
-            index = index + 1;
-            if (index = admins.length) {
-                setCountAdmin(index);
-            }
-        })
-    })
-
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
@@ -144,6 +74,7 @@ const Dashboard = () => {
             loading.classList.remove("modal--active")
         }, second * 1000)
     }
+
 
     return (
         <div className='admin__container'>
@@ -161,7 +92,7 @@ const Dashboard = () => {
                     e.preventDefault();
                     window.location.href = '/admin/dashboard'
                 }}></div>
-                <div className="sidebar__component-item" onClick={handleNevigateDashboard}>
+                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateDashboard}>
                     <i className="sidebar__component-item-icon fa fa-home" aria-hidden="true"></i>
                     Thống kê
                 </div>
@@ -179,7 +110,7 @@ const Dashboard = () => {
                         <i className="sidebar__component-item-icon fa fa-tag" aria-hidden="true"></i>
                         Khuyến mãi
                     </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateFeedback}>
+                    <div className="sidebar__component-item" onClick={handleNevigateFeedback}>
                         <i className="sidebar__component-item-icon fa fa-comments" aria-hidden="true"></i>
                         Ý kiến khách hàng
                     </div>
@@ -301,6 +232,6 @@ const Dashboard = () => {
         </div>
 
     );
-};
+}
 
-export default Dashboard;
+export default FeedbackPage

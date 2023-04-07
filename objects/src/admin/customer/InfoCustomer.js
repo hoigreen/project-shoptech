@@ -62,6 +62,12 @@ const InfoCustomer = ({ socket }) => {
             navigate(`/admin/promote`)
         }, 1000)
     }
+    const handleNevigateFeedback = () => {
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate(`/admin/feedback`)
+        }, 1000)
+    }
     const handleNevigateInfo = () => {
         handLoadingPage(1)
         window.setTimeout(() => {
@@ -151,6 +157,10 @@ const InfoCustomer = ({ socket }) => {
                     <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigatePromote}>
                         <i className="sidebar__component-item-icon fa fa-tag" aria-hidden="true"></i>
                         Khuyến mãi
+                    </div>
+                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateFeedback}>
+                        <i className="sidebar__component-item-icon fa fa-comments" aria-hidden="true"></i>
+                        Ý kiến khách hàng
                     </div>
                 </div>
 
