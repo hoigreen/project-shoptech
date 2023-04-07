@@ -7,18 +7,38 @@ const FeedbackPage = () => {
     const [adminName, setAdminName] = useState('')
     const [fullname, setFullname] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
-    const [countAdmin, setCountAdmin] = useState(0)
 
-    const [products, setProducts] = useState([])
-    const [countProduct, setCountProduct] = useState(0)
+    const [feedbacks, setFeedbacks] = useState([])
 
-    const [users, setUsers] = useState([])
-    const [customer, setCustomers] = useState(0)
-
-    const [promotes, setPromotes] = useState([])
-    const [countPromotes, setCountPromotes] = useState(0)
 
     const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchAPIs = () => {
+            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
+                setAdmins(data.admins)
+                setLoading(false)
+            });
+
+            fetch("http://localhost:4000/api/feedbacks").then(res => res.json()).then(data => {
+                setFeedbacks(data.feedbacks)
+                setLoading(false)
+            });
+        }
+        fetchAPIs()
+    }, [])
+
+    useEffect(() => {
+        // show admin đăng nhập
+        admins.map((admin, index) => {
+            if (admin.adminName == window.localStorage.getItem('adminNameLogin')) {
+                setAdminID(admin.adminID);
+                setAdminName(admin.adminName);
+                setFullname(admin.fullname);
+                setAvatarUrl(admin.avatarUrl);
+            }
+        })
+    })
 
     const navigate = useNavigate();
 
@@ -58,7 +78,6 @@ const FeedbackPage = () => {
             navigate(`/admin/info-admin/${adminID}`)
         }, 1000)
     }
-
     const LogOut = () => {
         window.localStorage.removeItem('adminNameLogin')
         handLoadingPage(1)
@@ -152,79 +171,70 @@ const FeedbackPage = () => {
 
                 <div className="admin__title">
                     <label className='admin__tilte-label'>Chúc một ngày tốt lành, quản trị viên!</label>
-                    <label className='admin__tilte-describe'>Trang thống kê</label>
+                    <label className='admin__tilte-describe'>Trang quản lý ý kiến khách hàng</label>
                 </div>
 
-                <div className="dash__counting">
-                    <div className="dash__counting-item">
-                        <div className="dash__counting-content">
-                            <div className='dash__counting-number' style={{ color: "red" }}>{customer}</div>
-                            <div className='dash__counting-describe'>Số lượng khách hàng</div>
+
+
+                <div className='promote__group'>
+                    <label className='dash__group-title'>Danh sách ý kiến của khách hàng</label>
+
+                    <div className='admin__list' style={{maxHeight:"none"}}>
+                        <div style={{ marginLeft: "0", marginBottom: "20px"}} className="search-control">
+                            <button className="search-control__btn search-control__btn--active" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 2000)
+                            }}>Tất cả</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+
+                                }, 2000)
+                            }}>Vấn đề tài khoản</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+
+                                }, 2000)
+                            }}>Vấn đề khuyến mãi</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+
+                                }, 2000)
+                            }}>Cải thiện hệ thống</button>
+                            <button className="search-control__btn" onClick={(e) => {
+                                handLoadingPage(2)
+                                setTimeout(() => {
+
+                                }, 2000)
+                            }}>Vấn đề khác</button>
                         </div>
-                        <i className='dash__counting-icon fa fa-users'></i>
 
-                    </div>
-
-                    <div className="dash__counting-item">
-                        <div className="dash__counting-content">
-                            <div className='dash__counting-number' style={{ color: "green" }}>{countProduct}</div>
-                            <div className='dash__counting-describe'>Số lượng sản phẩm</div>
-                        </div>
-                        <i className='dash__counting-icon fa fa-list'></i>
-
-                    </div>
-
-                    <div className="dash__counting-item">
-                        <div className="dash__counting-content">
-                            <div className='dash__counting-number' style={{ color: "blue" }}>{countPromotes}</div>
-                            <div className='dash__counting-describe'>Số lượng khuyến mãi</div>
-                        </div>
-                        <i className='dash__counting-icon fa fa-tag'></i>
-
-                    </div>
-
-                    <div className="dash__counting-item dash__counting-item--none-border">
-                        <div className="dash__counting-content">
-                            <div className='dash__counting-number' style={{ color: "violet" }}>{countAdmin}</div>
-                            <div className='dash__counting-describe'>Quản trị viên</div>
-                        </div>
-                        <i className='dash__counting-icon fa fa-user'></i>
-                    </div>
-                </div>
-
-                <div className='admin__group'>
-                    <label className='dash__group-title'>Danh sách quản trị viên</label>
-
-                    <div className='admin__list' style={{ justifyContent: "space-between" }}>
-                        {loading ? <p>Đang kết nối đến server ... </p> : admins.map((admin, index) => (
-                            <div className='admin__item'>
-                                <label className='admin__item-id'>{admin.adminID}</label>
-                                <div className='admin__item-avatar'>
-                                    <div style={{
-                                        backgroundImage: `url(${admin.avatarUrl})`
-                                    }}
-                                        className='admin__item-img'></div>
-                                </div>
-                                <label className='admin__item-admin-name'>{admin.adminName}</label>
-
-                                <div className='admin__item-info'>
-                                    <label className='admin__item-info-label'>Họ và tên:</label>
-                                    <p className='admin__item-info-content'>{admin.fullname}</p>
-                                </div>
-                                <div className='admin__item-info'>
-                                    <label className='admin__item-info-label'>Email:</label>
-                                    <p className='admin__item-info-content'>{admin.email || "Trống!"}</p>
-                                </div>
-                                <div className='admin__item-info'>
-                                    <label className='admin__item-info-label'>Số điện thoại: </label>
-                                    <p className='admin__item-info-content'>+84 {admin.phone || "Trống!"}</p>
-                                </div>
-                                <div className='admin__item-info'>
-                                    <label className='admin__item-info-label'>Địa chỉ:</label>
-                                    <p className='admin__item-info-content'>{admin.address || "Trống!"} </p>
-                                </div>
-                            </div>
-                        ))}
+                        <table className='table'>
+                            <thead>
+                                <tr className='table__thead-primary'>
+                                    <td>STT</td>
+                                    <td>Họ tên khách hàng</td>
+                                    <td>Email</td>
+                                    <td>Loại góp ý</td>
+                                    <td>Nội dung</td>
+                                </tr>
+                            </thead>
+                            <tbody className='table__tbody-primary'>
+                                {loading ? <tr><td>Loading...</td></tr> : feedbacks.map((feedback, index) => (
+                                    <tr className='table__row-loading' key={index}>
+                                        <td style={{ textAlign: "center", background: "#ffcdd2", fontWeight: 700 }}>{index + 1}</td>
+                                        <td style={{ color: "#333", fontWeight: 700, textAlign: 'left' }}>{feedback.name}</td>
+                                        <td>{feedback.email}</td>
+                                        <td style={{ fontWeight: 700, color: "red" }}>{feedback.type}</td>
+                                        <td style={{ fontWeight: 400, textAlign: "justify", fontSize: "1.4rem", fontStyle: "italic" }}>"{feedback.content || "None"}"</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>

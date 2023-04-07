@@ -250,9 +250,8 @@ body {
 }
 
 #sidebar {
-    display: fixed;
-    width: 18%;
-    height: 874px;
+    position: fixed;
+    width: 260px;
     background-color: #fff;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.08);
     padding-bottom: 30px;
@@ -320,7 +319,10 @@ body {
 
 #admin-box {
     display: block;
-    width: 100%;
+    position: fixed;
+    left: 260px;
+    top: 0;
+    width: calc(100% - 260px);
 }
 
 .admin__header {
@@ -614,23 +616,24 @@ tbody {
 
 .admin__list {
     padding-top: 10px;
+    padding-bottom: 30px;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
     overflow-y: scroll;
     max-height: 510px;
+    justify-content:flex-start;
 }
 
 .admin__item {
     background-color: #fff;
     box-shadow: 0 1px 2px rgb(0, 0, 0, 0.06);
-    width: 18%;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #ccc;
-    margin: 10px 10px 20px 10px;
+    margin: 10px 12px 40px;
     padding-bottom: 30px;
     position: relative;
+    width: 240px;
 }
 
 .admin__item:hover {
@@ -640,8 +643,8 @@ tbody {
 .admin__item-id {
     display: block;
     width: 100%;
-    height: 6vh;
-    line-height: 6vh;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
     font-size: 2rem;
     font-weight: 600;
@@ -1711,6 +1714,7 @@ tbody {
     from {
         transform: translateY(0)
     }
+
     to {
         transform: translateY(-10px)
     }

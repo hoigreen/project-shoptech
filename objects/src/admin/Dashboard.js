@@ -43,7 +43,7 @@ const Dashboard = () => {
                 setLoading(false)
             });
         }
-        fetchAPIs   ()
+        fetchAPIs()
     }, [])
 
     const navigate = useNavigate();
@@ -264,9 +264,9 @@ const Dashboard = () => {
                 <div className='admin__group'>
                     <label className='dash__group-title'>Danh sách quản trị viên</label>
 
-                    <div className='admin__list' style={{ justifyContent: "space-between" }}>
+                    <div className='admin__list'>
                         {loading ? <p>Đang kết nối đến server ... </p> : admins.map((admin, index) => (
-                            <div className='admin__item'>
+                            <div className='admin__item' key={index}>
                                 <label className='admin__item-id'>{admin.adminID}</label>
                                 <div className='admin__item-avatar'>
                                     <div style={{

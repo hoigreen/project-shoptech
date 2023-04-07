@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
 
@@ -8,6 +10,7 @@ const Payment = ({ socket }) => {
     const [cartUser, setCartUser] = useState([])
 
     const [orders, setOrders] = useState([])
+    const [timeOrder, setTimeOrder] = useState("")
 
 
     useEffect(() => {
@@ -93,11 +96,13 @@ const Payment = ({ socket }) => {
         })
     }
 
+
     const handleComplePayment = () => {
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var dateTime = date + ' ' + time;
+        setTimeOrder(dateTime)
         orders.map((order, i) => {
             if (order.orderID === window.localStorage.getItem("orderIDCache")) {
                 showErrorMessage()
@@ -129,6 +134,13 @@ const Payment = ({ socket }) => {
     }
 
     const completePayment = () => {
+        emailjs.sendForm('service_tz648gc', 'template_3r8dk79', document.querySelector(".form-confirm"), 'zD-R_dG5L23lbkbpU')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+
         localStorage.removeItem("orderIDCache");
         localStorage.removeItem("fullnameCache");
         localStorage.removeItem("emailCache");
@@ -146,7 +158,6 @@ const Payment = ({ socket }) => {
         const x = setInterval(() => {
             var secondLeft = document.querySelector(".payment-done__redirect-second")
             countSeconds -= 1;
-            console.log(countSeconds)
             secondLeft.innerHTML = `${countSeconds} giây`
             if (countSeconds <= 0) {
                 window.location.href = "/home";
@@ -263,6 +274,16 @@ const Payment = ({ socket }) => {
                         <label className='block-process__item-label'>Thanh toán</label>
                     </li>
                 </ul>
+
+                <form className='form-confirm' style={{ display: 'none' }}>
+                    <input name='order_id' value={window.localStorage.getItem("orderIDCache")} />
+                    <input name='order_fullname' value={window.localStorage.getItem("fullnameCache")} />
+                    <input name='email_to' value={window.localStorage.getItem("emailCache")} />
+                    <input name='order_address' value={window.localStorage.getItem("addressCache")} />
+                    <input name='order_note' value={window.localStorage.getItem("noteCache")} />
+                    <input name='order_price' value={Number(window.localStorage.getItem("countTotalPriceCache")).toLocaleString()} />
+                    <input name='order_time' value={timeOrder} />
+                </form>
 
                 <div className="cart__control-container">
                     <div className='cart__control-box' style={{ paddingTop: "10px" }}>

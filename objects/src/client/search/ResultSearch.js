@@ -184,7 +184,7 @@ const ResultSearch = ({ socket }) => {
                             <label className="search-header__label">Kết quả tìm kiếm cho từ khóa:
                                 <span className='search-header__label-key'>"{keySearch}"</span>
                             </label>
-                            <p className='search-header__count'>Đã thấy <span style={{ fontWeight: "bold", fontStyle: "normal" }} className='search-header__count-number'>{countProducts || 0}</span> kết quả phù hợp</p>
+                            <p className='search-header__count'>Đã tìm thấy <span style={{ fontWeight: "bold", fontStyle: "normal" }} className='search-header__count-number'>{countProducts || 0}</span> kết quả phù hợp</p>
                         </div>
 
                         <div className="search-control">
