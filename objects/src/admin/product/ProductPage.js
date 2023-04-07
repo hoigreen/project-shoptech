@@ -216,14 +216,6 @@ const ProductPage = ({ socket }) => {
                                     <p className='admin__item-info-content'>{product.type}</p>
                                 </div>
                                 <div className='admin__item-info'>
-                                    <label className='admin__item-info-label'>Màu sắc:</label>
-                                    <p className='admin__item-info-content'>{product.color || "Trống!"}</p>
-                                </div>
-                                <div className='admin__item-info'>
-                                    <label className='admin__item-info-label'>Tùy chọn:</label>
-                                    <p className='admin__item-info-content'> {product.option || "Trống!"}</p>
-                                </div>
-                                <div className='admin__item-info'>
                                     <label className='admin__item-info-label'>Trạng thái:</label>
                                     <p className='admin__item-info-content'> {product.status || "Trống!"}</p>
                                 </div>

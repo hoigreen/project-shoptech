@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
 
@@ -85,6 +86,8 @@ const CartConfirm = ({ socket }) => {
                 window.location.href = "/cart/info/giftcode/confirm/payment"
             }, 1000)
         }
+
+
     }
 
     const handLoadingPage = (second) => {

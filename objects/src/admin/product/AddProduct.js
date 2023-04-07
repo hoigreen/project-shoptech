@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProduct = ({ socket }) => {
     const [products, setProducts] = useState([])
-    const [product, setProduct] = useState([])
 
     const [id, setProductID] = useState('')
     const [name, setName] = useState('')
-    const [type, setType] = useState('')
+    const [type, setType] = useState()
+    const [enType, setEnType] = useState('')
     const [price, setPrice] = useState(0)
-    const [option, setOption] = useState('')
-    const [color, setColor] = useState('')
+    const [option, setOption] = useState([])
+    const [color, setColor] = useState([])
     const [status, setStatus] = useState('')
 
     const navigate = useNavigate()
@@ -30,6 +30,7 @@ const AddProduct = ({ socket }) => {
             id,
             name,
             type,
+            enType,
             price,
             option,
             color,
@@ -80,13 +81,33 @@ const AddProduct = ({ socket }) => {
                         <input className='add__input' onChange={(e) => { setName(e.target.value); }} />
 
                         <label className="add__label">Loại sản phẩm</label>
-                        <input className='add__input' onChange={(e) => { setType(e.target.value); }} />
+                        <input className='add__input' onChange={(e) => {
+                            setType(e.target.value);
+                            switch ((e.target.value).toLowerCase()) {
+                                case "điện thoại":
+                                    setEnType("smartphone");
+                                    break;
+                                case "mấy tính bảng":
+                                    setEnType("tablet");
+                                    break;
+                                case "máy tính xách tay":
+                                    setEnType("laptop");
+                                    break;
+                                case "phụ kiện":
+                                    setEnType("accessories");
+                                    break;
+                            }
+                        }} />
 
                         <label className="add__label">Tùy chọn sản phẩm</label>
                         <input className='add__input' onChange={(e) => { setOption(e.target.value); }} />
 
                         <label className="add__label">Màu sắc</label>
-                        <input type='text' className='add__input' onChange={(e) => { setColor(e.target.value); }} />
+                        <input type='text' className='add__input' onChange={(e) => {
+                            var arrayColor = (e.target.value).split(", ")
+                            console.log(arrayColor)
+                            setColor(arrayColor)
+                        }} placeholder="(Mỗi màu sức ngăn cách bằng dấu phẩy). Vd: Đỏ, Vàng, ..."/>
 
                         <label className="add__label">Giá sản phẩm</label>
                         <input type='number' className='add__input' onChange={(e) => { setPrice(e.target.value); }} />
