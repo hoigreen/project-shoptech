@@ -204,6 +204,30 @@
             "hotDeal": false,
             "featured": true,
             "percent": 12
+        },
+        {
+            "id": "",
+            "name": "Chuột không dây Logitech Lift Vertical",
+            "type": "Phụ kiện",
+            "enType": "accessories",
+            "price": "1290000",
+            "option": [
+                {
+                    "data": "Có dây",
+                    "price": 1290000
+                }
+            ],
+            "color": [
+                "Đen",
+                "Trắng",
+                "Hồng"
+            ],
+            "status": "Sẵn hàng",
+            "star": 0,
+            "voter": 0,
+            "hotDeal": false,
+            "featured": true,
+            "percent": 12
         }
     ]
 }

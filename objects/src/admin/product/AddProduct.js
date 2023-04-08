@@ -10,6 +10,7 @@ const AddProduct = ({ socket }) => {
     const [enType, setEnType] = useState('')
     const [price, setPrice] = useState(0)
     const [option, setOption] = useState([])
+
     const [color, setColor] = useState([])
     const [status, setStatus] = useState('')
 
@@ -34,13 +35,75 @@ const AddProduct = ({ socket }) => {
             price,
             option,
             color,
-            status
+            status,
+            star: 0,
+            voter: 0,
+            hotDeal: false,
+            featured: true,
+            percent: 0
         });
         handLoadingPage(1)
         window.setTimeout(() => {
             navigate('/admin/product');
         }, 1000)
+        alert("Thêm sản phẩm thành công")
     }
+
+
+    const handleAddOption = () => {
+        const optionList = document.querySelector(".add__option-list")
+        if (optionList) {
+            const item = document.createElement("div");
+            item.classList.add("add__option-item")
+
+            item.onclick = function (e) {
+                if (e.target.closest(".add__option-item--remove")) {
+                    optionList.removeChild(item);
+                }
+
+                if (e.target.closest(".add__option-item--done")) {
+                    handleConfirmOption(item)
+                }
+            };
+
+            item.innerHTML = `
+            <input class="add__option-item-input" placeholder='Tên ...' />
+            <input class="add__option-item-input" type="number" placeholder="Giá..." />
+            <button class="add__option-item--remove">
+            <i class="fa fa-close"></i>
+            <button class="add__option-item--done">
+            <i class="fa fa-check"></i>
+            </button>
+        `;
+            optionList.appendChild(item);
+        }
+
+
+    }
+
+    const handleConfirmOption = (item) => {
+        item.querySelectorAll(".add__option-item-input")
+        const itemName = item.querySelectorAll(".add__option-item-input")[0].value
+        const itemPrice = item.querySelectorAll(".add__option-item-input")[1].value
+        var objItem =
+        {
+            data: itemName,
+            price: Number(itemPrice)
+        }
+
+        item.innerHTML = `
+        <div class="add__option-item--confirm">
+            <label class="add__option-item-label">Tùy chọn:</label>
+            <p style="font-weight: 400; line-height: 2rem">${itemName}</p>
+        </div>
+        <div class="add__option-item--confirm">
+            <label class="add__option-item-label">Giá:</label>
+            <p style="font-weight: 600; color: red;">${Number(itemPrice).toLocaleString()} đ</p>
+        </div>
+        `
+        setOption([...option, objItem]);
+    }
+
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
@@ -64,56 +127,64 @@ const AddProduct = ({ socket }) => {
                 <div className="add">
                     <div className="add__header">THÊM SẢN PHẨM MỚI</div>
                     <div className="add__body">
-                        <div className="add__avatar">
-                            <div className="add__avatar-img"></div>
-                            <button className='add__btn'>Thêm hình ảnh</button>
+                        <div className="add__col-left">
+                            <div className="add__avatar">
+                                <div className="add__avatar-img"></div>
+                                <button className='add__btn'>Thêm hình ảnh</button>
+                            </div>
+
                         </div>
+                        <div className="add__col-right">
+                            <label className="add__title">Thông tin sản phẩm</label>
 
-                        <label className="add__title">Thông tin sản phẩm</label>
+                            <label className="add__label">Mã sản phẩm tự khởi tạo</label>
+                            <input style={{ fontWeight: "bold" }} readOnly className='add__input add__input--readonly' value={"P00" + Number(products.length + 1)}
+                                onFocus={(e) => {
+                                    setProductID(e.target.value);
+                                }} />
 
-                        <label className="add__label">Mã sản phẩm tự khởi tạo</label>
-                        <input style={{ fontWeight: "bold" }} readOnly className='add__input add__input--readonly' value={"P00" + Number(products.length + 1)}
-                            onFocus={(e) => {
-                                setProductID(e.target.value);
+                            <label className="add__label">Tên sản phẩm</label>
+                            <input className='add__input' onChange={(e) => { setName(e.target.value); }} />
+
+                            <label className="add__label">Loại sản phẩm</label>
+                            <input className='add__input' onChange={(e) => {
+                                setType(e.target.value);
+                                switch ((e.target.value).toLowerCase()) {
+                                    case "điện thoại":
+                                        setEnType("smartphone");
+                                        break;
+                                    case "mấy tính bảng":
+                                        setEnType("tablet");
+                                        break;
+                                    case "máy tính xách tay":
+                                        setEnType("laptop");
+                                        break;
+                                    case "phụ kiện":
+                                        setEnType("accessories");
+                                        break;
+                                }
                             }} />
 
-                        <label className="add__label">Tên sản phẩm</label>
-                        <input className='add__input' onChange={(e) => { setName(e.target.value); }} />
+                            <label className="add__label">Tùy chọn sản phẩm</label>
+                            <div className="add__option">
+                                <ul className="add__option-list"></ul>
+                                <button className="add__option-btn" onClick={handleAddOption}>+</button>
+                            </div>
 
-                        <label className="add__label">Loại sản phẩm</label>
-                        <input className='add__input' onChange={(e) => {
-                            setType(e.target.value);
-                            switch ((e.target.value).toLowerCase()) {
-                                case "điện thoại":
-                                    setEnType("smartphone");
-                                    break;
-                                case "mấy tính bảng":
-                                    setEnType("tablet");
-                                    break;
-                                case "máy tính xách tay":
-                                    setEnType("laptop");
-                                    break;
-                                case "phụ kiện":
-                                    setEnType("accessories");
-                                    break;
-                            }
-                        }} />
+                            <label className="add__label">Màu sắc</label>
+                            <input type='text' className='add__input' onChange={(e) => {
+                                var arrayColor = (e.target.value).split(", ")
+                                setColor(arrayColor)
+                            }} placeholder="(Mỗi màu sắc được ngăn cách bằng dấu phẩy). Vd: Đỏ, Vàng, ..." />
 
-                        <label className="add__label">Tùy chọn sản phẩm</label>
-                        <input className='add__input' onChange={(e) => { setOption(e.target.value); }} />
+                            <label className="add__label">Giá sản phẩm</label>
+                            <input type='number' className='add__input' onChange={(e) => { setPrice(e.target.value); }} />
 
-                        <label className="add__label">Màu sắc</label>
-                        <input type='text' className='add__input' onChange={(e) => {
-                            var arrayColor = (e.target.value).split(", ")
-                            console.log(arrayColor)
-                            setColor(arrayColor)
-                        }} placeholder="(Mỗi màu sức ngăn cách bằng dấu phẩy). Vd: Đỏ, Vàng, ..."/>
+                            <label className="add__label">Tình trạng sản phẩm</label>
+                            <input type='text' className='add__input' onChange={(e) => { setStatus(e.target.value); }} />
+                        </div>
 
-                        <label className="add__label">Giá sản phẩm</label>
-                        <input type='number' className='add__input' onChange={(e) => { setPrice(e.target.value); }} />
 
-                        <label className="add__label">Tình trạng sản phẩm</label>
-                        <input type='text' className='add__input' onChange={(e) => { setStatus(e.target.value); }} />
                     </div>
 
                     <div className="add__footer">
