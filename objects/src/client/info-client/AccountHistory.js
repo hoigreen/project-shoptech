@@ -194,6 +194,7 @@ const AccountHistory = ({ socket }) => {
                                             <td>Thời gian</td>
                                             <td>Tình trạng</td>
                                             <td>Tổng tiền</td>
+                                            <td></td>
                                         </tr>
                                     </thead>
                                     <tbody className='table__tbody-primary'>
@@ -218,6 +219,12 @@ const AccountHistory = ({ socket }) => {
                                                 <td style={{ backgroundColor: "" }}>{order.time}</td>
                                                 <td style={{ backgroundColor: "", fontWeight: 700 }}>{order.status}</td>
                                                 <td style={{ fontWeight: 600, textAlign: "center", fontSize: "2rem", color: "red" }}>{Number(order.price).toLocaleString() || "None"} đ</td>
+                                                <td><button class="account-history__btn-detail" onClick={(e) => {
+                                                    handLoadingPage(1);
+                                                    setTimeout(() => {
+                                                        window.location.href = `/account/history/detail-id=${order.orderID}`
+                                                    })
+                                                }}>Xem chi tiết</button></td>
                                             </tr>
                                         ))}
                                     </tbody>

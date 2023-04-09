@@ -457,7 +457,7 @@
 
 .account__box-info-input {
     display: block;
-    width:60%;
+    width: 60%;
     margin: 10px auto;
     padding: 12px 20px;
     outline: none;
@@ -533,7 +533,8 @@
     display: block;
     font-size: 1.8rem;
     font-weight: 500;
-    color: var(--button-color);;
+    color: var(--button-color);
+    ;
     margin-top: 14px;
 }
 
@@ -559,7 +560,7 @@
     background-color: transparent;
     border-radius: 4px;
     cursor: pointer;
-} 
+}
 
 .account__box-info-fillter-btn--active {
     border-bottom: 2px solid var(--primary-color);
@@ -567,3 +568,13 @@
     color: var(--button-color);
 }
 
+.account-history__btn-detail {
+    display: block;
+    padding: 4px 10px;
+    background-color: #fff;
+    border: 1px solid var(--button-color);
+    color: var(--button-color);
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
