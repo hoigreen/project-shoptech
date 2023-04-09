@@ -232,14 +232,14 @@ const ProductPage = ({ socket }) => {
                                             {product.price || "Trống!"} VNĐ </p>
                                     </div>
                                     <div className='admin__item-eidt'>
-                                        <p style={{
+                                        <div style={{
                                             fontSize: "2rem",
                                             fontWeight: "bold",
                                             color: "red",
                                             textAlign: "right",
                                             width: "100%",
                                         }} className='admin__item-info-content'>
-                                            <EditButtonProduct product={product} /></p>
+                                            <EditButtonProduct product={product} /></div>
                                     </div>
                                 </div>
                             </div>

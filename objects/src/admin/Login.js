@@ -116,7 +116,7 @@ const Login = () => {
                 <form className="login__form" onSubmit={handleSubmitLogin}>
                     <label className="login__label" htmlFor="adminName">Vui lòng nhập tên tài khoản</label>
                     <input
-                        class="login__input"
+                        className="login__input"
                         //type="text"
                         name="username"
                         onChange={e => setDetails({ ...details, adminName: e.target.value })}
@@ -128,7 +128,7 @@ const Login = () => {
 
                     <label className="login__label login__label--password" htmlFor="password">Vui lòng nhập mật khẩu</label>
                     <input
-                        class="login__input"
+                        className="login__input"
                         type="password"
                         name="password"
                         onChange={e => setDetails({ ...details, password: e.target.value })}

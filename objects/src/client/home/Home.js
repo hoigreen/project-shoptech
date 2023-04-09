@@ -136,262 +136,260 @@ const Home = () => {
             </div>
 
             <Nav socket={socket} />
-            <div className='content-page'>
-                <HotPromote socket={socket} />
-                <div className="grid wide">
-                    <div className="home__container">
-                        <ul id="home-promote">
-                            <button className='home-promote__pre'>
-                                <i className='home-promote__icon fa fa-arrow-left'></i>
-                            </button>
-                            <button className='home-promote__next'>
-                                <i className='home-promote__icon fa fa-arrow-right'></i>
-                            </button>
-                            {loading ? <p>Đang kết nối đến server...</p> : promotes.map((promote, index) => (
-                                <li style={{
-                                    background: `url(${promote.imageLink})`,
-                                    backgroundRepeat: "no-repeat",
-                                    backgroundPosition: "center center",
-                                    backgroundSize: "cover"
-                                }} className='home-promote__item' key={index}></li>
+            <HotPromote socket={socket} />
+            <div className="grid wide">
+                <div className="home__container">
+                    <ul id="home-promote">
+                        <button className='home-promote__pre'>
+                            <i className='home-promote__icon fa fa-arrow-left'></i>
+                        </button>
+                        <button className='home-promote__next'>
+                            <i className='home-promote__icon fa fa-arrow-right'></i>
+                        </button>
+                        {loading ? <p>Đang kết nối đến server...</p> : promotes.map((promote, index) => (
+                            <li style={{
+                                background: `url(${promote.imageLink})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center center",
+                                backgroundSize: "cover"
+                            }} className='home-promote__item' key={index}></li>
+                        ))}
+                    </ul>
+
+                    <div id="home__list">
+                        <div className="home__list-label">Danh mục sản phẩm</div>
+                        <ul className="home__list-product">
+                            <li className='home__list-product-item' onClick={(e) => { navigate('/smartphone') }}>
+                                <div className="home__list-product-img-1" ></div>
+                                <p className="home__list-product-name">Điện thoại di động</p>
+                            </li>
+                            <li className='home__list-product-item' onClick={(e) => { navigate('/laptop') }}>
+                                <div className="home__list-product-img-2"></div>
+                                <p className="home__list-product-name">Máy tính xách tay</p>
+                            </li>
+                            <li className='home__list-product-item' onClick={(e) => { navigate('/tablet') }}>
+                                <div className="home__list-product-img-3" ></div>
+                                <p className="home__list-product-name">Máy tính bảng</p>
+                            </li>
+                            <li className='home__list-product-item' onClick={(e) => { navigate('/accessories') }}>
+                                <div className="home__list-product-img-4"></div>
+                                <p className="home__list-product-name">Phụ kiện đỉnh chóp</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="home__flash-sale">
+                        <div className="home__flash-sale-label">Khuyến mãi cực <span>HOT</span> - 🔥🔥🔥</div>
+                        <div className='home__flash-sale-banner'></div>
+                        <div className="home__flash-sale-container">
+                            <div className="home__flash-sale-header">
+                                <div className="home__flash-sale-background"></div>
+                                <div className='home__flash-sale-header-col'>
+                                    <div className="home__flash-sale-title">Giờ vàng săn DEAL</div>
+                                    <div className="home__flash-sale-countdown">Kết thúc trong:</div>
+                                    <div className="home__flash-sale-countdown-day"></div>
+                                    <span className="home__flash-sale-countdown-sepetate">:</span>
+                                    <div className="home__flash-sale-countdown-hour"></div>
+                                    <span className="home__flash-sale-countdown-sepetate">:</span>
+                                    <div className="home__flash-sale-countdown-minute"></div>
+                                    <span className="home__flash-sale-countdown-sepetate">:</span>
+                                    <div className="home__flash-sale-countdown-second"></div>
+                                </div>
+                                <div className='home__flash-sale-header-col'>
+                                    <div className="home__flash-sale-time">Thời gian khuyến mãi</div>
+                                    <div className='home__flash-sale-time-valid'>{timeStart}/4/2023 - {timeEnd}/5/2023</div>
+                                </div>
+                            </div>
+
+                            <ul className="home__flash-sale-list">
+                                {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                                    <li
+                                        className="home__flash-sale-item"
+                                        key={index}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handLoadingPage(1)
+                                            window.setTimeout(() => {
+                                                window.location.href = `/product/${product.enType}/${product.name}`
+                                            }, 1000)
+                                        }}
+                                    >
+                                        <img src={product.imageLink}
+                                            className='home__flash-sale-item-img'>
+                                        </img>
+                                        <label className='home__flash-sale-item-label'>{product.name}</label>
+                                        <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                        <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                        <label className='home__flash-sale-item-sold'>
+                                            Đã bán
+                                            <span className='home__flash-sale-item-number'>{Math.floor((Number((Math.random() % 100 * (99 - 1)))))}</span>
+                                        </label>
+                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="home__featured">
+                        <div className="home__featured-label">⚡⚡⚡ Sản phẩm nổi bật ⚡⚡⚡</div>
+
+                        <div className='home__featured-banner-phone'></div>
+                        <div className="home__featured-type" onClick={(e) => { navigate('/smartphone') }}>ĐIỆN THOẠI</div>
+                        <div className="home__featured-brand-list">
+                            <button className="home__product-brand-item">Apple</button>
+                            <button className="home__product-brand-item">Samsung</button>
+                            <button className="home__product-brand-item">Xiaomi</button>
+                            <button className="home__product-brand-item">Oppo</button>
+                            <button className="home__product-brand-item">Vivo</button>
+                            <button className="home__product-brand-item">Huewei</button>
+                            <button className="home__product-brand-item">Realme</button>
+                        </div>
+                        <ul className="home__featured-list">
+                            {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                                <li
+                                    className="product__sell-item--smartphone"
+                                    key={index}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                        }, 1000)
+                                    }}
+                                >
+                                    <img src={product.imageLink}
+                                        className='home__flash-sale-item-img'>
+                                    </img>
+                                    <label className='product__sell-item-label'>{product.name}</label>
+                                    <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                    <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                    <label className='product__sell-item-sold'>
+                                        Đánh giá:
+                                        <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
+                                    </label>
+                                    <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
+                                </li>
                             ))}
                         </ul>
 
-                        <div id="home__list">
-                            <div className="home__list-label">Danh mục sản phẩm</div>
-                            <ul className="home__list-product">
-                                <li className='home__list-product-item' onClick={(e) => { navigate('/smartphone') }}>
-                                    <div className="home__list-product-img-1" ></div>
-                                    <p className="home__list-product-name">Điện thoại di động</p>
-                                </li>
-                                <li className='home__list-product-item' onClick={(e) => { navigate('/laptop') }}>
-                                    <div className="home__list-product-img-2"></div>
-                                    <p className="home__list-product-name">Máy tính xách tay</p>
-                                </li>
-                                <li className='home__list-product-item' onClick={(e) => { navigate('/tablet') }}>
-                                    <div className="home__list-product-img-3" ></div>
-                                    <p className="home__list-product-name">Máy tính bảng</p>
-                                </li>
-                                <li className='home__list-product-item' onClick={(e) => { navigate('/accessories') }}>
-                                    <div className="home__list-product-img-4"></div>
-                                    <p className="home__list-product-name">Phụ kiện đỉnh chóp</p>
-                                </li>
-                            </ul>
+                        <div className='home__featured-banner-tablet' onClick={(e) => { navigate('/tablet') }}></div>
+                        <div className="home__featured-type " onClick={(e) => { navigate('/tablet') }}>MÁY TÍNH BẢNG</div>
+                        <div className="home__featured-brand-list">
+                            <button className="home__product-brand-item">Apple</button>
+                            <button className="home__product-brand-item">Samsung</button>
+                            <button className="home__product-brand-item">Xiaomi</button>
+                            <button className="home__product-brand-item">Oppo</button>
+                            <button className="home__product-brand-item">Vivo</button>
+                            <button className="home__product-brand-item">Huewei</button>
+                            <button className="home__product-brand-item">Realme</button>
                         </div>
+                        <ul className="home__featured-list">
+                            {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                                <li
+                                    className="product__sell-item--tablet"
+                                    key={index}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                        }, 1000)
+                                    }}
+                                >
+                                    <img src={product.imageLink}
+                                        className='home__flash-sale-item-img'>
+                                    </img>
+                                    <label className='product__sell-item-label'>{product.name}</label>
+                                    <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                    <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                    <label className='product__sell-item-sold'>
+                                        Đánh giá:
+                                        <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
+                                    </label>
+                                    <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
 
-                        <div id="home__flash-sale">
-                            <div className="home__flash-sale-label">Khuyến mãi cực <span>HOT</span> - 🔥🔥🔥</div>
-                            <div className='home__flash-sale-banner'></div>
-                            <div className="home__flash-sale-container">
-                                <div className="home__flash-sale-header">
-                                    <div className="home__flash-sale-background"></div>
-                                    <div className='home__flash-sale-header-col'>
-                                        <div className="home__flash-sale-title">Giờ vàng săn DEAL</div>
-                                        <div className="home__flash-sale-countdown">Kết thúc trong:</div>
-                                        <div className="home__flash-sale-countdown-day"></div>
-                                        <span className="home__flash-sale-countdown-sepetate">:</span>
-                                        <div className="home__flash-sale-countdown-hour"></div>
-                                        <span className="home__flash-sale-countdown-sepetate">:</span>
-                                        <div className="home__flash-sale-countdown-minute"></div>
-                                        <span className="home__flash-sale-countdown-sepetate">:</span>
-                                        <div className="home__flash-sale-countdown-second"></div>
-                                    </div>
-                                    <div className='home__flash-sale-header-col'>
-                                        <div className="home__flash-sale-time">Thời gian khuyến mãi</div>
-                                        <div className='home__flash-sale-time-valid'>{timeStart}/4/2023 - {timeEnd}/5/2023</div>
-                                    </div>
-                                </div>
+                                </li>
+                            ))}
+                        </ul>
 
-                                <ul className="home__flash-sale-list">
-                                    {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                        <li
-                                            className="home__flash-sale-item"
-                                            key={index}
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                handLoadingPage(1)
-                                                window.setTimeout(() => {
-                                                    window.location.href = `/product/${product.enType}/${product.name}`
-                                                }, 1000)
-                                            }}
-                                        >
-                                            <img src={product.imageLink}
-                                                className='home__flash-sale-item-img'>
-                                            </img>
-                                            <label className='home__flash-sale-item-label'>{product.name}</label>
-                                            <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                            <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                            <label className='home__flash-sale-item-sold'>
-                                                Đã bán
-                                                <span className='home__flash-sale-item-number'>{Math.floor((Number((Math.random() % 100 * (99 - 1)))))}</span>
-                                            </label>
-                                            <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                        <div className='home__featured-banner-laptop' onClick={(e) => { navigate('/laptop') }}></div>
+                        <div className="home__featured-type" onClick={(e) => { navigate('/laptop') }}>MÁY TÍNH XÁCH TAY</div>
+                        <div className="home__featured-brand-list">
+                            <button className="home__product-brand-item">Apple Macbook</button>
+                            <button className="home__product-brand-item">ASUS</button>
+                            <button className="home__product-brand-item">Lenovo</button>
+                            <button className="home__product-brand-item">MSI</button>
+                            <button className="home__product-brand-item">HP</button>
+                            <button className="home__product-brand-item">DELL</button>
+                            <button className="home__product-brand-item">Acer</button>
                         </div>
+                        <ul className="home__featured-list">
+                            {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                                <li
+                                    className="product__sell-item--laptop"
+                                    key={index}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                        }, 1000)
+                                    }}
+                                >
+                                    <img src={product.imageLink}
+                                        className='home__flash-sale-item-img'>
+                                    </img>
+                                    <label className='product__sell-item-label'>{product.name}</label>
+                                    <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                    <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                    <label className='product__sell-item-sold'>
+                                        Đánh giá:
+                                        <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
+                                    </label>
+                                    <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
+                                </li>
+                            ))}
+                        </ul>
 
-                        <div id="home__featured">
-                            <div className="home__featured-label">⚡⚡⚡ Sản phẩm nổi bật ⚡⚡⚡</div>
-
-                            <div className='home__featured-banner-phone'></div>
-                            <div className="home__featured-type" onClick={(e) => { navigate('/smartphone') }}>ĐIỆN THOẠI</div>
-                            <div className="home__featured-brand-list">
-                                <button className="home__product-brand-item">Apple</button>
-                                <button className="home__product-brand-item">Samsung</button>
-                                <button className="home__product-brand-item">Xiaomi</button>
-                                <button className="home__product-brand-item">Oppo</button>
-                                <button className="home__product-brand-item">Vivo</button>
-                                <button className="home__product-brand-item">Huewei</button>
-                                <button className="home__product-brand-item">Realme</button>
-                            </div>
-                            <ul className="home__featured-list">
-                                {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li
-                                        className="product__sell-item--smartphone"
-                                        key={index}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handLoadingPage(1)
-                                            window.setTimeout(() => {
-                                                window.location.href = `/product/${product.enType}/${product.name}`
-                                            }, 1000)
-                                        }}
-                                    >
-                                        <img src={product.imageLink}
-                                            className='home__flash-sale-item-img'>
-                                        </img>
-                                        <label className='product__sell-item-label'>{product.name}</label>
-                                        <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                        <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                        <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
-                                        </label>
-                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div className='home__featured-banner-tablet' onClick={(e) => { navigate('/tablet') }}></div>
-                            <div className="home__featured-type " onClick={(e) => { navigate('/tablet') }}>MÁY TÍNH BẢNG</div>
-                            <div className="home__featured-brand-list">
-                                <button className="home__product-brand-item">Apple</button>
-                                <button className="home__product-brand-item">Samsung</button>
-                                <button className="home__product-brand-item">Xiaomi</button>
-                                <button className="home__product-brand-item">Oppo</button>
-                                <button className="home__product-brand-item">Vivo</button>
-                                <button className="home__product-brand-item">Huewei</button>
-                                <button className="home__product-brand-item">Realme</button>
-                            </div>
-                            <ul className="home__featured-list">
-                                {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li
-                                        className="product__sell-item--tablet"
-                                        key={index}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handLoadingPage(1)
-                                            window.setTimeout(() => {
-                                                window.location.href = `/product/${product.enType}/${product.name}`
-                                            }, 1000)
-                                        }}
-                                    >
-                                        <img src={product.imageLink}
-                                            className='home__flash-sale-item-img'>
-                                        </img>
-                                        <label className='product__sell-item-label'>{product.name}</label>
-                                        <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                        <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                        <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
-                                        </label>
-                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
-
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div className='home__featured-banner-laptop' onClick={(e) => { navigate('/laptop') }}></div>
-                            <div className="home__featured-type" onClick={(e) => { navigate('/laptop') }}>MÁY TÍNH XÁCH TAY</div>
-                            <div className="home__featured-brand-list">
-                                <button className="home__product-brand-item">Apple Macbook</button>
-                                <button className="home__product-brand-item">ASUS</button>
-                                <button className="home__product-brand-item">Lenovo</button>
-                                <button className="home__product-brand-item">MSI</button>
-                                <button className="home__product-brand-item">HP</button>
-                                <button className="home__product-brand-item">DELL</button>
-                                <button className="home__product-brand-item">Acer</button>
-                            </div>
-                            <ul className="home__featured-list">
-                                {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li
-                                        className="product__sell-item--laptop"
-                                        key={index}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handLoadingPage(1)
-                                            window.setTimeout(() => {
-                                                window.location.href = `/product/${product.enType}/${product.name}`
-                                            }, 1000)
-                                        }}
-                                    >
-                                        <img src={product.imageLink}
-                                            className='home__flash-sale-item-img'>
-                                        </img>
-                                        <label className='product__sell-item-label'>{product.name}</label>
-                                        <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                        <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                        <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
-                                        </label>
-                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div className='home__featured-banner-acc' onClick={(e) => { navigate('/accessories') }}></div>
-                            <div className="home__featured-type" onClick={(e) => { navigate('/accessories') }}>PHỤ KIỆN CÔNG NGHỆ</div>
-                            <div className="home__featured-brand-list">
-                                <button className="home__product-brand-item">Tai nghe</button>
-                                <button className="home__product-brand-item">Cáp sạc</button>
-                                <button className="home__product-brand-item">Sạc dự phòng</button>
-                                <button className="home__product-brand-item">Ốp lưng</button>
-                                <button className="home__product-brand-item">Chuột</button>
-                                <button className="home__product-brand-item">Webcam</button>
-                            </div>
-                            <ul className="home__featured-list">
-                                {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li
-                                        className="product__sell-item--accessories .hotIcons"
-                                        key={index}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handLoadingPage(1)
-                                            window.setTimeout(() => {
-                                                window.location.href = `/product/${product.enType}/${product.name}`
-                                            }, 1000)
-                                        }}
-                                    >
-                                        <img src={product.imageLink}
-                                            className='home__flash-sale-item-img'>
-                                        </img>
-                                        <label className='product__sell-item-label'>{product.name}</label>
-                                        <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                        <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                        <label className='product__sell-item-sold'>
-                                            Đánh giá:
-                                            <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
-                                        </label>
-                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
-                                    </li>
-                                ))}
-                            </ul>
-
+                        <div className='home__featured-banner-acc' onClick={(e) => { navigate('/accessories') }}></div>
+                        <div className="home__featured-type" onClick={(e) => { navigate('/accessories') }}>PHỤ KIỆN CÔNG NGHỆ</div>
+                        <div className="home__featured-brand-list">
+                            <button className="home__product-brand-item">Tai nghe</button>
+                            <button className="home__product-brand-item">Cáp sạc</button>
+                            <button className="home__product-brand-item">Sạc dự phòng</button>
+                            <button className="home__product-brand-item">Ốp lưng</button>
+                            <button className="home__product-brand-item">Chuột</button>
+                            <button className="home__product-brand-item">Webcam</button>
                         </div>
+                        <ul className="home__featured-list">
+                            {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                                <li
+                                    className="product__sell-item--accessories .hotIcons"
+                                    key={index}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handLoadingPage(1)
+                                        window.setTimeout(() => {
+                                            window.location.href = `/product/${product.enType}/${product.name}`
+                                        }, 1000)
+                                    }}
+                                >
+                                    <img src={product.imageLink}
+                                        className='home__flash-sale-item-img'>
+                                    </img>
+                                    <label className='product__sell-item-label'>{product.name}</label>
+                                    <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                    <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                    <label className='product__sell-item-sold'>
+                                        Đánh giá:
+                                        <span className='product__sell-item-star-icon'>{handleFormatStarProduct(product.star)}</span>
+                                    </label>
+                                    <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
+                                </li>
+                            ))}
+                        </ul>
+
                     </div>
                 </div>
             </div >
