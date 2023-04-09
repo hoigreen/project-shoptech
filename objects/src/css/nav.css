@@ -151,8 +151,8 @@
 .nav__option-box {
     display: none;
     position: absolute;
-    bottom: -80px;
-    left: 780px;
+    bottom: -90px;
+    right: 188px;
     background: #fff;
     list-style: none;
     color: #000;

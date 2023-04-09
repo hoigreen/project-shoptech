@@ -233,6 +233,18 @@ function findUserToRemoveCart(idKey, myArray) {
     })
 }
 
+function findOrderToSetStatus(orderIDKey, myArray, statusOrder) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].orderID === orderIDKey) {
+            myArray[i].status = statusOrder;
+        }
+    }
+    const stringData = JSON.stringify(objectDataOrder, null, 2)
+    fs.writeFile("datas/data-order.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
 
 
 
@@ -331,6 +343,11 @@ socketIO.on('connection', (socket) => {
         })
         socket.broadcast.emit("addOrderResponse", data)
     });
+
+    socket.on("setStatusOrder", data => {
+        findOrderToSetStatus(data.orderID, objectDataOrder["orders"])
+        socket.broadcast.emit("setStatusOrderResponse", data)
+    })
 
 
     // Socket contact
