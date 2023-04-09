@@ -56,7 +56,7 @@ html {
 
 body {
     margin: 0;
-    /* background-color: var(--background-color); */
+    background-color: var(--background-color); 
 }
 
 .container {
@@ -1429,7 +1429,8 @@ tbody {
     text-align: center;
     font-size: 1.8rem;
     line-height: 2.4rem;
-    margin-top: 40px;
+    padding: 40px 10px 10px;
+    background-color: var(--background-color);
 }
 
 
@@ -1802,8 +1803,7 @@ tbody {
 }
 
 .home__flash-sale-item-img {
-    width: 200px;
-    height: 200px;
+    width: 100%;
     padding: 10px;
     margin: 0 auto 20px;
     object-fit: contain;

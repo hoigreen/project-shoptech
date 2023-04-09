@@ -28,6 +28,9 @@ const AddProduct = ({ socket }) => {
     const handleAddProduct = (e) => {
         e.preventDefault();
         socket.emit("addProduct", {
+            imagePrimary: "",
+            imageLink: "",
+            imageList: [],
             id,
             name,
             type,
@@ -138,22 +141,22 @@ const AddProduct = ({ socket }) => {
                             <label className="add__title">Thông tin sản phẩm</label>
 
                             <label className="add__label">Mã sản phẩm tự khởi tạo</label>
-                            <input style={{ fontWeight: "bold" }} readOnly className='add__input add__input--readonly' value={"P00" + Number(products.length + 1)}
+                            <input style={{ fontWeight: "bold", color: "red" }} readOnly className='add__input add__input--readonly' value={"P00" + Number(products.length + 1)}
                                 onFocus={(e) => {
                                     setProductID(e.target.value);
-                                }} />
+                                }}/>
 
                             <label className="add__label">Tên sản phẩm</label>
                             <input className='add__input' onChange={(e) => { setName(e.target.value); }} />
 
                             <label className="add__label">Loại sản phẩm</label>
-                            <input className='add__input' onChange={(e) => {
+                            <select style={{ fontWeight: '500' }} className='add__input' onChange={(e) => {
                                 setType(e.target.value);
                                 switch ((e.target.value).toLowerCase()) {
                                     case "điện thoại":
                                         setEnType("smartphone");
                                         break;
-                                    case "mấy tính bảng":
+                                    case "máy tính bảng":
                                         setEnType("tablet");
                                         break;
                                     case "máy tính xách tay":
@@ -163,7 +166,13 @@ const AddProduct = ({ socket }) => {
                                         setEnType("accessories");
                                         break;
                                 }
-                            }} />
+                            }} value={type}>
+                                <option value="">Chọn loại sản phẩm ...</option>
+                                <option value="Điện thoại">Điện thoại di động</option>
+                                <option value="Máy tính xách tay">Máy tính xách tay</option>
+                                <option value="Máy tính bảng">Máy tính bảng</option>
+                                <option value="Phụ kiện">Phụ kiện công nghệ</option>
+                            </select>
 
                             <label className="add__label">Tùy chọn sản phẩm</label>
                             <div className="add__option">

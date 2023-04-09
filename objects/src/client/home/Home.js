@@ -136,7 +136,7 @@ const Home = () => {
             </div>
 
             <Nav socket={socket} />
-            <div className=''>
+            <div className='content-page'>
                 <HotPromote socket={socket} />
                 <div className="grid wide">
                     <div className="home__container">

@@ -194,7 +194,7 @@ const ProductPage = ({ socket }) => {
 
                     <div className='admin__list'>
                         {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                            <div className='admin__item'>
+                            <div className='admin__item' key={index}>
                                 <label className='admin__item-id'>{product.id}</label>
                                 <div className='product__item-avatar'>
                                     <div style={{
