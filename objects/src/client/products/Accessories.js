@@ -52,7 +52,7 @@ const Accessories = ({ socket }) => {
     }
     return (
         <div>
-            <div className='container' style={{ backgroundColor: "#c4eae8", marginTop: "60px", paddingTop: "50px" }}>
+            <div className='container' style={{ backgroundColor: "#fcd8aa", marginTop: "60px", padding: "50px 0 30px" }}>
                 <Nav socket={socket} />
                 <div className="accessories__ladi-image">
                     <div className="accessories__ladi-image-background">
@@ -260,41 +260,41 @@ const Accessories = ({ socket }) => {
                         <button className="home__product-brand-item">Webcam</button>
                     </div>
                     <div className='accessories__product-container' >
-                    <ul className="accessories__list-product">
-                        <li className='accessories__product'>
-                            <div className="accessories__item-label"></div>
-                            <div className="accessories__tablet-item">
-                                <img class="thumb" src="http://localhost:4000/uploads/products/img-P008.png" alt="" ></img>
-                                <img class="hotIcon" src="https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture/Apro/Apro_icon_189/261-261-iconsalesapsant_625.gif"></img>
-                                <img class="temBH" src="https://cdn.tgdd.vn/ValueIcons/icon_18t.png"></img>
+                        <ul className="accessories__list-product">
+                            <li className='accessories__product'>
+                                <div className="accessories__item-label"></div>
+                                <div className="accessories__tablet-item">
+                                    <img class="thumb" src="http://localhost:4000/uploads/products/img-P008.png" alt="" ></img>
+                                    <img class="hotIcon" src="https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture/Apro/Apro_icon_189/261-261-iconsalesapsant_625.gif"></img>
+                                    <img class="temBH" src="https://cdn.tgdd.vn/ValueIcons/icon_18t.png"></img>
 
-                            </div>
-                            <h3>
-                                Bàn phím cơ MSI
-                            </h3>
-                            {/* <div className="accessories__item-compare gray-bg">
+                                </div>
+                                <h3>
+                                    Bàn phím cơ MSI
+                                </h3>
+                                {/* <div className="accessories__item-compare gray-bg">
                                 <span>Retina IPS LCD</span>
                                 <span>10.2"</span>
                             </div> */}
 
-                            <ul>
-                                <li className="accessories__merge-item-selected">Dây cắm USB</li>
-                                <li className="accessories__merge-item ">Bluetooth</li>
-                            </ul>
+                                <ul>
+                                    <li className="accessories__merge-item-selected">Dây cắm USB</li>
+                                    <li className="accessories__merge-item ">Bluetooth</li>
+                                </ul>
 
-                            <div className="accessories__box-p">
-                                <p className="accessories__price-old black">9.990.000₫</p>
-                                <span className="accessories__percent">-15%</span>
-                            </div>
-                            <strong className="accessories__price">8.490.000₫</strong>
-                            <div className="accessories__item-rating">
-                                <p>
-                                <span class="product__sell-item-star-icon">★★★★☆</span>
-                                </p>
-                                <p className="accessories__item-rating-total"> 158 Đánh giá</p>
-                            </div>
-                        </li>
-                    </ul>
+                                <div className="accessories__box-p">
+                                    <p className="accessories__price-old black">9.990.000₫</p>
+                                    <span className="accessories__percent">-15%</span>
+                                </div>
+                                <strong className="accessories__price">8.490.000₫</strong>
+                                <div className="accessories__item-rating">
+                                    <p>
+                                        <span class="product__sell-item-star-icon">★★★★☆</span>
+                                    </p>
+                                    <p className="accessories__item-rating-total"> 158 Đánh giá</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
 

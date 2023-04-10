@@ -52,6 +52,12 @@ const AccountOrderDetail = ({ socket }) => {
                 setStatus(order.status)
             }
         })
+
+        if (status === "Giao hàng thành công") {
+            document.querySelector(".order-detail__btn").style.display = "none"
+        }
+
+        handleFormatCrumbs()
     })
 
     const navigate = useNavigate()
@@ -68,27 +74,28 @@ const AccountOrderDetail = ({ socket }) => {
         })
     }
 
-    const handleConirmReceived = (e) => {
-        var statusOrder = "Giao hàng thành công"
+    const handleConfirmReceived = (e) => {
         e.preventDefault()
-        handLoadingPage(2)
-        setTimeout(() => {
-            socket.emit("setStatusOrder", { orderID: orderID, statusOrder })
-            // socket.emit("setStatusOrder", { orderID: orderID, statusOrder: "Giao hàng thành công" })
-            // window.location.reload()
-            // alert("Xác nhận đã nhận hàng thành công!")
-            orders.map((item, index) => {
-                if (orderID === item.orderID) {
-                    console.log(orderID, item.orderID)
-                    socket.emit("setStatusOrder", { orderID: orderID, statusOrder })
-                    // window.location.reload()
+        orders.map((item, index) => {
+            if (item.orderID === orderID) {
+                socket.emit("setStatusOrder", { orderID: item.orderID, status: "Giao hàng thành công" })
+                handLoadingPage(2)
+                setTimeout(() => {
                     alert("Xác nhận đã nhận hàng thành công!")
-                }
-            })
+                    window.location.reload()
+                })
+            }
         })
     }
 
-
+    const handleFormatCrumbs = () => {
+        const crumbLinks = document.querySelectorAll(".crumb-link");
+        crumbLinks.forEach(crumbLink => {
+            if (crumbLink.innerHTML.includes("-id=")) {
+                crumbLink.style.display = "none"
+            }
+        })
+    }
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
@@ -214,7 +221,10 @@ const AccountOrderDetail = ({ socket }) => {
                                                 <label className='order-detail__item-quantity'>x{item.quantity}</label>
                                                 <p className='order-detail__item-price'>{Number(item.price).toLocaleString()} đ</p>
                                             </div>
-                                            <button className='order-detail__item-btn'>Đánh giá</button>
+                                            <button className='order-detail__item-btn' onClick={e => {
+                                                e.preventDefault();
+                                                navigate(`/account/history/detail-id=${orderID}/vote-${item.id}`)
+                                            }}>Đánh giá</button>
                                         </li>
                                     ))}
                                     <div className="order-detail__group">
@@ -223,7 +233,7 @@ const AccountOrderDetail = ({ socket }) => {
                                     </div>
                                 </ul>
 
-                                <button className='order-detail__btn' onClick={handleConirmReceived}>Đã nhận được hàng</button>
+                                <button className='order-detail__btn' onClick={handleConfirmReceived}>Đã nhận được hàng</button>
                             </div>
                         </div>
                     </div>
