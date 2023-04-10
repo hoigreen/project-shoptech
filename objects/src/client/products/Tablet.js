@@ -72,6 +72,44 @@ const Tablet = ({ socket }) => {
                         </div>
                     </section>
 
+                    <h3 class="tablet__title-brand">THƯƠNG HIỆU ĐỈNH CHÓP</h3>
+                    <div className='tablet__home-sort-list-brand'>
+                        <div className='tablet__home-sort-brand'>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/iPad-(Apple)522-b_4.jpg"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/samsungnew-220x48-220x48-1.png"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/logo-xiaomi-220x48-14-220x48.png"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/OPPO42-b5-220x48-6.jpg"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/Lenovo522-b_6.jpg"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/Masstel522-b_7.png"></img>
+                            </button>
+
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/Realme42-b_37.png"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/vivo-logo-220-220x48-3.png"></img>
+                            </button>
+                            <button className='tablet__home-sort-brand-item'>
+                                <img src="https://cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg"></img>
+                            </button>
+
+                        </div>
+
+                    </div>
+                    
+
+
                     <div className='home__featured-banner-tablet' onClick={(e) => { navigate('/tablet') }}></div>
                     <div className="home__featured-type " onClick={(e) => { navigate('/tablet') }}>MÁY TÍNH BẢNG</div>
                     <div className="home__featured-brand-list">
@@ -84,8 +122,10 @@ const Tablet = ({ socket }) => {
                         <button className="home__product-brand-item">Realme</button>
                     </div>
 
+
+                <div className='tablet__product-container' >
                     <ul className="tablet__list-product">
-                        <li className='product'>
+                        <li className='tablet__product'>
                             <div className="tablet__item-label"></div>
                             <div className="tablet__tablet-item">
                                 <img class="thumb" src="https://cdn.tgdd.vn/Products/Images/522/247517/iPad-9-wifi-trang-600x600.jpg" alt="" ></img>
@@ -113,16 +153,13 @@ const Tablet = ({ socket }) => {
                             <strong className="tablet__price">8.490.000₫</strong>
                             <div className="tablet__item-rating">
                                 <p>
-                                    <i className="tablet__icon-star"></i>
-                                    <i className="tablet__icon-star"></i>
-                                    <i className="tablet__icon-star"></i>
-                                    <i className="tablet__icon-star"></i>
-                                    <i className="tablet__icon-star-half"></i>
+                                <span class="product__sell-item-star-icon">★★★★☆</span>
                                 </p>
                                 <p className="tablet__item-rating-total"> 158 Đánh giá</p>
                             </div>
                         </li>
                     </ul>
+                    </div>
                 </div>
             </div >
 
