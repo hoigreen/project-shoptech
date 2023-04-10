@@ -129,7 +129,7 @@ function App() {
                     <Route path="/account/info" element={<AccountClientInfo socket={socket} />} />
                     <Route path="/account/history" element={<AccountHistory socket={socket} />} />
                     <Route path="/account/history/detail-id=:orderID" element={<AccountOrderDetail socket={socket} />} />
-                    <Route path="/account/history/detail-id=:orderID/vote" element={<VoteProductInOrder socket={socket} />} />
+                    <Route path="/account/history/detail-id=:orderID/vote-:productID" element={<VoteProductInOrder socket={socket} />} />
 
                     {/* Search Product */}
                     <Route path="/search/key=:keySearch" element={<ResultSearch socket={socket} />} />

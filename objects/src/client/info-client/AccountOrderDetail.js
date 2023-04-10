@@ -56,6 +56,8 @@ const AccountOrderDetail = ({ socket }) => {
         if (status === "Giao hàng thành công") {
             document.querySelector(".order-detail__btn").style.display = "none"
         }
+
+        handleFormatCrumbs()
     })
 
     const navigate = useNavigate()
@@ -86,8 +88,13 @@ const AccountOrderDetail = ({ socket }) => {
         })
     }
 
-    window.onload = () => {
-
+    const handleFormatCrumbs = () => {
+        const crumbLinks = document.querySelectorAll(".crumb-link");
+        crumbLinks.forEach(crumbLink => {
+            if (crumbLink.innerHTML.includes("-id=")) {
+                crumbLink.style.display = "none"
+            }
+        })
     }
 
     const handLoadingPage = (second) => {
@@ -216,7 +223,7 @@ const AccountOrderDetail = ({ socket }) => {
                                             </div>
                                             <button className='order-detail__item-btn' onClick={e => {
                                                 e.preventDefault();
-                                                navigate(`/account/history/detail-id=${orderID}/vote`)
+                                                navigate(`/account/history/detail-id=${orderID}/vote-${item.id}`)
                                             }}>Đánh giá</button>
                                         </li>
                                     ))}
