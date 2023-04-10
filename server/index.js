@@ -345,7 +345,7 @@ socketIO.on('connection', (socket) => {
     });
 
     socket.on("setStatusOrder", data => {
-        findOrderToSetStatus(data.orderID, objectDataOrder["orders"])
+        findOrderToSetStatus(data.orderID, objectDataOrder["orders"], "Giao hàng thành công")
         socket.broadcast.emit("setStatusOrderResponse", data)
     })
 
