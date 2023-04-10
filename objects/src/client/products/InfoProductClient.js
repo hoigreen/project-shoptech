@@ -238,7 +238,7 @@ const InfoProductClient = ({ socket }) => {
     })
     let indexImageInArray = 0;
     const handleNextImage = () => {
-        if (indexImageInArray >= arrayImage.length) indexImageInArray = -1;
+        if (indexImageInArray >= arrayImage.length - 1) indexImageInArray = 0;
         indexImageInArray++;
         const imageElement = document.querySelector(".info-product__image-primary")
         imageElement.style.animation = 'toRight 0.3s linear';

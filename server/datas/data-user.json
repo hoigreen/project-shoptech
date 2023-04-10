@@ -4,13 +4,12 @@
       "userID": "G001",
       "avatarUrl": "http://localhost:4000/uploads/customers/img-G001.png",
       "username": "bbinh19",
-      "password": "1231934ab",
+      "password": "121212",
       "cart": [],
       "fullname": "Võ Văn Bình",
       "email": "binh_kunfg142@gmail.com",
       "phone": "0982291103",
-      "address": "Thanh Oai, Hà Nội",
-      "statusLogin": "Chưa đăng nhập"
+      "address": "Thanh Oai, Hà Nội"
     },
     {
       "userID": "G002",

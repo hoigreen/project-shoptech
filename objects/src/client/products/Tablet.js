@@ -43,7 +43,7 @@ const Tablet = ({ socket }) => {
     return (
         <div>
             <Nav socket={socket} />
-            <div className='container'>
+            <div className='container' style={{ backgroundImage: "linear-gradient(to right, #c08efb, #dbc6f4)", marginTop: "60px", paddingTop: "50px" }}>
                 <div className="tablet__ladi-image">
                     <div className="tablet__ladi-image-background">
                         <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/banner_side-web-20230315064013-xgxik.png"></img>
@@ -63,7 +63,7 @@ const Tablet = ({ socket }) => {
                             <img src="https://cdn.tgdd.vn/2023/04/banner/gatab-800-200-800x200.png" alt="" className="tablet__event-item" ></img>
                             <img src="https://cdn.tgdd.vn/2023/04/banner/Nokia-T20800-200-800x200.png" alt="" className="tablet__event-item" ></img>
                         </div>
-                        
+
                         <img className="tablet__event-image-gif" src="https://w.ladicdn.com/5bf3dc7edc60303c34e4991f/banner-ver-2023-8-11-20230214033025-h8scc.gif" alt="ảnh gif" ></img>
 
 

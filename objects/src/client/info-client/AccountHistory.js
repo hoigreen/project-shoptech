@@ -194,30 +194,32 @@ const AccountHistory = ({ socket }) => {
                                             <td>Thời gian</td>
                                             <td>Tình trạng</td>
                                             <td>Tổng tiền</td>
+                                            <td></td>
                                         </tr>
                                     </thead>
                                     <tbody className='table__tbody-primary'>
                                         {loading ? <tr><td>Loading...</td></tr> : orders.map((order, index) => (
                                             <tr className='table__row-loading' key={index}>
-                                                <td style={{ textAlign: "center", background: "#ffcdd2", fontWeight: 700 }}>{order.orderID}</td>
+                                                <td style={{ textAlign: "center", background: "#ffcdd2", fontWeight: 700, fontSize: "1.5rem" }}>{order.orderID}</td>
                                                 <td style={{ color: "red", textAlign: 'left' }}>
                                                     {
                                                         order.lists.map((list, index) => (
                                                             <div className="table-td-element">
-                                                                <div className="table-td__img" style={{
-                                                                    backgroundImage: `url(${list.imageLink})`,
-                                                                    backgroundPosition: `center center`,
-                                                                    backgroundSize: "cover",
-                                                                    backgroupRepeat: "no-repeat"
-                                                                }}></div>
-                                                                <label className="table-td__label">{list.productName}</label>
+                                                                <img className="table-td__img" src={list.imageLink} ></img>
+                                                                <label style={{ fontSize: "1.4rem" }} className="table-td__label">{list.productName}</label>
                                                             </div>
                                                         ))
                                                     }
                                                 </td>
-                                                <td style={{ backgroundColor: "" }}>{order.time}</td>
-                                                <td style={{ backgroundColor: "", fontWeight: 700 }}>{order.status}</td>
-                                                <td style={{ fontWeight: 600, textAlign: "center", fontSize: "2rem", color: "red" }}>{Number(order.price).toLocaleString() || "None"} đ</td>
+                                                <td style={{ backgroundColor: "", fontSize: "1.4rem" }}>{order.time}</td>
+                                                <td style={{ backgroundColor: "", fontWeight: 700, fontSize: "1.4rem" }}>{order.status}</td>
+                                                <td style={{ fontWeight: 600, textAlign: "center", fontSize: "1.6rem", color: "red" }}>{Number(order.price).toLocaleString() || "None"} đ</td>
+                                                <td><button class="account-history__btn-detail" onClick={(e) => {
+                                                    handLoadingPage(1);
+                                                    setTimeout(() => {
+                                                        window.location.href = `/account/history/detail-id=${order.orderID}`
+                                                    })
+                                                }}>Xem chi tiết</button></td>
                                             </tr>
                                         ))}
                                     </tbody>

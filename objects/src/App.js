@@ -30,6 +30,7 @@ import LoginClient from './client/info-client/LoginClient';
 import AccountClient from './client/info-client/AccountClient';
 import AccountClientInfo from './client/info-client/AccountClientInfo';
 import AccountHistory from './client/info-client/AccountHistory';
+import AccountOrderDetail from './client/info-client/AccountOrderDetail';
 
 import SmartPhone from './client/products/SmartPhone';
 import Laptop from './client/products/Laptop';
@@ -126,6 +127,7 @@ function App() {
                     <Route path="/account" element={<AccountClient socket={socket} />} />
                     <Route path="/account/info" element={<AccountClientInfo socket={socket} />} />
                     <Route path="/account/history" element={<AccountHistory socket={socket} />} />
+                    <Route path="/account/history/detail-id=:orderID" element={<AccountOrderDetail socket={socket} />} />
 
                     {/* Search Product */}
                     <Route path="/search/key=:keySearch" element={<ResultSearch socket={socket} />} />
