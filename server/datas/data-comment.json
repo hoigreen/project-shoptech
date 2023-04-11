@@ -1,13 +1,13 @@
 {
-    "comments": [
-        {
-            "nameProductVoted": "Iphone 13 2023 - 256GB",
-            "owner": "nkhanh12",
-            "ownerAvatar": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
-            "ownerName": "Nguyễn Ngọc Khánh Ly",
-            "time": "17:12 2023-03-14",
-            "content": "Tôi không muốn nói tới sản phẩm này, vì mỗi lần nhắc đến nó nack của tôi lại bị nhức 💌😍😍😍. Tuy vậy tôi vẫn chưa hài lòng ở việc sản phẩm này không có gì để chê cả",
-            "starVoted": 4
-        }
-    ]
+  "comments": [
+    {
+      "nameProductVoted": "Iphone 13 2023 - 256GB",
+      "owner": "nkhanh12",
+      "ownerAvatar": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "ownerName": "Nguyễn Ngọc Khánh Ly",
+      "time": "17:12 2023-03-14",
+      "content": "Tôi không muốn nói tới sản phẩm này, vì mỗi lần nhắc đến nó nack của tôi lại bị nhức 💌😍😍😍. Tuy vậy tôi vẫn chưa hài lòng ở việc sản phẩm này không có gì để chê cả",
+      "starVoted": 4
+    }
+  ]
 }

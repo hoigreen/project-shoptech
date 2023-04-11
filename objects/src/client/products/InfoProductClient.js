@@ -328,7 +328,8 @@ const InfoProductClient = ({ socket }) => {
                                 color: colorEdit,
                                 price: priceEdit,
                                 percent: percent,
-                                quantity: 1
+                                quantity: 1,
+                                voted: false
                             }
                         }
                     )

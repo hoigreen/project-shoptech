@@ -690,6 +690,13 @@
     font-size: 1.8rem;
 }
 
+.order_detail__item-btn-box {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    justify-content: center;
+}
+
 .order-detail__item-btn {
     display: block;
     margin: auto 0;
@@ -700,6 +707,12 @@
     cursor: pointer;
     border: 2px solid #ffdf00;
     color: #ef9b0f;
+}
+
+.order-detail__item-btn--disabled {
+    background-color: #e5e5e5;
+    border-color: #e5e5e5;
+    color: #909090;
 }
 
 .order-detail__content {}

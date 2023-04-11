@@ -34,14 +34,15 @@
       "cart": [
         {
           "indexProduct": 1,
-          "imageLink": "http://localhost:4000/uploads/products/img-P008.png",
-          "id": "P008",
-          "productName": "Bàn Phím Có Dây Gaming MSI Vigor GK30 US",
-          "option": "USB có dây",
-          "color": "Đen tuyền",
-          "price": 989000,
+          "imageLink": "http://localhost:4000/uploads/products/img-P009.png",
+          "id": "P009",
+          "productName": "Chuột không dây Logitech Lift Vertical",
+          "option": "Có dây",
+          "color": "Trắng",
+          "price": 1290000,
           "percent": 12,
-          "quantity": 1
+          "quantity": 1,
+          "voted": false
         }
       ]
     },
@@ -99,7 +100,8 @@
           "color": "Đen huyền bí",
           "price": 41000000,
           "percent": 5,
-          "quantity": 1
+          "quantity": 1,
+          "voted": false
         }
       ]
     }

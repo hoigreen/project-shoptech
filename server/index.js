@@ -245,6 +245,38 @@ function findOrderToSetStatus(orderIDKey, myArray, statusOrder) {
     })
 }
 
+function findOrderToSetStatusVoteOfProduct(orderIDKey, myArray, productID) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].orderID === orderIDKey) {
+            var listProducts = myArray[i].lists;
+            for (var j = 0; j < listProducts.length; j++) {
+                const boolCheck = true;
+                if (listProducts[j].id === productID) {
+                    listProducts[j].voted = boolCheck;
+                }
+            }
+        }
+    }
+    const stringData = JSON.stringify(objectDataOrder, null, 2)
+    fs.writeFile("datas/data-order.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findProductToUpdateRating(idKey, myArray, starVoted) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].id === idKey) {
+            myArray[i].star = ((myArray[i].star) * (myArray[i].voter) + Number(starVoted)) / (myArray[i].voter + 1);
+            myArray[i].voter += 1;
+        }
+    }
+    const stringData = JSON.stringify(objectDataProduct, null, 2)
+    fs.writeFile("datas/data-product.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+
 
 
 
@@ -349,6 +381,25 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("setStatusOrderResponse", data)
     })
 
+    socket.on("setStatusVotedOfProductInOrder", (data, productID) => {
+        findOrderToSetStatusVoteOfProduct(data.orderID, objectDataOrder["orders"], productID)
+        socket.broadcast.emit("setStatusVotedOfProductInOrderResponse", data)
+    })
+
+    socket.on('addComment', (data) => {
+        objectDataComment["comments"].push(data)
+        const stringData = JSON.stringify(objectDataComment, null, 2)
+        fs.writeFile("datas/data-comment.json", stringData, (err) => {
+            console.error(err)
+        })
+        socket.broadcast.emit("addCommentResponse", data)
+    });
+
+    socket.on("updateRatingProduct", (data, starVoted) => {
+        findProductToUpdateRating(data.id, objectDataProduct["products"], starVoted)
+        socket.broadcast.emit("updateRatingProductResponse", data)
+    })
+
 
     // Socket contact
     socket.on('sendFeedbackFromGuest', (data) => {
@@ -365,12 +416,6 @@ socketIO.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('🔥: A user disconnected');
     });
-});
-
-app.get("/api", (req, res) => {
-    const data = fs.readFileSync("data.json")
-    const datas = JSON.parse(data)
-    res.json(datas)
 });
 
 app.get("/api/admins", (req, res) => {

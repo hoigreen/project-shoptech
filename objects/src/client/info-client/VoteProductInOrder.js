@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Nav from '../common/Nav';
 
-const VoteProductInOrder = () => {
+const VoteProductInOrder = ({ socket }) => {
     const { orderID, productID } = useParams()
 
     const [users, setUsers] = useState([])
+    const [avatarLink, setAvatarLink] = useState("")
 
     const [orders, setOrders] = useState([])
     const [owner, setOwner] = useState("")
+    const [ownerFullname, setOwnerFullname] = useState("")
     const [listProduct, setListProduct] = useState([])
     const [imageLink, setImageLink] = useState("")
     const [productName, setProductName] = useState("")
@@ -16,6 +18,7 @@ const VoteProductInOrder = () => {
     const [color, setColor] = useState("")
     const [price, setPrice] = useState()
 
+    const [timeComment, setTimeComment] = useState("")
     const [numberStar, setNumberStar] = useState()
     const [contentComment, setContentComment] = useState("")
 
@@ -51,6 +54,7 @@ const VoteProductInOrder = () => {
             if (order.orderID === orderID) {
                 setOwner(order.owner)
                 setListProduct(order.lists)
+                setOwnerFullname(order.fullname)
             }
         })
 
@@ -61,6 +65,12 @@ const VoteProductInOrder = () => {
                 setOption(item.option)
                 setColor(item.color)
                 setPrice(item.price)
+            }
+        })
+
+        users.map((user, index) => {
+            if (user.username === owner) {
+                setAvatarLink(user.avatarUrl)
             }
         })
 
@@ -94,10 +104,65 @@ const VoteProductInOrder = () => {
                 }
             }
         }
+    }    
+
+    const SetStatusVoted = () => {
+        orders.map((item, index) => {
+            if (item.orderID === orderID) {
+                socket.emit("setStatusVotedOfProductInOrder",
+                    {
+                        orderID: item.orderID
+                    }, productID
+                )
+            }
+        })
+    }
+
+    const AddComment = () => {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        socket.emit("addComment", {
+            nameProductVoted: productName,
+            owner: owner,
+            ownerAvatar: avatarLink,
+            ownerName: ownerFullname,
+            time: dateTime,
+            content: contentComment,
+            starVoted: numberStar
+        });
+    }
+
+    const UpdateRatingProduct = () => {
+        products.map((product, index) => {
+            if (product.id === productID) {
+                socket.emit("updateRatingProduct", { id: productID }, numberStar)
+            }
+        })
     }
 
     const handleConfirm = () => {
-        
+        if (!numberStar) {
+            alert("Vui lòng bình chọn số sao sản phẩm này")
+            return;
+        }
+        alert("Đánh giá sản phẩm thành công!")
+        handLoadingPage(1.5)
+        setTimeout(() => {
+            SetStatusVoted()
+            AddComment()
+            UpdateRatingProduct()
+            window.location.href = `/account/history/detail-id=${orderID}`
+        }, 1500)
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
     }
 
     return (
@@ -142,7 +207,7 @@ const VoteProductInOrder = () => {
                     </div>
 
                     <div className="vote-product__footer">
-                        <button className="vote-product__btn-confirm" onclick={handleConfirm}>
+                        <button className="vote-product__btn-confirm" onClick={handleConfirm}>
                             Xác nhận
                             <i className="vote-product__btn-icon fa fa-check"></i>
                         </button>

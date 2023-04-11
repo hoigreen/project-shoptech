@@ -97,6 +97,17 @@ const AccountOrderDetail = ({ socket }) => {
         })
     }
 
+    function checkVote(itemVoted, itemID) {
+        if (itemVoted)
+            return <button className='order-detail__item-btn order-detail__item-btn--disabled'>Đã đánh giá </button>
+        return (
+            <button className='order-detail__item-btn' onClick={e => {
+                e.preventDefault();
+                navigate(`/account/history/detail-id=${orderID}/vote-${itemID}`)
+            }}>Đánh giá</button>
+        )
+    }
+
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
@@ -221,10 +232,9 @@ const AccountOrderDetail = ({ socket }) => {
                                                 <label className='order-detail__item-quantity'>x{item.quantity}</label>
                                                 <p className='order-detail__item-price'>{Number(item.price).toLocaleString()} đ</p>
                                             </div>
-                                            <button className='order-detail__item-btn' onClick={e => {
-                                                e.preventDefault();
-                                                navigate(`/account/history/detail-id=${orderID}/vote-${item.id}`)
-                                            }}>Đánh giá</button>
+                                            <div className='order_detail__item-btn-box'>
+                                                {checkVote(item.voted, item.id)}
+                                            </div>
                                         </li>
                                     ))}
                                     <div className="order-detail__group">
