@@ -10,25 +10,23 @@ const InfoProduct = ({ socket }) => {
     const [avatarUrlAdmin, setAvatarUrlAdmin] = useState('')
 
     const [products, setProducts] = useState([])
-    const [product, setProduct] = useState([])
     const { id, price } = useParams()
 
     const [imageLink, setImageLink] = useState('')
     const [nameProduct, setNameProduct] = useState('')
     const [typeProduct, setTypeProduct] = useState('')
     const [priceProduct, setPriceProduct] = useState()
-    const [optionProduct, setOptionProduct] = useState('')
-    const [colorProduct, setColorProduct] = useState('')
+    const [colorProduct, setColorProduct] = useState([])
     const [statusProduct, setStatusProduct] = useState('')
 
     const [nameProductEdit, setNameProductEdit] = useState('')
     const [typeProductEdit, setTypeProductEdit] = useState('')
+    const [enType, setEnType] = useState('')
     const [priceProductEdit, setPriceProductEdit] = useState(0)
-    const [optionProductEdit, setOptionProductEdit] = useState('')
-    const [colorProductEdit, setColorProductEdit] = useState('')
+    const [colorProductEdit, setColorProductEdit] = useState([])
     const [statusProductEdit, setStatusProductEdit] = useState('')
-
-    const optionsTypeProduct = ['Điện thoại di động', 'Máy tính bảng', 'Máy tính xách tay', 'Phụ kiện']
+    const [boolHotDeal, setBoolHotDeal] = useState(true)
+    const [boolFeatured, setBoolFeatured] = useState(true)
 
     const navigate = useNavigate();
 
@@ -107,8 +105,6 @@ const InfoProduct = ({ socket }) => {
                 setNameProduct(product.name);
                 setTypeProduct(product.type);
                 setPriceProduct(product.price);
-                setPriceProduct(product.price);
-                setOptionProduct(product.option);
                 setColorProduct(product.color);
                 setStatusProduct(product.status);
             }
@@ -117,21 +113,51 @@ const InfoProduct = ({ socket }) => {
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
+        var boolFeaturedEdit;
+        var boolHotDealEdit;
+        if (boolFeatured === "true") {
+            boolFeaturedEdit = boolFeatured === "true"
+        }
+        else {
+            boolFeaturedEdit = boolFeatured.toLowerCase() === "False"
+        }
+
+        if (boolHotDeal === "true") {
+            boolHotDealEdit = boolHotDeal === "true"
+        }
+        else {
+            boolHotDealEdit = boolHotDeal.toLowerCase() === "False"
+        }
+
         if (window.confirm("Bạn muốn cập nhật thông tin sản phẩm?") == true) {
             socket.emit("editInfoProduct", {
-                id, name: nameProductEdit,
+                id: id,
+                name: nameProductEdit,
                 type: typeProductEdit,
+                enType: enType,
                 price: priceProductEdit,
-                option: optionProductEdit,
                 color: colorProductEdit,
+                hotDeal: boolHotDealEdit,
+                featured: boolFeaturedEdit,
                 status: statusProductEdit
             })
             window.alert("Thành công!")
             handLoadingPage(1)
             window.setTimeout(() => {
-                navigate(`/admin/product/info/${id}/${priceProductEdit}`, { product })
+                navigate(`/admin/product/info/${id}/${priceProductEdit}`)
             }, 1000)
         }
+        // console.log(Boolean(!boolHotDeal))
+        // console.log(typeof boolFeatured.toBool())
+        // console.log(boolHotDeal)
+    }
+
+    const handleShowColors = (colorArray) => {
+        var colors = ""
+        colorArray.map((color, index) => {
+            colors += `${color}, `;
+        })
+        return colors
     }
 
     const handLoadingPage = (second) => {
@@ -205,7 +231,7 @@ const InfoProduct = ({ socket }) => {
                             --
                         </div>
 
-                        <div style={{ backgroundImage: `url(${avatarUrlAdmin})` }} className="admin__header-avatar"></div>
+                        <img src={avatarUrlAdmin} className="admin__header-avatar"></img>
 
                         <div className='admin__header-option'>
                             <div className="admin__header-option-item" onClick={handleNevigateInfo} >Thông tin cá nhân</div>
@@ -225,34 +251,68 @@ const InfoProduct = ({ socket }) => {
                     <div className="info-page__body">
                         <div className="info-page__col-1">
                             <div className="info-page__avatar">
-                                <div className="info-page__avatar-img info-page__avatar-img--no-round "
-                                    style={{ backgroundImage: `url(${imageLink})` }
-                                    }></div>
+                                <img className="info-page__avatar-img info-page__avatar-img--no-round" src={imageLink}></img>
                             </div>
                             <label className="info-page__user-id">{id}</label>
+
+                            <label className="info-page__label">Tên sản phẩm</label>
+                            <input style={{ fontWeight: 'bold' }} className='info-page__input' defaultValue={nameProduct} onChange={(e) => { setNameProductEdit(e.target.value); }} />
                         </div>
 
                         <div className='info-page__col-2'>
                             <div className="info-page__box-info">
-                                <label className="info-page__label">Tên sản phẩm</label>
-                                <input style={{ fontWeight: 'bold' }} className='info-page__input' defaultValue={nameProduct} onChange={(e) => { setNameProductEdit(e.target.value); }} />
-
                                 <label className="info-page__label">Loại sản phẩm</label>
-                                <input className='info-page__input' defaultValue={typeProduct} onChange={(e) => { setTypeProductEdit(e.target.value); }} />
-
-                                <label className="info-page__label">Tùy chọn sản phẩm</label>
-                                <input className='info-page__input' defaultValue={optionProduct} onChange={(e) => { setOptionProductEdit(e.target.value); }} />
+                                <select style={{ fontWeight: '500' }} className='info-page__input' onChange={(e) => {
+                                    setTypeProductEdit(e.target.value);
+                                    switch ((e.target.value).toLowerCase()) {
+                                        case "điện thoại":
+                                            setEnType("smartphone");
+                                            break;
+                                        case "máy tính bảng":
+                                            setEnType("tablet");
+                                            break;
+                                        case "máy tính xách tay":
+                                            setEnType("laptop");
+                                            break;
+                                        case "phụ kiện":
+                                            setEnType("accessories");
+                                            break;
+                                    }
+                                }} value={typeProductEdit} defaultValue={typeProduct}>
+                                    <option value="Điện thoại">Điện thoại di động</option>
+                                    <option value="Máy tính xách tay">Máy tính xách tay</option>
+                                    <option value="Máy tính bảng">Máy tính bảng</option>
+                                    <option value="Phụ kiện">Phụ kiện công nghệ</option>
+                                </select>
 
                                 <label className="info-page__label">Màu sắc</label>
-                                <input className='info-page__input' defaultValue={colorProduct} onChange={(e) => { setColorProductEdit(e.target.value); }} />
+                                <input type='text' className='info-page__input' onChange={(e) => {
+                                    var arrayColor = (e.target.value).split(", ")
+                                    setColorProductEdit(arrayColor)
+                                }} placeholder="(Mỗi màu sắc được ngăn cách bằng dấu phẩy). Vd: Đỏ, Vàng, ..." defaultValue={handleShowColors(colorProduct)} />
 
-                                <label className="info-page__label">Trạng thái sản phẩm</label>
-                                <input className='info-page__input' defaultValue={statusProduct} onChange={(e) => { setStatusProductEdit(e.target.value); }} />
 
                                 <label className="info-page__label">Giá sản phẩm</label>
                                 <input type="number" className='info-page__input' defaultValue={price} onChange={(e) => { setPriceProductEdit(e.target.value); }}
                                     style={{ fontWeight: 'bold', color: 'red' }} />
 
+                                <label className="info-page__label" style={{ fontWeight: 'bold', color: 'green' }}>Thêm vào sản phẩm nổi bật</label>
+                                <select className='info-page__input' onChange={(e) => { setBoolFeatured(e.target.value); }} value={boolFeatured}>
+                                    <option value="true">Có</option>
+                                    <option value="False">Không</option>
+                                </select>
+
+                                <label className="info-page__label" style={{ fontWeight: 'bold', color: 'red' }}>Thêm vào sản phẩm khuyến mãi khung giờ vàng</label>
+                                <select className='info-page__input' onChange={(e) => { setBoolHotDeal(e.target.value); }} value={boolHotDeal}>
+                                    <option value="true">Có</option>
+                                    <option value="False">Không</option>
+                                </select>
+
+                                <label className="info-page__label">Trạng thái sản phẩm</label>
+                                <select className='info-page__input' onChange={(e) => { setStatusProductEdit(e.target.value); }} value={statusProductEdit}>
+                                    <option value="Sẵn hàng">Sẵn hàng</option>
+                                    <option value="Cháy hàng">Cháy hàng</option>
+                                </select>
                             </div>
                         </div>
                     </div>

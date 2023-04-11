@@ -270,10 +270,7 @@ const Dashboard = () => {
                             <div className='admin__item' key={index}>
                                 <label className='admin__item-id'>{admin.adminID}</label>
                                 <div className='admin__item-avatar'>
-                                    <div style={{
-                                        backgroundImage: `url(${admin.avatarUrl})`
-                                    }}
-                                        className='admin__item-img'></div>
+                                    <img src={admin.avatarUrl} className='admin__item-img'></img>
                                 </div>
                                 <label className='admin__item-admin-name'>{admin.adminName}</label>
 
@@ -287,7 +284,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className='admin__item-info'>
                                     <label className='admin__item-info-label'>Số điện thoại: </label>
-                                    <p className='admin__item-info-content'>+84 {admin.phone || "Trống!"}</p>
+                                    <p className='admin__item-info-content'>{admin.phone || "Trống!"}</p>
                                 </div>
                                 <div className='admin__item-info'>
                                     <label className='admin__item-info-label'>Địa chỉ:</label>

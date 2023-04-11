@@ -88,14 +88,16 @@ function findCustomer(idKey, myArray, fullnameCustomer, emailCustomer, phoneCust
     })
 }
 
-function findProduct(idKey, myArray, nameProduct, typeProduct, priceProduct, optionProduct, colorProduct, statusProduct) {
+function findProduct(idKey, myArray, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             myArray[i].name = nameProduct;
             myArray[i].type = typeProduct;
+            myArray[i].enType = enTypeProduct;
             myArray[i].price = priceProduct;
-            myArray[i].option = optionProduct;
             myArray[i].color = colorProduct;
+            myArray[i].hotDeal = hotDealProduct;
+            myArray[i].featured = productFeatured;
             myArray[i].status = statusProduct;
         }
     }
@@ -300,7 +302,7 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoProduct", data => {
-        findProduct(data.id, objectDataProduct["products"], data.name, data.type, data.price, data.option, data.color, data.status)
+        findProduct(data.id, objectDataProduct["products"], data.name, data.type, data.enType, data.price, data.color, data.hotDeal, data.featured, data.status)
         socket.broadcast.emit("editInfoProductResponse", data)
     })
 

@@ -97,8 +97,6 @@ const InfoProductClient = ({ socket }) => {
         })
 
         handleFormatCrumbs()
-        handleLoadStarProduct()
-        handleLoadStarVoted()
     })
 
     const handleFormatCrumbs = () => {
@@ -124,63 +122,6 @@ const InfoProductClient = ({ socket }) => {
         } else {
             return `★★★★★`
         }
-    }
-
-    const handleLoadStarProduct = () => {
-        let starOfProduct = 0;
-        products.map((product, index) => {
-            if (name === product.name) {
-                starOfProduct = product.star;
-            }
-        })
-        const elementStarProductHeader = document.querySelector(".info-product__header-star")
-        const elementStarProduct = document.querySelector(".info-product__rating-star-icon")
-        if (starOfProduct < 1) {
-            elementStarProductHeader.textContent = `☆☆☆☆☆`
-            elementStarProduct.textContent = `☆ ☆ ☆ ☆ ☆`
-        } else if (starOfProduct < 2) {
-            elementStarProductHeader.textContent = `★☆☆☆☆`
-            elementStarProduct.textContent = `★ ☆ ☆ ☆ ☆`
-        } else if (starOfProduct < 3) {
-            elementStarProductHeader.textContent = `★★☆☆☆`
-            elementStarProduct.textContent = `★ ★ ☆ ☆ ☆`
-        } else if (starOfProduct < 4) {
-            elementStarProductHeader.textContent = `★★★☆☆`
-            elementStarProduct.textContent = `★ ★ ★ ☆ ☆`
-        } else if (starOfProduct < 5) {
-            elementStarProductHeader.textContent = `★★★★☆`
-            elementStarProduct.textContent = `★ ★ ★ ★ ☆`
-        } else {
-            elementStarProductHeader.textContent = `★★★★★`
-            elementStarProduct.textContent = `★ ★ ★ ★ ★`
-        }
-    }
-
-    const handleLoadStarVoted = () => {
-        let starVoted = 0;
-        comments.map((comment, index) => {
-            if (name === comment.nameProductVoted) {
-                starVoted = comment.starVoted;
-            }
-        })
-
-        const elementStarVoted = document.querySelector(".info-product__review-item-vote-start")
-        if (elementStarVoted) {
-            if (starVoted < 1) {
-                elementStarVoted.textContent = `☆☆☆☆☆`
-            } else if (starVoted < 2) {
-                elementStarVoted.textContent = `★☆☆☆☆`
-            } else if (starVoted < 3) {
-                elementStarVoted.textContent = `★★☆☆☆`
-            } else if (starVoted < 4) {
-                elementStarVoted.textContent = `★★★☆☆`
-            } else if (starVoted < 5) {
-                elementStarVoted.textContent = `★★★★☆`
-            } else {
-                elementStarVoted.textContent = `★★★★★`
-            }
-        }
-
     }
 
     const handleSelectOption = (optionData, data) => {
@@ -404,7 +345,6 @@ const InfoProductClient = ({ socket }) => {
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
-        console.log(loading)
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")
@@ -413,26 +353,24 @@ const InfoProductClient = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
             <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <Breadcrumbs />
             <div className="container">
-
+                <div className="modal__cover">
+                    <div className="modal">
+                        <div className="modal__body">
+                            <div className="modal__loading-spinner "></div>
+                            <div>Đang tải dữ liệu ...</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="grid wide">
                     <div className="info-product__container">
                         <div className="info-product__header">
                             <label className="info-product__header-name">{name}</label>
-                            <p className="info-product__header-star">()</p>
+                            <p className="info-product__header-star">{handleFormatStarProduct(starProduct)}</p>
                             <p className="info-product__header-voters">({voterProduct} người bình chọn)</p>
                         </div>
 
@@ -586,15 +524,12 @@ const InfoProductClient = ({ socket }) => {
                             <div className="info-product__similar-label">SẢN PHẨM TƯƠNG TỰ</div>
                             <ul className="info-product__similar-list">
                                 {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li
-                                        className="product__sell-item"
+                                    <li className="product__sell-item"
                                         key={index}
                                         onClick={(e) => {
                                             e.preventDefault();
                                             window.location.href = `/product/${product.enType}/${product.name}`
-
-                                        }}
-                                    >
+                                        }}>
                                         <div style={{
                                             background: `url(${product.imageLink})`,
                                             backgroundColor: "transparent",
@@ -607,8 +542,7 @@ const InfoProductClient = ({ socket }) => {
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
                                         <label className='product__sell-item-sold'>
                                             Đánh giá:
-                                            <span className='product__sell-item-star'>{product.star}</span>
-                                            <span className='product__sell-item-star-icon'>⭐</span>
+                                            <span className='product__sell-item-star'>{handleFormatStarProduct(product.star)}</span>
                                         </label>
                                     </li>
                                 ))}
@@ -619,7 +553,7 @@ const InfoProductClient = ({ socket }) => {
                             <div className="info-product__rating-box">
                                 <label className="info-product__rating-label">ĐÁNH GIÁ SẢN PHẨM</label>
                                 <p className="info-product__rating-star">{Number(starProduct).toFixed(1)}/5</p>
-                                <p className="info-product__rating-star-icon"></p>
+                                <p className="info-product__rating-star-icon">{handleFormatStarProduct(starProduct)}</p>
                                 <p className="info-product__rating-number">{voterProduct} lượt đánh giá</p>
                             </div>
 

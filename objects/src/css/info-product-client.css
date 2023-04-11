@@ -85,7 +85,8 @@
 .info-product__image-pre-btn--prev:hover {
     animation: fadeIn .3s ease;
     opacity: 1;
-    cursor: pointer;;
+    cursor: pointer;
+    ;
 }
 
 .info-product__image-pre-btn--next {
@@ -106,7 +107,8 @@
 .info-product__image-pre-btn--next:hover {
     animation: fadeIn .3s ease;
     opacity: 1;
-    cursor: pointer;;
+    cursor: pointer;
+    ;
 }
 
 .info-product__image-label {

@@ -152,26 +152,47 @@ const Home = () => {
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "center center",
                                 backgroundSize: "cover"
-                            }} className='home-promote__item' key={index}></li>
+                            }} className='home-promote__item' key={index}>
+                            </li>
                         ))}
                     </ul>
 
                     <div id="home__list">
                         <div className="home__list-label">Danh mục sản phẩm</div>
                         <ul className="home__list-product">
-                            <li className='home__list-product-item' onClick={(e) => { navigate('/smartphone') }}>
+                            <li className='home__list-product-item' onClick={(e) => {
+                                handLoadingPage(1.5)
+                                setTimeout(() => {
+                                    window.location.href = "/smartphone"
+                                }, 1000)
+                            }}>
                                 <div className="home__list-product-img-1" ></div>
                                 <p className="home__list-product-name">Điện thoại di động</p>
                             </li>
-                            <li className='home__list-product-item' onClick={(e) => { navigate('/laptop') }}>
+                            <li className='home__list-product-item' onClick={(e) => {
+                                handLoadingPage(1.5)
+                                setTimeout(() => {
+                                    window.location.href = "/laptop"
+                                }, 1000)
+                            }}>
                                 <div className="home__list-product-img-2"></div>
                                 <p className="home__list-product-name">Máy tính xách tay</p>
                             </li>
-                            <li className='home__list-product-item' onClick={(e) => { navigate('/tablet') }}>
+                            <li className='home__list-product-item' onClick={(e) => {
+                                handLoadingPage(1.5)
+                                setTimeout(() => {
+                                    window.location.href = "/tablet"
+                                }, 1000)
+                            }}>
                                 <div className="home__list-product-img-3" ></div>
                                 <p className="home__list-product-name">Máy tính bảng</p>
                             </li>
-                            <li className='home__list-product-item' onClick={(e) => { navigate('/accessories') }}>
+                            <li className='home__list-product-item' onClick={(e) => {
+                                handLoadingPage(1.5)
+                                setTimeout(() => {
+                                    window.location.href = "/accessories"
+                                }, 1000)
+                            }}>
                                 <div className="home__list-product-img-4"></div>
                                 <p className="home__list-product-name">Phụ kiện đỉnh chóp</p>
                             </li>

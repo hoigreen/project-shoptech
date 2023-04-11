@@ -56,7 +56,7 @@ html {
 
 body {
     margin: 0;
-    background-color: var(--background-color); 
+    background-color: var(--background-color);
 }
 
 .container {
@@ -358,10 +358,7 @@ body {
     height: 50px;
     display: inline-block;
     margin: auto 0 auto 4px;
-    background-color: transparent;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    object-fit: cover;
     border-radius: 50%;
 }
 
@@ -663,14 +660,11 @@ tbody {
 
 .admin__item-img {
     display: block;
-    width: 100px;
-    height: 100px;
-    background-position: center center;
-    background-color: transparent;
-    background-size: cover;
-    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 50%;
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
 }
 
 .admin__item-admin-name {
@@ -1175,13 +1169,10 @@ tbody {
 }
 
 .info-page__avatar-img {
-    width: 300px;
-    height: 300px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
-    margin-top: 20px;
+    object-fit: contain;
 }
 
 .info-page__avatar-img--no-round {
@@ -1213,7 +1204,7 @@ tbody {
 }
 
 .info-page__box-info {
-    padding-top: 20px;
+    padding: 10px 10px 0;
     border-top: 2px solid #eee;
 }
 
@@ -1228,7 +1219,7 @@ tbody {
 .info-page__label {
     display: inline-block;
     width: 100%;
-    padding: 0 40px;
+    padding: 0 40px 4px;
     font-size: 2.4rem;
     margin-top: 6px;
 }
@@ -2072,9 +2063,10 @@ tbody {
 }
 
 .product__sell-item-star {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-left: 6px;
     font-weight: 500;
+    color: var(--button-color);
 }
 
 .product__sell-item-star-icon {
