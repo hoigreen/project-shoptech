@@ -261,6 +261,7 @@ function findOrderToSetStatusVoteOfProduct(orderIDKey, myArray, productID) {
     fs.writeFile("datas/data-order.json", stringData, (err) => {
         console.error(err)
     })
+    return;
 }
 
 function findProductToUpdateRating(idKey, myArray, starVoted) {
@@ -274,6 +275,7 @@ function findProductToUpdateRating(idKey, myArray, starVoted) {
     fs.writeFile("datas/data-product.json", stringData, (err) => {
         console.error(err)
     })
+    return;
 }
 
 
@@ -381,23 +383,36 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("setStatusOrderResponse", data)
     })
 
-    socket.on("setStatusVotedOfProductInOrder", (data, productID) => {
-        findOrderToSetStatusVoteOfProduct(data.orderID, objectDataOrder["orders"], productID)
-        socket.broadcast.emit("setStatusVotedOfProductInOrderResponse", data)
-    })
+    // socket.on('addComment', (data) => {
+    //     objectDataComment["comments"].push(data)
+    //     const stringData = JSON.stringify(objectDataComment, null, 2)
+    //     fs.writeFile("datas/data-comment.json", stringData, (err) => {
+    //         console.error(err)
+    //     })
+    //     socket.broadcast.emit("addCommentResponse", data)
+    // });
 
-    socket.on('addComment', (data) => {
-        objectDataComment["comments"].push(data)
+    // socket.on("setStatusVotedOfProductInOrder", (data, productID) => {
+    //     findOrderToSetStatusVoteOfProduct(data.orderID, objectDataOrder["orders"], productID)
+    //     socket.broadcast.emit("setStatusVotedOfProductInOrderResponse", data)
+    // })
+
+
+
+    // socket.on("updateRatingProduct", (data, starVoted) => {
+    //     findProductToUpdateRating(data.id, objectDataProduct["products"], starVoted)
+    //     socket.broadcast.emit("updateRatingProductResponse", data)
+    // })
+
+    socket.on("handleVoteProduct", (dataStatus, dataRating, dataComment, productID, starVoted) => {
+        findOrderToSetStatusVoteOfProduct(dataStatus.orderID, objectDataOrder["orders"], productID)
+        findProductToUpdateRating(dataRating.id, objectDataProduct["products"], starVoted)
+        objectDataComment["comments"].push(dataComment)
         const stringData = JSON.stringify(objectDataComment, null, 2)
         fs.writeFile("datas/data-comment.json", stringData, (err) => {
             console.error(err)
         })
-        socket.broadcast.emit("addCommentResponse", data)
-    });
-
-    socket.on("updateRatingProduct", (data, starVoted) => {
-        findProductToUpdateRating(data.id, objectDataProduct["products"], starVoted)
-        socket.broadcast.emit("updateRatingProductResponse", data)
+        socket.broadcast.emit("handleVoteProductResponse", 123)
     })
 
 
@@ -452,6 +467,12 @@ app.get("/api/giftcodes", (req, res) => {
     const dataGiftcode = fs.readFileSync("datas/data-giftcode.json")
     const dataGiftcodes = JSON.parse(dataGiftcode)
     res.json(dataGiftcodes)
+});
+
+app.get("/api/comments", (req, res) => {
+    const dataComment = fs.readFileSync("datas/data-comment.json")
+    const dataComments = JSON.parse(dataComment)
+    res.json(dataComments)
 });
 
 app.get("/api/feedbacks", (req, res) => {

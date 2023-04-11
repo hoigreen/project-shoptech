@@ -38,7 +38,7 @@
       ],
       "status": "Sẵn hàng",
       "star": 4,
-      "voter": 149,
+      "voter": 150,
       "hotDeal": true,
       "featured": true,
       "percent": 5
@@ -111,8 +111,8 @@
         "Đen tuyền"
       ],
       "status": "Sẵn hàng",
-      "star": 4.25,
-      "voter": 8,
+      "star": 4.111111111111111,
+      "voter": 9,
       "hotDeal": true,
       "featured": true,
       "percent": 3
@@ -231,8 +231,8 @@
         "Hồng"
       ],
       "status": "Sẵn hàng",
-      "star": 0,
-      "voter": 0,
+      "star": 4.5,
+      "voter": 2,
       "hotDeal": true,
       "featured": true,
       "percent": 12

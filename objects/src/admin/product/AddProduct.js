@@ -144,7 +144,7 @@ const AddProduct = ({ socket }) => {
                             <input style={{ fontWeight: "bold", color: "red" }} readOnly className='add__input add__input--readonly' value={"P00" + Number(products.length + 1)}
                                 onFocus={(e) => {
                                     setProductID(e.target.value);
-                                }}/>
+                                }} />
 
                             <label className="add__label">Tên sản phẩm</label>
                             <input className='add__input' onChange={(e) => { setName(e.target.value); }} />

@@ -138,7 +138,7 @@ const Cart = ({ socket }) => {
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
-                <div className="container">
+                <div className="container" style={{ paddingBottom: "200px" }}>
                     <div className="cart__container--empty">
                         <div className="cart__icon"></div>
                         <label className="cart__label--empty">Bạn chưa thêm sản phẩm nào vào trong giỏ hàng!</label>

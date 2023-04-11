@@ -201,7 +201,7 @@ const Payment = ({ socket }) => {
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
-                <div className="container">
+                <div className="container" style={{ paddingBottom: "200px" }}>
                     <div className="cart__container" style={{ display: "flex", width: "60%" }}>
                         <div className="cart__header">
                             <button className="cart__btn-cancel" onClick={() => { window.location.href = "/cart/info/giftcode/confirm" }}>

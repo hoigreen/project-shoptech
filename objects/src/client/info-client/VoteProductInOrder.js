@@ -104,42 +104,6 @@ const VoteProductInOrder = ({ socket }) => {
                 }
             }
         }
-    }    
-
-    const SetStatusVoted = () => {
-        orders.map((item, index) => {
-            if (item.orderID === orderID) {
-                socket.emit("setStatusVotedOfProductInOrder",
-                    {
-                        orderID: item.orderID
-                    }, productID
-                )
-            }
-        })
-    }
-
-    const AddComment = () => {
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date + ' ' + time;
-        socket.emit("addComment", {
-            nameProductVoted: productName,
-            owner: owner,
-            ownerAvatar: avatarLink,
-            ownerName: ownerFullname,
-            time: dateTime,
-            content: contentComment,
-            starVoted: numberStar
-        });
-    }
-
-    const UpdateRatingProduct = () => {
-        products.map((product, index) => {
-            if (product.id === productID) {
-                socket.emit("updateRatingProduct", { id: productID }, numberStar)
-            }
-        })
     }
 
     const handleConfirm = () => {
@@ -150,9 +114,33 @@ const VoteProductInOrder = ({ socket }) => {
         alert("Đánh giá sản phẩm thành công!")
         handLoadingPage(1.5)
         setTimeout(() => {
-            SetStatusVoted()
-            AddComment()
-            UpdateRatingProduct()
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date + ' ' + time;
+            orders.map((item, index) => {
+                if (item.orderID === orderID) {
+                    products.map((product, i) => {
+                        if (product.id === productID) {
+                            socket.emit("handleVoteProduct",
+                                { orderID: item.orderID },
+                                { id: productID },
+                                {
+                                    nameProductVoted: productName,
+                                    owner: owner,
+                                    ownerAvatar: avatarLink,
+                                    ownerName: ownerFullname,
+                                    time: dateTime,
+                                    content: contentComment,
+                                    starVoted: numberStar
+                                },
+                                productID,
+                                numberStar
+                            )
+                        }
+                    })
+                }
+            })
             window.location.href = `/account/history/detail-id=${orderID}`
         }, 1500)
     }

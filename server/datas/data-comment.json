@@ -8,6 +8,42 @@
       "time": "17:12 2023-03-14",
       "content": "Tôi không muốn nói tới sản phẩm này, vì mỗi lần nhắc đến nó nack của tôi lại bị nhức 💌😍😍😍. Tuy vậy tôi vẫn chưa hài lòng ở việc sản phẩm này không có gì để chê cả",
       "starVoted": 4
+    },
+    {
+      "nameProductVoted": "Chuột không dây Logitech Lift Vertical",
+      "owner": "hova12",
+      "ownerAvatar": "http://localhost:4000/uploads/customers/img-G002.png",
+      "ownerName": "Nguyễn Ngọc Sơn",
+      "time": "2023-4-11 10:42:24",
+      "content": "Sản phẩm chất lượng từ giá thành đến trải nghiệm nó mang lại",
+      "starVoted": 5
+    },
+    {
+      "nameProductVoted": "Apple Iphone 13 - 2023",
+      "owner": "nkhanh12",
+      "ownerAvatar": "http://localhost:4000/uploads/customers/img-avatar-empty.png",
+      "ownerName": "Nguyễn Ngọc Khánh Trân",
+      "time": "2023-4-11 10:54:20",
+      "content": "Mình mua máy ở ShopTech, máy rất đẹp, nhẹ và gọn, phù hợp với nhu cầu của mình.\n\nMàu đen thật sự nổi bật và lịch lãm. Nhân viên chăm sóc khá tốt. Tính đến thời điểm hiện tại chưa có phần mềm nào làm khó được nó!",
+      "starVoted": 4
+    },
+    {
+      "nameProductVoted": "Chuột không dây Logitech Lift Vertical",
+      "owner": "bbinh19",
+      "ownerAvatar": "http://localhost:4000/uploads/customers/img-G001.png",
+      "ownerName": "Võ Văn Bình",
+      "time": "2023-4-11 10:56:39",
+      "content": "Khi nào có khuyến mãi giảm sâu nữa nhỉ, Có thì mình sẽ mua thêm 2 cái nữa về dùng cho nó đã!",
+      "starVoted": 4
+    },
+    {
+      "nameProductVoted": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+      "owner": "bbinh19",
+      "ownerAvatar": "http://localhost:4000/uploads/customers/img-G001.png",
+      "ownerName": "Võ Văn Bình",
+      "time": "2023-4-11 11:2:0",
+      "content": "Intel Core i7-11800H là chưa xứng tầm với múc giá của nó. Bù lại cũng có một chút hài lòng vì ngoại hình quá ư là chất của máy",
+      "starVoted": 3
     }
   ]
 }

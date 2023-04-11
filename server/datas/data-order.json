@@ -36,7 +36,7 @@
           "price": 41000000,
           "percent": 5,
           "quantity": 1,
-          "voted": false
+          "voted": true
         },
         {
           "indexProduct": 3,
@@ -216,7 +216,7 @@
       "price": "1290000",
       "giftcodeApply": "49",
       "time": "2023-4-9 14:28:9",
-      "status": "Đang giao hàng",
+      "status": "Giao hàng thành công",
       "lists": [
         {
           "indexProduct": 1,
@@ -228,23 +228,65 @@
           "price": 1290000,
           "percent": 12,
           "quantity": 1,
-          "voted": false
+          "voted": true
         }
       ]
     },
     {
-      "nameProductVoted": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-      "owner": "nkhanh12",
-      "ownerName": "Nguyễn Ngọc Khánh Trân",
-      "time": "",
-      "content": "123"
+      "orderID": "6VY49PQ30X",
+      "owner": "hova12",
+      "fullname": "Nguyễn Ngọc Sơn",
+      "email": "son1024@gmail.com",
+      "phone": "0983110392",
+      "method": "Nhận hàng tại nhà",
+      "address": "Gia Lai",
+      "note": "a",
+      "price": "1290000",
+      "giftcodeApply": "49",
+      "time": "2023-4-11 9:56:30",
+      "status": "Giao hàng thành công",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P009.png",
+          "id": "P009",
+          "productName": "Chuột không dây Logitech Lift Vertical",
+          "option": "Có dây",
+          "color": "Trắng",
+          "price": 1290000,
+          "percent": 12,
+          "quantity": 1,
+          "voted": true
+        }
+      ]
     },
     {
-      "nameProductVoted": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
-      "owner": "nkhanh12",
-      "ownerName": "Nguyễn Ngọc Khánh Trân",
-      "time": "2023-4-11 8:13:31",
-      "content": "123"
+      "orderID": "V2T98EG90Q",
+      "owner": "bbinh19",
+      "fullname": "Võ Văn Bình",
+      "email": "binh_kunfg142@gmail.com",
+      "phone": "0982291103",
+      "method": "Nhận hàng tại nhà",
+      "address": "Thanh Oai, Hà Nội",
+      "note": "",
+      "price": "38790000",
+      "giftcodeApply": "49",
+      "time": "2023-4-11 10:59:45",
+      "status": "Giao hàng thành công",
+      "lists": [
+        {
+          "indexProduct": 1,
+          "imageLink": "http://localhost:4000/uploads/products/img-P003.png",
+          "id": "P003",
+          "productName": "Laptop GIGABYTE AERO 15 OLED KD 72S1623GH",
+          "option": "32GB DDR4-3200Mhz",
+          "color": "Đen tuyền",
+          "price": 38790000,
+          "percent": 3,
+          "quantity": 1,
+          "voted": true
+        }
+      ]
     }
   ]
 }

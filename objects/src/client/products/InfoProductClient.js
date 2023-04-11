@@ -110,6 +110,22 @@ const InfoProductClient = ({ socket }) => {
         })
     }
 
+    const handleFormatStarProduct = (starOfProduct) => {
+        if (starOfProduct < 1) {
+            return `☆☆☆☆☆`
+        } else if (starOfProduct < 2) {
+            return `★☆☆☆☆`
+        } else if (starOfProduct < 3) {
+            return `★★☆☆☆`
+        } else if (starOfProduct < 4) {
+            return `★★★☆☆`
+        } else if (starOfProduct < 5) {
+            return `★★★★☆`
+        } else {
+            return `★★★★★`
+        }
+    }
+
     const handleLoadStarProduct = () => {
         let starOfProduct = 0;
         products.map((product, index) => {
@@ -609,7 +625,6 @@ const InfoProductClient = ({ socket }) => {
 
                             <ul className="info-product__review-list">
                                 <label className="info-product__review-label">Nhận xét</label>
-
                                 {loading ? <p>Đang kết nối đến server ... </p> : comments.map((comment, index) => (
                                     <li className="info-product__review-item">
                                         <div className="info-product__review-item-title">
@@ -629,7 +644,7 @@ const InfoProductClient = ({ socket }) => {
                                         <div className='info-product__review-item-vote'>
                                             <label className='info-product__review-item-vote-title'>
                                                 Đánh giá sản phẩm:
-                                                <span className='info-product__review-item-vote-start'></span>
+                                                <span className='info-product__review-item-vote-start'>{handleFormatStarProduct(comment.starVoted)}</span>
                                             </label>
                                             <label className='info-product__review-item-vote-title'>Nhận xét sản phẩm:</label>
                                             <div className='info-product__review-item-vote-box'>
