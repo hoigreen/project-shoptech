@@ -73,10 +73,6 @@ const Accessories = ({ socket }) => {
 
                         </div>
 
-                        {/* <img className="accessories__event-image-gif" src="https://w.ladicdn.com/5bf3dc7edc60303c34e4991f/banner-ver-2023-8-11-20230214033025-h8scc.gif" alt="ảnh gif" ></img>
- */}
-
-
                         <div className="accessories__event-content">
                         </div>
                     </section>
@@ -141,6 +137,7 @@ const Accessories = ({ socket }) => {
                     </div>
 
 
+                    <img className="accessories__event-image-gif" src="https://w.ladicdn.com/5bf3dc7edc60303c34e4991f/banner-ver-2023-8-11-20230214033025-h8scc.gif" alt="ảnh gif" ></img>
 
 
                     <section>
