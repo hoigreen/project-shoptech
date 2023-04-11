@@ -52,7 +52,7 @@ const Accessories = ({ socket }) => {
     }
     return (
         <div>
-            <div className='container' style={{ backgroundColor: "#fcd8aa", marginTop: "60px", padding: "50px 0 30px" }}>
+            <div className='container' style={{ backgroundColor: "#FFFFCC ", marginTop: "60px", padding: "50px 0 30px" }}>
                 <Nav socket={socket} />
                 <div className="accessories__ladi-image">
                     <div className="accessories__ladi-image-background">

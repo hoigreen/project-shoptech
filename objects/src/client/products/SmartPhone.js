@@ -33,7 +33,7 @@ const SmartPhone = ({ socket }) => {
     return (
         <div>
             <Nav socket="socket"> </Nav>
-            <div className='container' style={{ backgroundColor: "#c4eae8", marginTop: "60px", paddingTop: "50px" }}>
+            <div className='container' style={{ backgroundColor: "#fcd8aa", marginTop: "60px", paddingTop: "50px" }}>
                 <div className="smartphone__ladi-image">
                     <div className="smartphone__ladi-image-background">
                         <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/thang-3-deal-tha-ga-20230306042957-ev9xk.png"></img>
@@ -157,6 +157,8 @@ const SmartPhone = ({ socket }) => {
             </div >
             <Footer socket={socket}></Footer>
         </div>
+            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
+                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
         </div>
     );
 

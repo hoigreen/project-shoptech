@@ -24,7 +24,7 @@ const Laptop = ({ socket }) => {
     return (
         <div>
             <Nav socket="socket"> </Nav>
-            <div className='container' style={{ backgroundColor: "#acf7d5", marginTop: "60px", paddingTop: "50px" }}>
+            <div className='container' style={{ backgroundColor: "#FFFF66", marginTop: "60px", paddingTop: "50px" }}>
                 <div className="laptop__ladi-image">
                     <div className="laptop__ladi-image-background">
                         <img src="https://theme.hstatic.net/1000026716/1000440777/14/stk-bn-right.png?v=35665"></img>
@@ -169,6 +169,8 @@ const Laptop = ({ socket }) => {
             </div >
 
             <Footer socket={socket}></Footer>
+            <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
+                Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
 
         </div>
     );

@@ -43,7 +43,7 @@ const Tablet = ({ socket }) => {
     return (
         <div>
             <Nav socket={socket} />
-            <div className='container' style={{ backgroundColor: "#c4eae8", marginTop: "60px", paddingTop: "50px" }}>
+            <div className='container' style={{ backgroundColor: "#FFCC66", marginTop: "60px", paddingTop: "50px" }}>
                 <div className="tablet__ladi-image">
                     <div className="tablet__ladi-image-background">
                         <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/banner_side-web-20230315064013-xgxik.png
