@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
+import AdminHeader from '../common/AdminHeader';
 
 const InfoProduct = ({ socket }) => {
     const [admins, setAdmins] = useState([])
@@ -147,9 +148,6 @@ const InfoProduct = ({ socket }) => {
                 navigate(`/admin/product/info/${id}/${priceProductEdit}`)
             }, 1000)
         }
-        // console.log(Boolean(!boolHotDeal))
-        // console.log(typeof boolFeatured.toBool())
-        // console.log(boolHotDeal)
     }
 
     const handleShowColors = (colorArray) => {
@@ -222,24 +220,8 @@ const InfoProduct = ({ socket }) => {
             </div>
 
             <div id="admin-box">
-                <div className="admin__header">
-                    <div className="admin__header-title">Trang quản trị hệ thống ShopTECH</div>
-                    <div className="admin__header-admin">
-                        <div className="admin__header-info">
-                            Hello,
-                            <span className="admin__header-name">{fullname}</span>
-                            --
-                        </div>
-
-                        <img src={avatarUrlAdmin} className="admin__header-avatar"></img>
-
-                        <div className='admin__header-option'>
-                            <div className="admin__header-option-item" onClick={handleNevigateInfo} >Thông tin cá nhân</div>
-                            <div className="admin__header-option-item" onClick={LogOut} style={{ color: 'red', fontWeight: 600 }}>Đăng xuất</div>
-                        </div>
-                    </div>
-                </div>
-
+                <AdminHeader />
+                
                 <div className="admin__title">
                     <label className='admin__tilte-label'>Chúc một ngày tốt lành, quản trị viên!</label>
                     <label className='admin__tilte-describe'>Trang quản lý khách hàng</label>

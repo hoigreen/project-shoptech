@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ModalLoading from './common/ModalLoading';
 
 const Login = () => {
     const [admins, setAdmins] = useState([])
@@ -100,16 +101,7 @@ const Login = () => {
     return (
         <div className='login--admin-container'>
             <div id="toast"></div>
-
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
             <div className="login__logo"></div>
             <div className="login__box">
                 <label className="login__label-login">Đăng nhập tài khoản</label>

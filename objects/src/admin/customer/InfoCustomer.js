@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
+import ModalLoading from '../common/ModalLoading';
+import AdminSidebar from '../common/AdminSidebar';
+import AdminHeader from '../common/AdminHeader';
 
 const InfoCustomer = ({ socket }) => {
     const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
-    const [adminID, setAdminID] = useState('')
-    const [fullname, setFullname] = useState('')
-    const [avatarUrlAdmin, setAvatarUrlAdmin] = useState('')
 
     const [users, setUsers] = useState([])
     const [user, setUser] = useState([])
@@ -36,62 +35,7 @@ const InfoCustomer = ({ socket }) => {
         fetchAPI()
     }, [])
 
-    const navigate = useNavigate();
-
-    const handleNevigateDashboard = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/dashboard`);
-        }, 1000)
-    }
-    const handleNevigateCustomer = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/customer`)
-        }, 1000)
-    }
-    const handleNevigateProduct = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/product`)
-        }, 1000)
-    }
-    const handleNevigatePromote = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/promote`)
-        }, 1000)
-    }
-    const handleNevigateFeedback = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/feedback`)
-        }, 1000)
-    }
-    const handleNevigateInfo = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/info-admin/${adminID}`)
-        }, 1000)
-    }
-
-    const LogOut = () => {
-        window.localStorage.removeItem('adminNameLogin')
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            window.location.href = `/admin`
-        }, 1000)
-    }
-
     useEffect(() => {
-        // show admin đăng nhập
-        admins.map((admin, index) => {
-            if (admin.adminName == window.localStorage.getItem('adminNameLogin')) {
-                setAdminID(admin.adminID);
-                setFullname(admin.fullname);
-                setAvatarUrlAdmin(admin.avatarUrl);
-            }
-        })
 
         // show thông tin user
         users.map((user, index) => {
@@ -126,75 +70,10 @@ const InfoCustomer = ({ socket }) => {
 
     return (
         <div className='customer__container'>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="sidebar">
-                <div className="sidebar__logo" onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = '/admin/dashboard'
-                }}></div>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateDashboard}>
-                    <i className="sidebar__component-item-icon fa fa-home" aria-hidden="true"></i>
-                    Thống kê
-                </div>
-                <div className="sidebar__component">
-                    <label className="sidebar__component-label">Quản lý dữ liệu</label>
-                    <div className="sidebar__component-item" onClick={handleNevigateCustomer}>
-                        <i className="sidebar__component-item-icon fa fa-users" aria-hidden="true"></i>
-                        Khách hàng
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateProduct}>
-                        <i className="sidebar__component-item-icon fa fa-table" aria-hidden="true"></i>
-                        Sản phẩm
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigatePromote}>
-                        <i className="sidebar__component-item-icon fa fa-tag" aria-hidden="true"></i>
-                        Khuyến mãi
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateFeedback}>
-                        <i className="sidebar__component-item-icon fa fa-comments" aria-hidden="true"></i>
-                        Ý kiến khách hàng
-                    </div>
-                </div>
-
-                <div className="sidebar__component">
-                    <label className="sidebar__component-label">Tùy chọn</label>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateInfo}>
-                        <i className="sidebar__component-item-icon fa fa-user" aria-hidden="true"></i>
-                        Thông tin cá nhân
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={LogOut}>
-                        <i className="sidebar__component-item-icon fa fa-sign-out" aria-hidden="true"></i>
-                        Đăng xuất
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
+            <AdminSidebar />
             <div id="admin-box">
-                <div className="admin__header">
-                    <div className="admin__header-title">Trang quản trị hệ thống ShopTECH</div>
-                    <div className="admin__header-admin">
-                        <div className="admin__header-info">
-                            Hello,
-                            <span className="admin__header-name">{fullname}</span>
-                            --
-                        </div>
-
-                        <div style={{ backgroundImage: `url(${avatarUrlAdmin})` }} className="admin__header-avatar"></div>
-
-                        <div className='admin__header-option'>
-                            <div className="admin__header-option-item" onClick={handleNevigateInfo} >Thông tin cá nhân</div>
-                            <div className="admin__header-option-item" onClick={LogOut} style={{ color: 'red', fontWeight: 600 }}>Đăng xuất</div>
-                        </div>
-                    </div>
-                </div>
+                <AdminHeader />
 
                 <div className="admin__title">
                     <label className='admin__tilte-label'>Chúc một ngày tốt lành, quản trị viên!</label>

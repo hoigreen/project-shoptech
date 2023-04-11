@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ModalLoading from '../common/ModalLoading';
+
 
 const AddPromote = ({ socket }) => {
     const [promotes, setPromotes] = useState([])
@@ -49,14 +51,7 @@ const AddPromote = ({ socket }) => {
 
     return (
         <div className="add-product__container">
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
             <div className="add__cover">
                 <div className="add add__promote-container">
                     <div className="add__header">THÊM CHƯƠNG TRÌNH KHUYẾN MÃI MỚI</div>
