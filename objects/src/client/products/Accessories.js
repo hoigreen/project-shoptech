@@ -183,71 +183,47 @@ const Accessories = () => {
                         </div>
                     </div>
 
-                    <section>
-                        <h3 class="accessories__title-category">PHỤ KIỆN ĐỈNH CHÓP</h3>
+                    <div>
+                        <label class="accessories__title-category">PHỤ KIỆN ĐỈNH CHÓP</label>
                         <div class="accessories__list-category">
-                            <div class="accessories__group-category" data-index="1">
-                                <a href="sac-dtdd">
-                                    <i mg src="https://cdn.tgdd.vn/Category/57/5-Pinsạcdựphòng-120x120.png"></i>
-                                    <h3>Sạc dự phòng</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/9518/10-Cápsạcchuyểndổi-120x120.png"></img>
+                                <label>Sạc, cáp</label>
                             </div>
-                            <div class="accessories__group-category" data-index="2">
-                                <a href="sac-cap">
-                                    <img src="https://cdn.tgdd.vn/Category/9518/10-Cápsạcchuyểndổi-120x120.png"></img>
-                                    <h3>Sạc, cáp</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/54/21-Tainghe-120x120.png"></img>
+                                <label>Tai nghe</label>
                             </div>
-                            <div class="accessories__group-category" data-index="3">
-                                <a href="tai-nghe">
-                                    <img src="https://cdn.tgdd.vn/Category/54/21-Tainghe-120x120.png"></img>
-                                    <h3>Tai nghe</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/2162/22-Loa2-120x120.png"></img>
+                                <label>Loa</label>
                             </div>
-                            <div class="accessories__group-category" data-index="4">
-                                <a href="loa-laptop">
-                                    <img src="https://cdn.tgdd.vn/Category/2162/22-Loa2-120x120.png"></img>
-                                    <h3>Loa</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/9458/thongminh-120x120.png"></img>
+                                <label>Thiết bị thông minh </label>
                             </div>
-                            <div class="accessories__group-category" data-index="5">
-                                <a href="thiet-bi-nha-thong-minh">
-                                    <img src="https://cdn.tgdd.vn/Category/9458/thongminh-120x120.png"></img>
-                                    <h3>Thiết bị thông minh </h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/4728/17-Camerawebcam-120x120.png"></img>
+                                <label>Camera, webcam</label>
                             </div>
-                            <div class="accessories__group-category" data-index="6">
-                                <a href="camera-giam-sat">
-                                    <img src="https://cdn.tgdd.vn/Category/4728/17-Camerawebcam-120x120.png"></img>
-                                    <h3>Camera, webcam</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/4727/16-Thiếtbịmạng-120x120.png"></img>
+                                <label>Thiết bị mạng</label>
                             </div>
-                            <div class="accessories__group-category" data-index="7">
-                                <a href="thiet-bi-mang">
-                                    <img src="https://cdn.tgdd.vn/Category/4727/16-Thiếtbịmạng-120x120.png"></img>
-                                    <h3>Thiết bị mạng</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/9262/icon-mieng-dan-op-lung-100x100-1.png"></img>
+                                <label>Ốp lưng, miếng dán</label>
                             </div>
-                            <div class="accessories__group-category" data-index="8">
-                                <a href="mieng-dan-op-lung">
-                                    <img src="https://cdn.tgdd.vn/Category/9262/icon-mieng-dan-op-lung-100x100-1.png"></img>
-                                    <h3>Ốp lưng, miếng dán</h3>
-                                </a>
+                            <div class="accessories__group-category" >
+                                <img src="https://cdn.tgdd.vn/Category/86/13-Chuộtmáytính-120x120.png"></img>
+                                <label>Chuột máy tính</label>
                             </div>
-                            <div class="accessories__group-category" data-index="9">
-                                <a href="chuot-may-tinh">
-                                    <img src="https://cdn.tgdd.vn/Category/86/13-Chuộtmáytính-120x120.png"></img>
-                                    <h3>Chuột máy tính</h3>
-                                </a>
-                            </div>
-                            <div class="accessories__group-category" data-index="10">
-                                <a href="ban-phim">
-                                    <img src="https://cdn.tgdd.vn/Category/4547/19-Bànphím-120x120.png"></img>
-                                    <h3>Bàn phím</h3>
-                                </a>
+                            <div class="accessories__group-category">
+                                <img src="https://cdn.tgdd.vn/Category/4547/19-Bànphím-120x120.png"></img>
+                                <label>Bàn phím</label>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
                     <label className="product-client__title-brand">THƯƠNG HIỆU HÀNG ĐẦU</label>
                     <div className='product-brand-list'>
