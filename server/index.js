@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-// const multer = require('multer');
+const multer = require('multer');
 const cors = require("cors")
 const http = require('http').Server(app);
 const PORT = 4000
@@ -40,21 +40,22 @@ app.use(cors())
 app.use('/uploads', express.static('./uploads'));
 
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, callback) => {
-//         callback(null, '/uploads');
-//     },
-//     filename: (req, file, callback) => {
-//         callback(null, `image-${Date.now()}.${file.originalname}`);
-//     }
-// })
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, './uploads');
+    },
+    filename: (req, file, callback) => {
+        console.log(file)
+        callback(null, file.originalname);
+    }
+})
 
-// const upload = multer({ storage: storage })
+const upload = multer({ storage: storage })
 
-// app.post("/uploads", upload.single("file"), (req, res) => {
-//     console.log(req.file);
-//     res.send("Uploaded");
-// });
+app.post("/uploads", upload.any("file"), (req, res) => {
+    console.log(req.file);
+    res.send("Uploaded");
+});
 
 
 //  --------------------------- ADMIN Method -------------------------------------
@@ -384,27 +385,6 @@ socketIO.on('connection', (socket) => {
         findOrderToSetStatus(data.orderID, objectDataOrder["orders"], "Giao hàng thành công")
         socket.broadcast.emit("setStatusOrderResponse", data)
     })
-
-    // socket.on('addComment', (data) => {
-    //     objectDataComment["comments"].push(data)
-    //     const stringData = JSON.stringify(objectDataComment, null, 2)
-    //     fs.writeFile("datas/data-comment.json", stringData, (err) => {
-    //         console.error(err)
-    //     })
-    //     socket.broadcast.emit("addCommentResponse", data)
-    // });
-
-    // socket.on("setStatusVotedOfProductInOrder", (data, productID) => {
-    //     findOrderToSetStatusVoteOfProduct(data.orderID, objectDataOrder["orders"], productID)
-    //     socket.broadcast.emit("setStatusVotedOfProductInOrderResponse", data)
-    // })
-
-
-
-    // socket.on("updateRatingProduct", (data, starVoted) => {
-    //     findProductToUpdateRating(data.id, objectDataProduct["products"], starVoted)
-    //     socket.broadcast.emit("updateRatingProductResponse", data)
-    // })
 
     socket.on("handleVoteProduct", (dataStatus, dataRating, dataComment, productID, starVoted) => {
         findOrderToSetStatusVoteOfProduct(dataStatus.orderID, objectDataOrder["orders"], productID)

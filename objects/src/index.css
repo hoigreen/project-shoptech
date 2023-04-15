@@ -13,10 +13,7 @@
 @import url('./css/account-client.css');
 
 @import url('./css/info-product-client.css');
-@import url('./css/smartphone-client.css');
-@import url('./css/laptop-client.css');
-@import url('./css/tablet-client.css');
-@import url('./css/accessories-client.css');
+@import url('./css/product-client.css');
 
 @import url('./css/cart-payment.css');
 
@@ -24,7 +21,7 @@
 
 @import url('./css/order-lookup.css');
 
-@import url(./css/search-style.css);
+@import url('./css/search-style.css');
 @import url('./css/reponsive.css');
 
 /* --------Stylesheet for the common component ------*/

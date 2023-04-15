@@ -1,167 +1,186 @@
-import React, { useState,useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 import Nav from '../common/Nav'
+import Breadcrumbs from '../common/Breadcrumbs'
 import Footer from '../common/Footer'
-import socketIO from 'socket.io-client';
-const socket = socketIO.connect('http://localhost:4000');
 
-const SmartPhone = ({ socket }) => {
-
+const SmartPhone = () => {
     const [products, setProducts] = useState([])
-    const [timeStart, setTimeStartSale] = useState(20)
-    const [timeEnd, setTimeEndSale] = useState(30)
-
-    const [promotes, setPromotes] = useState([])
 
     const [loading, setLoading] = useState(true)
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        const fetchAPIs = () => {
+            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
+                setProducts(data.products)
+                setLoading(false)
+            })
+        }
+        fetchAPIs()
+    }, [])
 
     useEffect(() => {
-       
         // show thông tin điện thoại nổi bật
         products.map((product, index) => {
-            const infoProductFeaturedSmartphone = document.querySelectorAll('.product__sell-item--smartphone')[index];
+            const infoProductFeaturedSmartphone = document.querySelectorAll('.product-client__item')[index];
             if (product.type === "Điện thoại" && product.featured === true) {
                 infoProductFeaturedSmartphone.style.display = "block";
             }
         })
+    })
 
-        })
-    
+    window.onload = () => {
+        handleChangeBanner()
+    }
+
+    const handleChangeBanner = () => {
+        const arrayBanner = [
+            "http://localhost:4000/uploads/public/product-img/smartphone-img/event-banner.png",
+            "http://localhost:4000/uploads/public/product-img/smartphone-img/event-banner2.png",
+            "http://localhost:4000/uploads/public/product-img/smartphone-img/event-banner3.png",
+            "http://localhost:4000/uploads/public/product-img/smartphone-img/event-banner4.png"
+        ]
+        var index = 0;
+        setInterval(function () {
+            if (index === arrayBanner.length) {
+                index = 0;
+            }
+            document.querySelector(".product-client__event-primary").src = arrayBanner[index];
+            index++;
+        }, 3000);
+    }
+
+    const arrayPromote = [
+        "http://localhost:4000/uploads/public/product-img/smartphone-img/event-list-item4.png",
+        "http://localhost:4000/uploads/public/product-img/smartphone-img/event-list-item3.png",
+        "http://localhost:4000/uploads/public/product-img/smartphone-img/event-list-item5.png",
+    ]
+    var indexPromote = 0;
+    const handleNextPromote = () => {
+        if (indexPromote >= arrayPromote.length - 1) {
+            indexPromote = 0;
+        }
+        indexPromote++;
+        document.querySelector(".product-client__event-col-right-item").style.animation = "slideInLeft ease .3s";
+        document.querySelector(".product-client__event-col-right-item").src = arrayPromote[indexPromote];
+    }
+
+    const handlePrevPromote = (event) => {
+        if (indexPromote <= 0) {
+            indexPromote = arrayPromote.length;
+        }
+        indexPromote--;
+        document.querySelector(".product-client__event-col-right-item").style.animation = "slideInLeft ease .3s";
+        document.querySelector(".product-client__event-col-right-item").src = arrayPromote[indexPromote];
+    }
+
+
+    const handleFormatStarProduct = (starOfProduct) => {
+        if (starOfProduct < 1) {
+            return `☆☆☆☆☆`
+        } else if (starOfProduct < 2) {
+            return `★☆☆☆☆`
+        } else if (starOfProduct < 3) {
+            return `★★☆☆☆`
+        } else if (starOfProduct < 4) {
+            return `★★★☆☆`
+        } else if (starOfProduct < 5) {
+            return `★★★★☆`
+        } else {
+            return `★★★★★`
+        }
+    }
+
+    const handLoadingPage = (second) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+        }, second * 1000)
+    }
+
     return (
         <div>
-            <Nav socket="socket"> </Nav>
-            <div className='container' style={{ backgroundColor: "#fcd8aa", marginTop: "60px", paddingTop: "50px" }}>
-                <div className="smartphone__ladi-image">
-                    <div className="smartphone__ladi-image-background">
-                        <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/thang-3-deal-tha-ga-20230306042957-ev9xk.png"></img>
-                    </div>
-                </div>
-                <div className="smartphone__ladi2-image">
-                    <div className="smartphone__ladi2-image-background">
-                        <img src="https://w.ladicdn.com/s500x850/5bf3dc7edc60303c34e4991f/banner_side-web-20230315064013-xgxik.png"></img>
-                    </div>
-                </div>
+            <Nav />
+            <Breadcrumbs />
+            <div className='container' style={{ backgroundColor: "#fcd8aa", marginTop: "60px", padding: "50px 0 40px" }}>
                 <div className='grid wide'>
-                    <section className="smartphone__event">
-                        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/4/5/638162927951359069_F-C1_1200x300.png" alt="" className="smartphone__event-image" ></img>
-                        <div class="smartphone__event-list">
-                            <img src="https://cdn.tgdd.vn/2023/04/banner/oppo-flip-800-200-800x200.png" alt="" className="smartphone__event-item" ></img>
-                            <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/3/31/638158973592992097_F-C1_1200x300.png" alt="" className="smartphone__event-item" ></img>
-                            <img src="https://cdn.tgdd.vn/2023/04/banner/gatab-800-200-800x200.png" alt="" className="smartphone__event-item" ></img>
-                            <img src="https://cdn.tgdd.vn/2023/04/banner/Nokia-T20800-200-800x200.png" alt="" className="smartphone__event-item" ></img>
-                        </div>
-
-                        <img className="smartphone__event-image-gif" src="https://w.ladicdn.com/5bf3dc7edc60303c34e4991f/banner-ver-2023-8-11-20230214033025-h8scc.gif" alt="ảnh gif" ></img>
-
-
-
-                        <div className="smartphone__event-content">
-                        </div>
-                    </section>
-
-                    <h3 class="smartphone__title-brand">THƯƠNG HIỆU ĐỈNH CHÓP</h3>
-                    <div className='smartphone__home-sort-list-brand'>
-                        <div className='smartphone__home-sort-brand'>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/samsungnew-220x48-220x48-1.png"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/logo-xiaomi-220x48-14-220x48.png"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/OPPO42-b5-220x48-6.jpg"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/vivo-logo-220-220x48-3.png"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://consumer.huawei.com/etc/designs/huawei-cbg-site/clientlib-campaign-v4/common-v4/images/logo.svg"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Masstel522-b_7.png"></img>
-                            </button>
-
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Realme42-b_37.png"></img>
-                            </button>
-                            <button className='smartphone__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg"></img>
-                            </button>
-
-                        </div>
-
+                    <div className="product-client__sidebar">
+                        <img className="product-client__sidebar-left" src="http://localhost:4000/uploads/public/product-img/smartphone-img/sidebar-left.png"></img>
+                        <img className="product-client__sidebar-right" src="http://localhost:4000/uploads/public/product-img/smartphone-img/sidebar-right.png"></img>
                     </div>
-                    
+                    <div className="product-client__event">
+                        <img src="http://localhost:4000/uploads/public/product-img/smartphone-img/event-banner.png" alt="" className="product-client__event-primary"></img>
 
+                        <div className="product-client__event-list">
+                            <div className="product-client__event-col-left">
+                                <img src="http://localhost:4000/uploads/public/product-img/smartphone-img/event-list-item.png" className="product-client__event-col-left-item"></img>
+                                <img src="http://localhost:4000/uploads/public/product-img/smartphone-img/event-list-item2.png" className="product-client__event-col-left-item"></img>
+                            </div>
 
-                    <div id="home__featured">
-                        <div className="home__featured-label">⚡⚡⚡ Sản phẩm nổi bật ⚡⚡⚡</div>
-
-                        <div className='home__featured-banner-phone'></div>
-                        <div className="home__featured-type" onClick={(e) => { navigate('/smartphone') }}>ĐIỆN THOẠI</div>
-                        <div className="home__featured-brand-list">
-                            <button className="home__product-brand-item">Apple</button>
-                            <button className="home__product-brand-item">Samsung</button>
-                            <button className="home__product-brand-item">Xiaomi</button>
-                            <button className="home__product-brand-item">Oppo</button>
-                            <button className="home__product-brand-item">Vivo</button>
-                            <button className="home__product-brand-item">Huewei</button>
-                            <button className="home__product-brand-item">Realme</button>
+                            <div className="product-client__event-col-right">
+                                <button className="product-client__event-btn--prev" onClick={handlePrevPromote}>
+                                    <i className="fa fa-arrow-left"></i>
+                                </button>
+                                <img src="http://localhost:4000/uploads/public/product-img/smartphone-img/event-list-item3.png" className="product-client__event-col-right-item" ></img>
+                                <button className="product-client__event-btn--next" onClick={handleNextPromote}>
+                                    <i className="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
+                        <img className="product-client__event-gif" src="http://localhost:4000/uploads/public/product-img/smartphone-img/event-item-gif.gif" alt="ảnh gif" ></img>
+                    </div>
 
+                    <label className="product-client__title-brand">THƯƠNG HIỆU ĐỈNH CHÓP</label>
+                    <div className='product-brand-list'>
+                        <div className='product-client__brand'>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-iphone.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-samsung.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-xiaomi.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-oppo.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-realme.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-nokia.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-masstel.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/smartphone-img/logo-vivo.png"></img>
+                        </div>
+                    </div>
 
-                <div className='smartphone__product-container' >
-                    <ul className="smartphone__list-product">
-                        <li className='smartphone__product'>
-                            <div className="smartphone__item-label"></div>
-                            <div className="smartphone__tablet-item">
-                                <img class="thumb" src="https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-den-thumb-600x600.jpg" alt="" ></img>
-                                <img class="hotIcon" src="https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture/Apro/Apro_icon_189/261-261-iconsalesapsant_625.gif"></img>
-                                <img class="temBH" src="https://cdn.tgdd.vn/ValueIcons/icon_18t.png"></img>
-
-                            </div>
-                            <h3>
-                                Oppo 9 WiFi
-                            </h3>
-                            <div className="smartphone__item-compare gray-bg">
-                                <span>Retina IPS LCD</span>
-                                <span>10.2"</span>
-                            </div>
-
-                            <ul>
-                                <li className="smartphone__merge-item-selected">64GB</li>
-                                <li className="smartphone__merge-item ">256GB</li>
-                            </ul>
-
-                            <div className="smartphone__box-p">
-                                <p className="smartphone__price-old black">9.990.000₫</p>
-                                <span className="smartphone__percent">-15%</span>
-                            </div>
-                            <strong className="smartphone__price">8.490.000₫</strong>
-                            <div className="smartphone__item-rating">
-                                <p>
-                                <span class="product__sell-item-star-icon">★★★★☆</span>
-                                </p>
-                                <p className="smartphone__item-rating-total"> 158 Đánh giá</p>
-                            </div>
-                        </li>
+                    <ul className="product-client__list">
+                        {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                            <li
+                                className="product-client__item"
+                                key={index}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        window.location.href = `/product/${product.enType}/${product.name}`
+                                    }, 1000)
+                                }}
+                            >
+                                <img src={product.imageLink}
+                                    className='product-client__item-img'>
+                                </img>
+                                <label className='product-client__item-label'>{product.name}</label>
+                                <img className="product-client__item-hot-icon" src="http://localhost:4000/uploads/public/product-img/smartphone-img/icon-hot.gif"></img>
+                                <img className="product-client__item-icon" src="http://localhost:4000/uploads/public/product-img/smartphone-img/icon-18-month.png"></img>
+                                <label className='product-client__item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                <span className='product-client__item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                <label className='product-client__item-vote'>
+                                    <span className='product-client__item-star-icon'>{handleFormatStarProduct(product.star)} </span> ({product.voter || 0} đánh giá)
+                                </label>
+                                <div className='product-client__item-tag'>Giảm {product.percent}%</div>
+                            </li>
+                        ))}
                     </ul>
-                    </div>
-                </div>
-            </div >
-            <Footer socket={socket}></Footer>
-        </div>
+                </div >
+            </div>
+            <Footer />
             <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
                 Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
-        </div>
+        </div >
     );
 
-    };
+};
 
 export default SmartPhone;

@@ -19,8 +19,8 @@ const Login = () => {
         e.preventDefault();
         var boolCheck = false;
         admins.map((admin, index) => {
-            if (details.adminName == admin.adminName &&
-                details.password == admin.password) {
+            if (details.adminName === admin.adminName &&
+                details.password === admin.password) {
                 window.localStorage.setItem('adminNameLogin', admin.adminName);
                 alert("Đăng nhập thành công");
                 handLoadingPage(1)

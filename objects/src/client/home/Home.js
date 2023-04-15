@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Nav from '../common/Nav';
 import HotPromote from '../common/HotPromote';
+import ModalLoading from '../common/ModalLoading';
+import HomeList from './HomeList';
 import Footer from '../common/Footer';
-import socketIO from 'socket.io-client';
-const socket = socketIO.connect('http://localhost:4000');
 
-const Home = () => {
+const Home = ({socket}) => {
     const [products, setProducts] = useState([])
     const [timeStart, setTimeStartSale] = useState(1)
     const [timeEnd, setTimeEndSale] = useState(4)
@@ -126,15 +126,7 @@ const Home = () => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
             <Nav socket={socket} />
             <HotPromote socket={socket} />
             <div className="grid wide">
@@ -156,48 +148,8 @@ const Home = () => {
                             </li>
                         ))}
                     </ul>
-
-                    <div id="home__list">
-                        <div className="home__list-label">Danh mục sản phẩm</div>
-                        <ul className="home__list-product">
-                            <li className='home__list-product-item' onClick={(e) => {
-                                handLoadingPage(1.5)
-                                setTimeout(() => {
-                                    window.location.href = "/smartphone"
-                                }, 1000)
-                            }}>
-                                <div className="home__list-product-img-1" ></div>
-                                <p className="home__list-product-name">Điện thoại di động</p>
-                            </li>
-                            <li className='home__list-product-item' onClick={(e) => {
-                                handLoadingPage(1.5)
-                                setTimeout(() => {
-                                    window.location.href = "/laptop"
-                                }, 1000)
-                            }}>
-                                <div className="home__list-product-img-2"></div>
-                                <p className="home__list-product-name">Máy tính xách tay</p>
-                            </li>
-                            <li className='home__list-product-item' onClick={(e) => {
-                                handLoadingPage(1.5)
-                                setTimeout(() => {
-                                    window.location.href = "/tablet"
-                                }, 1000)
-                            }}>
-                                <div className="home__list-product-img-3" ></div>
-                                <p className="home__list-product-name">Máy tính bảng</p>
-                            </li>
-                            <li className='home__list-product-item' onClick={(e) => {
-                                handLoadingPage(1.5)
-                                setTimeout(() => {
-                                    window.location.href = "/accessories"
-                                }, 1000)
-                            }}>
-                                <div className="home__list-product-img-4"></div>
-                                <p className="home__list-product-name">Phụ kiện đỉnh chóp</p>
-                            </li>
-                        </ul>
-                    </div>
+                    
+                    <HomeList />
 
                     <div id="home__flash-sale">
                         <div className="home__flash-sale-label">Khuyến mãi cực <span>HOT</span> - 🔥🔥🔥</div>
@@ -254,7 +206,6 @@ const Home = () => {
 
                     <div id="home__featured">
                         <div className="home__featured-label">⚡⚡⚡ Sản phẩm nổi bật ⚡⚡⚡</div>
-
                         <div className='home__featured-banner-phone'></div>
                         <div className="home__featured-type" onClick={(e) => { navigate('/smartphone') }}>ĐIỆN THOẠI</div>
                         <div className="home__featured-brand-list">

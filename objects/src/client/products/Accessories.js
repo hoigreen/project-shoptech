@@ -1,31 +1,80 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import Nav from '../common/Nav';
-import Footer from '../common/Footer';
-import socketIO from 'socket.io-client';
-const socket = socketIO.connect('http://localhost:4000');
+import Nav from '../common/Nav'
+import Breadcrumbs from '../common/Breadcrumbs'
+import Footer from '../common/Footer'
 
-const Accessories = ({ socket }) => {
+const Accessories = () => {
     const [products, setProducts] = useState([])
-    const [timeStart, setTimeStartSale] = useState(20)
-    const [timeEnd, setTimeEndSale] = useState(30)
-
-    const [promotes, setPromotes] = useState([])
 
     const [loading, setLoading] = useState(true)
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        const fetchAPIs = () => {
+            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
+                setProducts(data.products)
+                setLoading(false)
+            })
+        }
+        fetchAPIs()
+    }, [])
 
     useEffect(() => {
         //  show thông tin phụ kiện nổi bật
         products.map((product, index) => {
-            const infoProductFeaturedAccessories = document.querySelectorAll('.product__sell-item--accessories')[index];
-            if (product.type === "Phụ kiện" && product.featured === true) {
+            const infoProductFeaturedAccessories = document.querySelectorAll('.product-client__item')[index];
+            if (product.enType === "accessories" && product.featured === true) {
                 infoProductFeaturedAccessories.style.display = "block";
             }
         })
     })
+
+    window.onload = () => {
+        handleChangeBanner()
+    }
+
+    const handleChangeBanner = () => {
+        const arrayBanner = [
+            "http://localhost:4000/uploads/public/product-img/accessories-img/event-banner.png",
+            "http://localhost:4000/uploads/public/product-img/accessories-img/event-banner2.png",
+            "http://localhost:4000/uploads/public/product-img/accessories-img/event-banner3.png",
+            "http://localhost:4000/uploads/public/product-img/accessories-img/event-banner4.png",
+            "http://localhost:4000/uploads/public/product-img/accessories-img/event-banner5.png"
+        ]
+        var index = 0;
+        setInterval(function () {
+            if (index === arrayBanner.length) {
+                index = 0;
+            }
+            document.querySelector(".product-client__event-primary").src = arrayBanner[index];
+            index++;
+        }, 3000);
+    }
+
+    const arrayPromote = [
+        "http://localhost:4000/uploads/public/product-img/accessories-img/event-list-item3.png",
+        "http://localhost:4000/uploads/public/product-img/accessories-img/event-list-item4.png",
+        "http://localhost:4000/uploads/public/product-img/accessories-img/event-list-item5.png",
+    ]
+    var indexPromote = 0;
+    const handleNextPromote = () => {
+        if (indexPromote >= arrayPromote.length - 1) {
+            indexPromote = 0;
+        }
+        indexPromote++;
+        document.querySelector(".product-client__event-col-right-item").style.animation = "slideInLeft ease .3s";
+        document.querySelector(".product-client__event-col-right-item").src = arrayPromote[indexPromote];
+    }
+
+    const handlePrevPromote = (event) => {
+        if (indexPromote <= 0) {
+            indexPromote = arrayPromote.length;
+        }
+        indexPromote--;
+        document.querySelector(".product-client__event-col-right-item").style.animation = "slideInLeft ease .3s";
+        document.querySelector(".product-client__event-col-right-item").src = arrayPromote[indexPromote];
+    }
+
 
     const handleFormatStarProduct = (starOfProduct) => {
         if (starOfProduct < 1) {
@@ -50,32 +99,38 @@ const Accessories = ({ socket }) => {
             loading.classList.remove("modal--active")
         }, second * 1000)
     }
+
     return (
         <div>
-            <div className='container' style={{ backgroundColor: "#FFFFCC ", marginTop: "60px", padding: "50px 0 30px" }}>
-                <Nav socket={socket} />
-                <div className="accessories__ladi-image">
-                    <div className="accessories__ladi-image-background">
-                        <img src="https://theme.hstatic.net/1000026716/1000440777/14/xxxbannerxxx10.png?v=35349"></img>
-                    </div>
-                </div>
-                <div className="accessories__ladi2-image">
-                    <div className="accessories__ladi2-image-background">
-                        <img src="https://theme.hstatic.net/1000026716/1000440777/14/xxxbannerxxx13.png?v=35349"></img>
-                    </div>
-                </div>
+            <Nav />
+            <Breadcrumbs />
+            <div className='container' style={{ backgroundColor: "#FFFFCC", marginTop: "60px", padding: "50px 0 40px" }}>
                 <div className='grid wide'>
-                    <section className="accessories__event">
-                        {/* <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Tm/Tm_picture_986/tab-samsung_694_1200.png.webp" alt="" className="accessories__event-image" /> */}
-                        <div class="accessories__event-list">
-                            <img src="https://cdn.tgdd.vn/2023/04/banner/Frame-48002-800x200-3.jpg" alt="" className="accessories__event-item" ></img>
-                            <img src="https://cdn.tgdd.vn/2023/03/banner/TN-800-200-800x200-1.png" alt="" className="accessories__event-item" ></img>
+                    <div className="product-client__sidebar">
+                        <img className="product-client__sidebar-left" src="http://localhost:4000/uploads/public/product-img/accessories-img/sidebar-left.png"></img>
+                        <img className="product-client__sidebar-right" src="http://localhost:4000/uploads/public/product-img/accessories-img/sidebar-right.png"></img>
+                    </div>
+                    <div className="product-client__event">
+                        <img src="http://localhost:4000/uploads/public/product-img/accessories-img/event-banner.png" alt="" className="product-client__event-primary"></img>
 
-                        </div>
+                        <div className="product-client__event-list">
+                            <div className="product-client__event-col-left">
+                                <img src="http://localhost:4000/uploads/public/product-img/accessories-img/event-list-item.png" className="product-client__event-col-left-item"></img>
+                                <img src="http://localhost:4000/uploads/public/product-img/accessories-img/event-list-item2.png" className="product-client__event-col-left-item"></img>
+                            </div>
 
-                        <div className="accessories__event-content">
+                            <div className="product-client__event-col-right">
+                                <button className="product-client__event-btn--prev" onClick={handlePrevPromote}>
+                                    <i className="fa fa-arrow-left"></i>
+                                </button>
+                                <img src="http://localhost:4000/uploads/public/product-img/accessories-img/event-list-item3.png" className="product-client__event-col-right-item" ></img>
+                                <button className="product-client__event-btn--next" onClick={handleNextPromote}>
+                                    <i className="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
-                    </section>
+                        <img className="product-client__event-gif" src="http://localhost:4000/uploads/public/product-img/accessories-img/event-item-gif.gif" alt="ảnh gif" ></img>
+                    </div>
 
                     <div class="accessories__group-cate">
                         <div class="accessories__group">
@@ -88,7 +143,6 @@ const Accessories = ({ socket }) => {
                             </div>
 
                         </div>
-
                         <div class="accessories__group">
                             <div class="accessories__group  group-laptop">
                                 <div class="accessories__group-name">
@@ -99,8 +153,6 @@ const Accessories = ({ socket }) => {
                             </div>
 
                         </div>
-
-
                         <div class="accessories__group">
                             <div class="accessories__group group-sound">
                                 <div class="accessories__group-name">
@@ -109,9 +161,7 @@ const Accessories = ({ socket }) => {
                                 </div>
                                 <div class="arrow-filter"></div>
                             </div>
-
                         </div>
-
                         <div class="accessories__group">
                             <div class="accessories__group group-tech">
                                 <div class="accessories__group-name">
@@ -120,32 +170,25 @@ const Accessories = ({ socket }) => {
                                 </div>
                                 <div class="arrow-filter"></div>
                             </div>
-
                         </div>
 
                         <div class="accessories__group">
                             <div class="accessories__group group-maycu">
-                                <a href="/may-doi-tra/phu-kien" target="_blank">
-                                    <div class="accessories__group-name">
-                                        <p>Phụ Kiện</p>
-                                        <p>đã sử dụng</p>
-                                        <p>giá rẻ</p>
-                                    </div>
-                                </a>
+                                <div class="accessories__group-name">
+                                    <p>Phụ Kiện</p>
+                                    <p>đã sử dụng</p>
+                                    <p>giá rẻ</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <img className="accessories__event-image-gif" src="https://w.ladicdn.com/5bf3dc7edc60303c34e4991f/banner-ver-2023-8-11-20230214033025-h8scc.gif" alt="ảnh gif" ></img>
-
 
                     <section>
                         <h3 class="accessories__title-category">PHỤ KIỆN ĐỈNH CHÓP</h3>
                         <div class="accessories__list-category">
                             <div class="accessories__group-category" data-index="1">
                                 <a href="sac-dtdd">
-                                    <img src="https://cdn.tgdd.vn/Category/57/5-Pinsạcdựphòng-120x120.png"></img>
+                                    <i mg src="https://cdn.tgdd.vn/Category/57/5-Pinsạcdựphòng-120x120.png"></i>
                                     <h3>Sạc dự phòng</h3>
                                 </a>
                             </div>
@@ -206,103 +249,57 @@ const Accessories = ({ socket }) => {
                         </div>
                     </section>
 
-
-                    <h3 class="title-brand">THƯƠNG HIỆU ĐỈNH CHÓP</h3>
-                    <div className='accessories__home-sort-list-brand'>
-                        <div className='accessories__home-sort-brand'>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Apple482-b_37.jpg"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/samsungnew-220x48-220x48-1.png"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Asus482-b_26.png"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/160-40-160x40-11-160x40.png"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Microsoft482-b_26.jpg"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/JBL-220x48-1.jpeg"></img>
-                            </button>
-
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Tp-link482-b_11.jpg"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/MSI-220x48-1-220x48-1.png"></img>
-                            </button>
-                            <button className='accessories__home-sort-brand-item'>
-                                <img src="https://cdn.tgdd.vn/Brand/1/Linksys-220x48-1.jpeg"></img>
-                            </button>
-
+                    <label className="product-client__title-brand">THƯƠNG HIỆU HÀNG ĐẦU</label>
+                    <div className='product-brand-list'>
+                        <div className='product-client__brand'>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-apple.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-samsung.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-xiaomi.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-oppo.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-harman.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-sony.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-anker.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-jbl.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-dareu.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-mophie.png"></img>
+                            <img className='product-client__brand-item' src="http://localhost:4000/uploads/public/product-img/accessories-img/logo-razer.png"></img>
                         </div>
-
                     </div>
 
-
-
-
-                    <div className='home__featured-banner-acc' onClick={(e) => { navigate('/accessories') }}></div>
-                    <div className="home__featured-type" onClick={(e) => { navigate('/accessories') }}>PHỤ KIỆN CÔNG NGHỆ</div>
-                    <div className="home__featured-brand-list">
-                        <button className="home__product-brand-item">Tai nghe</button>
-                        <button className="home__product-brand-item">Cáp sạc</button>
-                        <button className="home__product-brand-item">Sạc dự phòng</button>
-                        <button className="home__product-brand-item">Ốp lưng</button>
-                        <button className="home__product-brand-item">Chuột</button>
-                        <button className="home__product-brand-item">Webcam</button>
-                    </div>
-                    <div className='accessories__product-container' >
-                        <ul className="accessories__list-product">
-                            <li className='accessories__product'>
-                                <div className="accessories__item-label"></div>
-                                <div className="accessories__tablet-item">
-                                    <img class="thumb" src="http://localhost:4000/uploads/products/img-P008.png" alt="" ></img>
-                                    <img class="hotIcon" src="https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture/Apro/Apro_icon_189/261-261-iconsalesapsant_625.gif"></img>
-                                    <img class="temBH" src="https://cdn.tgdd.vn/ValueIcons/icon_18t.png"></img>
-
-                                </div>
-                                <h3>
-                                    Bàn phím cơ MSI
-                                </h3>
-                                {/* <div className="accessories__item-compare gray-bg">
-                                <span>Retina IPS LCD</span>
-                                <span>10.2"</span>
-                            </div> */}
-
-                                <ul>
-                                    <li className="accessories__merge-item-selected">Dây cắm USB</li>
-                                    <li className="accessories__merge-item ">Bluetooth</li>
-                                </ul>
-
-                                <div className="accessories__box-p">
-                                    <p className="accessories__price-old black">9.990.000₫</p>
-                                    <span className="accessories__percent">-15%</span>
-                                </div>
-                                <strong className="accessories__price">8.490.000₫</strong>
-                                <div className="accessories__item-rating">
-                                    <p>
-                                        <span class="product__sell-item-star-icon">★★★★☆</span>
-                                    </p>
-                                    <p className="accessories__item-rating-total"> 158 Đánh giá</p>
-                                </div>
+                    <ul className="product-client__list">
+                        {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                            <li
+                                className="product-client__item"
+                                key={index}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handLoadingPage(1)
+                                    window.setTimeout(() => {
+                                        window.location.href = `/product/${product.enType}/${product.name}`
+                                    }, 1000)
+                                }}
+                            >
+                                <img src={product.imageLink}
+                                    className='product-client__item-img'>
+                                </img>
+                                <label className='product-client__item-label'>{product.name}</label>
+                                <img className="product-client__item-hot-icon" src="http://localhost:4000/uploads/public/product-img/accessories-img/icon-hot.gif"></img>
+                                <img className="product-client__item-icon" src="http://localhost:4000/uploads/public/product-img/accessories-img/icon-18-month.png"></img>
+                                <label className='product-client__item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                <span className='product-client__item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                <label className='product-client__item-vote'>
+                                    <span className='product-client__item-star-icon'>{handleFormatStarProduct(product.star)} </span> ({product.voter || 0} đánh giá)
+                                </label>
+                                <div className='product-client__item-tag'>Giảm {product.percent}%</div>
                             </li>
-                        </ul>
-                    </div>
-
-
-
-                </div>
-            </div >
-            <Footer socket={socket} />
+                        ))}
+                    </ul>
+                </div >
+            </div>
+            <Footer />
             <p className='app-copyright'>©️ Bản quyền thuộc nhóm 7 -  Chuyên đề thực tế 2 - CN20A - năm 2023 <br />
                 Địa chỉ: 70 Tô Ký, phường Tân Chánh Hiệp. Quận 12, Thành phố Hồ Chí Minh.</p>
-
-        </div>
+        </div >
     );
 
 };
