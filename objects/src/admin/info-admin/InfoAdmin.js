@@ -19,8 +19,6 @@ const InfoAdmin = ({ socket }) => {
     const [phoneAdminEdit, setPhoneAdminEdit] = useState('')
     const [addressAdminEdit, setAddressAdminEdit] = useState('')
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         const fetchAPI = () => {
             fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
@@ -45,13 +43,36 @@ const InfoAdmin = ({ socket }) => {
         })
     })
 
+    const changeImageAdmin = () => {
+        const preview = document.querySelector(".info-page__avatar-img")
+        const imageAdmin = document.querySelector("#avatar-change-input").files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            preview.src = reader.result;
+        }, false)
+
+        if (imageAdmin) {
+            reader.readAsDataURL(imageAdmin)
+        }
+    }
+
     const handleConfirmChange = (e) => {
         e.preventDefault()
-        socket.emit("editInfoAdmin", { adminID, fullname: fullnameEdit, email: emailAdminEdit, phone: phoneAdminEdit, address: addressAdminEdit })
-        handLoadingPage(1)
-        setTimeout(() => {
-            window.location.href = window.location.href;
-        })
+        const avatarUrl = document.querySelector(".info-page__avatar-img").getAttribute("src")
+        if (window.confirm("Bạn có chắc muốn cập nhật lại thông tin cá nhân của mình?") === true) {
+            socket.emit("editInfoAdmin", {
+                avatarUrl: avatarUrl,
+                adminID,
+                fullname: fullnameEdit,
+                email: emailAdminEdit,
+                phone: phoneAdminEdit,
+                address: addressAdminEdit
+            })
+            handLoadingPage(1)
+            setTimeout(() => {
+                window.location.href = window.location.href;
+            })
+        }
     }
 
     const handLoadingPage = (second) => {
@@ -74,13 +95,15 @@ const InfoAdmin = ({ socket }) => {
                 </div>
 
                 <div className='info-page__group'>
-                    <div className="info-page__header">Chỉnh sửa thông tin Quản trị viên</div>
+                    <div className="info-page__header">CHỈNH SỬA THÔNG TIN QUẢN TRỊ VIÊN</div>
 
                     <div className="info-page__body">
                         <div className="info-page__col-1">
                             <div className="info-page__avatar">
                                 <img className="info-page__avatar-img" src={avatarUrlAdmin}></img>
                             </div>
+                            <input type='file' className="info-page__avatar-input" id="avatar-change-input" onChange={(e) => { changeImageAdmin() }} hidden></input>
+                            <label className="info-page__avatar-btn" htmlFor="avatar-change-input">Thay đổi Avatar</label>
                             <label className="info-page__user-id">{adminName}</label>
                         </div>
 

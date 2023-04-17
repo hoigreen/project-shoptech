@@ -59,9 +59,10 @@ app.post("/uploads", upload.any("file"), (req, res) => {
 
 
 //  --------------------------- ADMIN Method -------------------------------------
-function findAdmin(idKey, myArray, fullnameAdmin, emailAdmin, phoneAdmin, addressAdmin) {
+function findAdmin(idKey, myArray, avatarUrlAdmin, fullnameAdmin, emailAdmin, phoneAdmin, addressAdmin) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].adminID === idKey) {
+            myArray[i].avatarUrl = avatarUrlAdmin;
             myArray[i].fullname = fullnameAdmin;
             myArray[i].email = emailAdmin;
             myArray[i].phone = phoneAdmin;
@@ -89,9 +90,11 @@ function findCustomer(idKey, myArray, fullnameCustomer, emailCustomer, phoneCust
     })
 }
 
-function findProduct(idKey, myArray, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) {
+function findProductToEdit(idKey, myArray, imagePrimaryProduct, imageLinkProduct, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
+            myArray[i].imagePrimary = imagePrimaryProduct;
+            myArray[i].imageLink = imageLinkProduct;
             myArray[i].name = nameProduct;
             myArray[i].type = typeProduct;
             myArray[i].enType = enTypeProduct;
@@ -293,7 +296,7 @@ socketIO.on('connection', (socket) => {
 
     //--------------------- Socket Admin ---------------------------- //
     socket.on("editInfoAdmin", data => {
-        findAdmin(data.adminID, objectDataAdmin["admins"], data.fullname, data.email, data.phone, data.address)
+        findAdmin(data.adminID, objectDataAdmin["admins"], data.avatarUrl, data.fullname, data.email, data.phone, data.address)
         socket.broadcast.emit("editInfoAdminResponse", data)
     })
 
@@ -303,7 +306,7 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoProduct", data => {
-        findProduct(data.id, objectDataProduct["products"], data.name, data.type, data.enType, data.price, data.color, data.hotDeal, data.featured, data.status)
+        findProductToEdit(data.id, objectDataProduct["products"], data.imagePrimary, data.imageLink, data.name, data.type, data.enType, data.price, data.color, data.hotDeal, data.featured, data.status)
         socket.broadcast.emit("editInfoProductResponse", data)
     })
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import socketIO from 'socket.io-client';
 
@@ -17,10 +17,6 @@ import AddProduct from './admin/product/AddProduct';
 import PromotePage from './admin/promote/PromotePage';
 import InfoPromote from './admin/promote/InfoPromote';
 import AddPromote from './admin/promote/AddPromote';
-
-import UploadImage from './admin/uploadImages/Uploads';
-import ReceiveImage from './admin/uploadImages/ReceiveImage';
-
 
 // Client components
 import Home from './client/home/Home';
@@ -98,9 +94,6 @@ function App() {
                         element={<AddPromote socket={socket} />}
                     />
                     <Route path="/admin/feedback" element={<FeedbackPage socket={socket} />} />
-
-                    <Route path="/admin/upload" element={<UploadImage socket={socket} />} />
-                    <Route path="/admin/receive" element={<ReceiveImage socket={socket} />} />
                 </Routes>
 
 

@@ -3,17 +3,16 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import AdminHeader from '../common/AdminHeader';
+import AdminSidebar from '../common/AdminSidebar';
+import ModalLoading from '../common/ModalLoading';
 
 const InfoProduct = ({ socket }) => {
-    const [admins, setAdmins] = useState([])
-    const [adminID, setAdminID] = useState('')
-    const [fullname, setFullname] = useState('')
-    const [avatarUrlAdmin, setAvatarUrlAdmin] = useState('')
 
     const [products, setProducts] = useState([])
     const { id, price } = useParams()
 
     const [imageLink, setImageLink] = useState('')
+    const [imageBanner, setImageBanner] = useState('')
     const [nameProduct, setNameProduct] = useState('')
     const [typeProduct, setTypeProduct] = useState('')
     const [priceProduct, setPriceProduct] = useState()
@@ -33,10 +32,6 @@ const InfoProduct = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
-                setAdmins(data.admins)
-            })
-
             fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
             })
@@ -44,65 +39,12 @@ const InfoProduct = ({ socket }) => {
         fetchAPIs()
     }, [])
 
-    const handleNevigateDashboard = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/dashboard`);
-        }, 1000)
-    }
-    const handleNevigateCustomer = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/customer`)
-        }, 1000)
-    }
-    const handleNevigateProduct = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/product`)
-        }, 1000)
-    }
-    const handleNevigatePromote = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/promote`)
-        }, 1000)
-    }
-    const handleNevigateFeedback = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/feedback`)
-        }, 1000)
-    }
-    const handleNevigateInfo = () => {
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate(`/admin/info-admin/${adminID}`)
-        }, 1000)
-    }
-
-    const LogOut = () => {
-        window.localStorage.removeItem('adminNameLogin')
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            window.location.href = `/admin`
-        }, 1000)
-    }
-
     useEffect(() => {
-        // show admin đăng nhập
-        admins.map((admin, index) => {
-            if (admin.adminName == window.localStorage.getItem('adminNameLogin')) {
-                setAdminID(admin.adminID);
-                setFullname(admin.fullname);
-                setAvatarUrlAdmin(admin.avatarUrl);
-            }
-        })
-
         // show thông tin sản phẩm
         products.map((product, index) => {
             if (product.id === id) {
                 setImageLink(product.imageLink)
+                setImageBanner(product.imagePrimary)
                 setNameProduct(product.name);
                 setTypeProduct(product.type);
                 setPriceProduct(product.price);
@@ -111,6 +53,69 @@ const InfoProduct = ({ socket }) => {
             }
         })
     })
+
+    const changeImageBanner = () => {
+        const preview = document.querySelector(".info-admin-product__image-banner-img")
+        const imageAdmin = document.querySelector("#image-banner").files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            preview.src = reader.result;
+        }, false)
+
+        if (imageAdmin) {
+            reader.readAsDataURL(imageAdmin)
+        }
+    }
+
+    const changeImagePrimary = () => {
+        const preview = document.querySelector(".info-admin-product__image-primary-img")
+        const imageAdmin = document.querySelector("#image-primary").files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            preview.src = reader.result;
+        }, false)
+
+        if (imageAdmin) {
+            reader.readAsDataURL(imageAdmin)
+        }
+    }
+
+
+    const handleAddImageInList = () => {
+        var indexImageItem = 0
+        const imagesList = document.querySelector(".info-admin-product__image-list")
+        if (imagesList) {
+            const item = document.createElement("div");
+            item.classList.add("info-admin-product__image-item")
+
+            item.onclick = function (e) {
+                if (e.target.closest(".info-admin-product__image-item--done")) {
+                    // handleConfirmOption(item)
+                }
+            };
+            item.innerHTML = `
+                    <img class="info-admin-product__image-item-img" src="">
+                    <label for="image-list-${indexImageItem}" class="info-admin-product__image-item-btn--remove"></label>
+                    <input type="file" class="image-list" id="image-list-${indexImageItem}" hidden/>
+            `;
+
+            const imageElement = item.querySelectorAll(".image-list")[indexImageItem];
+            imageElement.onchange = (event) => {
+                const preview = imagesList.querySelectorAll(".info-admin-product__image-item-img");
+                const image = imageElement.files[0]
+                const reader = new FileReader()
+                reader.addEventListener("load", () => {
+                    preview[indexImageItem].src = reader.result;
+                }, false)
+                reader.readAsDataURL(image)
+
+            };
+            indexImageItem++;
+            imagesList.appendChild(item);
+        }
+
+
+    }
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
@@ -122,7 +127,6 @@ const InfoProduct = ({ socket }) => {
         else {
             boolFeaturedEdit = boolFeatured.toLowerCase() === "False"
         }
-
         if (boolHotDeal === "true") {
             boolHotDealEdit = boolHotDeal === "true"
         }
@@ -130,8 +134,12 @@ const InfoProduct = ({ socket }) => {
             boolHotDealEdit = boolHotDeal.toLowerCase() === "False"
         }
 
+        const imagePrimaryProduct = document.querySelector(".info-admin-product__image-banner-img").getAttribute("src")
+        const imageLinkProduct = document.querySelector(".info-admin-product__image-primary-img").getAttribute("src")
         if (window.confirm("Bạn muốn cập nhật thông tin sản phẩm?") == true) {
             socket.emit("editInfoProduct", {
+                imagePrimary: imagePrimaryProduct,
+                imageLink: imageLinkProduct,
                 id: id,
                 name: nameProductEdit,
                 type: typeProductEdit,
@@ -168,83 +176,46 @@ const InfoProduct = ({ socket }) => {
 
     return (
         <div className='customer__container'>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="sidebar">
-                <div className="sidebar__logo" onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = '/admin/dashboard'
-                }}></div>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateDashboard}>
-                    <i className="sidebar__component-item-icon fa fa-home" aria-hidden="true"></i>
-                    Thống kê
-                </div>
-                <div className="sidebar__component">
-                    <label className="sidebar__component-label">Quản lý dữ liệu</label>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateCustomer}>
-                        <i className="sidebar__component-item-icon fa fa-users" aria-hidden="true"></i>
-                        Khách hàng
-                    </div>
-                    <div className="sidebar__component-item" onClick={handleNevigateProduct}>
-                        <i className="sidebar__component-item-icon fa fa-table" aria-hidden="true"></i>
-                        Sản phẩm
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigatePromote}>
-                        <i className="sidebar__component-item-icon fa fa-tag" aria-hidden="true"></i>
-                        Khuyến mãi
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateFeedback}>
-                        <i className="sidebar__component-item-icon fa fa-comments" aria-hidden="true"></i>
-                        Ý kiến khách hàng
-                    </div>
-                </div>
-
-                <div className="sidebar__component">
-                    <label className="sidebar__component-label">Tùy chọn</label>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateInfo}>
-                        <i className="sidebar__component-item-icon fa fa-user" aria-hidden="true"></i>
-                        Thông tin cá nhân
-                    </div>
-                    <div className="sidebar__component-item sidebar__component-item--disable" onClick={LogOut}>
-                        <i className="sidebar__component-item-icon fa fa-sign-out" aria-hidden="true"></i>
-                        Đăng xuất
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
+            <AdminSidebar />
             <div id="admin-box">
                 <AdminHeader />
-                
                 <div className="admin__title">
                     <label className='admin__tilte-label'>Chúc một ngày tốt lành, quản trị viên!</label>
                     <label className='admin__tilte-describe'>Trang quản lý khách hàng</label>
                 </div>
 
-                <div className='info-page__group'>
-                    <div className="info-page__header">Chỉnh sửa thông tin sản phẩm</div>
+                <div className='info-admin-product__group'>
+                    <div className="info-admin-product__header">CHỈNH SỬA THÔNG TIN SẢN PHẨM</div>
 
-                    <div className="info-page__body">
-                        <div className="info-page__col-1">
-                            <div className="info-page__avatar">
-                                <img className="info-page__avatar-img info-page__avatar-img--no-round" src={imageLink}></img>
+                    <div className="info-admin-product__body">
+                        <div className="info-admin-product__col-1">
+                            <div className="info-admin-product__image-primary">
+                                <img className="info-admin-product__image-primary-img" src={imageLink}></img>
+                                <input type='file' id="image-primary" value="" onChange={changeImagePrimary} hidden></input>
+                                <label htmlFor="image-primary" className="info-admin-product__image-btn">Chỉnh sửa</label>
                             </div>
-                            <label className="info-page__user-id">{id}</label>
 
-                            <label className="info-page__label">Tên sản phẩm</label>
-                            <input style={{ fontWeight: 'bold' }} className='info-page__input' defaultValue={nameProduct} onChange={(e) => { setNameProductEdit(e.target.value); }} />
+                            <div className="info-admin-product__image-box">
+                                <div className="info-admin-product__image-banner">
+                                    <img className="info-admin-product__image-banner-img" src={imageBanner}></img>
+                                    <input type='file' id="image-banner" value="" onChange={changeImageBanner} hidden></input>
+                                    <label htmlFor="image-banner" className="info-admin-product__image-btn">Chỉnh sửa</label>
+                                </div>
+                                <ul className="info-admin-product__image-list">
+                                    <button className="info-admin-product__item-image-btn" onClick={handleAddImageInList}>+</button>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div className='info-page__col-2'>
-                            <div className="info-page__box-info">
-                                <label className="info-page__label">Loại sản phẩm</label>
-                                <select style={{ fontWeight: '500' }} className='info-page__input' onChange={(e) => {
+                        <div className='info-admin-product__col-2'>
+                            <div className="info-admin-product__box-info">
+                                <label className="info-admin-product__label">Mã sản phẩm</label>
+                                <input style={{ fontWeight: 'bold', color: 'red' }} className='info-admin-product__input' value={id} />
+                                <label className="info-admin-product__label">Tên sản phẩm</label>
+                                <input style={{ fontWeight: 'bold' }} className='info-admin-product__input' defaultValue={nameProduct} onChange={(e) => { setNameProductEdit(e.target.value); }} />
+                                <label className="info-admin-product__label">Loại sản phẩm</label>
+                                <select style={{ fontWeight: '500' }} className='info-admin-product__input' onChange={(e) => {
                                     setTypeProductEdit(e.target.value);
                                     switch ((e.target.value).toLowerCase()) {
                                         case "điện thoại":
@@ -260,38 +231,38 @@ const InfoProduct = ({ socket }) => {
                                             setEnType("accessories");
                                             break;
                                     }
-                                }} value={typeProductEdit} defaultValue={typeProduct}>
+                                }} value={typeProductEdit}>
                                     <option value="Điện thoại">Điện thoại di động</option>
                                     <option value="Máy tính xách tay">Máy tính xách tay</option>
                                     <option value="Máy tính bảng">Máy tính bảng</option>
                                     <option value="Phụ kiện">Phụ kiện công nghệ</option>
                                 </select>
 
-                                <label className="info-page__label">Màu sắc</label>
-                                <input type='text' className='info-page__input' onChange={(e) => {
+                                <label className="info-admin-product__label">Màu sắc</label>
+                                <input type='text' className='info-admin-product__input' onChange={(e) => {
                                     var arrayColor = (e.target.value).split(", ")
                                     setColorProductEdit(arrayColor)
                                 }} placeholder="(Mỗi màu sắc được ngăn cách bằng dấu phẩy). Vd: Đỏ, Vàng, ..." defaultValue={handleShowColors(colorProduct)} />
 
 
-                                <label className="info-page__label">Giá sản phẩm</label>
-                                <input type="number" className='info-page__input' defaultValue={price} onChange={(e) => { setPriceProductEdit(e.target.value); }}
+                                <label className="info-admin-product__label">Giá sản phẩm</label>
+                                <input type="number" className='info-admin-product__input' defaultValue={price} onChange={(e) => { setPriceProductEdit(e.target.value); }}
                                     style={{ fontWeight: 'bold', color: 'red' }} />
 
-                                <label className="info-page__label" style={{ fontWeight: 'bold', color: 'green' }}>Thêm vào sản phẩm nổi bật</label>
-                                <select className='info-page__input' onChange={(e) => { setBoolFeatured(e.target.value); }} value={boolFeatured}>
+                                <label className="info-admin-product__label">Thêm vào sản phẩm nổi bật</label>
+                                <select className='info-admin-product__input' onChange={(e) => { setBoolFeatured(e.target.value); }} value={boolFeatured}>
                                     <option value="true">Có</option>
                                     <option value="False">Không</option>
                                 </select>
 
-                                <label className="info-page__label" style={{ fontWeight: 'bold', color: 'red' }}>Thêm vào sản phẩm khuyến mãi khung giờ vàng</label>
-                                <select className='info-page__input' onChange={(e) => { setBoolHotDeal(e.target.value); }} value={boolHotDeal}>
+                                <label className="info-admin-product__label">Thêm vào sản phẩm khuyến mãi khung giờ vàng</label>
+                                <select className='info-admin-product__input' style={{ fontWeight: 'bold', color: 'green' }} onChange={(e) => { setBoolHotDeal(e.target.value); }} value={boolHotDeal}>
                                     <option value="true">Có</option>
                                     <option value="False">Không</option>
                                 </select>
 
-                                <label className="info-page__label">Trạng thái sản phẩm</label>
-                                <select className='info-page__input' onChange={(e) => { setStatusProductEdit(e.target.value); }} value={statusProductEdit}>
+                                <label className="info-admin-product__label">Trạng thái sản phẩm</label>
+                                <select className='info-admin-product__input' onChange={(e) => { setStatusProductEdit(e.target.value); }} value={statusProductEdit}>
                                     <option value="Sẵn hàng">Sẵn hàng</option>
                                     <option value="Cháy hàng">Cháy hàng</option>
                                 </select>
@@ -299,8 +270,8 @@ const InfoProduct = ({ socket }) => {
                         </div>
                     </div>
 
-                    <div className="info-page__footer">
-                        <button className="info-page__btn" onClick={handleConfirmChange}>Xác nhận<i className="ti-check"></i></button>
+                    <div className="info-admin-product__footer">
+                        <button className="info-admin-product__btn" onClick={handleConfirmChange}>Xác nhận<i className="ti-check"></i></button>
                     </div>
                 </div>
             </div>

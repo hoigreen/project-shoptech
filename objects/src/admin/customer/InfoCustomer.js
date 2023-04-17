@@ -6,10 +6,7 @@ import AdminSidebar from '../common/AdminSidebar';
 import AdminHeader from '../common/AdminHeader';
 
 const InfoCustomer = ({ socket }) => {
-    const [admins, setAdmins] = useState([])
-
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
     const { userID, username } = useParams()
     const [avatarUrl, setAvatarUrl] = useState('')
     const [fullnameUser, setFullnameUser] = useState('')
@@ -24,10 +21,6 @@ const InfoCustomer = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
-                setAdmins(data.admins)
-            });
-
             fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
             });
@@ -86,9 +79,7 @@ const InfoCustomer = ({ socket }) => {
                     <div className="info-page__body">
                         <div className="info-page__col-1">
                             <div className="info-page__avatar">
-                                <div className="info-page__avatar-img"
-                                    style={{ backgroundImage: `url(${avatarUrl})` }
-                                    }></div>
+                                <img src={avatarUrl} className="info-page__avatar-img"></img>
                             </div>
                             <label className="info-page__user-id">{username}</label>
                         </div>
