@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Nav from '../common/Nav';
 import Breadcrumbs from '../common/Breadcrumbs';
+import ModalLoading from '../common/ModalLoading';
+import SidebarAccount from './SidebarAccount';
 
 const AccountOrderDetail = ({ socket }) => {
     const { orderID } = useParams()
-    const [users, setUsers] = useState([])
 
     const [orders, setOrders] = useState([])
     const [owner, setOwner] = useState("")
@@ -21,14 +22,10 @@ const AccountOrderDetail = ({ socket }) => {
 
     const [loading, setLoading] = useState(true)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
-                setUsers(data.users)
-                setLoading(false)
-            })
-
             fetch("http://localhost:4000/api/orders").then(res => res.json()).then(data => {
                 setOrders(data.orders)
                 setLoading(false)
@@ -58,21 +55,20 @@ const AccountOrderDetail = ({ socket }) => {
         }
 
         handleFormatCrumbs()
+        handleLoadOptionSidebar(3)
     })
 
-    const navigate = useNavigate()
-
-    const handleLoggout = (e) => {
-        e.preventDefault();
-        users.map((user, index) => {
-            if (window.localStorage.getItem("userLogged") === user.username) {
-                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
-                window.localStorage.removeItem("userLogged")
-                window.localStorage.removeItem("statusLogged")
-                window.location.href = ("/login")
+    const handleLoadOptionSidebar = (index) => {
+        const optionItems = document.querySelectorAll('.account__sidebar-item')
+        const optionItemActive = document.querySelector(".account__sidebar-item.account__sidebar-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("account__sidebar-item--active")
             }
         })
+        optionItems[index].classList.add("account__sidebar-item--active")
     }
+
 
     const handleConfirmReceived = (e) => {
         e.preventDefault()
@@ -118,58 +114,13 @@ const AccountOrderDetail = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
+            <ModalLoading />
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
-                        <div className="account__sidebar">
-                            <ul className="account__sidebar-list">
-                                <li className="account__sidebar-item" onClick={(e) => { navigate('/account') }}>
-                                    <i className="account__sidebar-item-icon fa fa-home"></i>
-                                    <label className="account__sidebar-label">Trang chủ</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/account/info');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-user"></i>
-                                    <label className="account__sidebar-label">Thông tin cá nhân</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/cart');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-shopping-cart"></i>
-                                    <label className="account__sidebar-label">Giỏ hàng</label>
-                                </li>
-                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/account/history');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-history"></i>
-                                    <label className="account__sidebar-label">Lịch sử mua hàng</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={handleLoggout}>
-                                    <i className="account__sidebar-item-icon fa fa-sign-out"></i>
-                                    <label className="account__sidebar-label">Đăng xuất tài khoản</label>
-                                </li>
-                            </ul>
-                        </div>
+                        <SidebarAccount />
 
                         <div className="account__box">
                             <div className="account__box-info">

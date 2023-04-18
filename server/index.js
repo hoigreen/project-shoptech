@@ -37,7 +37,8 @@ const savedDataFeedback = fs.readFileSync("datas/data-feedback.json")
 const objectDataFeedback = JSON.parse(savedDataFeedback)
 
 app.use(cors())
-app.use('/uploads', express.static('./uploads'));
+// app.use('/uploads', express.static('./uploads'));
+app.use('/public', express.static('./public'));
 
 
 const storage = multer.diskStorage({
@@ -75,9 +76,10 @@ function findAdmin(idKey, myArray, avatarUrlAdmin, fullnameAdmin, emailAdmin, ph
     })
 }
 
-function findCustomer(idKey, myArray, fullnameCustomer, emailCustomer, phoneCustomer, addressCustomer) {
+function findCustomer(idKey, myArray, avatarUrl, fullnameCustomer, emailCustomer, phoneCustomer, addressCustomer) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
+            myArray[i].avatarUrl = avatarUrl;
             myArray[i].fullname = fullnameCustomer;
             myArray[i].email = emailCustomer;
             myArray[i].phone = phoneCustomer;
@@ -90,11 +92,9 @@ function findCustomer(idKey, myArray, fullnameCustomer, emailCustomer, phoneCust
     })
 }
 
-function findProductToEdit(idKey, myArray, imagePrimaryProduct, imageLinkProduct, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) {
+function findProduct(idKey, myArray, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
-            myArray[i].imagePrimary = imagePrimaryProduct;
-            myArray[i].imageLink = imageLinkProduct;
             myArray[i].name = nameProduct;
             myArray[i].type = typeProduct;
             myArray[i].enType = enTypeProduct;
@@ -111,9 +111,47 @@ function findProductToEdit(idKey, myArray, imagePrimaryProduct, imageLinkProduct
     })
 }
 
-function findPromote(idKey, myArray, namePromote, timeStartPromote, timeEndPromote, percentPromote, applyPromote) {
+function findProductToEditBanner(idKey, myArray, imagePrimaryProduct) {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
+            myArray[i].imagePrimary = imagePrimaryProduct;
+        }
+    }
+    const stringData = JSON.stringify(objectDataProduct, null, 2)
+    fs.writeFile("datas/data-product.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findProductToEditImageLink(idKey, myArray, imageLinkProduct) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].id === idKey) {
+            myArray[i].imageLink = imageLinkProduct;
+        }
+    }
+    const stringData = JSON.stringify(objectDataProduct, null, 2)
+    fs.writeFile("datas/data-product.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findProductToEditImageList(idKey, myArray, imageListProduct) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].id === idKey) {
+            var data = myArray[i].imageList;
+            myArray[i].imageList = data.concat(imageListProduct);
+        }
+    }
+    const stringData = JSON.stringify(objectDataProduct, null, 2)
+    fs.writeFile("datas/data-product.json", stringData, (err) => {
+        console.error(err)
+    })
+}
+
+function findPromote(idKey, myArray, imageLinkPromote, namePromote, timeStartPromote, timeEndPromote, percentPromote, applyPromote) {
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i].id === idKey) {
+            myArray[i].imageLink = imageLinkPromote;
             myArray[i].name = namePromote;
             myArray[i].timeStart = timeStartPromote;
             myArray[i].timeEnd = timeEndPromote;
@@ -301,17 +339,32 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoCustomer", data => {
-        findCustomer(data.userID, objectDataUser["users"], data.fullname, data.email, data.phone, data.address)
+        findCustomer(data.userID, objectDataUser["users"], data.avatarUrl, data.fullname, data.email, data.phone, data.address)
         socket.broadcast.emit("editInfoCustomerResponse", data)
     })
 
     socket.on("editInfoProduct", data => {
-        findProductToEdit(data.id, objectDataProduct["products"], data.imagePrimary, data.imageLink, data.name, data.type, data.enType, data.price, data.color, data.hotDeal, data.featured, data.status)
+        findProduct(data.id, objectDataProduct["products"], data.name, data.type, data.enType, data.price, data.color, data.hotDeal, data.featured, data.status)
         socket.broadcast.emit("editInfoProductResponse", data)
     })
 
+    socket.on("editImageBannerProduct", data => {
+        findProductToEditBanner(data.id, objectDataProduct["products"], data.imagePrimary)
+        socket.broadcast.emit("editImageBannerProductResponse", data)
+    })
+
+    socket.on("editImageLinkProduct", data => {
+        findProductToEditImageLink(data.id, objectDataProduct["products"], data.imageLink)
+        socket.broadcast.emit("editImageLinkProductResponse", data)
+    })
+
+    socket.on("editImageListProduct", data => {
+        findProductToEditImageList(data.id, objectDataProduct["products"], data.imageList)
+        socket.broadcast.emit("editImageListProductResponse", data)
+    })
+
     socket.on("editInfoPromote", data => {
-        findPromote(data.id, objectDataPromote["promotes"], data.name, data.timeStart, data.timeEnd, data.percent, data.apply)
+        findPromote(data.id, objectDataPromote["promotes"], data.imageLink, data.name, data.timeStart, data.timeEnd, data.percent, data.apply)
         socket.broadcast.emit("editInfoPromoteResponse", data)
     })
 
@@ -375,8 +428,9 @@ socketIO.on('connection', (socket) => {
         socket.broadcast.emit("removeAllInCartResponse", data)
     })
 
-    socket.on('addOrder', (data) => {
+    socket.on('addOrder', (data, dataUser) => {
         objectDataOrder["orders"].push(data)
+        findUserToRemoveCart(dataUser.userID, objectDataUser["users"])
         const stringData = JSON.stringify(objectDataOrder, null, 2)
         fs.writeFile("datas/data-order.json", stringData, (err) => {
             console.error(err)

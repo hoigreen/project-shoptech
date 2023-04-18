@@ -13,6 +13,7 @@ const InfoProduct = ({ socket }) => {
 
     const [imageLink, setImageLink] = useState('')
     const [imageBanner, setImageBanner] = useState('')
+    const [imageList, setImageList] = useState([])
     const [nameProduct, setNameProduct] = useState('')
     const [typeProduct, setTypeProduct] = useState('')
     const [priceProduct, setPriceProduct] = useState()
@@ -28,12 +29,15 @@ const InfoProduct = ({ socket }) => {
     const [boolHotDeal, setBoolHotDeal] = useState(true)
     const [boolFeatured, setBoolFeatured] = useState(true)
 
+    const [loading, setLoading] = useState(true)
+
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAPIs = () => {
             fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
+                setLoading(false)
             })
         }
         fetchAPIs()
@@ -45,6 +49,7 @@ const InfoProduct = ({ socket }) => {
             if (product.id === id) {
                 setImageLink(product.imageLink)
                 setImageBanner(product.imagePrimary)
+                setImageList(product.imageList)
                 setNameProduct(product.name);
                 setTypeProduct(product.type);
                 setPriceProduct(product.price);
@@ -52,7 +57,19 @@ const InfoProduct = ({ socket }) => {
                 setStatusProduct(product.status);
             }
         })
+        handleLoadOptionSelected(2)
     })
+
+    const handleLoadOptionSelected = (index) => {
+        const optionItems = document.querySelectorAll('.sidebar__component-item')
+        const optionItemActive = document.querySelector(".sidebar__component-item.sidebar__component-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("sidebar__component-item--active")
+            }
+        })
+        optionItems[index].classList.add("sidebar__component-item--active")
+    }
 
     const changeImageBanner = () => {
         const preview = document.querySelector(".info-admin-product__image-banner-img")
@@ -80,45 +97,54 @@ const InfoProduct = ({ socket }) => {
         }
     }
 
-
+    var indexImageItem = 0;
     const handleAddImageInList = () => {
-        var indexImageItem = 0
         const imagesList = document.querySelector(".info-admin-product__image-list")
         if (imagesList) {
             const item = document.createElement("div");
             item.classList.add("info-admin-product__image-item")
-
-            item.onclick = function (e) {
-                if (e.target.closest(".info-admin-product__image-item--done")) {
-                    // handleConfirmOption(item)
-                }
-            };
             item.innerHTML = `
                     <img class="info-admin-product__image-item-img" src="">
                     <label for="image-list-${indexImageItem}" class="info-admin-product__image-item-btn--remove"></label>
                     <input type="file" class="image-list" id="image-list-${indexImageItem}" hidden/>
-            `;
-
-            const imageElement = item.querySelectorAll(".image-list")[indexImageItem];
-            imageElement.onchange = (event) => {
-                const preview = imagesList.querySelectorAll(".info-admin-product__image-item-img");
-                const image = imageElement.files[0]
-                const reader = new FileReader()
-                reader.addEventListener("load", () => {
-                    preview[indexImageItem].src = reader.result;
-                }, false)
-                reader.readAsDataURL(image)
-
-            };
-            indexImageItem++;
+            `
             imagesList.appendChild(item);
+            handleAddImage(Number(indexImageItem))
+            indexImageItem = indexImageItem + 1;
         }
+    }
 
+    const handleAddImage = (index) => {
+        const imageItems = document.querySelectorAll(".image-list");
+        const preview = document.querySelectorAll(".info-admin-product__image-item-img")
+        imageItems[index].onchange = () => {
+            const reader = new FileReader()
+            reader.addEventListener("load", () => {
+                preview[index].src = reader.result;
+            }, false)
+            reader.readAsDataURL(imageItems[index].files[0])
+        }
+    }
 
+    var arrayImageList = [];
+    const handleConfirmEditList = () => {
+        const imagesItems = document.querySelectorAll(".info-admin-product__image-item-img")
+        if (imagesItems) {
+            for (var i = 0; i < imagesItems.length; i++) {
+                arrayImageList.push(imagesItems[i].src)
+            }
+        }
+        console.log(arrayImageList)
+        socket.emit("editImageListProduct", {
+            id: id,
+            imageList: arrayImageList
+        })
+        alert("Thay đổi danh sách hình ảnh hoàn tất")
     }
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
+        // Kiểm tra dữ liệu nhập vào thông tin nổi bật và khuyến mãi
         var boolFeaturedEdit;
         var boolHotDealEdit;
         if (boolFeatured === "true") {
@@ -134,12 +160,8 @@ const InfoProduct = ({ socket }) => {
             boolHotDealEdit = boolHotDeal.toLowerCase() === "False"
         }
 
-        const imagePrimaryProduct = document.querySelector(".info-admin-product__image-banner-img").getAttribute("src")
-        const imageLinkProduct = document.querySelector(".info-admin-product__image-primary-img").getAttribute("src")
         if (window.confirm("Bạn muốn cập nhật thông tin sản phẩm?") == true) {
             socket.emit("editInfoProduct", {
-                imagePrimary: imagePrimaryProduct,
-                imageLink: imageLinkProduct,
                 id: id,
                 name: nameProductEdit,
                 type: typeProductEdit,
@@ -153,7 +175,7 @@ const InfoProduct = ({ socket }) => {
             window.alert("Thành công!")
             handLoadingPage(1)
             window.setTimeout(() => {
-                navigate(`/admin/product/info/${id}/${priceProductEdit}`)
+                window.location.href = `/admin/product/info/${id}/${priceProductEdit}`
             }, 1000)
         }
     }
@@ -193,25 +215,63 @@ const InfoProduct = ({ socket }) => {
                             <div className="info-admin-product__image-primary">
                                 <img className="info-admin-product__image-primary-img" src={imageLink}></img>
                                 <input type='file' id="image-primary" value="" onChange={changeImagePrimary} hidden></input>
-                                <label htmlFor="image-primary" className="info-admin-product__image-btn">Chỉnh sửa</label>
+                                <div className="info-admin-product__image-controll">
+                                    <label htmlFor="image-primary" className="info-admin-product__image-btn">Chỉnh sửa</label>
+                                    <button className="info-admin-product__image-btn" style={{ backgroundColor: "#df8129", color: "#fff" }}
+                                        onClick={e => {
+                                            const imageLinkProduct = document.querySelector(".info-admin-product__image-primary-img").getAttribute("src")
+                                            socket.emit("editImageLinkProduct", {
+                                                id: id,
+                                                imageLink: imageLinkProduct
+                                            })
+                                            alert("Thay đổi hình ảnh chính hoàn tất!")
+                                        }}
+                                    >Xác nhận</button>
+                                </div>
                             </div>
 
                             <div className="info-admin-product__image-box">
                                 <div className="info-admin-product__image-banner">
                                     <img className="info-admin-product__image-banner-img" src={imageBanner}></img>
                                     <input type='file' id="image-banner" value="" onChange={changeImageBanner} hidden></input>
-                                    <label htmlFor="image-banner" className="info-admin-product__image-btn">Chỉnh sửa</label>
+                                    <div className="info-admin-product__image-controll">
+                                        <label htmlFor="image-banner" className="info-admin-product__image-btn">Chỉnh sửa</label>
+                                        <button className="info-admin-product__image-btn" style={{ backgroundColor: "#df8129", color: "#fff" }}
+                                            onClick={e => {
+                                                const imagePrimaryProduct = document.querySelector(".info-admin-product__image-banner-img").getAttribute("src")
+                                                socket.emit("editImageBannerProduct", {
+                                                    id: id,
+                                                    imagePrimary: imagePrimaryProduct
+                                                })
+                                                alert("Thay đổi hình ảnh banner hoàn tất")
+                                            }}>
+                                            Xác nhận
+                                        </button>
+                                    </div>
                                 </div>
                                 <ul className="info-admin-product__image-list">
                                     <button className="info-admin-product__item-image-btn" onClick={handleAddImageInList}>+</button>
+                                    {loading ? <p>Đang kết nối đến server...</p> : imageList.map((item, index) => (
+                                        <div className="info-admin-product__image-item" key={index}>
+                                            <img className="info-admin-product__image-item-img--existed" src={imageList[index]} />
+                                        </div>
+                                    ))}
+
                                 </ul>
+
+                                <button className="info-admin-product__image-btn" style={{ backgroundColor: "#df8129", color: "#fff", fontSize: "1.4rem", minWidth: "90px" }}
+                                    onClick={e => {
+                                        handleConfirmEditList()
+                                    }}>
+                                    Xác nhận
+                                </button>
                             </div>
                         </div>
 
                         <div className='info-admin-product__col-2'>
                             <div className="info-admin-product__box-info">
                                 <label className="info-admin-product__label">Mã sản phẩm</label>
-                                <input style={{ fontWeight: 'bold', color: 'red' }} className='info-admin-product__input' value={id} />
+                                <input style={{ fontWeight: 'bold', color: 'red' }} className='info-admin-product__input' value={id} readOnly />
                                 <label className="info-admin-product__label">Tên sản phẩm</label>
                                 <input style={{ fontWeight: 'bold' }} className='info-admin-product__input' defaultValue={nameProduct} onChange={(e) => { setNameProductEdit(e.target.value); }} />
                                 <label className="info-admin-product__label">Loại sản phẩm</label>
@@ -231,11 +291,13 @@ const InfoProduct = ({ socket }) => {
                                             setEnType("accessories");
                                             break;
                                     }
-                                }} value={typeProductEdit}>
+                                }}>
+                                    <option value="" selected >Chọn loại sản phẩm...</option>
                                     <option value="Điện thoại">Điện thoại di động</option>
                                     <option value="Máy tính xách tay">Máy tính xách tay</option>
                                     <option value="Máy tính bảng">Máy tính bảng</option>
                                     <option value="Phụ kiện">Phụ kiện công nghệ</option>
+
                                 </select>
 
                                 <label className="info-admin-product__label">Màu sắc</label>
@@ -250,19 +312,22 @@ const InfoProduct = ({ socket }) => {
                                     style={{ fontWeight: 'bold', color: 'red' }} />
 
                                 <label className="info-admin-product__label">Thêm vào sản phẩm nổi bật</label>
-                                <select className='info-admin-product__input' onChange={(e) => { setBoolFeatured(e.target.value); }} value={boolFeatured}>
+                                <select className='info-admin-product__input' onChange={(e) => { setBoolFeatured(e.target.value); }}>
+                                    <option value="" selected >Chọn giá trị...</option>
                                     <option value="true">Có</option>
                                     <option value="False">Không</option>
                                 </select>
 
                                 <label className="info-admin-product__label">Thêm vào sản phẩm khuyến mãi khung giờ vàng</label>
-                                <select className='info-admin-product__input' style={{ fontWeight: 'bold', color: 'green' }} onChange={(e) => { setBoolHotDeal(e.target.value); }} value={boolHotDeal}>
+                                <select className='info-admin-product__input' style={{ fontWeight: 'bold', color: 'green' }} onChange={(e) => { setBoolHotDeal(e.target.value); }}>
+                                    <option value="" selected >Chọn giá trị...</option>
                                     <option value="true">Có</option>
                                     <option value="False">Không</option>
                                 </select>
 
                                 <label className="info-admin-product__label">Trạng thái sản phẩm</label>
                                 <select className='info-admin-product__input' onChange={(e) => { setStatusProductEdit(e.target.value); }} value={statusProductEdit}>
+                                    <option value="" selected >Chọn giá trị...</option>
                                     <option value="Sẵn hàng">Sẵn hàng</option>
                                     <option value="Cháy hàng">Cháy hàng</option>
                                 </select>

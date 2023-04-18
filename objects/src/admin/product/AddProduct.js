@@ -25,33 +25,18 @@ const AddProduct = ({ socket }) => {
         fetchAPIs()
     }, [])
 
-    const handleAddProduct = (e) => {
-        e.preventDefault();
-        socket.emit("addProduct", {
-            imagePrimary: "",
-            imageLink: "",
-            imageList: [],
-            id,
-            name,
-            type,
-            enType,
-            price,
-            option,
-            color,
-            status,
-            star: 0,
-            voter: 0,
-            hotDeal: false,
-            featured: true,
-            percent: 0
-        });
-        handLoadingPage(1)
-        window.setTimeout(() => {
-            navigate('/admin/product');
-        }, 1000)
-        alert("Thêm sản phẩm thành công")
-    }
+    const changeImage = () => {
+        const preview = document.querySelector(".add-product__image")
+        const imageAdmin = document.querySelector("#image-change").files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            preview.src = reader.result;
+        }, false)
 
+        if (imageAdmin) {
+            reader.readAsDataURL(imageAdmin)
+        }
+    }
 
     const handleAddOption = () => {
         const optionList = document.querySelector(".add__option-list")
@@ -107,6 +92,33 @@ const AddProduct = ({ socket }) => {
         setOption([...option, objItem]);
     }
 
+    const handleAddProduct = (e) => {
+        e.preventDefault();
+        const imageLinkProduct = document.querySelector(".add-product__image").getAttribute("src")
+        socket.emit("addProduct", {
+            imagePrimary: "",
+            imageLink: imageLinkProduct,
+            imageList: [],
+            id,
+            name,
+            type,
+            enType,
+            price,
+            option,
+            color,
+            status,
+            star: 0,
+            voter: 0,
+            hotDeal: false,
+            featured: true,
+            percent: 0
+        });
+        handLoadingPage(1)
+        window.setTimeout(() => {
+            navigate('/admin/product');
+        }, 1000)
+        alert("Thêm sản phẩm thành công")
+    }
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
@@ -132,14 +144,14 @@ const AddProduct = ({ socket }) => {
                     <div className="add__body">
                         <div className="add__col-left">
                             <div className="add__avatar">
-                                <div className="add__avatar-img"></div>
-                                <button className='add__btn'>Thêm hình ảnh</button>
+                                <img src="https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png" className="add-product__image"></img>
+                                <input type='file' id="image-change" onChange={changeImage} hidden></input>
+                                <label htmlFor="image-change" className="info-admin-product__image-btn">Thêm hình ảnh</label>
                             </div>
 
                         </div>
                         <div className="add__col-right">
                             <label className="add__title">Thông tin sản phẩm</label>
-
                             <label className="add__label">Mã sản phẩm tự khởi tạo</label>
                             <input style={{ fontWeight: "bold", color: "red" }} readOnly className='add__input add__input--readonly' value={"P00" + Number(products.length + 1)}
                                 onFocus={(e) => {

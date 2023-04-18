@@ -12,6 +12,8 @@ const PromotePage = () => {
 
     const [loading, setLoading] = useState(true)
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchAPI = () => {
             fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
@@ -20,9 +22,21 @@ const PromotePage = () => {
             });
         }
         fetchAPI()
+
+        handleLoadOptionSelected(3)
     }, [])
 
-    const navigate = useNavigate();
+    const handleLoadOptionSelected = (index) => {
+        const optionItems = document.querySelectorAll('.sidebar__component-item')
+        const optionItemActive = document.querySelector(".sidebar__component-item.sidebar__component-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("sidebar__component-item--active")
+            }
+        })
+        optionItems[index].classList.add("sidebar__component-item--active")
+    }
+
 
     const handleAddPromote = (event) => {
         event.preventDefault()

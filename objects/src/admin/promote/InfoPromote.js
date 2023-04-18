@@ -47,12 +47,40 @@ const InfoPromote = ({ socket }) => {
                 setApplyPromote(promote.apply);
             }
         })
+
+        handleLoadOptionSelected(3)
     })
+
+    const changeImage = () => {
+        const preview = document.querySelector(".info-promote__avatar-img")
+        const image = document.querySelector("#image-change").files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            preview.src = reader.result;
+        }, false)
+
+        if (image) {
+            reader.readAsDataURL(image)
+        }
+    }
+
+    const handleLoadOptionSelected = (index) => {
+        const optionItems = document.querySelectorAll('.sidebar__component-item')
+        const optionItemActive = document.querySelector(".sidebar__component-item.sidebar__component-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("sidebar__component-item--active")
+            }
+        })
+        optionItems[index].classList.add("sidebar__component-item--active")
+    }
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
+        const imageLink = document.querySelector(".info-promote__avatar-img").getAttribute("src")
         if (window.confirm("Bạn muốn cập nhật thông tin chương trình khuyến mãi này?") == true) {
             socket.emit("editInfoPromote", {
+                imageLink: imageLink,
                 id,
                 name: namePromoteEdit,
                 timeStart: timeStartPromoteEdit,
@@ -92,11 +120,12 @@ const InfoPromote = ({ socket }) => {
                     <div className="info-promote__header">Chỉnh sửa thông tin sản phẩm</div>
 
                     <div className="info-promote__body">
-                        <div className="info-promote__avatar">
-                            <div className="info-promote__avatar-img"
-                                style={{ backgroundImage: `url(${imageLink})` }
-                                }></div>
+                        <div className="add__avatar">
+                            <img src={imageLink} className="info-promote__avatar-img"></img>
+                            <input type='file' id="image-change" onChange={changeImage} hidden></input>
+                            <label htmlFor="image-change" className="info-admin-product__image-btn">Thay đổi hình ảnh khuyến mãi</label>
                         </div>
+
                         <label style={{ fontWeight: "600" }} className="info-page__user-id">{id}</label>
 
                         <label style={{ textAlign: "center", fontWeight: "600" }} className="info-page__label">Tên chương trình khuyến mãi</label>

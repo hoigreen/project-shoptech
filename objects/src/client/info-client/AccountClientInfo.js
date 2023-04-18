@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Nav from '../common/Nav';
-import Footer from '../common/Footer';
 import Breadcrumbs from '../common/Breadcrumbs';
+import ModalLoading from '../common/ModalLoading';
+import SidebarAccount from './SidebarAccount';
 
 const AccountClientInfo = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
     const [username, setUsername] = useState('')
     const [userID, setUserID] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
@@ -21,6 +22,7 @@ const AccountClientInfo = ({ socket }) => {
     const [phoneEdit, setPhoneEdit] = useState('')
     const [addressEdit, setAddressEdit] = useState('')
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAPIs = () => {
@@ -43,27 +45,38 @@ const AccountClientInfo = ({ socket }) => {
                 setAddress(user.address);
             }
         })
+        handleLoadOptionSidebar(1)
     })
 
-    const handleLoggout = (e) => {
-        e.preventDefault();
-        users.map((user, index) => {
-            if (window.localStorage.getItem("userLogged") === user.username) {
-                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
-                window.localStorage.removeItem("userLogged")
-                window.localStorage.removeItem("statusLogged")
-                handLoadingPage(1)
-                window.setTimeout(() => {
-                    window.location.href = ('/login');
-                }, 1000)
+    const handleLoadOptionSidebar = (index) => {
+        const optionItems = document.querySelectorAll('.account__sidebar-item')
+        const optionItemActive = document.querySelector(".account__sidebar-item.account__sidebar-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("account__sidebar-item--active")
             }
         })
+        optionItems[index].classList.add("account__sidebar-item--active")
+    }
+
+    const changeImage = () => {
+        const preview = document.querySelector(".account__box-info-avatar")
+        const imageAdmin = document.querySelector("#avatar-change").files[0]
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            preview.src = reader.result;
+        }, false)
+
+        if (imageAdmin) {
+            reader.readAsDataURL(imageAdmin)
+        }
     }
 
     const handleEditInfo = (e) => {
         e.preventDefault()
+        const avatarUrl = document.querySelector(".account__box-info-avatar").getAttribute("src")
         if (window.confirm("Bạn muốn sửa đổi thông tin cá nhân!") == true) {
-            socket.emit("editInfoCustomer", { userID: userID, fullname: fullnameEdit, email: emailEdit, phone: phoneEdit, address: addressEdit })
+            socket.emit("editInfoCustomer", { userID: userID, avatarUrl: avatarUrl, fullname: fullnameEdit, email: emailEdit, phone: phoneEdit, address: addressEdit })
             window.alert("Thành công!")
             handLoadingPage(1)
             window.setTimeout(() => {
@@ -71,8 +84,6 @@ const AccountClientInfo = ({ socket }) => {
             }, 1000)
         }
     }
-
-    const navigate = useNavigate();
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")
@@ -86,70 +97,21 @@ const AccountClientInfo = ({ socket }) => {
         <div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
-
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
 
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
-                        <div className="account__sidebar">
-                            <ul className="account__sidebar-list">
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        window.location.href = ('/account/');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-home"></i>
-                                    <label className="account__sidebar-label">Trang chủ</label>
-                                </li>
-                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/account/info');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-user"></i>
-                                    <label className="account__sidebar-label">Thông tin cá nhân</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/cart');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-shopping-cart"></i>
-                                    <label className="account__sidebar-label">Giỏ hàng</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/account/history');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-history"></i>
-                                    <label className="account__sidebar-label">Lịch sử mua hàng</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={handleLoggout}>
-                                    <i className="account__sidebar-item-icon fa fa-sign-out"></i>
-                                    <label className="account__sidebar-label">Đăng xuất tài khoản</label>
-                                </li>
-                            </ul>
-                        </div>
+                        <SidebarAccount />
 
                         <div className="account__box">
                             <div className="account__box-info">
-                                <div style={{
-                                    backgroundImage: `url(${avatarUrl})`,
-                                    backgroundSize: 'cover'
-                                }} className="account__box-info-avatar"></div>
+                                <div className="account__box-info-container">
+                                    <img className="account__box-info-avatar" src={avatarUrl || "http://localhost:4000/public/img-avatar-empty.png"}></img>
+                                    <input type='file' id="avatar-change" onChange={(e) => { changeImage() }} hidden></input>
+                                    <label className="account__box-info-avatar-btn" htmlFor="avatar-change">Thay đổi Avatar</label>
+                                </div>
+
                                 <label className="account__box-info-label">Xin chào</label>
                                 <label className="account__box-info-fullname">{fullname}</label>
                                 <label className="account__box-info-header">THÔNG TIN CÁ NHÂN</label>
@@ -170,7 +132,7 @@ const AccountClientInfo = ({ socket }) => {
 
                                 <label className="account__box-info-title">Số điện thoại:</label>
                                 <input className="account__box-info-input"
-                                    type="number"
+                                    type="text"
                                     defaultValue={phone}
                                     name="phone"
                                     onChange={(e) => { setPhoneEdit(e.target.value) }}

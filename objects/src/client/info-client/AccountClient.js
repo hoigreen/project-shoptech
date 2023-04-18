@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
 import Breadcrumbs from '../common/Breadcrumbs';
+import ModalLoading from '../common/ModalLoading';
+import SidebarAccount from './SidebarAccount';
 
 
 const AccountClient = ({ socket }) => {
     const [users, setUsers] = useState([])
-
-    const [username, setUsername] = useState('')
     const [fullname, setFullname] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
 
@@ -15,6 +15,8 @@ const AccountClient = ({ socket }) => {
     const [countOrderDriving, setCountOrderDriving] = useState()
     const [countOrder, setCountOrder] = useState()
     const [countPriceOrder, setCountPriceOrder] = useState()
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAPIs = () => {
@@ -29,12 +31,10 @@ const AccountClient = ({ socket }) => {
         fetchAPIs()
     }, [])
 
-    const navigate = useNavigate();
 
     useEffect(() => {
         users.map((user, index) => {
             if (user.username === window.localStorage.getItem("userLogged")) {
-                setUsername(user.username);
                 setFullname(user.fullname)
                 setAvatarUrl(user.avatarUrl)
             }
@@ -62,21 +62,18 @@ const AccountClient = ({ socket }) => {
                 setCountPriceOrder(sumCountPriceOrder)
             }
         })
+        handleLoadOptionSidebar(0)
     })
 
-    const handleLoggout = (e) => {
-        e.preventDefault();
-        users.map((user, index) => {
-            if (window.localStorage.getItem("userLogged") === user.username) {
-                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
-                window.localStorage.removeItem("userLogged")
-                window.localStorage.removeItem("statusLogged")
-                handLoadingPage(1)
-                window.setTimeout(() => {
-                    window.location.href = ("/login")
-                }, 1000)
+    const handleLoadOptionSidebar = (index) => {
+        const optionItems = document.querySelectorAll('.account__sidebar-item')
+        const optionItemActive = document.querySelector(".account__sidebar-item.account__sidebar-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("account__sidebar-item--active")
             }
         })
+        optionItems[index].classList.add("account__sidebar-item--active")
     }
 
     const handLoadingPage = (second) => {
@@ -89,65 +86,17 @@ const AccountClient = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
+            <ModalLoading />
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
-                        <div className="account__sidebar">
-                            <ul className="account__sidebar-list">
-                                <li className="account__sidebar-item account__sidebar-item--active" onClick={(e) => { navigate('/account') }}>
-                                    <i className="account__sidebar-item-icon fa fa-home"></i>
-                                    <label className="account__sidebar-label">Trang chủ</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/account/info');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-user"></i>
-                                    <label className="account__sidebar-label">Thông tin cá nhân</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/cart');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-shopping-cart"></i>
-                                    <label className="account__sidebar-label">Giỏ hàng</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={(e) => {
-                                    handLoadingPage(1)
-                                    window.setTimeout(() => {
-                                        navigate('/account/history');
-                                    }, 1000)
-                                }}>
-                                    <i className="account__sidebar-item-icon fa fa-history"></i>
-                                    <label className="account__sidebar-label">Lịch sử mua hàng</label>
-                                </li>
-                                <li className="account__sidebar-item" onClick={handleLoggout}>
-                                    <i className="account__sidebar-item-icon fa fa-sign-out"></i>
-                                    <label className="account__sidebar-label">Đăng xuất tài khoản</label>
-                                </li>
-                            </ul>
-                        </div>
+                        <SidebarAccount />
 
                         <div className="account__box">
                             <div className="account__box-info">
-                                <div style={{
-                                    backgroundImage: `url(${avatarUrl})`,
-                                    backgroundSize: 'cover'
-                                }} className="account__box-info-avatar"></div>
+                                <img src={avatarUrl} className="account__box-info-avatar"></img>
                                 <label className="account__box-info-label">Xin chào</label>
                                 <label className="account__box-info-fullname">{fullname}</label>
                                 <div className='account__box-info-list'>

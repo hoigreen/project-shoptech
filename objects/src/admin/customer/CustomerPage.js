@@ -7,26 +7,14 @@ import AdminHeader from '../common/AdminHeader';
 import AdminSidebar from '../common/AdminSidebar';
 
 const CustomerPage = () => {
-    const [admins, setAdmins] = useState([])
-    const [admin, setAdmin] = useState([])
-    const [adminID, setAdminID] = useState('')
-    const [adminName, setAdminName] = useState('')
-    const [avatarUrl, setAvatarUrl] = useState('')
-    const [fullname, setFullname] = useState('')
 
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
     const [countCustomer, setCountCustomers] = useState(0)
 
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
-                setAdmins(data.admins)
-                setLoading(false)
-            });
-
             fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
                 setLoading(false)
@@ -43,7 +31,19 @@ const CustomerPage = () => {
                 setCountCustomers(index);
             }
         })
+        handleLoadOptionSelected(1)
     })
+
+    const handleLoadOptionSelected = (index) => {
+        const optionItems = document.querySelectorAll('.sidebar__component-item')
+        const optionItemActive = document.querySelector(".sidebar__component-item.sidebar__component-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("sidebar__component-item--active")
+            }
+        })
+        optionItems[index].classList.add("sidebar__component-item--active")
+    }
 
     return (
         <div className='customer__container'>

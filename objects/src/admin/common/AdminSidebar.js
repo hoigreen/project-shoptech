@@ -66,6 +66,8 @@ const AdminSidebar = () => {
         }, 1000)
     }
 
+    
+
     const LogOut = () => {
         window.localStorage.removeItem('adminNameLogin')
         handLoadingPage(1)
@@ -88,25 +90,25 @@ const AdminSidebar = () => {
                 e.preventDefault();
                 window.location.href = '/admin/dashboard'
             }}></div>
-            <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateDashboard}>
+            <div className="sidebar__component-item" onClick={handleNevigateDashboard}>
                 <i className="sidebar__component-item-icon fa fa-home" aria-hidden="true"></i>
                 Thống kê
             </div>
             <div className="sidebar__component">
                 <label className="sidebar__component-label">Quản lý dữ liệu</label>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateCustomer}>
+                <div className="sidebar__component-item" onClick={handleNevigateCustomer}>
                     <i className="sidebar__component-item-icon fa fa-users" aria-hidden="true"></i>
                     Khách hàng
                 </div>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateProduct}>
+                <div className="sidebar__component-item" onClick={handleNevigateProduct}>
                     <i className="sidebar__component-item-icon fa fa-table" aria-hidden="true"></i>
                     Sản phẩm
                 </div>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigatePromote}>
+                <div className="sidebar__component-item" onClick={handleNevigatePromote}>
                     <i className="sidebar__component-item-icon fa fa-tag" aria-hidden="true"></i>
                     Khuyến mãi
                 </div>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateFeedback}>
+                <div className="sidebar__component-item" onClick={handleNevigateFeedback}>
                     <i className="sidebar__component-item-icon fa fa-comments" aria-hidden="true"></i>
                     Ý kiến khách hàng
                 </div>
@@ -114,11 +116,11 @@ const AdminSidebar = () => {
 
             <div className="sidebar__component">
                 <label className="sidebar__component-label">Tùy chọn</label>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={handleNevigateInfo}>
+                <div className="sidebar__component-item" onClick={handleNevigateInfo}>
                     <i className="sidebar__component-item-icon fa fa-user" aria-hidden="true"></i>
                     Thông tin cá nhân
                 </div>
-                <div className="sidebar__component-item sidebar__component-item--disable" onClick={LogOut}>
+                <div className="sidebar__component-item" onClick={LogOut}>
                     <i className="sidebar__component-item-icon fa fa-sign-out" aria-hidden="true"></i>
                     Đăng xuất
                 </div>

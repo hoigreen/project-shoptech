@@ -6,7 +6,7 @@ import Breadcrumbs from '../common/Breadcrumbs'
 
 const Payment = ({ socket }) => {
     const [users, setUsers] = useState([])
-
+    const [userID, setUserID] = useState("")
     const [cartUser, setCartUser] = useState([])
 
     const [orders, setOrders] = useState([])
@@ -29,6 +29,7 @@ const Payment = ({ socket }) => {
     useEffect(() => {
         users.map((user, index) => {
             if (user.username === window.localStorage.getItem("userLogged")) {
+                setUserID(user.userID)
                 setCartUser(user.cart);
             }
         })
@@ -123,6 +124,8 @@ const Payment = ({ socket }) => {
                     time: dateTime,
                     status: "Đang giao hàng",
                     lists: cartUser
+                }, {
+                    userID: userID,
                 });
                 handLoadingPage(2)
                 setTimeout(() => {
@@ -276,13 +279,13 @@ const Payment = ({ socket }) => {
                 </ul>
 
                 <form className='form-confirm' style={{ display: 'none' }}>
-                    <input name='order_id' value={window.localStorage.getItem("orderIDCache")} />
-                    <input name='order_fullname' value={window.localStorage.getItem("fullnameCache")} />
-                    <input name='email_to' value={window.localStorage.getItem("emailCache")} />
-                    <input name='order_address' value={window.localStorage.getItem("addressCache")} />
-                    <input name='order_note' value={window.localStorage.getItem("noteCache")} />
-                    <input name='order_price' value={Number(window.localStorage.getItem("countTotalPriceCache")).toLocaleString()} />
-                    <input name='order_time' value={timeOrder} />
+                    <input name='order_id' readOnly value={window.localStorage.getItem("orderIDCache")} />
+                    <input name='order_fullname' readOnly value={window.localStorage.getItem("fullnameCache")} />
+                    <input name='email_to' readOnly value={window.localStorage.getItem("emailCache")} />
+                    <input name='order_address' readOnly value={window.localStorage.getItem("addressCache")} />
+                    <input name='order_note' readOnly value={window.localStorage.getItem("noteCache")} />
+                    <input name='order_price' readOnly value={Number(window.localStorage.getItem("countTotalPriceCache")).toLocaleString()} />
+                    <input name='order_time' readOnly value={timeOrder} />
                 </form>
 
                 <div className="cart__control-container">

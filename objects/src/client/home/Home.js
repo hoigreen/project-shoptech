@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Nav from '../common/Nav';
-import HotPromote from '../common/HotPromote';
+import HotPromote from './HotPromote';
 import ModalLoading from '../common/ModalLoading';
 import HomeList from './HomeList';
 import Footer from '../common/Footer';
+import SideBanner from './SideBanner';
 
 const Home = ({socket}) => {
     const [products, setProducts] = useState([])
@@ -56,7 +57,6 @@ const Home = ({socket}) => {
             }
         }, 1000)
     }
-
 
     useEffect(() => {
         // show thông tin sản phẩm hot deal
@@ -131,6 +131,7 @@ const Home = ({socket}) => {
             <HotPromote socket={socket} />
             <div className="grid wide">
                 <div className="home__container">
+                    <SideBanner />
                     <ul id="home-promote">
                         <button className='home-promote__pre'>
                             <i className='home-promote__icon fa fa-arrow-left'></i>

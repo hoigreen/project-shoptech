@@ -41,7 +41,19 @@ const InfoAdmin = ({ socket }) => {
                 setAddressAdmin(admin.address);
             }
         })
+        handleLoadOptionSelected(5)
     })
+
+    const handleLoadOptionSelected = (index) => {
+        const optionItems = document.querySelectorAll('.sidebar__component-item')
+        const optionItemActive = document.querySelector(".sidebar__component-item.sidebar__component-item--active")
+        optionItems.forEach((item, i) => {
+            if (optionItemActive) {
+                optionItemActive.classList.remove("sidebar__component-item--active")
+            }
+        })
+        optionItems[index].classList.add("sidebar__component-item--active")
+    }
 
     const changeImageAdmin = () => {
         const preview = document.querySelector(".info-page__avatar-img")

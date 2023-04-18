@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Nav from '../common/Nav';
+import ModalLoading from '../common/ModalLoading';
 
 const VoteProductInOrder = ({ socket }) => {
     const { orderID, productID } = useParams()
@@ -18,13 +19,10 @@ const VoteProductInOrder = ({ socket }) => {
     const [color, setColor] = useState("")
     const [price, setPrice] = useState()
 
-    const [timeComment, setTimeComment] = useState("")
     const [numberStar, setNumberStar] = useState()
     const [contentComment, setContentComment] = useState("")
 
     const [products, setProducts] = useState([])
-
-    const [loading, setLoading] = useState(true)
 
     const navigate = useNavigate()
 
@@ -32,17 +30,14 @@ const VoteProductInOrder = ({ socket }) => {
         const fetchAPIs = () => {
             fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
-                setLoading(false)
             })
 
             fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
-                setLoading(false)
             })
 
             fetch("http://localhost:4000/api/orders").then(res => res.json()).then(data => {
                 setOrders(data.orders)
-                setLoading(false)
             })
         }
         fetchAPIs()
@@ -156,14 +151,7 @@ const VoteProductInOrder = ({ socket }) => {
     return (
         <div className="add-product__container">
             <Nav />
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
             <div className="vote-product__cover">
                 <div className="vote-product">
                     <div className="vote-product__header">ĐÁNH GIÁ SẢN PHẨM</div>

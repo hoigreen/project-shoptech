@@ -296,8 +296,9 @@
 /* accessories */
 .accessories__group-cate {
     max-width: 1200px;
-    margin: 2%;
+    margin: 0 auto;
     display: flex;
+    justify-content: center;
 }
 
 .accessories__group-cate .accessories__group-popup:first-child {

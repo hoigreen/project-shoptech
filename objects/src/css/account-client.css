@@ -10,9 +10,6 @@
     overflow: hidden;
 }
 
-
-
-
 .login-client__col-1 {
     animation: topToDown linear .25s;
     width: 50%;
@@ -260,6 +257,12 @@
     margin-bottom: 16px;
 }
 
+.account__sidebar-item:hover {
+    cursor: pointer;
+    background: #edecec;
+    border-radius: 12px;
+}
+
 .account__sidebar-item--active {
     border-radius: 10px;
     border: 0.5px solid var(--primary-color);
@@ -296,12 +299,38 @@
     margin-bottom: 30px;
 }
 
+.account__box-info-container {
+    display: block;
+    margin: 10px 0 0;
+}
+
 .account__box-info-avatar {
+    display: block;
     border: 0.5px solid #9b9b9b;
     border-radius: 50%;
     margin: 0 auto 10px;
     height: 90px;
     width: 90px;
+    object-fit: fill;
+}
+
+.account__box-info-avatar-btn {
+    display: block;
+    background-color: #fff;
+    padding: 10px 20px;
+    font-size: 1.8rem;
+    color: var(--button-color);
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    margin: 10px auto 20px;
+    outline: 0;
+    max-width: fit-content;
+}
+
+.account__box-info-avatar-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .account__box-info-label {
@@ -450,17 +479,17 @@
 .account__box-info-title {
     display: block;
     width: 60%;
-    margin: 10px auto;
+    margin: 10px auto 4px;
     font-size: 2rem;
     font-weight: 500;
     text-align: left;
-    padding: 10px 4px 0 10px;
+    padding: 6px 4px 0 4px;
 }
 
 .account__box-info-input {
     display: block;
     width: 60%;
-    margin: 10px auto;
+    margin: 6px auto 0;
     padding: 12px 20px;
     outline: none;
     border: 1px solid var(--primary-color);

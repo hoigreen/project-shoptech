@@ -154,14 +154,8 @@ const Cart = ({ socket }) => {
 
                         <ul className="cart__list">
                             {loading ? <p>Đang kết nối đến server ... </p> : cartUser.map((p, index) => (
-                                <li className="cart__item">
-                                    <div className="cart__item-img" style={{
-                                        background: `url(${p.imageLink})`,
-                                        backgroundColor: "transparent",
-                                        backgroundPosition: "center center",
-                                        backgroundSize: "contain",
-                                        backgroundRepeat: "no-repeat"
-                                    }}></div>
+                                <li className="cart__item" key={index}>
+                                    <img className="cart__item-img" src={p.imageLink}></img>
                                     <div className="cart__item-info">
                                         <label className="cart__item-info-name">{p.productName} - {p.option} - {p.color}</label>
                                         <p className="cart__item-info-price">{Number(p.price).toLocaleString()} đ</p>
