@@ -104,7 +104,7 @@ const InfoProduct = ({ socket }) => {
             const item = document.createElement("div");
             item.classList.add("info-admin-product__image-item")
             item.innerHTML = `
-                    <img class="info-admin-product__image-item-img" src="">
+                    <img src="http://localhost:4000/public/img-product-empty.png" class="info-admin-product__image-item-img" src="">
                     <label for="image-list-${indexImageItem}" class="info-admin-product__image-item-btn--remove"></label>
                     <input type="file" class="image-list" id="image-list-${indexImageItem}" hidden/>
             `
@@ -213,7 +213,7 @@ const InfoProduct = ({ socket }) => {
                     <div className="info-admin-product__body">
                         <div className="info-admin-product__col-1">
                             <div className="info-admin-product__image-primary">
-                                <img className="info-admin-product__image-primary-img" src={imageLink}></img>
+                                <img className="info-admin-product__image-primary-img" src={imageLink || "http://localhost:4000/public/img-product-empty.png"}></img>
                                 <input type='file' id="image-primary" value="" onChange={changeImagePrimary} hidden></input>
                                 <div className="info-admin-product__image-controll">
                                     <label htmlFor="image-primary" className="info-admin-product__image-btn">Chỉnh sửa</label>
@@ -232,7 +232,7 @@ const InfoProduct = ({ socket }) => {
 
                             <div className="info-admin-product__image-box">
                                 <div className="info-admin-product__image-banner">
-                                    <img className="info-admin-product__image-banner-img" src={imageBanner}></img>
+                                    <img className="info-admin-product__image-banner-img" src={imageBanner || "http://localhost:4000/public/img-product-empty.png"}></img>
                                     <input type='file' id="image-banner" value="" onChange={changeImageBanner} hidden></input>
                                     <div className="info-admin-product__image-controll">
                                         <label htmlFor="image-banner" className="info-admin-product__image-btn">Chỉnh sửa</label>

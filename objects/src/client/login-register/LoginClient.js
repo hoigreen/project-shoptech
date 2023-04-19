@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav'
+import ModalLoading from '../common/ModalLoading'
 
 
 const LoginClient = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [user, setUser] = useState([])
-    const [userID, setUserID] = useState('')
     const [statusLogin, setStatusLogin] = useState('')
 
     useEffect(() => {
@@ -26,9 +25,8 @@ const LoginClient = ({ socket }) => {
         e.preventDefault();
         var boolCheck = false;
         users.map((user, index) => {
-            if (details.username == user.username &&
-                details.password == user.password) {
-                setUserID(user.userID)
+            if (details.username === user.username &&
+                details.password === user.password) {
                 window.localStorage.setItem('userLogged', user.username);
                 window.localStorage.setItem('statusLogged', statusLogin);
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: statusLogin })
@@ -100,14 +98,7 @@ const LoginClient = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
             <div id="toast-with-navbar"></div>
             <Nav socket={socket} />
             <div className='container'>
@@ -157,26 +148,27 @@ const LoginClient = ({ socket }) => {
                                         minLength={6}
                                         placeholder="Password ..."
                                     />
-                                    <a className="login-client__forgot">Bạn quên mật khẩu?</a>
+                                    <a href='' className="login-client__forgot">Bạn quên mật khẩu?</a>
                                     <button className="login-client__btn">ĐĂNG NHẬP</button>
                                 </form>
                                 <p className="login-client__label-or">__________hoặc__________</p>
 
                                 <div className="login-client__direct">
                                     <button className='login-client__direct-btn'>
-                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png'
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png' alt=''
                                             width='32' className="login-client__direct-img" />
                                         <label className="login-client__direct-label">Facebook</label>
                                     </button>
 
                                     <button className='login-client__direct-btn'>
-                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/588px-Google_%22G%22_Logo.svg.png'
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/588px-Google_%22G%22_Logo.svg.png' alt=''
                                             width='30' className="login-client__direct-img" />
                                         <label className="login-client__direct-label">Google</label>
                                     </button>
 
                                     <button className='login-client__direct-btn'>
                                         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png'
+                                            alt=''
                                             width='32' className="login-client__direct-img" />
                                         <label className="login-client__direct-label">Instagram</label>
                                     </button>
@@ -184,6 +176,7 @@ const LoginClient = ({ socket }) => {
                                         <label className="login-client__question">Nếu bạn chưa có tài khoản trước đây?</label>
                                         <a
                                             className="login-client__register"
+                                            href='/login'
                                             onClick={(e) => {
                                                 e.preventDefault();
                                                 handLoadingPage(1)

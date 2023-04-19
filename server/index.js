@@ -451,7 +451,7 @@ socketIO.on('connection', (socket) => {
         fs.writeFile("datas/data-comment.json", stringData, (err) => {
             console.error(err)
         })
-        socket.broadcast.emit("handleVoteProductResponse", 123)
+        socket.broadcast.emit("handleVoteProductResponse", data)
     })
 
 

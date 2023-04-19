@@ -24,7 +24,7 @@ const SidebarAccount = ({ socket }) => {
                 window.localStorage.removeItem("statusLogged")
                 handLoadingPage(1)
                 window.setTimeout(() => {
-                    window.location.href = ('/login');
+                    window.location.href = `/login`
                 }, 1000)
             }
         })
@@ -78,7 +78,7 @@ const SidebarAccount = ({ socket }) => {
                     <i className="account__sidebar-item-icon fa fa-history"></i>
                     <label className="account__sidebar-label">Lịch sử mua hàng</label>
                 </li>
-                <li className="account__sidebar-item" onClick={handleLoggout}>
+                <li className="account__sidebar-item" onClick={e => { handleLoggout(e) }}>
                     <i className="account__sidebar-item-icon fa fa-sign-out"></i>
                     <label className="account__sidebar-label">Đăng xuất tài khoản</label>
                 </li>

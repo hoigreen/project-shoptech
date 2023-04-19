@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
+import ModalLoading from '../common/ModalLoading';
 
 const RegisterClient = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -161,7 +162,7 @@ const RegisterClient = ({ socket }) => {
         users.map((user, index) => {
             if (index = users.length) {
                 setUserID(`G00${index + 1}`);
-                setAvatarUrlRegister("http://localhost:4000/uploads/customers/img-avatar-empty.png")
+                setAvatarUrlRegister("http://localhost:4000/public/img-avatar-empty.png")
                 setStatusLogin("Chưa đăng nhập");
             }
             index = index + 1;
@@ -201,22 +202,14 @@ const RegisterClient = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
             <Nav socket={socket} />
             <div className='container'>
                 <div className="grid wide">
                     <div className="login-client__box">
                         <div className="login-client__col-2">
                             <div className="login-client__container">
-                                <form action="" method="POST" className="form" id="form-1" onSubmit={handleSubmit}>
+                                <form className="form" id="form-1" onSubmit={handleSubmit}>
                                     <label className="login-client__label-login">ĐĂNG KÝ TÀI KHOẢN MỚI</label>
 
                                     <div className="spacer"></div>

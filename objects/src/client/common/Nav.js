@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ModalLoading from './ModalLoading';
 
 const Nav = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -49,14 +50,7 @@ const Nav = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
             <div className="nav-container">
                 <nav className="navbar grid wide">
                     <div className="header--logo" onClick={(e) => {
