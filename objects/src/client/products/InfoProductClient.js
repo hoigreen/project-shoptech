@@ -530,13 +530,7 @@ const InfoProductClient = ({ socket }) => {
                                             e.preventDefault();
                                             window.location.href = `/product/${product.enType}/${product.name}`
                                         }}>
-                                        <div style={{
-                                            background: `url(${product.imageLink})`,
-                                            backgroundColor: "transparent",
-                                            backgroundPosition: "center center",
-                                            backgroundSize: "95%",
-                                            backgroundRepeat: "no-repeat"
-                                        }} className='product__sell-item-img'></div>
+                                        <img src={product.imageLink} className='product__sell-item-img'></img>
                                         <label className='product__sell-item-label'>{product.name}</label>
                                         <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                         <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>

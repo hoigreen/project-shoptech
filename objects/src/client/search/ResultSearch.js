@@ -47,7 +47,7 @@ const ResultSearch = ({ socket }) => {
                 ${loading ? <p>Đang kết nối đến server ... </p> : listArray.map((p, i) => (
                     `
                     <li
-                    class="product__sell-item--tablet"
+                    class="product__sell-item"
                     key=${index}
                     style='display:block;
                     margin: 10px 10px 12px;'

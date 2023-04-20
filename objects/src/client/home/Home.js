@@ -8,7 +8,7 @@ import HomeList from './HomeList';
 import Footer from '../common/Footer';
 import SideBanner from './SideBanner';
 
-const Home = ({socket}) => {
+const Home = ({ socket }) => {
     const [products, setProducts] = useState([])
     const [timeStart, setTimeStartSale] = useState(1)
     const [timeEnd, setTimeEndSale] = useState(4)
@@ -17,6 +17,7 @@ const Home = ({socket}) => {
 
     const [loading, setLoading] = useState(true)
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAPIs = () => {
@@ -33,37 +34,12 @@ const Home = ({socket}) => {
         fetchAPIs()
     }, [])
 
-    const navigate = useNavigate();
-
-    window.onload = () => {
-        var countDownDate = new Date(`5 ${timeEnd}, 2023 00:00:00`).getTime();
-        const countdown = setInterval(() => {
-            var now = new Date().getTime();
-            var timeleft = countDownDate - now;
-
-            // Calculating the days, hours, minutes and seconds left
-            var daysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-            var hoursLeft = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutesLeft = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-            var secondsLeft = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-            document.querySelector('.home__flash-sale-countdown-day').innerHTML = `<span>${daysLeft} ngày</span>`;
-            document.querySelector('.home__flash-sale-countdown-hour').innerHTML = `<span>${hoursLeft}</span>`;
-            document.querySelector('.home__flash-sale-countdown-minute').innerHTML = `<span>${minutesLeft}</span>`;
-            document.querySelector('.home__flash-sale-countdown-second').innerHTML = `<span>${secondsLeft}</span>`;
-
-            if (timeleft < 0) {
-                clearInterval(countdown);
-            }
-        }, 1000)
-    }
-
     useEffect(() => {
         // show thông tin sản phẩm hot deal
         products.map((product, index) => {
             const infoProductHotDeal = document.querySelectorAll('.home__flash-sale-item')[index];
             if (product.hotDeal === true) {
-                infoProductHotDeal.style.display = "block";
+                infoProductHotDeal.style.display = "inline-block";
             }
         })
 
@@ -98,7 +74,34 @@ const Home = ({socket}) => {
                 infoProductFeaturedAccessories.style.display = "block";
             }
         })
+
+        handleSetWidthBanner()
     })
+
+    window.onload = () => {
+        var countDownDate = new Date(`5 ${timeEnd}, 2023 00:00:00`).getTime();
+        const countdown = setInterval(() => {
+            var now = new Date().getTime();
+            var timeleft = countDownDate - now;
+
+            // Calculating the days, hours, minutes and seconds left
+            var daysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+            var hoursLeft = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutesLeft = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+            var secondsLeft = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+            document.querySelector('.home__flash-sale-countdown-day').innerHTML = `<span>${daysLeft} ngày</span>`;
+            document.querySelector('.home__flash-sale-countdown-hour').innerHTML = `<span>${hoursLeft}</span>`;
+            document.querySelector('.home__flash-sale-countdown-minute').innerHTML = `<span>${minutesLeft}</span>`;
+            document.querySelector('.home__flash-sale-countdown-second').innerHTML = `<span>${secondsLeft}</span>`;
+
+            if (timeleft < 0) {
+                clearInterval(countdown);
+            }
+        }, 1000)
+
+        handleLoadBanner()
+    }
 
     const handleFormatStarProduct = (starOfProduct) => {
         if (starOfProduct < 1) {
@@ -114,6 +117,88 @@ const Home = ({socket}) => {
         } else {
             return `★★★★★`
         }
+    }
+
+    var indexBanner = 0;
+    const handleSetWidthBanner = () => {
+        const bannerGroup = document.querySelector(".home-promote__group")
+        const bannerList = document.querySelectorAll(".home-promote__item")
+        if (bannerList.length > 0) {
+            bannerGroup.style.width = `${Number(bannerList.length) * 600}px`
+        }
+    }
+
+    const handleLoadBanner = () => {
+        const bannerGroup = document.querySelector(".home-promote__group")
+        const bannerList = document.querySelectorAll(".home-promote__item")
+        setInterval(() => {
+            indexBanner += 1;
+            bannerGroup.style.transform = `translateX(-${(indexBanner - 1) * 600}px)`
+
+            if (indexBanner > bannerList.length - 1 || indexBanner === bannerList.length) {
+                bannerGroup.style.transform = "translateX(0)"
+                indexBanner = 0;
+            }
+            else {
+                bannerGroup.style.transform = `translateX(-${indexBanner * 600}px)`
+            }
+        }, 4000)
+    }
+
+    const handleTransitionNextBanner = () => {
+        const bannerGroup = document.querySelector(".home-promote__group")
+        const bannerList = document.querySelectorAll(".home-promote__item")
+        indexBanner += 1;
+
+        if (indexBanner >= bannerList.length - 1) {
+            bannerGroup.style.transform = "translateX(0)"
+            indexBanner = 0;
+            return;
+        }
+        bannerGroup.style.transform = `translateX(-${indexBanner * 600}px)`
+    }
+
+    const handleTransitionPrevBanner = () => {
+        const bannerGroup = document.querySelector(".home-promote__group")
+        const bannerList = document.querySelectorAll(".home-promote__item")
+        indexBanner -= 1;
+
+        if (indexBanner < 1) {
+            indexBanner = bannerList.length;
+            bannerGroup.style.transform = `translateX(-${(bannerList.length - 1) * 600}px)`
+            return;
+        }
+        bannerGroup.style.transform = `translateX(-${indexBanner * 600 - 600}px)`
+    }
+
+    var indexSlide = 0;
+    const handleTransitionSlideDown = () => {
+        if (indexSlide < 0) indexSlide = 0;
+        const slideGroup = document.querySelector(".home-flash-sale__group")
+        const slideList = document.querySelectorAll(".home__flash-sale-item")
+        indexSlide += 1;
+        if (indexSlide > (slideList.length - (slideList.length % 10)) / 10) {
+            indexSlide = (slideList.length - (slideList.length % 10)) / 10
+            return;
+        }
+        else {
+            slideGroup.style.transform = `translateY(-${indexSlide * 744}px)`
+        }
+    }
+
+    const handleTransitionSlideUp = () => {
+        if (indexSlide < 0) indexSlide = 0;
+        const slideGroup = document.querySelector(".home-flash-sale__group")
+        const slideList = document.querySelectorAll(".home__flash-sale-item")
+        indexSlide -= 1;
+        console.log(indexSlide)
+        console.log((slideList.length - (slideList.length % 10)) / 10)
+        if (indexSlide < 0) return;
+        else {
+            slideGroup.style.transform = `translateY(-${(indexSlide + 1) * 744 - 744}px)`
+        }
+
+
     }
 
     const handLoadingPage = (second) => {
@@ -133,23 +218,21 @@ const Home = ({socket}) => {
                 <div className="home__container">
                     <SideBanner />
                     <ul id="home-promote">
-                        <button className='home-promote__pre'>
+                        <button className='home-promote__pre' onClick={handleTransitionPrevBanner}>
                             <i className='home-promote__icon fa fa-arrow-left'></i>
                         </button>
-                        <button className='home-promote__next'>
+                        <button className='home-promote__next' onClick={handleTransitionNextBanner}>
                             <i className='home-promote__icon fa fa-arrow-right'></i>
                         </button>
-                        {loading ? <p>Đang kết nối đến server...</p> : promotes.map((promote, index) => (
-                            <li style={{
-                                background: `url(${promote.imageLink})`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "center center",
-                                backgroundSize: "cover"
-                            }} className='home-promote__item' key={index}>
-                            </li>
-                        ))}
+
+                        <div className='home-promote__group'>
+                            {loading ? <p>Đang kết nối đến server...</p> : promotes.map((promote, index) => (
+                                <img src={promote.imageLink} className='home-promote__item' alt='' key={index}>
+                                </img>
+                            ))}
+                        </div>
                     </ul>
-                    
+
                     <HomeList />
 
                     <div id="home__flash-sale">
@@ -175,33 +258,38 @@ const Home = ({socket}) => {
                                 </div>
                             </div>
 
+                            <button className="home__flash-sale-btn" onClick={handleTransitionSlideUp}>
+                                <i className="home__flash-sale-btn-icon fa-solid fa-chevron-up" ></i>
+                            </button>
                             <ul className="home__flash-sale-list">
-                                {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
-                                    <li
-                                        className="home__flash-sale-item"
-                                        key={index}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handLoadingPage(1)
-                                            window.setTimeout(() => {
-                                                window.location.href = `/product/${product.enType}/${product.name}`
-                                            }, 1000)
-                                        }}
-                                    >
-                                        <img src={product.imageLink}
-                                            className='home__flash-sale-item-img'>
-                                        </img>
-                                        <label className='home__flash-sale-item-label'>{product.name}</label>
-                                        <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
-                                        <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
-                                        <label className='home__flash-sale-item-sold'>
-                                            Đã bán
-                                            <span className='home__flash-sale-item-number'>{Math.floor((Number((Math.random() % 100 * (99 - 1)))))}</span>
-                                        </label>
-                                        <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
-                                    </li>
-                                ))}
+                                <div className="home-flash-sale__group">
+                                    {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
+                                        <li
+                                            className="home__flash-sale-item"
+                                            key={index}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handLoadingPage(1)
+                                                window.setTimeout(() => {
+                                                    window.location.href = `/product/${product.enType}/${product.name}`
+                                                }, 1000)
+                                            }}>
+                                            <img src={product.imageLink} className='home__flash-sale-item-img'></img>
+                                            <label className='home__flash-sale-item-label'>{product.name}</label>
+                                            <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
+                                            <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
+                                            <label className='home__flash-sale-item-sold'>
+                                                Đã bán
+                                                <span className='home__flash-sale-item-number'>{Math.floor((Number((Math.random() % 100 * (99 - 1)))))}</span>
+                                            </label>
+                                            <div className='home__flash-sale-item-tag'>Giảm {product.percent}%</div>
+                                        </li>
+                                    ))}
+                                </div>
                             </ul>
+                            <button className="home__flash-sale-btn" onClick={handleTransitionSlideDown}>
+                                <i className="home__flash-sale-btn-icon fa-solid fa-chevron-down" ></i>
+                            </button>
                         </div>
                     </div>
 

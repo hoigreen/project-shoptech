@@ -96,10 +96,10 @@ function App() {
                     <Route path="/product" element={<Home socket={socket} />} />
 
                     {/* Product */}
-                    <Route path="/smartphone" element={<SmartPhone socket={socket} />} />
-                    <Route path="/laptop" element={<Laptop socket={socket} />} />
-                    <Route path="/tablet" element={<Tablet socket={socket} />} />
-                    <Route path="/accessories" element={<Accessories socket={socket} />} />
+                    <Route path="/product/smartphone" element={<SmartPhone socket={socket} />} />
+                    <Route path="/product/laptop" element={<Laptop socket={socket} />} />
+                    <Route path="/product/tablet" element={<Tablet socket={socket} />} />
+                    <Route path="/product/accessories" element={<Accessories socket={socket} />} />
                     <Route path="/product/:enType/:name" element={<InfoProductClient socket={socket} />} />
 
 

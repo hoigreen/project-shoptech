@@ -65,8 +65,6 @@ const AddProduct = ({ socket }) => {
         `;
             optionList.appendChild(item);
         }
-
-
     }
 
     const handleConfirmOption = (item) => {
