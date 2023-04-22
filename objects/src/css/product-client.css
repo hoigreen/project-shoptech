@@ -185,13 +185,13 @@
     border-radius: 20px;
     background-color: #fff;
     list-style: none;
-    height: 370px;
-    margin: 0 6px 12px;
+    height: 390px;
+    margin: 0 8px 12px;
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     position: relative;
     display: none;
-    width: calc(20% - 12px);
+    width: calc(20% - 16px);
     cursor: pointer;
 }
 

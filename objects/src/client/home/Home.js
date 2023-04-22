@@ -182,7 +182,7 @@ const Home = ({ socket }) => {
             return;
         }
         else {
-            slideGroup.style.transform = `translateY(-${indexSlide * 744}px)`
+            slideGroup.style.transform = `translateY(-${indexSlide * 820}px)`
         }
     }
 
@@ -195,7 +195,7 @@ const Home = ({ socket }) => {
         console.log((slideList.length - (slideList.length % 10)) / 10)
         if (indexSlide < 0) return;
         else {
-            slideGroup.style.transform = `translateY(-${(indexSlide + 1) * 744 - 744}px)`
+            slideGroup.style.transform = `translateY(-${(indexSlide + 1) * 820 - 820}px)`
         }
 
 
@@ -275,6 +275,7 @@ const Home = ({ socket }) => {
                                                 }, 1000)
                                             }}>
                                             <img src={product.imageLink} className='home__flash-sale-item-img'></img>
+                                            <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
                                             <label className='home__flash-sale-item-label'>{product.name}</label>
                                             <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                             <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -309,7 +310,7 @@ const Home = ({ socket }) => {
                         <ul className="home__featured-list">
                             {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
                                 <li
-                                    className="product__sell-item--smartphone"
+                                    className="product__sell-item product__sell-item--smartphone"
                                     key={index}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -322,6 +323,7 @@ const Home = ({ socket }) => {
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
                                     </img>
+                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -348,7 +350,7 @@ const Home = ({ socket }) => {
                         <ul className="home__featured-list">
                             {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
                                 <li
-                                    className="product__sell-item--tablet"
+                                    className="product__sell-item product__sell-item--tablet"
                                     key={index}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -358,9 +360,8 @@ const Home = ({ socket }) => {
                                         }, 1000)
                                     }}
                                 >
-                                    <img src={product.imageLink}
-                                        className='home__flash-sale-item-img'>
-                                    </img>
+                                    <img src={product.imageLink} className='home__flash-sale-item-img'></img>
+                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -388,7 +389,7 @@ const Home = ({ socket }) => {
                         <ul className="home__featured-list">
                             {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
                                 <li
-                                    className="product__sell-item--laptop"
+                                    className="product__sell-item product__sell-item--laptop"
                                     key={index}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -401,6 +402,7 @@ const Home = ({ socket }) => {
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
                                     </img>
+                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -426,7 +428,7 @@ const Home = ({ socket }) => {
                         <ul className="home__featured-list">
                             {loading ? <p>Đang kết nối đến server ... </p> : products.map((product, index) => (
                                 <li
-                                    className="product__sell-item--accessories .hotIcons"
+                                    className="product__sell-item product__sell-item--accessories"
                                     key={index}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -439,6 +441,7 @@ const Home = ({ socket }) => {
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
                                     </img>
+                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>

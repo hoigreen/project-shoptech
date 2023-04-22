@@ -93,13 +93,12 @@ const AddProduct = ({ socket }) => {
     const handleAddProduct = (e) => {
         e.preventDefault();
         const idProduct = document.querySelector(".add__input.add__input--readonly").value
-        console.log(idProduct)
         const imageLinkProduct = document.querySelector(".add-product__image").getAttribute("src")
         socket.emit("addProduct", {
             imagePrimary: "",
             imageLink: imageLinkProduct,
             imageList: [],
-            id,
+            id: idProduct,
             name,
             type,
             enType,

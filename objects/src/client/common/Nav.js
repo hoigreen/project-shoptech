@@ -61,7 +61,7 @@ const Nav = ({ socket }) => {
 
                     <a href="Tel: 00000" className="header-btn header-btn__link hide-on-mobile-tablet">
                         <i className="header--btn-icon fa-solid fa-phone"></i>
-                        <p className="header--btn-name">Gọi tư vấn
+                        <p className="header--btn-name">Hỗ trợ
                             <span className="header--btn-describe">1800.4433</span>
                         </p>
                     </a>

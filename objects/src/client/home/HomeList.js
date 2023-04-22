@@ -25,7 +25,7 @@ const HomeList = () => {
                     <div className="home__list-product-img-2"></div>
                     <p className="home__list-product-name">Máy tính xách tay</p>
                 </li>
-                <li className='home__list-product-item' oonClick={(e) => { handLoadingPage(1.5, "/product/tablet") }}>
+                <li className='home__list-product-item' onClick={(e) => { handLoadingPage(1.5, "/product/tablet") }}>
                     <div className="home__list-product-img-3" ></div>
                     <p className="home__list-product-name">Máy tính bảng</p>
                 </li>

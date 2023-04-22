@@ -158,9 +158,7 @@ const SmartPhone = () => {
                                     }, 1000)
                                 }}
                             >
-                                <img src={product.imageLink}
-                                    className='product-client__item-img'>
-                                </img>
+                                <img src={product.imageLink} className='product-client__item-img'></img>
                                 <label className='product-client__item-label'>{product.name}</label>
                                 <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
                                 <img className="product-client__item-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-18-month.png"></img>

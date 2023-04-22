@@ -113,8 +113,8 @@
 
 .cart__item-img {
     width: 140px;
-    padding: 10px;
     height: 140px;
+    padding: 10px;
     background-color: transparent;
     margin-right: 16px;
 }
@@ -188,6 +188,7 @@
     display: flex;
     position: absolute;
     bottom: 0;
+    right: 10px;
 }
 
 .cart__item-quantity-edit {

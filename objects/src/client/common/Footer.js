@@ -90,8 +90,8 @@ const Footer = ({ socket }) => {
 
                         </div>
 
-                        <div className='footer__col-group'>
-                            <label className='footer__label'>Chứng nhận</label>
+                        <div className='footer__col-group footer__col-group-cer'>
+                            <label className='footer__label' style={{width: "100%"}}>Chứng nhận</label>
                             <img src='https://fptshop.com.vn/Content/v4/images/ft-img1.png?v=1' width={40} style={{ padding: "0 2px" }} className='footer__payment-img' />
                             <img src='https://fptshop.com.vn/Content/v4/images/ft-img2.png?v=1' width={100} style={{ padding: "0 2px" }} className='footer__payment-img' />
                             <img src='https://fptshop.com.vn/Content/v4/images/ft-img3.png?v=1' width={80} style={{ padding: "0 2px" }} className='footer__payment-img' />

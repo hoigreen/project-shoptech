@@ -477,7 +477,7 @@
 .info-product__similar-list {
     display: flex;
     margin: 0 -10px 10px;
-    max-height: 392px;
+    max-height: 412px;
     overflow: hidden;
     flex-wrap: nowrap;
     padding-top: 4px;

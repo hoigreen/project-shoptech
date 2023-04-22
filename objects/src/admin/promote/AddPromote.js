@@ -30,7 +30,7 @@ const AddPromote = ({ socket }) => {
         const reader = new FileReader()
         reader.addEventListener("load", () => {
             preview.src = reader.result;
-            preview.style.objectFit = "cover"
+            preview.style.objectFit = "fill"
             preview.style.backgroundColor = "#fff"
         }, false)
 
@@ -42,9 +42,10 @@ const AddPromote = ({ socket }) => {
     const handleAddPromote = (e) => {
         e.preventDefault();
         const imageLink = document.querySelector(".add__avatar-img-promote").getAttribute("src")
+        const idValue = document.querySelector(".add__input.add__input--readonly").value
         socket.emit("addPromote", {
             imageLink: imageLink,
-            id,
+            id: idValue,
             name,
             timeStart,
             timeEnd,

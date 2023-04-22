@@ -27,7 +27,18 @@
     display: block;
     width: 100%;
     font-size: 1.4rem;
-    padding: 10px 0;
+    padding: 10px 20px 10px 0;
+}
+
+.footer__col-group-cer {
+    display: flex;
+    flex-wrap: wrap;
+} 
+
+.footer__payment-img {
+    margin: 0 4px 4px 0;
+    width: calc(20% - 4px);
+    object-fit: contain;
 }
 
 .footer__label {
