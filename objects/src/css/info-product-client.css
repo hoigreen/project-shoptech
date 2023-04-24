@@ -124,7 +124,8 @@
     margin: 20px auto 0;
     padding: 10px;
     justify-content: center;
-    width: 90%;
+    width: fit-content;
+    max-width: 90%;
     overflow-x: scroll;
     justify-content: flex-start;
     -ms-overflow-style: none;
