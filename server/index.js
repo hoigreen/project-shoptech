@@ -301,9 +301,10 @@ function findOrderToSetStatusVoteOfProduct(orderIDKey, myArray, productID) {
             }
         }
     }
-    const stringData = JSON.stringify(objectDataOrder, null, 2)
-    fs.writeFile("datas/data-order.json", stringData, (err) => {
+    const stringDataOrder = JSON.stringify(objectDataOrder, null, 2)
+    fs.writeFile("datas/data-order.json", stringDataOrder, (err) => {
         console.error(err)
+        return;
     })
     return;
 }
@@ -315,9 +316,10 @@ function findProductToUpdateRating(idKey, myArray, starVoted) {
             myArray[i].voter += 1;
         }
     }
-    const stringData = JSON.stringify(objectDataProduct, null, 2)
-    fs.writeFile("datas/data-product.json", stringData, (err) => {
+    const stringDataProduct = JSON.stringify(objectDataProduct, null, 2)
+    fs.writeFile("datas/data-product.json", stringDataProduct, (err) => {
         console.error(err)
+        return;
     })
     return;
 }
@@ -444,8 +446,8 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("handleVoteProduct", (dataStatus, dataRating, dataComment, productID, starVoted) => {
-        findOrderToSetStatusVoteOfProduct(dataStatus.orderID, objectDataOrder["orders"], productID)
         findProductToUpdateRating(dataRating.id, objectDataProduct["products"], starVoted)
+        findOrderToSetStatusVoteOfProduct(dataStatus.orderID, objectDataOrder["orders"], productID)
         objectDataComment["comments"].push(dataComment)
         const stringData = JSON.stringify(objectDataComment, null, 2)
         fs.writeFile("datas/data-comment.json", stringData, (err) => {

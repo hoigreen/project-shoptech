@@ -7,10 +7,10 @@
 .product-client__sidebar-left {
     display: block;
     position: fixed;
-    left: calc(((100vw - 1200px)/2) - 180px);
+    left: calc(((100vw - 1200px)/2) - 140px);
     top: 50%;
     transform: translateY(-50%);
-    width: 140px;
+    width: 110px;
     z-index: 999;
 }
 
@@ -18,10 +18,10 @@
 .product-client__sidebar-right {
     display: block;
     position: fixed;
-    right: calc(((100vw - 1200px)/2) - 180px);
+    right: calc(((100vw - 1200px)/2) - 140px);
     top: 50%;
     transform: translateY(-50%);
-    width: 140px;
+    width: 110px;
     z-index: 999;
 }
 

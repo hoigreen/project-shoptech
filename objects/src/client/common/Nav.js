@@ -32,18 +32,16 @@ const Nav = ({ socket }) => {
                 socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: "Chưa đăng nhập" })
                 window.localStorage.removeItem("userLogged")
                 window.localStorage.removeItem("statusLogged")
-                handLoadingPage(1)
-                window.setTimeout(() => {
-                    window.location.href = `/login`
-                }, 1000)
+                handLoadingPage(1, "login")
             }
         })
     }
 
-    const handLoadingPage = (second) => {
+    const handLoadingPage = (second, link) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
         window.setTimeout(() => {
+            window.location.href = link;
             loading.classList.remove("modal--active")
         }, second * 1000)
     }
@@ -55,7 +53,7 @@ const Nav = ({ socket }) => {
                 <nav className="navbar grid wide">
                     <div className="header--logo" onClick={(e) => {
                         e.preventDefault();
-                        window.location.href = '/home';
+                        handLoadingPage(1, '/home')
                     }}>
                     </div>
 
@@ -73,10 +71,7 @@ const Nav = ({ socket }) => {
                                     alert("Vui lòng điền từ khóa cần tìm!")
                                     return;
                                 }
-                                handLoadingPage(1)
-                                setTimeout(() => {
-                                    window.location.href = `/search/key=${keySearch}`
-                                })
+                                handLoadingPage(1, `/search/key=${keySearch}`)
                             }
                         }>
                             <i className="fa ti-search"></i>
@@ -84,12 +79,7 @@ const Nav = ({ socket }) => {
                     </div>
 
                     <div className="header__btn-group">
-                        <button className="header-btn header-btn__cart" onClick={() => {
-                            handLoadingPage(1)
-                            window.setTimeout(() => {
-                                window.location.href = `/cart`
-                            }, 1000)
-                        }}>
+                        <button className="header-btn header-btn__cart" onClick={() => { handLoadingPage(1, '/cart') }}>
                             <div className="header-btn__red-dot">{countQuantity || 0}</div>
                             <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
                             <p className="header--btn-name hide-on-mobile" >Giỏ hàng</p>
@@ -101,42 +91,24 @@ const Nav = ({ socket }) => {
                                 elementNavOption.style.display = 'block';
                             }
                             else {
-                                handLoadingPage(1)
-                                window.setTimeout(() => {
-                                    window.location.href = `/login`
-                                }, 1000)
+                                handLoadingPage(1, "/login")
                             }
                         }}>
                             <i className="header--btn-icon fa-solid fa-user"></i>
                             <p className="header--btn-name">Thành viên</p>
                         </button>
-                        <button className="header-btn hide-on-mobile-tablet" onClick={() => {
-                            handLoadingPage(1)
-                            window.setTimeout(() => {
-                                window.location.href = `/order`
-                            }, 1000)
-                        }}>
+                        <button className="header-btn hide-on-mobile-tablet" onClick={() => { handLoadingPage(1, "/order") }}>
                             <i className="header--btn-icon fa-solid fa-history"></i>
                             <p className="header--btn-name">Đơn hàng</p>
                         </button>
-                        <button className="header-btn hide-on-mobile-tablet" onClick={() => {
-                            handLoadingPage(1)
-                            window.setTimeout(() => {
-                                window.location.href = `/contact`
-                            }, 1000)
-                        }}>
+                        <button className="header-btn hide-on-mobile-tablet" onClick={() => { handLoadingPage(1, "/contact") }}>
                             <i className="header--btn-icon fa-solid fa-question"></i>
                             <p className="header--btn-name">Liên hệ</p>
                         </button>
                     </div>
 
                     <ul className="nav__option-box">
-                        <li className="nav__option-item" onClick={() => {
-                            handLoadingPage(1)
-                            window.setTimeout(() => {
-                                window.location.href = `/account`
-                            }, 1000)
-                        }}>Tài khoản của bạn</li>
+                        <li className="nav__option-item" onClick={() => { handLoadingPage(1, "/account") }}>Tài khoản của bạn</li>
                         <li className="nav__option-item" style={{ color: "red" }} onClick={handleLoggout}>Đăng xuất</li>
                     </ul>
                 </nav>

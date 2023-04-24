@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
+import ModalLoading from '../common/ModalLoading';
 
 const Giftcode = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -97,19 +98,28 @@ const Giftcode = ({ socket }) => {
         toast({ title: 'Bạn chưa nhập mã khuyến mãi', message: 'Vui lòng điền mã khuyến mãi mà bạn có!', type: 'error', duration: 5000 })
     }
 
+    const showErrorGiftcodeIncorrect = () => {
+        toast({ title: 'Mã khuyến mãi không tồn tại hoặc không chính xác', message: 'Vui lòng kiểm tra lại mã khuyến mãi mà bạn có!', type: 'error', duration: 5000 })
+    }
+
     const handleCheckGiftcode = (e) => {
-        if (giftcodeID == '')
-            showErrorMessage()
+        e.preventDefault()
+        var boolCheckGiftcode = false;
+        if (giftcodeID == '') showErrorMessage()
         else {
             giftcodes.map((gf, i) => {
                 if (giftcodeID === gf.id) {
+                    boolCheckGiftcode = true;
                     var priceAppliedGiftcode = countTotalPrice * Number((100 - Number(gf.percentReduce)) / 100)
                     setCountTotalPriceEdit(priceAppliedGiftcode)
                     checkGiftcode()
                     document.querySelector(".cart__control-total-price").innerHTML = `<span>${Number(priceAppliedGiftcode).toLocaleString()} đ</span>`
                     showSuccessMessage()
+                    return;
                 }
             })
+
+            if (!boolCheckGiftcode) showErrorGiftcodeIncorrect()
         }
     }
 
@@ -173,17 +183,10 @@ const Giftcode = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
+            <Nav />
+            <Breadcrumbs />
             <div id="toast-with-navbar"></div>
-            <Nav socket={socket} />
-            <Breadcrumbs socket={socket} />
             <div className="grid wide">
                 <div className="container" style={{ paddingBottom: "200px" }}>
                     <div className="cart__container" style={{ display: "flex", width: "64%" }}>

@@ -145,17 +145,18 @@ const AccountHistory = ({ socket }) => {
                                 <table className='table'>
                                     <thead>
                                         <tr className='table__thead-primary'>
+                                            <td>Thời gian</td>
                                             <td>Mã đơn hàng</td>
                                             <td>Sản phẩm</td>
-                                            <td>Thời gian</td>
-                                            <td>Tình trạng</td>
                                             <td>Tổng tiền</td>
+                                            <td>Tình trạng</td>
                                             <td></td>
                                         </tr>
                                     </thead>
                                     <tbody className='table__tbody-primary'>
                                         {loading ? <tr><td>Loading...</td></tr> : orders.map((order, index) => (
                                             <tr className='table__row-loading' key={index}>
+                                                <td style={{ backgroundColor: "", fontSize: "1.4rem" }}>{order.time}</td>
                                                 <td style={{ textAlign: "center", background: "#ffcdd2", fontWeight: 700, fontSize: "1.5rem" }}>{order.orderID}</td>
                                                 <td style={{ color: "red", textAlign: 'left' }}>
                                                     {
@@ -167,9 +168,8 @@ const AccountHistory = ({ socket }) => {
                                                         ))
                                                     }
                                                 </td>
-                                                <td style={{ backgroundColor: "", fontSize: "1.4rem" }}>{order.time}</td>
-                                                <td style={{ backgroundColor: "", fontWeight: 700, fontSize: "1.4rem" }}>{order.status}</td>
                                                 <td style={{ fontWeight: 600, textAlign: "center", fontSize: "1.6rem", color: "red" }}>{Number(order.price).toLocaleString() || "None"} đ</td>
+                                                <td style={{ backgroundColor: "", fontWeight: 700, fontSize: "1.4rem" }}>{order.status}</td>
                                                 <td><button className="account-history__btn-detail" onClick={(e) => {
                                                     handLoadingPage(1);
                                                     setTimeout(() => {

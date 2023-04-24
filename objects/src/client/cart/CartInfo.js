@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
+import ModalLoading from '../common/ModalLoading';
 
 const CartInfo = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -110,7 +111,7 @@ const CartInfo = ({ socket }) => {
     }
 
     const handleNextStep = () => {
-        if (fullnameEdit !== '' && emailEdit !== '' && phoneEdit !== '' && methodReceive !== '' && addressEdit !== '') {
+        if (fullnameEdit !== '' && emailEdit !== '' && phoneEdit !== '' && methodReceive !== '') {
             window.localStorage.setItem("fullnameCache", fullnameEdit)
             window.localStorage.setItem("emailCache", emailEdit)
             window.localStorage.setItem("phoneCache", phoneEdit)
@@ -138,23 +139,16 @@ const CartInfo = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
-                <div className="container" style={{paddingBottom: "200px"}}>
+                <div className="container" style={{ paddingBottom: "200px" }}>
                     <div className="cart__container" style={{ display: "flex", width: "64%" }}>
                         <div className="cart__header">
                             <button className="cart__btn-cancel" onClick={() => { window.location.href = "/cart" }}>
-                                <i className="cart__btn-cancel-icon fa fa-arrow-left"></i>Trở lại giỏ hàng</button>
+                                <i className="cart__btn-cancel-icon fa fa-arrow-left"></i>Trở lại giỏ hàng
+                            </button>
                             <h1 className="cart__title">THÔNG TIN ĐẶT HÀNG CỦA BẠN</h1>
                         </div>
 

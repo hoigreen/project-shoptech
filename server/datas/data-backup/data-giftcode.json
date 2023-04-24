@@ -1,16 +1,22 @@
 {
     "giftcodes": [
         {
-          "id": "ADDENG123",
-          "describe": "Giảm thêm 5% cho tất cả sản phẩm dành cho khách hàng thân thiết",
-          "percentReduce": 49,
-          "applyFor": "Điện thoại di động, Máy tính xách tay, Máy tính bảng, Phụ kiện"
+            "id": "CHAOTHANG5",
+            "describe": "Giảm thêm 5% cho tất cả sản phẩm dành cho khách hàng thân thiết",
+            "percentReduce": 5,
+            "applyFor": "Điện thoại di động, Máy tính xách tay, Máy tính bảng, Phụ kiện"
         },
         {
             "id": "SHOPTECH123",
             "describe": "Giảm thêm 5% cho tất cả sản phẩm dành cho khách hàng thân thiết",
             "percentReduce": 10,
             "applyFor": "Điện thoại di động, Máy tính xách tay, Máy tính bảng, Phụ kiện"
-          }
-      ]
+        },
+        {
+            "id": "THANHVIENTHANTHIET",
+            "describe": "Giảm thêm 3% cho tất cả sản phẩm dành cho khách hàng thân thiết",
+            "percentReduce": 3,
+            "applyFor": "Điện thoại di động, Máy tính xách tay, Máy tính bảng, Phụ kiện"
+        }
+    ]
 }

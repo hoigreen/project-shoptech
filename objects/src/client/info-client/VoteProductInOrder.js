@@ -119,7 +119,7 @@ const VoteProductInOrder = ({ socket }) => {
                         if (product.id === productID) {
                             socket.emit("handleVoteProduct",
                                 { orderID: item.orderID },
-                                { id: productID },
+                                { id: product.id },
                                 {
                                     nameProductVoted: productName,
                                     owner: owner,

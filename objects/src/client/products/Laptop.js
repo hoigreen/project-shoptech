@@ -35,6 +35,7 @@ const Laptop = () => {
 
     const handleChangeBanner = () => {
         const arrayBanner = [
+            "http://localhost:4000/public/product-img/laptop-img/event-banner.gif",
             "http://localhost:4000/public/product-img/laptop-img/event-banner.png",
             "http://localhost:4000/public/product-img/laptop-img/event-banner2.png",
             "http://localhost:4000/public/product-img/laptop-img/event-banner3.png",
@@ -104,14 +105,14 @@ const Laptop = () => {
         <div>
             <Nav />
             <Breadcrumbs />
-            <div className='container' style={{ backgroundColor: "#96c6e8", marginTop: "60px", padding: "50px 0 40px" }}>
+            <div className='container' style={{ backgroundImage: "url(http://localhost:4000/public/product-img/laptop-img/background.gif)", backgroundSize: "contain", marginTop: "60px", padding: "50px 0 40px" }}>
                 <div className='grid wide'>
                     <div className="product-client__sidebar">
                         <img className="product-client__sidebar-left" src="http://localhost:4000/public/product-img/laptop-img/sidebar-left.png"></img>
                         <img className="product-client__sidebar-right" src="http://localhost:4000/public/product-img/laptop-img/sidebar-right.png"></img>
                     </div>
                     <div className="product-client__event">
-                        <img src="http://localhost:4000/public/product-img/laptop-img/event-banner.png" alt="" className="product-client__event-primary"></img>
+                        <img src="http://localhost:4000/public/product-img/laptop-img/event-banner.gif" alt="" className="product-client__event-primary"></img>
 
                         <div className="product-client__event-list">
                             <div className="product-client__event-col-left">
@@ -132,7 +133,7 @@ const Laptop = () => {
                         <img className="product-client__event-gif" src="http://localhost:4000/public/product-img/laptop-img/event-item-gif.gif" alt="ảnh gif" ></img>
                     </div>
 
-                    <label className="product-client__title-brand">THƯƠNG HIỆU HÀNG ĐẦU</label>
+                    <label className="product-client__title-brand" style={{ color: "white" }}>THƯƠNG HIỆU HÀNG ĐẦU</label>
                     <div className='product-brand-list'>
                         <div className='product-client__brand'>
                             <img className='product-client__brand-item' src="http://localhost:4000/public/product-img/laptop-img/logo-macbook.png"></img>

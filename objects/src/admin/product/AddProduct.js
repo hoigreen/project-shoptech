@@ -90,6 +90,10 @@ const AddProduct = ({ socket }) => {
         setOption([...option, objItem]);
     }
 
+    const randomPercent = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
     const handleAddProduct = (e) => {
         e.preventDefault();
         const idProduct = document.querySelector(".add__input.add__input--readonly").value
@@ -110,7 +114,7 @@ const AddProduct = ({ socket }) => {
             voter: 0,
             hotDeal: false,
             featured: true,
-            percent: 0
+            percent: randomPercent(1, 5)
         });
         handLoadingPage(1)
         window.setTimeout(() => {

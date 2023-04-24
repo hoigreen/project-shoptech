@@ -6,7 +6,7 @@ import HotPromote from './HotPromote';
 import ModalLoading from '../common/ModalLoading';
 import HomeList from './HomeList';
 import Footer from '../common/Footer';
-import SideBanner from './SideBanner';
+import SideBanner from '../common/SideBanner';
 
 const Home = ({ socket }) => {
     const [products, setProducts] = useState([])
@@ -182,7 +182,7 @@ const Home = ({ socket }) => {
             return;
         }
         else {
-            slideGroup.style.transform = `translateY(-${indexSlide * 820}px)`
+            slideGroup.style.transform = `translateY(-${indexSlide * 794}px)`
         }
     }
 
@@ -195,17 +195,18 @@ const Home = ({ socket }) => {
         console.log((slideList.length - (slideList.length % 10)) / 10)
         if (indexSlide < 0) return;
         else {
-            slideGroup.style.transform = `translateY(-${(indexSlide + 1) * 820 - 820}px)`
+            slideGroup.style.transform = `translateY(-${(indexSlide + 1) * 790 - 790}px)`
         }
 
 
     }
 
-    const handLoadingPage = (second) => {
+    const handLoadingPage = (second, link) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")
+            window.location.href = link;
         }, second * 1000)
     }
 
@@ -296,8 +297,8 @@ const Home = ({ socket }) => {
 
                     <div id="home__featured">
                         <div className="home__featured-label">⚡⚡⚡ Sản phẩm nổi bật ⚡⚡⚡</div>
-                        <div className='home__featured-banner-phone'></div>
-                        <div className="home__featured-type" onClick={(e) => { navigate('/smartphone') }}>ĐIỆN THOẠI</div>
+                        <div className='home__featured-banner-phone' onClick={(e) => { handLoadingPage(1, `/product/smartphone`) }}></div>
+                        <div className="home__featured-type" onClick={(e) => { handLoadingPage(1, `/product/smartphone`) }}>ĐIỆN THOẠI</div>
                         <div className="home__featured-brand-list">
                             <button className="home__product-brand-item">Apple</button>
                             <button className="home__product-brand-item">Samsung</button>
@@ -312,13 +313,7 @@ const Home = ({ socket }) => {
                                 <li
                                     className="product__sell-item product__sell-item--smartphone"
                                     key={index}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handLoadingPage(1)
-                                        window.setTimeout(() => {
-                                            window.location.href = `/product/${product.enType}/${product.name}`
-                                        }, 1000)
-                                    }}
+                                    onClick={(e) => { handLoadingPage(1, `/product/${product.enType}/${product.name}`) }}
                                 >
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
@@ -336,8 +331,8 @@ const Home = ({ socket }) => {
                             ))}
                         </ul>
 
-                        <div className='home__featured-banner-tablet' onClick={(e) => { navigate('/tablet') }}></div>
-                        <div className="home__featured-type " onClick={(e) => { navigate('/tablet') }}>MÁY TÍNH BẢNG</div>
+                        <div className='home__featured-banner-tablet' onClick={(e) => { handLoadingPage(1, `/product/tablet`) }}></div>
+                        <div className="home__featured-type " onClick={(e) => { handLoadingPage(1, `/product/tablet`) }}>MÁY TÍNH BẢNG</div>
                         <div className="home__featured-brand-list">
                             <button className="home__product-brand-item">Apple</button>
                             <button className="home__product-brand-item">Samsung</button>
@@ -375,8 +370,8 @@ const Home = ({ socket }) => {
                             ))}
                         </ul>
 
-                        <div className='home__featured-banner-laptop' onClick={(e) => { navigate('/laptop') }}></div>
-                        <div className="home__featured-type" onClick={(e) => { navigate('/laptop') }}>MÁY TÍNH XÁCH TAY</div>
+                        <div className='home__featured-banner-laptop' onClick={(e) => { handLoadingPage(1, `/product/laptop`) }}></div>
+                        <div className="home__featured-type" onClick={(e) => { handLoadingPage(1, `/product/laptop`) }}>MÁY TÍNH XÁCH TAY</div>
                         <div className="home__featured-brand-list">
                             <button className="home__product-brand-item">Apple Macbook</button>
                             <button className="home__product-brand-item">ASUS</button>
@@ -415,8 +410,8 @@ const Home = ({ socket }) => {
                             ))}
                         </ul>
 
-                        <div className='home__featured-banner-acc' onClick={(e) => { navigate('/accessories') }}></div>
-                        <div className="home__featured-type" onClick={(e) => { navigate('/accessories') }}>PHỤ KIỆN CÔNG NGHỆ</div>
+                        <div className='home__featured-banner-acc' onClick={(e) => { handLoadingPage(1, `/product/accessories`) }}></div>
+                        <div className="home__featured-type" onClick={(e) => { handLoadingPage(1, `/product/accessories`) }}>PHỤ KIỆN CÔNG NGHỆ</div>
                         <div className="home__featured-brand-list">
                             <button className="home__product-brand-item">Tai nghe</button>
                             <button className="home__product-brand-item">Cáp sạc</button>

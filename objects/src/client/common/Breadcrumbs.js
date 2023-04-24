@@ -14,9 +14,9 @@ const Breadcrumbs = ({ socket }) => {
 
             return (
                 <div className="crumb" key={crumb}>
-                    <Link className="crumb-link" to={currentLink}>{
+                    <a className="crumb-link" onClick={e => { handLoadingPage(1.5, currentLink)}}>{
                         capitalizeFirstLetter(crumb)
-                    }</Link>
+                    }</a>
                 </div>
             )
         })
@@ -25,14 +25,23 @@ const Breadcrumbs = ({ socket }) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    const handLoadingPage = (second, link) => {
+        const loading = document.querySelector(".modal__cover")
+        loading.classList.add("modal--active")
+        window.setTimeout(() => {
+            loading.classList.remove("modal--active")
+            window.location.href = link;
+        }, second * 1000)
+    }
+
     return (
         <div className="breadcrumbs__container">
             <div className="grid wide">
                 <div className="breadcrumbs">
-                    <Link className="crumb__home" to="/home">
+                    <a className="crumb__home" onClick={e => { handLoadingPage(1.5, "/home")}}>
                         <i className="crumb__home-icon fa fa-home"></i>
                         Home
-                    </Link>
+                    </a>
                     <span style={{ margin: "0 10px 0 0" }}>//</span>
                     {crumbs}
                     {name}

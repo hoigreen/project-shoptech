@@ -93,13 +93,17 @@ const AccountOrderDetail = ({ socket }) => {
         })
     }
 
-    function checkVote(itemVoted, itemID) {
+    const checkVote = (itemVoted, itemID) => {
         if (itemVoted)
-            return <button className='order-detail__item-btn order-detail__item-btn--disabled'>Đã đánh giá </button>
+            return <button className='order-detail__item-btn order-detail__item-btn--disabled' disabled>Đã đánh giá </button>
         return (
             <button className='order-detail__item-btn' onClick={e => {
                 e.preventDefault();
-                navigate(`/account/history/detail-id=${orderID}/vote-${itemID}`)
+                if (status === "Giao hàng thành công")
+                    navigate(`/account/history/detail-id=${orderID}/vote-${itemID}`);
+                else {
+                    alert("Đơn hàng đang trong trạng thái giao hàng nên chưa thể đánh giá sản phẩm!")
+                }
             }}>Đánh giá</button>
         )
     }
@@ -114,16 +118,18 @@ const AccountOrderDetail = ({ socket }) => {
 
     return (
         <div>
-            <Nav socket={socket} />
-            <Breadcrumbs socket={socket} />
+            <Nav />
+            <Breadcrumbs />
             <ModalLoading />
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
                         <SidebarAccount />
-
                         <div className="account__box">
                             <div className="account__box-info">
+                                <button className="cart__btn-cancel" onClick={() => { window.location.href = "/account/history" }}>
+                                    <i className="cart__btn-cancel-icon fa fa-arrow-left"></i>Trở lại
+                                </button>
                                 <label className="account__box-info-header">THÔNG TIN ĐƠN HÀNG</label>
 
                                 <label className="order-detail__title">Thông tin đơn hàng</label>
@@ -167,7 +173,7 @@ const AccountOrderDetail = ({ socket }) => {
                                         <label className="order-detail__label">
                                             <i className="order-detail__label-icon fa fa-map"></i>
                                             Địa chỉ nhận hàng:</label>
-                                        <p className="order-detail__content">{address}</p>
+                                        <p className="order-detail__content">{address || "Showroom 70 Tô Ký, p.Tân Chánh Hiệp, Q.12"}</p>
                                     </div>
                                 </div>
 

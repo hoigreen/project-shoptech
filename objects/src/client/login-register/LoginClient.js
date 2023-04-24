@@ -21,28 +21,6 @@ const LoginClient = ({ socket }) => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        var boolCheck = false;
-        users.map((user, index) => {
-            if (details.username === user.username &&
-                details.password === user.password) {
-                window.localStorage.setItem('userLogged', user.username);
-                window.localStorage.setItem('statusLogged', statusLogin);
-                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: statusLogin })
-                alert("Đăng nhập thành công");
-                handLoadingPage(1)
-                window.setTimeout(() => {
-                    window.location.href = ('/account');
-                }, 1000)
-                boolCheck = true;
-            }
-        })
-        if (boolCheck === false) {
-            showErrorToast();
-        }
-    };
-
     const toast = ({ title = "", message = "", type = "info", duration = 3000 }) => {
         const main = document.getElementById("toast-with-navbar");
         if (main) {
@@ -87,6 +65,28 @@ const LoginClient = ({ socket }) => {
     const showErrorToast = () => {
         toast({ title: 'Đăng nhập thất bại', message: 'Tên tài khoản hoặc mật khẩu không chính xác!', type: 'error', duration: 3000 })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        var boolCheck = false;
+        users.map((user, index) => {
+            if (details.username === user.username &&
+                details.password === user.password) {
+                window.localStorage.setItem('userLogged', user.username);
+                window.localStorage.setItem('statusLogged', statusLogin);
+                socket.emit("setStatusLoginUser", { userID: user.userID, statusLogin: statusLogin })
+                alert("Đăng nhập thành công");
+                handLoadingPage(1)
+                window.setTimeout(() => {
+                    window.location.href = ('/account');
+                }, 1000)
+                boolCheck = true;
+            }
+        })
+        if (boolCheck === false) {
+            showErrorToast();
+        }
+    };
 
     const handLoadingPage = (second) => {
         const loading = document.querySelector(".modal__cover")

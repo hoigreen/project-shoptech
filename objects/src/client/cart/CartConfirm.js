@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
+import ModalLoading from '../common/ModalLoading';
 
 const CartConfirm = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -38,7 +39,6 @@ const CartConfirm = ({ socket }) => {
             }
         })
 
-
         // show thông tin tổng tiền giỏ hàng
         let countPriceAll = 0
         let countTotalPriceOld = 0
@@ -70,46 +70,24 @@ const CartConfirm = ({ socket }) => {
     }
 
     const handleNextStep = () => {
-        if (countTotalPriceEdit) {
-            window.localStorage.setItem("countTotalPriceCache", countTotalPriceEdit)
-            window.localStorage.setItem('orderIDCache', orderID)
-            handLoadingPage(1)
-            window.setTimeout(() => {
-                window.location.href = "/cart/info/giftcode/confirm/payment"
-            }, 1000)
-        }
-        else {
-            window.localStorage.setItem("countTotalPriceCache", countTotalPrice)
-            window.localStorage.setItem('orderIDCache', orderID)
-            handLoadingPage(1)
-            window.setTimeout(() => {
-                window.location.href = "/cart/info/giftcode/confirm/payment"
-            }, 1000)
-        }
-
-
+        window.localStorage.setItem('orderIDCache', orderID)
+        handLoadingPage(1, "/cart/info/giftcode/confirm/payment")
+        // console.log(window.localStorage.getItem("countTotalPriceCache"))
     }
 
-    const handLoadingPage = (second) => {
+    const handLoadingPage = (second, link) => {
         const loading = document.querySelector(".modal__cover")
         loading.classList.add("modal--active")
         window.setTimeout(() => {
             loading.classList.remove("modal--active")
+            window.location.href = link;
         }, second * 1000)
     }
 
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
@@ -145,7 +123,7 @@ const CartConfirm = ({ socket }) => {
                                 </li>
                                 <li className="cart-confirm__item">
                                     <label className='cart-confirm__label'>Địa chỉ nhận hàng:</label>
-                                    <p className='cart-confirm__data'>{window.localStorage.getItem("addressCache")}</p>
+                                    <p className='cart-confirm__data'>{window.localStorage.getItem("addressCache") || "Showroom 70 Tô Ký"}</p>
                                 </li>
                                 <li className="cart-confirm__item">
                                     <label className='cart-confirm__label'>Ghi chú:</label>

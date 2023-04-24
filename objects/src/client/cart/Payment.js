@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
+import ModalLoading from '../common/ModalLoading';
 
 const Payment = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -97,7 +98,6 @@ const Payment = ({ socket }) => {
         })
     }
 
-
     const handleComplePayment = () => {
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -180,6 +180,8 @@ const Payment = ({ socket }) => {
                 <p class="payment-done__redirect"> Tự động chuyển hướng tới trang chủ sau <span class='payment-done__redirect-second'>${countSeconds} giây</span> ... </p>
             </div>
         `
+
+        document.querySelector(".cart__control-container").style.display = 'none';
     }
 
     const handLoadingPage = (second) => {
@@ -192,17 +194,10 @@ const Payment = ({ socket }) => {
 
     return (
         <div>
-            <div id="toast-with-navbar"></div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
+            <ModalLoading />
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
+            <div id="toast-with-navbar"></div>
             <div className="grid wide">
                 <div className="container" style={{ paddingBottom: "200px" }}>
                     <div className="cart__container" style={{ display: "flex", width: "60%" }}>
