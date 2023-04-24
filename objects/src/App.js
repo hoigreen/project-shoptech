@@ -52,6 +52,8 @@ import OrderLookup from './client/order/OrderLookup';
 
 import ContactPage from './client/contact/ContactPage';
 
+import PageNotFound from './client/common/PageNotFound';
+
 const socket = socketIO.connect('http://localhost:4000');
 
 function App() {
@@ -80,12 +82,12 @@ function App() {
                     <Route path="/admin/promote/info/:id" element={<InfoPromote socket={socket} />} />
 
                     <Route path="/admin/feedback" element={<FeedbackPage socket={socket} />} />
-                </Routes>
 
 
 
-                {/* ------------------------------------- Route Client ------------------------------------- */}
-                <Routes>
+
+
+                    {/* ------------------------------------- Route Client ------------------------------------- */}
                     {/* Login - Register */}
                     <Route path="/login" element={<LoginClient socket={socket} />} />
                     <Route path="/register" element={<RegisterClient socket={socket} />} />
@@ -126,6 +128,15 @@ function App() {
 
                     {/* Contact */}
                     <Route path="/contact" element={<ContactPage socket={socket} />} />
+
+
+
+
+
+
+
+                    {/* Page not found */}
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </div>
         </Router>

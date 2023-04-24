@@ -187,7 +187,7 @@ const RegisterClient = ({ socket }) => {
             window.alert('Đăng ký thành công! Đang quay trở lại trang đăng nhập')
             handLoadingPage(1)
             window.setTimeout(() => {
-                window.location.href = ('/login');
+                window.location.href = '/login';
             }, 1000)
         }
     }

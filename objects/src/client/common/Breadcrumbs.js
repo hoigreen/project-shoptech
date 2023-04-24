@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation, Link, useParams } from 'react-router-dom';
+import ModalLoading from './ModalLoading';
 
 const Breadcrumbs = ({ socket }) => {
     const { name } = useParams()
@@ -14,9 +15,9 @@ const Breadcrumbs = ({ socket }) => {
 
             return (
                 <div className="crumb" key={crumb}>
-                    <a className="crumb-link" onClick={e => { handLoadingPage(1.5, currentLink)}}>{
+                    <Link className="crumb-link" to={currentLink}> {
                         capitalizeFirstLetter(crumb)
-                    }</a>
+                    }</Link>
                 </div>
             )
         })
@@ -36,9 +37,10 @@ const Breadcrumbs = ({ socket }) => {
 
     return (
         <div className="breadcrumbs__container">
+            <ModalLoading />
             <div className="grid wide">
                 <div className="breadcrumbs">
-                    <a className="crumb__home" onClick={e => { handLoadingPage(1.5, "/home")}}>
+                    <a className="crumb__home" onClick={e => { handLoadingPage(1.5, "/home") }}>
                         <i className="crumb__home-icon fa fa-home"></i>
                         Home
                     </a>

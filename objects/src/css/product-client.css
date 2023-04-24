@@ -195,6 +195,10 @@
     cursor: pointer;
 }
 
+.product-client__item:hover {
+    transform: translateY(-3px);
+}
+
 .product-client__item-img {
     width: 100%;
     height: 200px;
@@ -210,6 +214,8 @@
     font-weight: 500;
     font-size: 1.8rem;
     line-height: 2.2rem;
+    min-height: 36px;
+    max-height: 36px;
     color: var(--button-color);
     width: 100%;
     margin: 0 0 12px;

@@ -122,13 +122,23 @@
 .info-product__image-list {
     display: flex;
     margin: 20px auto 0;
+    padding: 10px;
     justify-content: center;
+    width: 90%;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
+.info-product__image-list::-webkit-scrollbar {
+    display: none;
+}
 
 .info-product__image-item {
     display: inline-block;
     width: 60px;
+    min-width: 60px;
     height: 60px;
     border-radius: 6px;
     border: 1px solid #ccc;
