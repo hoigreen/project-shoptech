@@ -74,7 +74,6 @@ const ResultSearch = ({ socket }) => {
                 window.location.href = `/product/${listArray[index].id}/${listArray[index].name}`
             }
         })
-        // listArray.splice(0, listArray.length)
     }
 
     const handleClickSearchByType = (productType) => {

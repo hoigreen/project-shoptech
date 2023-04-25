@@ -102,7 +102,7 @@ const AccountClientInfo = ({ socket }) => {
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
-                        <SidebarAccount />
+                        <SidebarAccount socket={socket} />
 
                         <div className="account__box">
                             <div className="account__box-info">

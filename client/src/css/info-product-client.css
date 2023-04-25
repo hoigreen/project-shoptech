@@ -372,7 +372,7 @@
 
 .info-product__detail-promote-item {
     padding: 10px;
-    display: flex;
+    display: none;
     align-items: center;
     width: 100%;
     margin: 8px 0;
@@ -620,7 +620,7 @@
     display: block;
     width: 100%;
     font-size: 1.6rem;
-    padding: 8px 0px;
+    padding: 0px 0px;
 }
 
 .info-product__review-item-vote-title {
@@ -644,9 +644,45 @@
     background-color: #f7f7f7;
 }
 
-.info-product__review-item-vote-content {
+.info-product__review-item-feedback-content {
     line-height: 2.6rem;
     display: block;
     color: #333;
+}
 
+.info-product__review-item-feedback {
+    display: block;
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0px 0px;
+}
+
+.info-product__review-item-feedback-title {
+    font-weight: 500;
+    display: block;
+    margin: 4px 0 8px;
+}
+
+.info-product__review-item-feedback-start {
+    font-weight: 400;
+    margin-left: 6px;
+    font-size: 1.8rem;
+    color: #df8129;
+}
+
+.info-product__review-item-feedback-box {
+    display: block;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #eee;
+    background-color: #f7f7f7;
+    margin-bottom: 6px;
+}
+
+.info-product__review-item-feedback-content {
+    line-height: 2rem;
+    display: block;
+    color: #333;
+    text-indent: 12px;
+    font-size: 1.6rem;
 }

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Nav from '../common/Nav'
 import Footer from '../common/Footer'
 import Breadcrumbs from '../common/Breadcrumbs'
+import ModalLoading from '../common/ModalLoading';
 
 const InfoProductClient = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -80,6 +81,23 @@ const InfoProductClient = ({ socket }) => {
             }
         })
 
+        // show các khuyến mãi dành cho sản phẩm
+        var indexPromote = 1;
+        promotes.map((promote, index) => {
+            const promoteElement = document.querySelectorAll(".info-product__detail-promote-item")[index]
+            const promoteIndex = promoteElement.querySelector(".info-product__detail-promote-item-index")
+
+            products.map((product, i) => {
+                if (name === product.name) {
+                    if ((String(promote.apply).toLowerCase()).includes(String(product.type).toLowerCase())) {
+                        promoteIndex.innerHTML = `<span>${indexPromote}</span>`
+                        promoteElement.style.display = "flex"
+                        indexPromote++;
+                    }
+                }
+            })
+        })
+
         // show thông tin sản phẩm tương tự
         products.map((product, index) => {
             const infoProductSimilar = document.querySelectorAll('.product__sell-item')[index];
@@ -97,6 +115,7 @@ const InfoProductClient = ({ socket }) => {
         })
 
         handleFormatCrumbs()
+        handleFeedbackEmpty()
     })
 
     const handleFormatCrumbs = () => {
@@ -105,6 +124,15 @@ const InfoProductClient = ({ socket }) => {
             if (crumbLink.innerHTML.includes("%")) {
                 crumbLink.style.display = "none"
             }
+        })
+    }
+
+    const handleFeedbackEmpty = () => {
+        const feedbackGroup = document.querySelectorAll(".info-product__review-item-feedback")
+        feedbackGroup.forEach((feedbackItem, index) => {
+            const feedbackContent = feedbackItem.querySelector(".info-product__review-item-feedback-content")
+            if (feedbackContent.textContent === "")
+                feedbackItem.style.display = "none"
         })
     }
 
@@ -193,12 +221,12 @@ const InfoProductClient = ({ socket }) => {
             })
         }
     })
+
     let indexImageInArray = 0;
     const handleNextImage = () => {
-        if (indexImageInArray >= arrayImage.length - 1) indexImageInArray = 0;
+        if (indexImageInArray >= arrayImage.length - 1) indexImageInArray = -1;
         indexImageInArray++;
         const imageElement = document.querySelector(".info-product__image-primary")
-        imageElement.style.animation = 'toRight 0.3s linear';
         imageElement.style.backgroundImage = `url(${arrayImage[indexImageInArray]})`
 
     }
@@ -354,18 +382,10 @@ const InfoProductClient = ({ socket }) => {
     return (
         <div>
             <div id="toast-with-navbar"></div>
+            <ModalLoading />
             <Nav socket={socket} />
             <Breadcrumbs />
             <div className="container">
-                <div className="modal__cover">
-                    <div className="modal">
-                        <div className="modal__body">
-                            <div className="modal__loading-spinner "></div>
-                            <div>Đang tải dữ liệu ...</div>
-                        </div>
-                    </div>
-                </div>
-
                 <div className="grid wide">
                     <div className="info-product__container">
                         <div className="info-product__header">
@@ -472,9 +492,7 @@ const InfoProductClient = ({ socket }) => {
                                 <div className='info-product__detail-option'>
                                     <label className='info-product__detail-label'>Chọn màu sắc:</label>
                                     {loading ? <p>Đang kết nối đến server ... </p> : color.map((c, i) => (
-                                        <div className='info-product__detail-option-item' onClick={() => {
-                                            handleSelectColor(c)
-                                        }}>
+                                        <div key={i} className='info-product__detail-option-item' onClick={() => { handleSelectColor(c) }}>
                                             <div className='info-product__detail-option-item-content'>{c}</div>
                                             <div className='info-product__detail-option-item-price'>{Number(price).toLocaleString()} đ</div>
                                         </div>
@@ -485,15 +503,8 @@ const InfoProductClient = ({ socket }) => {
                                         <i className='info-product__detail-promote-label-icon fa fa-gift'></i>
                                         ƯU MÃI RIÊNG CHO SẢN PHẨM
                                     </label>
-                                    <div className='info-product__detail-promote-item'>
-                                        <p className='info-product__detail-promote-item-index'>1</p>
-                                        <label className='info-product__detail-promote-item-content'>
-                                            Giảm ngay 1.800.000đ khi thanh toán qua QR bank
-                                            <button className='info-product__detail-promote-item-content-btn'>(Xem chi tiết)</button>
-                                        </label>
-                                    </div>
                                     {loading ? <p>Đang kết nối đến server ... </p> : promotes.map((promote, i) => (
-                                        <div className='info-product__detail-promote-item'>
+                                        <div className='info-product__detail-promote-item' key={i}>
                                             <p className='info-product__detail-promote-item-index'>{i + 2}</p>
                                             <label className='info-product__detail-promote-item-content'>
                                                 {promote.name}
@@ -554,7 +565,7 @@ const InfoProductClient = ({ socket }) => {
                             <ul className="info-product__review-list">
                                 <label className="info-product__review-label">Nhận xét</label>
                                 {loading ? <p>Đang kết nối đến server ... </p> : comments.map((comment, index) => (
-                                    <li className="info-product__review-item">
+                                    <li className="info-product__review-item" key={index}>
                                         <div className="info-product__review-item-title">
                                             <div className='info-product__review-item-info'>
                                                 <div className='info-product__review-item-avatar'
@@ -569,14 +580,18 @@ const InfoProductClient = ({ socket }) => {
                                                 {comment.time}
                                             </p>
                                         </div>
+
                                         <div className='info-product__review-item-vote'>
                                             <label className='info-product__review-item-vote-title'>
                                                 Đánh giá sản phẩm:
                                                 <span className='info-product__review-item-vote-start'>{handleFormatStarProduct(comment.starVoted)}</span>
                                             </label>
-                                            <label className='info-product__review-item-vote-title'>Nhận xét sản phẩm:</label>
-                                            <div className='info-product__review-item-vote-box'>
-                                                <p className='info-product__review-item-vote-content'>{comment.content}</p>
+                                        </div>
+
+                                        <div className='info-product__review-item-feedback'>
+                                            <label className='info-product__review-item-feedback-title'>Nhận xét sản phẩm:</label>
+                                            <div className='info-product__review-item-feedback-box'>
+                                                <p className='info-product__review-item-feedback-content'>{comment.content}</p>
                                             </div>
                                         </div>
                                     </li>

@@ -201,8 +201,12 @@ const AddProduct = ({ socket }) => {
                             <label className="add__label">Giá sản phẩm</label>
                             <input type='number' className='add__input' onChange={(e) => { setPrice(e.target.value); }} />
 
-                            <label className="add__label">Tình trạng sản phẩm</label>
-                            <input type='text' className='add__input' onChange={(e) => { setStatus(e.target.value); }} />
+                            <label className="add__label">Trạng thái sản phẩm</label>
+                            <select className='add__input' onChange={(e) => { setStatus(e.target.value); }} value={status}>
+                                <option value="" selected >Chọn giá trị...</option>
+                                <option value="Sẵn hàng">Sẵn hàng</option>
+                                <option value="Cháy hàng">Cháy hàng</option>
+                            </select>
                         </div>
 
 

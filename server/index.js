@@ -37,30 +37,10 @@ const savedDataFeedback = fs.readFileSync("datas/data-feedback.json")
 const objectDataFeedback = JSON.parse(savedDataFeedback)
 
 app.use(cors())
-// app.use('/uploads', express.static('./uploads'));
 app.use('/public', express.static('./public'));
 
-
-const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, './uploads');
-    },
-    filename: (req, file, callback) => {
-        console.log(file)
-        callback(null, file.originalname);
-    }
-})
-
-const upload = multer({ storage: storage })
-
-app.post("/uploads", upload.any("file"), (req, res) => {
-    console.log(req.file);
-    res.send("Uploaded");
-});
-
-
 //  --------------------------- ADMIN Method -------------------------------------
-function findAdmin(idKey, myArray, avatarUrlAdmin, fullnameAdmin, emailAdmin, phoneAdmin, addressAdmin) {
+const findAdmin = (idKey, myArray, avatarUrlAdmin, fullnameAdmin, emailAdmin, phoneAdmin, addressAdmin) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].adminID === idKey) {
             myArray[i].avatarUrl = avatarUrlAdmin;
@@ -76,7 +56,7 @@ function findAdmin(idKey, myArray, avatarUrlAdmin, fullnameAdmin, emailAdmin, ph
     })
 }
 
-function findCustomer(idKey, myArray, avatarUrl, fullnameCustomer, emailCustomer, phoneCustomer, addressCustomer) {
+const findCustomer = (idKey, myArray, avatarUrl, fullnameCustomer, emailCustomer, phoneCustomer, addressCustomer) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             myArray[i].avatarUrl = avatarUrl;
@@ -92,7 +72,7 @@ function findCustomer(idKey, myArray, avatarUrl, fullnameCustomer, emailCustomer
     })
 }
 
-function findProduct(idKey, myArray, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) {
+const findProduct = (idKey, myArray, nameProduct, typeProduct, enTypeProduct, priceProduct, colorProduct, hotDealProduct, productFeatured, statusProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             myArray[i].name = nameProduct;
@@ -111,7 +91,7 @@ function findProduct(idKey, myArray, nameProduct, typeProduct, enTypeProduct, pr
     })
 }
 
-function findProductToEditBanner(idKey, myArray, imagePrimaryProduct) {
+const findProductToEditBanner = (idKey, myArray, imagePrimaryProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             myArray[i].imagePrimary = imagePrimaryProduct;
@@ -123,7 +103,7 @@ function findProductToEditBanner(idKey, myArray, imagePrimaryProduct) {
     })
 }
 
-function findProductToEditImageLink(idKey, myArray, imageLinkProduct) {
+const findProductToEditImageLink = (idKey, myArray, imageLinkProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             myArray[i].imageLink = imageLinkProduct;
@@ -135,7 +115,7 @@ function findProductToEditImageLink(idKey, myArray, imageLinkProduct) {
     })
 }
 
-function findProductToEditImageList(idKey, myArray, imageListProduct) {
+const findProductToEditImageList = (idKey, myArray, imageListProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             var data = myArray[i].imageList;
@@ -148,7 +128,7 @@ function findProductToEditImageList(idKey, myArray, imageListProduct) {
     })
 }
 
-function findPromote(idKey, myArray, imageLinkPromote, namePromote, timeStartPromote, timeEndPromote, percentPromote, applyPromote) {
+const findPromote = (idKey, myArray, imageLinkPromote, namePromote, timeStartPromote, timeEndPromote, percentPromote, applyPromote) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             myArray[i].imageLink = imageLinkPromote;
@@ -171,7 +151,7 @@ function findPromote(idKey, myArray, imageLinkPromote, namePromote, timeStartPro
 
 
 //  -------------------------Client Method ------------------------------------------
-function findUserToSetStatus(idKey, myArray, statusLoginUser) {
+const findUserToSetStatus = (idKey, myArray, statusLoginUser) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             myArray[i].statusLogin = statusLoginUser;
@@ -183,7 +163,7 @@ function findUserToSetStatus(idKey, myArray, statusLoginUser) {
     })
 }
 
-function findUserToAddToCart(idKey, myArray, cartToAdd) {
+const findUserToAddToCart = (idKey, myArray, cartToAdd) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             var data = myArray[i].cart;
@@ -211,7 +191,7 @@ function findUserToAddToCart(idKey, myArray, cartToAdd) {
     })
 }
 
-function findProductToAddQuantity(idKey, myArray, indexProduct) {
+const findProductToAddQuantity = (idKey, myArray, indexProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             var data = myArray[i].cart;
@@ -228,7 +208,7 @@ function findProductToAddQuantity(idKey, myArray, indexProduct) {
     })
 }
 
-function findProductToMinusQuantity(idKey, myArray, indexProduct) {
+const findProductToMinusQuantity = (idKey, myArray, indexProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             var data = myArray[i].cart;
@@ -247,7 +227,7 @@ function findProductToMinusQuantity(idKey, myArray, indexProduct) {
     })
 }
 
-function findProductToRemoveInCart(idKey, myArray, indexProduct) {
+const findProductToRemoveInCart = (idKey, myArray, indexProduct) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             var data = myArray[i].cart;
@@ -264,7 +244,7 @@ function findProductToRemoveInCart(idKey, myArray, indexProduct) {
     })
 }
 
-function findUserToRemoveCart(idKey, myArray) {
+const findUserToRemoveCart = (idKey, myArray) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
             var cartUser = myArray[i].cart;
@@ -277,7 +257,7 @@ function findUserToRemoveCart(idKey, myArray) {
     })
 }
 
-function findOrderToSetStatus(orderIDKey, myArray, statusOrder) {
+const findOrderToSetStatus = (orderIDKey, myArray, statusOrder) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].orderID === orderIDKey) {
             myArray[i].status = statusOrder;
@@ -289,7 +269,7 @@ function findOrderToSetStatus(orderIDKey, myArray, statusOrder) {
     })
 }
 
-function findOrderToSetStatusVoteOfProduct(orderIDKey, myArray, productID) {
+const findOrderToSetStatusVoteOfProduct = (orderIDKey, myArray, productID) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].orderID === orderIDKey) {
             var listProducts = myArray[i].lists;
@@ -309,7 +289,7 @@ function findOrderToSetStatusVoteOfProduct(orderIDKey, myArray, productID) {
     return;
 }
 
-function findProductToUpdateRating(idKey, myArray, starVoted) {
+const findProductToUpdateRating = (idKey, myArray, starVoted) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].id === idKey) {
             myArray[i].star = ((myArray[i].star) * (myArray[i].voter) + Number(starVoted)) / (myArray[i].voter + 1);

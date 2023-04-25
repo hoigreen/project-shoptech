@@ -53,8 +53,15 @@
     border-radius: 8px;
     font-size: 1.6rem;
     background-color: #eee;
-    border: none;
+    border: 1px solid transparent;
     font-weight: 500;
+    outline: none;
+}
+
+.search-control__btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    border: 1px solid #ccc;
 }
 
 .search-control__btn--active {

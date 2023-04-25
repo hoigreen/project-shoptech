@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Nav from '../common/Nav';
 import Breadcrumbs from '../common/Breadcrumbs';
 import ModalLoading from '../common/ModalLoading';
@@ -92,7 +93,7 @@ const AccountClient = ({ socket }) => {
             <div className="container">
                 <div className="grid wide">
                     <div className="account-info__container">
-                        <SidebarAccount />
+                        <SidebarAccount socket={socket}/>
 
                         <div className="account__box">
                             <div className="account__box-info">

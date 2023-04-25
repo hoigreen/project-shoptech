@@ -688,6 +688,7 @@ tbody {
 
 .product__btn-add:hover {
     opacity: 0.9;
+    cursor: pointer;
 }
 
 /* --------Stylesheet for the Add Element component ------*/
@@ -927,6 +928,8 @@ tbody {
 
 .add__input--readonly {
     background-color: rgb(0, 0, 0, 0.08);
+    cursor:not-allowed;
+    user-select: none;
 }
 
 .add__footer {
@@ -970,7 +973,8 @@ tbody {
 }
 
 .add__btn-confirm:hover {
-    opacity: 0.9
+    opacity: 0.9;
+    cursor: pointer;
 }
 
 
@@ -986,6 +990,7 @@ tbody {
 
 .add__btn-close:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
 /* --------Stylesheet for the Info Page component ------*/
