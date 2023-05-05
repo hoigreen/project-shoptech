@@ -7,7 +7,7 @@ const EditButtonProduct = ({ product }) => {
     const editInfoProduct = (e) => {
         handLoadingPage(1)
         window.setTimeout(() => {
-            navigate(`/admin/product/info/${product.id}/${product.price}`, { product })
+            navigate(`/admin/product/info/${product.id}-${product.price}`, { product })
         }, 1000)
     }
 

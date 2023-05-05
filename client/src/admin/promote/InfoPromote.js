@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
+
 import ModalLoading from '../common/ModalLoading'
 import AdminSidebar from '../common/AdminSidebar'
 import AdminHeader from '../common/AdminHeader'
@@ -17,12 +18,6 @@ const InfoPromote = ({ socket }) => {
     const [timeEndPromote, setTimeEndPromote] = useState('')
     const [percentPromote, setPercentPromote] = useState()
     const [applyPromote, setApplyPromote] = useState('')
-
-    const [namePromoteEdit, setNamePromoteEdit] = useState('')
-    const [timeStartPromoteEdit, setTimeStartPromoteEdit] = useState('')
-    const [timeEndPromoteEdit, setTimeEndPromoteEdit] = useState('')
-    const [percentPromoteEdit, setPercentPromoteEdit] = useState()
-    const [applyPromoteEdit, setApplyPromoteEdit] = useState('')
 
     const navigate = useNavigate();
 
@@ -78,15 +73,17 @@ const InfoPromote = ({ socket }) => {
     const handleConfirmChange = (e) => {
         e.preventDefault()
         const imageLink = document.querySelector(".info-promote__avatar-img").getAttribute("src")
+        const inputName = document.querySelector(".info-promote__input-name");
+        const inputElements = document.querySelectorAll(".info-promote__input");
         if (window.confirm("Bạn muốn cập nhật thông tin chương trình khuyến mãi này?") == true) {
             socket.emit("editInfoPromote", {
                 imageLink: imageLink,
                 id,
-                name: namePromoteEdit,
-                timeStart: timeStartPromoteEdit,
-                timeEnd: timeEndPromoteEdit,
-                percent: Number(percentPromoteEdit),
-                apply: applyPromoteEdit
+                name: inputName.value,
+                timeStart: inputElements[0].value,
+                timeEnd: inputElements[1].value,
+                percent: Number(inputElements[2].value),
+                apply: inputElements[3].value
             })
             window.alert("Cập nhật thông tin thành công!")
             handLoadingPage(1)
@@ -129,23 +126,23 @@ const InfoPromote = ({ socket }) => {
                         <label style={{ fontWeight: "600" }} className="info-page__user-id">{id}</label>
 
                         <label style={{ textAlign: "center", fontWeight: "600" }} className="info-page__label">Tên chương trình khuyến mãi</label>
-                        <input style={{ fontWeight: 'bold', color: "green" }} className='info-promote__input-name' defaultValue={namePromote} onChange={(e) => { setNamePromoteEdit(e.target.value); }} />
+                        <input style={{ fontWeight: 'bold', color: "green" }} className='info-promote__input-name' defaultValue={namePromote} />
 
                         <div className="info-promote__box-info">
                             <div className="info-promote__col-1">
                                 <label className="info-promote__label">Thời gian bắt đầu</label>
-                                <input type="date" className='info-promote__input' defaultValue={timeStartPromote} onChange={(e) => { setTimeStartPromoteEdit(e.target.value); }} />
+                                <input type="date" className='info-promote__input' defaultValue={timeStartPromote} />
 
                                 <label className="info-promote__label">Đến ngày</label>
-                                <input type="date" className='info-promote__input' defaultValue={timeEndPromote} onChange={(e) => { setTimeEndPromoteEdit(e.target.value); }} />
+                                <input type="date" className='info-promote__input' defaultValue={timeEndPromote} />
                             </div>
 
                             <div className="info-promote__col-2">
                                 <label style={{ fontWeight: 'bold', color: "red" }} className="info-promote__label">Phần trăm (%) giảm</label>
-                                <input type="number" className='info-promote__input' defaultValue={percentPromote} onChange={(e) => { setPercentPromoteEdit(e.target.value); }} />
+                                <input type="number" className='info-promote__input' defaultValue={percentPromote} />
 
                                 <label className="info-promote__label">Khuyến mãi áp dụng cho</label>
-                                <input className='info-promote__input' defaultValue={applyPromote} onChange={(e) => { setApplyPromoteEdit(e.target.value); }} />
+                                <input className='info-promote__input' defaultValue={applyPromote} />
                             </div>
                         </div>
                     </div>

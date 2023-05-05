@@ -11,7 +11,7 @@ import SideBanner from '../common/SideBanner';
 const Home = ({ socket }) => {
     const [products, setProducts] = useState([])
     const [timeStart, setTimeStartSale] = useState(1)
-    const [timeEnd, setTimeEndSale] = useState(4)
+    const [timeEnd, setTimeEndSale] = useState(31)
 
     const [promotes, setPromotes] = useState([])
 
@@ -255,7 +255,7 @@ const Home = ({ socket }) => {
                                 </div>
                                 <div className='home__flash-sale-header-col'>
                                     <div className="home__flash-sale-time">Thời gian khuyến mãi</div>
-                                    <div className='home__flash-sale-time-valid'>{timeStart}/4/2023 - {timeEnd}/5/2023</div>
+                                    <div className='home__flash-sale-time-valid'>{timeStart}/5/2023 - {timeEnd}/5/2023</div>
                                 </div>
                             </div>
 

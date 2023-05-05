@@ -75,7 +75,7 @@ function App() {
 
                     <Route path="/admin/product" element={<ProductPage socket={socket} />} />
                     <Route path="/admin/product/add" element={<AddProduct socket={socket} />} />
-                    <Route path="/admin/product/info/:id/:price" element={<InfoProduct socket={socket} />} />
+                    <Route path="/admin/product/info/:id-:price" element={<InfoProduct socket={socket} />} />
 
                     <Route path="/admin/promote" element={<PromotePage socket={socket} />} />
                     <Route path="/admin/promote/add" element={<AddPromote socket={socket} />} />

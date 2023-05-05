@@ -1,6 +1,5 @@
 const express = require("express")
 const app = express()
-const multer = require('multer');
 const cors = require("cors")
 const http = require('http').Server(app);
 const PORT = 4000
@@ -56,10 +55,9 @@ const findAdmin = (idKey, myArray, avatarUrlAdmin, fullnameAdmin, emailAdmin, ph
     })
 }
 
-const findCustomer = (idKey, myArray, avatarUrl, fullnameCustomer, emailCustomer, phoneCustomer, addressCustomer) => {
+const findCustomer = (idKey, myArray, fullnameCustomer, emailCustomer, phoneCustomer, addressCustomer) => {
     for (let i = 0; i < myArray.length; i++) {
         if (myArray[i].userID === idKey) {
-            myArray[i].avatarUrl = avatarUrl;
             myArray[i].fullname = fullnameCustomer;
             myArray[i].email = emailCustomer;
             myArray[i].phone = phoneCustomer;
@@ -321,7 +319,7 @@ socketIO.on('connection', (socket) => {
     })
 
     socket.on("editInfoCustomer", data => {
-        findCustomer(data.userID, objectDataUser["users"], data.avatarUrl, data.fullname, data.email, data.phone, data.address)
+        findCustomer(data.userID, objectDataUser["users"], data.fullname, data.email, data.phone, data.address)
         socket.broadcast.emit("editInfoCustomerResponse", data)
     })
 

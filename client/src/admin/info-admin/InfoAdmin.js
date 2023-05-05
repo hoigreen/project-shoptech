@@ -14,11 +14,6 @@ const InfoAdmin = ({ socket }) => {
     const [phoneAdmin, setPhoneAdmin] = useState('')
     const [addressAdmin, setAddressAdmin] = useState('')
 
-    const [fullnameEdit, setFullnameEdit] = useState('')
-    const [emailAdminEdit, setEmailAdminEdit] = useState('')
-    const [phoneAdminEdit, setPhoneAdminEdit] = useState('')
-    const [addressAdminEdit, setAddressAdminEdit] = useState('')
-
     useEffect(() => {
         const fetchAPI = () => {
             fetch("http://localhost:4000/api/admins").then(res => res.json()).then(data => {
@@ -70,15 +65,16 @@ const InfoAdmin = ({ socket }) => {
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
+        const inputElements = document.querySelectorAll(".info-page__input");
         const avatarUrl = document.querySelector(".info-page__avatar-img").getAttribute("src")
         if (window.confirm("Bạn có chắc muốn cập nhật lại thông tin cá nhân của mình?") === true) {
             socket.emit("editInfoAdmin", {
                 avatarUrl: avatarUrl,
                 adminID,
-                fullname: fullnameEdit,
-                email: emailAdminEdit,
-                phone: phoneAdminEdit,
-                address: addressAdminEdit
+                fullname: inputElements[1].value,
+                email: inputElements[2].value,
+                phone: inputElements[3].value,
+                address: inputElements[4].value
             })
             handLoadingPage(1)
             setTimeout(() => {
@@ -130,16 +126,16 @@ const InfoAdmin = ({ socket }) => {
                                     value={adminID} />
 
                                 <label className="info-page__label">Họ và tên đầy đủ</label>
-                                <input className='info-page__input' defaultValue={fullname} onChange={(e) => { setFullnameEdit(e.target.value); }} />
+                                <input className='info-page__input' defaultValue={fullname} />
 
                                 <label className="info-page__label">Email</label>
-                                <input className='info-page__input' defaultValue={emailAdmin} onChange={(e) => setEmailAdminEdit(e.target.value)} />
+                                <input className='info-page__input' defaultValue={emailAdmin} />
 
                                 <label className="info-page__label">Số điện thoại</label>
-                                <input className='info-page__input' minLength="10" maxLength="10" defaultValue={phoneAdmin} onChange={(e) => setPhoneAdminEdit(e.target.value)} />
+                                <input className='info-page__input' minLength="10" maxLength="10" defaultValue={phoneAdmin} />
 
                                 <label className="info-page__label">Địa chỉ</label>
-                                <input className='info-page__input' defaultValue={addressAdmin} onChange={(e) => setAddressAdminEdit(e.target.value)} />
+                                <input className='info-page__input' defaultValue={addressAdmin} />
 
                             </div>
                         </div>

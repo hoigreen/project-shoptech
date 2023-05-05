@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
+
 import ModalLoading from '../common/ModalLoading';
 import AdminSidebar from '../common/AdminSidebar';
 import AdminHeader from '../common/AdminHeader';
@@ -13,11 +13,6 @@ const InfoCustomer = ({ socket }) => {
     const [emailUser, setEmailUser] = useState('')
     const [phoneUser, setPhoneUser] = useState('')
     const [addressUser, setAddressUser] = useState('')
-
-    const [fullnameUserEdit, setFullnameUserEdit] = useState('')
-    const [emailUserEdit, setEmailUserEdit] = useState('')
-    const [phoneUserEdit, setPhoneUserEdit] = useState('')
-    const [addressUserEdit, setAddressUserEdit] = useState('')
 
     useEffect(() => {
         const fetchAPI = () => {
@@ -39,7 +34,7 @@ const InfoCustomer = ({ socket }) => {
                 setAddressUser(user.address);
             }
         })
-        
+
         handleLoadOptionSelected(1)
     })
 
@@ -56,8 +51,9 @@ const InfoCustomer = ({ socket }) => {
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
+        const inputElements = document.querySelectorAll(".info-page__input");
         if (window.confirm("Bạn muốn sửa đổi thông tin khách hàng!") == true) {
-            socket.emit("editInfoCustomer", { userID, fullname: fullnameUserEdit, email: emailUserEdit, phone: phoneUserEdit, address: addressUserEdit })
+            socket.emit("editInfoCustomer", { userID, fullname: inputElements[1].value, email: inputElements[2].value, phone: inputElements[3].value, address: inputElements[4].value })
             handLoadingPage(1)
             window.setTimeout(() => {
                 window.location.reload();
@@ -107,16 +103,16 @@ const InfoCustomer = ({ socket }) => {
                                     value={userID} />
 
                                 <label className="info-page__label">Họ và tên khách hàng</label>
-                                <input className='info-page__input' defaultValue={fullnameUser} onChange={(e) => { setFullnameUserEdit(e.target.value); }} />
+                                <input className='info-page__input' defaultValue={fullnameUser} />  
 
                                 <label className="info-page__label">Email</label>
-                                <input className='info-page__input' defaultValue={emailUser} onChange={(e) => { setEmailUserEdit(e.target.value); }} />
+                                <input className='info-page__input' defaultValue={emailUser} />
 
                                 <label className="info-page__label">Số điện thoại</label>
-                                <input className='info-page__input' defaultValue={phoneUser} onChange={(e) => { setPhoneUserEdit(e.target.value); }} />
+                                <input className='info-page__input' defaultValue={phoneUser} />
 
                                 <label className="info-page__label">Địa chỉ</label>
-                                <input className='info-page__input' defaultValue={addressUser} onChange={(e) => { setAddressUserEdit(e.target.value); }} />
+                                <input className='info-page__input' defaultValue={addressUser} />
 
                             </div>
                         </div>

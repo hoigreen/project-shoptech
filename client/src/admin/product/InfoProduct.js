@@ -16,16 +16,10 @@ const InfoProduct = ({ socket }) => {
     const [imageList, setImageList] = useState([])
     const [nameProduct, setNameProduct] = useState('')
     const [typeProduct, setTypeProduct] = useState('')
-    const [priceProduct, setPriceProduct] = useState()
     const [colorProduct, setColorProduct] = useState([])
-    const [statusProduct, setStatusProduct] = useState('')
 
-    const [nameProductEdit, setNameProductEdit] = useState('')
-    const [typeProductEdit, setTypeProductEdit] = useState('')
     const [enType, setEnType] = useState('')
-    const [priceProductEdit, setPriceProductEdit] = useState(0)
     const [colorProductEdit, setColorProductEdit] = useState([])
-    const [statusProductEdit, setStatusProductEdit] = useState('')
     const [boolHotDeal, setBoolHotDeal] = useState(true)
     const [boolFeatured, setBoolFeatured] = useState(true)
 
@@ -52,9 +46,7 @@ const InfoProduct = ({ socket }) => {
                 setImageList(product.imageList)
                 setNameProduct(product.name);
                 setTypeProduct(product.type);
-                setPriceProduct(product.price);
                 setColorProduct(product.color);
-                setStatusProduct(product.status);
             }
         })
         handleLoadOptionSelected(2)
@@ -144,7 +136,7 @@ const InfoProduct = ({ socket }) => {
 
     const handleConfirmChange = (e) => {
         e.preventDefault()
-        // Kiểm tra dữ liệu nhập vào thông tin nổi bật và khuyến mãi
+        //Kiểm tra dữ liệu nhập vào thông tin nổi bật và khuyến mãi
         var boolFeaturedEdit;
         var boolHotDealEdit;
         if (boolFeatured === "true") {
@@ -160,22 +152,23 @@ const InfoProduct = ({ socket }) => {
             boolHotDealEdit = boolHotDeal.toLowerCase() === "False"
         }
 
+        const inputElements = document.querySelectorAll(".info-admin-product__input");
         if (window.confirm("Bạn muốn cập nhật thông tin sản phẩm?") == true) {
             socket.emit("editInfoProduct", {
                 id: id,
-                name: nameProductEdit,
-                type: typeProductEdit,
+                name: inputElements[1].value,
+                type: inputElements[2].value,
                 enType: enType,
-                price: priceProductEdit,
+                price: inputElements[4].value,
                 color: colorProductEdit,
                 hotDeal: boolHotDealEdit,
                 featured: boolFeaturedEdit,
-                status: statusProductEdit
+                status: inputElements[7].value
             })
             window.alert("Thành công!")
             handLoadingPage(1)
             window.setTimeout(() => {
-                window.location.href = `/admin/product/info/${id}/${priceProductEdit}`
+                window.location.href = `/admin/product/info/${id}-${inputElements[4].value}`
             }, 1000)
         }
     }
@@ -273,10 +266,10 @@ const InfoProduct = ({ socket }) => {
                                 <label className="info-admin-product__label">Mã sản phẩm</label>
                                 <input style={{ fontWeight: 'bold', color: 'red' }} className='info-admin-product__input' value={id} readOnly />
                                 <label className="info-admin-product__label">Tên sản phẩm</label>
-                                <input style={{ fontWeight: 'bold' }} className='info-admin-product__input' defaultValue={nameProduct} onChange={(e) => { setNameProductEdit(e.target.value); }} />
+                                <input style={{ fontWeight: 'bold' }} className='info-admin-product__input' defaultValue={nameProduct} />
                                 <label className="info-admin-product__label">Loại sản phẩm</label>
-                                <select style={{ fontWeight: '500' }} className='info-admin-product__input' onChange={(e) => {
-                                    setTypeProductEdit(e.target.value);
+                                <select style={{ fontWeight: '500' }} className='info-admin-product__input' defaultValue={typeProduct} onChange={(e) => {
+                                    setTypeProduct(e.target.value);
                                     switch ((e.target.value).toLowerCase()) {
                                         case "điện thoại":
                                             setEnType("smartphone");
@@ -292,7 +285,7 @@ const InfoProduct = ({ socket }) => {
                                             break;
                                     }
                                 }}>
-                                    <option value="" selected >Chọn loại sản phẩm...</option>
+                                    <option value="">Chọn loại sản phẩm...</option>
                                     <option value="Điện thoại">Điện thoại di động</option>
                                     <option value="Máy tính xách tay">Máy tính xách tay</option>
                                     <option value="Máy tính bảng">Máy tính bảng</option>
@@ -308,7 +301,7 @@ const InfoProduct = ({ socket }) => {
 
 
                                 <label className="info-admin-product__label">Giá sản phẩm</label>
-                                <input type="number" className='info-admin-product__input' defaultValue={price} onChange={(e) => { setPriceProductEdit(e.target.value); }}
+                                <input type="number" className='info-admin-product__input' defaultValue={price}
                                     style={{ fontWeight: 'bold', color: 'red' }} />
 
                                 <label className="info-admin-product__label">Thêm vào sản phẩm nổi bật</label>
@@ -326,7 +319,7 @@ const InfoProduct = ({ socket }) => {
                                 </select>
 
                                 <label className="info-admin-product__label">Trạng thái sản phẩm</label>
-                                <select className='info-admin-product__input' onChange={(e) => { setStatusProductEdit(e.target.value); }} value={statusProductEdit}>
+                                <select className='info-admin-product__input'>
                                     <option value="" selected >Chọn giá trị...</option>
                                     <option value="Sẵn hàng">Sẵn hàng</option>
                                     <option value="Cháy hàng">Cháy hàng</option>
