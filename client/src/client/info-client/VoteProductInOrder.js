@@ -136,7 +136,7 @@ const VoteProductInOrder = ({ socket }) => {
                     })
                 }
             })
-            window.location.href = `/account/history/detail-id=${orderID}`
+            window.location.href = `/account/history/${orderID}`
         }, 1500)
     }
 

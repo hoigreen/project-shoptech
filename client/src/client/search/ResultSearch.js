@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Nav from '../common/Nav';
 import Footer from '../common/Footer';
 import Breadcrumbs from '../common/Breadcrumbs';

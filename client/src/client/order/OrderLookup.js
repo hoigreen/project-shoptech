@@ -174,7 +174,7 @@ const OrderLookup = () => {
 
                         <li class='detail-price__item'>
                             <label class="detail-price__item-label">Áp dụng mã giảm giá:</label>
-                            <span class="detail-price__item-price">- ${Number(percentApply)}% = ${Number(Number(percentApply) / 100 * Number(countTotalPrice)).toLocaleString()} đ</span> */}
+                            <span class="detail-price__item-price">- ${Number(percentApply)}% = ${Number(Number(percentApply) / 100 * Number(countTotalPrice)).toLocaleString()} đ</span>
                         </li>
 
                         <li class='detail-price__item'>

@@ -71,7 +71,7 @@ const Nav = ({ socket }) => {
                                     alert("Vui lòng điền từ khóa cần tìm!")
                                     return;
                                 }
-                                handLoadingPage(1, `/search/key=${keySearch}`)
+                                handLoadingPage(1, `/search/${keySearch}`)
                             }
                         }>
                             <i className="fa ti-search"></i>

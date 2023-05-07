@@ -7,7 +7,7 @@ const EditButtonProduct = ({ product }) => {
     const editInfoProduct = (e) => {
         handLoadingPage(1)
         window.setTimeout(() => {
-            navigate(`/admin/product/info/${product.id}-${product.price}`, { product })
+            navigate(`/admin/product/info/${product.id}`, { product })
         }, 1000)
     }
 
@@ -29,7 +29,7 @@ const EditButtonProduct = ({ product }) => {
                     </div>
                 </div>
             </div>
-            
+
             <svg xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 edit-icon"
                 fill="none"

@@ -9,12 +9,13 @@ import ModalLoading from '../common/ModalLoading';
 const InfoProduct = ({ socket }) => {
 
     const [products, setProducts] = useState([])
-    const { id, price } = useParams()
+    const { id } = useParams()
 
     const [imageLink, setImageLink] = useState('')
     const [imageBanner, setImageBanner] = useState('')
     const [imageList, setImageList] = useState([])
     const [nameProduct, setNameProduct] = useState('')
+    const [priceProduct, setPriceProduct] = useState('')
     const [typeProduct, setTypeProduct] = useState('')
     const [colorProduct, setColorProduct] = useState([])
 
@@ -45,6 +46,7 @@ const InfoProduct = ({ socket }) => {
                 setImageBanner(product.imagePrimary)
                 setImageList(product.imageList)
                 setNameProduct(product.name);
+                setPriceProduct(product.price);
                 setTypeProduct(product.type);
                 setColorProduct(product.color);
             }
@@ -168,7 +170,7 @@ const InfoProduct = ({ socket }) => {
             window.alert("Thành công!")
             handLoadingPage(1)
             window.setTimeout(() => {
-                window.location.href = `/admin/product/info/${id}-${inputElements[4].value}`
+                window.location.reload()
             }, 1000)
         }
     }
@@ -301,7 +303,7 @@ const InfoProduct = ({ socket }) => {
 
 
                                 <label className="info-admin-product__label">Giá sản phẩm</label>
-                                <input type="number" className='info-admin-product__input' defaultValue={price}
+                                <input type="number" className='info-admin-product__input' defaultValue={priceProduct}
                                     style={{ fontWeight: 'bold', color: 'red' }} />
 
                                 <label className="info-admin-product__label">Thêm vào sản phẩm nổi bật</label>

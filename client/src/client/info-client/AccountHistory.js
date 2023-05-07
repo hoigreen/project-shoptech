@@ -173,7 +173,7 @@ const AccountHistory = ({ socket }) => {
                                                 <td><button className="account-history__btn-detail" onClick={(e) => {
                                                     handLoadingPage(1);
                                                     setTimeout(() => {
-                                                        window.location.href = `/account/history/detail-id=${order.orderID}`
+                                                        window.location.href = `/account/history/${order.orderID}`
                                                     })
                                                 }}>Xem chi tiết</button></td>
                                             </tr>

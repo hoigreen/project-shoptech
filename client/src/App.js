@@ -75,7 +75,7 @@ function App() {
 
                     <Route path="/admin/product" element={<ProductPage socket={socket} />} />
                     <Route path="/admin/product/add" element={<AddProduct socket={socket} />} />
-                    <Route path="/admin/product/info/:id-:price" element={<InfoProduct socket={socket} />} />
+                    <Route path="/admin/product/info/:id" element={<InfoProduct socket={socket} />} />
 
                     <Route path="/admin/promote" element={<PromotePage socket={socket} />} />
                     <Route path="/admin/promote/add" element={<AddPromote socket={socket} />} />
@@ -109,11 +109,11 @@ function App() {
                     <Route path="/account" element={<AccountClient socket={socket} />} />
                     <Route path="/account/info" element={<AccountClientInfo socket={socket} />} />
                     <Route path="/account/history" element={<AccountHistory socket={socket} />} />
-                    <Route path="/account/history/detail-id=:orderID" element={<AccountOrderDetail socket={socket} />} />
-                    <Route path="/account/history/detail-id=:orderID/vote-:productID" element={<VoteProductInOrder socket={socket} />} />
+                    <Route path="/account/history/:orderID" element={<AccountOrderDetail socket={socket} />} />
+                    <Route path="/account/history/:orderID/:productID" element={<VoteProductInOrder socket={socket} />} />
 
                     {/* Search Product */}
-                    <Route path="/search/key=:keySearch" element={<ResultSearch socket={socket} />} />
+                    <Route path="/search/:keySearch" element={<ResultSearch socket={socket} />} />
 
 
                     {/* Cart and Payment */}
@@ -129,13 +129,8 @@ function App() {
                     {/* Contact */}
                     <Route path="/contact" element={<ContactPage socket={socket} />} />
 
-
-
-
-
-
-
                     {/* Page not found */}
+
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </div>

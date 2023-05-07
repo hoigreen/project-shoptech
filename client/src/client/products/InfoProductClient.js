@@ -321,10 +321,10 @@ const InfoProductClient = ({ socket }) => {
                 }
             })
             showSuccessMessage();
-            handLoadingPage(3)
+            handLoadingPage(1)
             window.setTimeout(() => {
                 window.location.href = window.location.href
-            }, 3000)
+            }, 1000)
         }
         else {
             showErrorMessage();
@@ -361,10 +361,10 @@ const InfoProductClient = ({ socket }) => {
                 }
             })
             showSuccessMessage();
-            handLoadingPage(3)
+            handLoadingPage(1)
             window.setTimeout(() => {
                 window.location.href = '/cart/info'
-            }, 4)
+            }, 2)
         }
         else {
             showErrorMessage();

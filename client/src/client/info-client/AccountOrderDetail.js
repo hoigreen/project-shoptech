@@ -100,7 +100,7 @@ const AccountOrderDetail = ({ socket }) => {
             <button className='order-detail__item-btn' onClick={e => {
                 e.preventDefault();
                 if (status === "Giao hàng thành công")
-                    navigate(`/account/history/detail-id=${orderID}/vote-${itemID}`);
+                    navigate(`/account/history/${orderID}/${itemID}`);
                 else {
                     alert("Đơn hàng đang trong trạng thái giao hàng nên chưa thể đánh giá sản phẩm!")
                 }
