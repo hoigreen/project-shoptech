@@ -35,22 +35,22 @@ const InfoProductClient = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
                 setLoading(false)
             })
 
-            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
                 setLoading(false)
             })
 
-            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
                 setLoading(false)
             })
 
-            fetch("http://localhost:4000/api/comments").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/comments").then(res => res.json()).then(data => {
                 setComments(data.comments)
                 setLoading(false)
             })

@@ -28,15 +28,15 @@ const VoteProductInOrder = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
             })
 
-            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
             })
 
-            fetch("http://localhost:4000/api/orders").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/orders").then(res => res.json()).then(data => {
                 setOrders(data.orders)
             })
         }

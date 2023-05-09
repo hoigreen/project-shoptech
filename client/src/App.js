@@ -54,7 +54,8 @@ import ContactPage from './client/contact/ContactPage';
 
 import PageNotFound from './client/common/PageNotFound';
 
-const socket = socketIO.connect('http://localhost:4000');
+// const socket = socketIO.connect('https://server-shoptech.onrender.com');
+const socket = socketIO.connect('https://server-shoptech.onrender.com');
 
 function App() {
     return (

@@ -21,12 +21,12 @@ const Home = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/products").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/products").then(res => res.json()).then(data => {
                 setProducts(data.products)
                 setLoading(false)
             })
 
-            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
                 setLoading(false)
             })
@@ -276,7 +276,7 @@ const Home = ({ socket }) => {
                                                 }, 1000)
                                             }}>
                                             <img src={product.imageLink} className='home__flash-sale-item-img'></img>
-                                            <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
+                                            <img className="product-client__item-hot-icon" src="https://server-shoptech.onrender.com/public/product-img/smartphone-img/icon-hot.gif"></img>
                                             <label className='home__flash-sale-item-label'>{product.name}</label>
                                             <label className='home__flash-sale-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                             <span className='home__flash-sale-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -318,7 +318,7 @@ const Home = ({ socket }) => {
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
                                     </img>
-                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
+                                    <img className="product-client__item-hot-icon" src="https://server-shoptech.onrender.com/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -356,7 +356,7 @@ const Home = ({ socket }) => {
                                     }}
                                 >
                                     <img src={product.imageLink} className='home__flash-sale-item-img'></img>
-                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
+                                    <img className="product-client__item-hot-icon" src="https://server-shoptech.onrender.com/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -397,7 +397,7 @@ const Home = ({ socket }) => {
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
                                     </img>
-                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
+                                    <img className="product-client__item-hot-icon" src="https://server-shoptech.onrender.com/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>
@@ -436,7 +436,7 @@ const Home = ({ socket }) => {
                                     <img src={product.imageLink}
                                         className='home__flash-sale-item-img'>
                                     </img>
-                                    <img className="product-client__item-hot-icon" src="http://localhost:4000/public/product-img/smartphone-img/icon-hot.gif"></img>
+                                    <img className="product-client__item-hot-icon" src="https://server-shoptech.onrender.com/public/product-img/smartphone-img/icon-hot.gif"></img>
                                     <label className='product__sell-item-label'>{product.name}</label>
                                     <label className='product__sell-item-price'>{Number(product.price).toLocaleString()} ₫</label>
                                     <span className='product__sell-item-percent'>{(Number(product.price) * 1.065).toLocaleString()}đ</span>

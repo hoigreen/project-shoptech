@@ -16,7 +16,7 @@ const PromotePage = () => {
 
     useEffect(() => {
         const fetchAPI = () => {
-            fetch("http://localhost:4000/api/promotes").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/promotes").then(res => res.json()).then(data => {
                 setPromotes(data.promotes)
                 setLoading(false)
             });

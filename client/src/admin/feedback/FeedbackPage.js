@@ -13,7 +13,7 @@ const FeedbackPage = () => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/feedbacks").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/feedbacks").then(res => res.json()).then(data => {
                 setFeedbacks(data.feedbacks)
                 setLoading(false)
             });

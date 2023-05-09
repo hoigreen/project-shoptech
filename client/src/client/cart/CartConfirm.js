@@ -19,12 +19,12 @@ const CartConfirm = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
                 setLoading(false)
             })
 
-            fetch("http://localhost:4000/api/giftcodes").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/giftcodes").then(res => res.json()).then(data => {
                 setGiftcodes(data.giftcodes)
                 setLoading(false)
             })

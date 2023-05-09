@@ -19,7 +19,7 @@ const AccountClientInfo = ({ socket }) => {
 
     useEffect(() => {
         const fetchAPIs = () => {
-            fetch("http://localhost:4000/api/users").then(res => res.json()).then(data => {
+            fetch("https://server-shoptech.onrender.com/api/users").then(res => res.json()).then(data => {
                 setUsers(data.users)
             })
         }
@@ -107,7 +107,7 @@ const AccountClientInfo = ({ socket }) => {
                         <div className="account__box">
                             <div className="account__box-info">
                                 <div className="account__box-info-container">
-                                    <img className="account__box-info-avatar" src={avatarUrl || "http://localhost:4000/public/img-avatar-empty.png"}></img>
+                                    <img className="account__box-info-avatar" src={avatarUrl || "https://server-shoptech.onrender.com/public/img-avatar-empty.png"}></img>
                                     <input type='file' id="avatar-change" onChange={(e) => { changeImage() }} hidden></input>
                                     <label className="account__box-info-avatar-btn" htmlFor="avatar-change">Thay đổi Avatar</label>
                                 </div>

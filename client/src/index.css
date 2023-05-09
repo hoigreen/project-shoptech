@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
 @import url('./font/fontawesome-free-6.3.0-web/css/all.css');
 @import url('./font/themify-icons/themify-icons.css');
 @import url('./css/grid-system.css');
@@ -25,7 +27,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', "Arial", sans-serif;
 }
 
 :root {
@@ -999,7 +1001,7 @@ body {
     }
 
     .home__featured-list {
-        margin: 0 auto 50px ;
+        margin: 0 auto 50px;
         max-height: unset;
         min-height: 410px;
         width: cacl(100% - 10px);
