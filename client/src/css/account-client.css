@@ -345,8 +345,9 @@
 
 .account__box-info-fullname {
     display: block;
-    font-size: 2.2rem;
-    color: var(--primary-color);
+    font-size: 2.6rem;
+    line-height: 2.8rem;
+    color: rgb(83, 175, 83);
     font-weight: 600;
 }
 

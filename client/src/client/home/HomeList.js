@@ -14,7 +14,7 @@ const HomeList = () => {
     }
 
     return (
-        <div id="home__list">
+        <div id="home__list" className='hide-on-mobile'>
             <div className="home__list-label">Danh mục sản phẩm</div>
             <ul className="home__list-product">
                 <li className='home__list-product-item' onClick={(e) => { handLoadingPage(1.5, "/product/smartphone") }}>

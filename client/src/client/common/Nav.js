@@ -50,68 +50,71 @@ const Nav = ({ socket }) => {
         <div>
             <ModalLoading />
             <div className="nav-container">
-                <nav className="navbar grid wide">
-                    <div className="header--logo" onClick={(e) => {
-                        e.preventDefault();
-                        handLoadingPage(1, '/home')
-                    }}>
-                    </div>
-
-                    <a href="Tel: 00000" className="header-btn header-btn__link hide-on-mobile-tablet">
-                        <i className="header--btn-icon fa-solid fa-phone"></i>
-                        <p className="header--btn-name">Hỗ trợ
-                            <span className="header--btn-describe">1800.4433</span>
-                        </p>
-                    </a>
-                    <div className="header-search">
-                        <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..." onChange={(e) => { setKeySearch(e.target.value) }}></input>
-                        <button className="header-search__button" onClick={
-                            (e) => {
-                                if (keySearch === '') {
-                                    alert("Vui lòng điền từ khóa cần tìm!")
-                                    return;
-                                }
-                                handLoadingPage(1, `/search/${keySearch}`)
-                            }
-                        }>
-                            <i className="fa ti-search"></i>
-                        </button>
-                    </div>
-
-                    <div className="header__btn-group">
-                        <button className="header-btn header-btn__cart" onClick={() => { handLoadingPage(1, '/cart') }}>
-                            <div className="header-btn__red-dot">{countQuantity || 0}</div>
-                            <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
-                            <p className="header--btn-name hide-on-mobile" >Giỏ hàng</p>
-                        </button>
-
-                        <button className="header-btn hide-on-mobile" onClick={(e) => {
-                            if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
-                                const elementNavOption = document.querySelector('.nav__option-box');
-                                elementNavOption.style.display = 'block';
-                            }
-                            else {
-                                handLoadingPage(1, "/login")
-                            }
+                <div className="grid wide">
+                    <nav className="navbar">
+                        <div className="header--logo" onClick={(e) => {
+                            e.preventDefault();
+                            handLoadingPage(1, '/home')
                         }}>
-                            <i className="header--btn-icon fa-solid fa-user"></i>
-                            <p className="header--btn-name">Thành viên</p>
-                        </button>
-                        <button className="header-btn hide-on-mobile-tablet" onClick={() => { handLoadingPage(1, "/order") }}>
-                            <i className="header--btn-icon fa-solid fa-history"></i>
-                            <p className="header--btn-name">Đơn hàng</p>
-                        </button>
-                        <button className="header-btn hide-on-mobile-tablet" onClick={() => { handLoadingPage(1, "/contact") }}>
-                            <i className="header--btn-icon fa-solid fa-question"></i>
-                            <p className="header--btn-name">Liên hệ</p>
-                        </button>
-                    </div>
+                        </div>
 
-                    <ul className="nav__option-box">
-                        <li className="nav__option-item" onClick={() => { handLoadingPage(1, "/account") }}>Tài khoản của bạn</li>
-                        <li className="nav__option-item" style={{ color: "red" }} onClick={handleLoggout}>Đăng xuất</li>
-                    </ul>
-                </nav>
+                        <a href="Tel: 00000" className="header-btn header-btn__link hide-on-mobile-tablet">
+                            <i className="header--btn-icon fa-solid fa-phone"></i>
+                            <p className="header--btn-name">Hỗ trợ
+                                <span className="header--btn-describe">1800.4433</span>
+                            </p>
+                        </a>
+                        <div className="header-search">
+                            <input className="header-search__input" placeholder="Tìm kiếm sản phẩm..." onChange={(e) => { setKeySearch(e.target.value) }}></input>
+                            <button className="header-search__button" onClick={
+                                (e) => {
+                                    if (keySearch === '') {
+                                        alert("Vui lòng điền từ khóa cần tìm!")
+                                        return;
+                                    }
+                                    handLoadingPage(1, `/search/${keySearch}`)
+                                }
+                            }>
+                                <i className="fa ti-search"></i>
+                            </button>
+                        </div>
+
+                        <div className="header__btn-group">
+                            <button className="header-btn header-btn__cart" onClick={() => { handLoadingPage(1, '/cart') }}>
+                                <div className="header-btn__red-dot">{countQuantity || 0}</div>
+                                <i className="header--btn-icon fa-solid fa-shopping-cart"></i>
+                                <p className="header--btn-name hide-on-mobile" >Giỏ hàng</p>
+                            </button>
+
+                            <button className="header-btn hide-on-mobile" onClick={(e) => {
+                                if (window.localStorage.getItem('statusLogged') === "Đã đăng nhập") {
+                                    const elementNavOption = document.querySelector('.nav__option-box');
+                                    elementNavOption.style.display = 'block';
+                                }
+                                else {
+                                    handLoadingPage(1, "/login")
+                                }
+                            }}>
+                                <i className="header--btn-icon fa-solid fa-user"></i>
+                                <p className="header--btn-name">Thành viên</p>
+                            </button>
+                            <button className="header-btn hide-on-mobile-tablet" onClick={() => { handLoadingPage(1, "/order") }}>
+                                <i className="header--btn-icon fa-solid fa-history"></i>
+                                <p className="header--btn-name">Đơn hàng</p>
+                            </button>
+                            <button className="header-btn hide-on-mobile-tablet" onClick={() => { handLoadingPage(1, "/contact") }}>
+                                <i className="header--btn-icon fa-solid fa-question"></i>
+                                <p className="header--btn-name">Liên hệ</p>
+                            </button>
+                        </div>
+
+                        <ul className="nav__option-box">
+                            <li className="nav__option-item" onClick={() => { handLoadingPage(1, "/account") }}>Tài khoản của bạn</li>
+                            <li className="nav__option-item" style={{ color: "red" }} onClick={handleLoggout}>Đăng xuất</li>
+                        </ul>
+                    </nav>
+                </div>
+
             </div>
         </div>
 

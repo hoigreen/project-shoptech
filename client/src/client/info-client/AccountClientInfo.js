@@ -8,7 +8,6 @@ import SidebarAccount from './SidebarAccount';
 
 const AccountClientInfo = ({ socket }) => {
     const [users, setUsers] = useState([])
-    const [username, setUsername] = useState('')
     const [userID, setUserID] = useState('')
     const [avatarUrl, setAvatarUrl] = useState('')
 
@@ -16,12 +15,6 @@ const AccountClientInfo = ({ socket }) => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
-
-    const [fullnameEdit, setFullnameEdit] = useState('')
-    const [emailEdit, setEmailEdit] = useState('')
-    const [phoneEdit, setPhoneEdit] = useState('')
-    const [addressEdit, setAddressEdit] = useState('')
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,7 +30,6 @@ const AccountClientInfo = ({ socket }) => {
         users.map((user, index) => {
             if (user.username === window.localStorage.getItem("userLogged")) {
                 setUserID(user.userID)
-                setUsername(user.username);
                 setFullname(user.fullname);
                 setAvatarUrl(user.avatarUrl);
                 setEmail(user.email);
@@ -75,8 +67,16 @@ const AccountClientInfo = ({ socket }) => {
     const handleEditInfo = (e) => {
         e.preventDefault()
         const avatarUrl = document.querySelector(".account__box-info-avatar").getAttribute("src")
+        const inputElements = document.querySelectorAll(".account__box-info-input")
         if (window.confirm("Bạn muốn sửa đổi thông tin cá nhân!") == true) {
-            socket.emit("editInfoCustomer", { userID: userID, avatarUrl: avatarUrl, fullname: fullnameEdit, email: emailEdit, phone: phoneEdit, address: addressEdit })
+            socket.emit("editInfoCustomer", {
+                userID: userID,
+                avatarUrl: avatarUrl,
+                fullname: inputElements[0].value,
+                email: inputElements[1].value,
+                phone: inputElements[2].value,
+                address: inputElements[3].value
+            })
             window.alert("Thành công!")
             handLoadingPage(1)
             window.setTimeout(() => {
@@ -117,39 +117,18 @@ const AccountClientInfo = ({ socket }) => {
                                 <label className="account__box-info-header">THÔNG TIN CÁ NHÂN</label>
 
                                 <label className="account__box-info-title">Họ và tên đầy đủ:</label>
-                                <input className="account__box-info-input"
-                                    defaultValue={fullname}
-                                    name="fullname"
-                                    onChange={(e) => { setFullnameEdit(e.target.value) }}
-                                />
+                                <input className="account__box-info-input" defaultValue={fullname} name="fullname" />
 
                                 <label className="account__box-info-title">Email:</label>
-                                <input className="account__box-info-input"
-                                    defaultValue={email}
-                                    name="emai"
-                                    onChange={(e) => { setEmailEdit(e.target.value) }}
-                                />
+                                <input className="account__box-info-input" defaultValue={email} name="emai" />
 
                                 <label className="account__box-info-title">Số điện thoại:</label>
-                                <input className="account__box-info-input"
-                                    type="text"
-                                    defaultValue={phone}
-                                    name="phone"
-                                    onChange={(e) => { setPhoneEdit(e.target.value) }}
-                                />
+                                <input className="account__box-info-input" type="text" defaultValue={phone} name="phone" />
 
                                 <label className="account__box-info-title">Địa chỉ liên hệ:</label>
-                                <input className="account__box-info-input"
-                                    defaultValue={address}
-                                    name="address"
-                                    onChange={(e) => { setAddressEdit(e.target.value) }}
-                                />
-
+                                <input className="account__box-info-input" defaultValue={address} name="address" />
 
                                 <button className="account__box-info-btn" onClick={handleEditInfo}>Cập nhật thông tin</button>
-
-
-
                             </div>
                         </div>
                     </div>

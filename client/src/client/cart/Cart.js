@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../common/Nav'
 import Breadcrumbs from '../common/Breadcrumbs'
+import ModalLoading from '../common/ModalLoading';
 
 const Cart = ({ socket }) => {
     const [users, setUsers] = useState([])
@@ -126,15 +127,7 @@ const Cart = ({ socket }) => {
 
     return (
         <div>
-            <div className="modal__cover">
-                <div className="modal">
-                    <div className="modal__body">
-                        <div className="modal__loading-spinner "></div>
-                        <div>Đang tải dữ liệu ...</div>
-                    </div>
-                </div>
-            </div>
-
+            <ModalLoading />
             <Nav socket={socket} />
             <Breadcrumbs socket={socket} />
             <div className="grid wide">
