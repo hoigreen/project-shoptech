@@ -170,6 +170,18 @@
       "phone": "0342931201",
       "address": "TPHCM",
       "cart": []
+    },
+    {
+      "userID": "G0015",
+      "avatarUrl": "http://localhost:4000/public/img-avatar-empty.png",
+      "username": "kl1234",
+      "password": "121212",
+      "fullname": "Huỳnh Kiên Long",
+      "email": "kl1234432@gmaicw.com",
+      "phone": "0939329563",
+      "address": "Hàm Nghi",
+      "statusLogin": "Chưa đăng nhập",
+      "cart": []
     }
   ]
 }

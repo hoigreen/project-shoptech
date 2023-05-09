@@ -7,8 +7,8 @@ const fs = require("fs");
 
 const socketIO = require('socket.io')(http, {
     cors: {
-        origin: "http://localhost:3000"
-        // origin: "https://shoptech-uth.vercel.app"
+        origin: "http://localhost:3000",
+        origin: "https://shoptech-uth.vercel.app"
     },
 });
 
