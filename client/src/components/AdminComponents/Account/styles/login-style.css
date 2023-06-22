@@ -1,0 +1,79 @@
+/* --------Stylesheet for the Login component ------*/
+.login__logo {
+    background-image: url(https://server-shoptech.onrender.com/public/logo-img.png);
+    width: 100%;
+    height: 160px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    margin: 10px 0 30px 0;
+}
+
+.login__box {
+    width: 40%;
+    height: 480px;
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.login__label-login {
+    display: block;
+    font-size: 4rem;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0 20px 0;
+    color: var(--button-color);
+    height: 60px;
+}
+
+.login__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+
+.login__label {
+    display: block;
+    font-size: 2rem;
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.login__input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid #ba6347;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #000;
+}
+
+.login__btn {
+    padding: 16px 20px;
+    background-color: var(--button-color);
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.login__btn:hover {
+    opacity: 0.9;
+    transform: scale(105%);
+}

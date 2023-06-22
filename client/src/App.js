@@ -3,68 +3,35 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import socketIO from 'socket.io-client';
 
 // Admin components
-import Login from './admin/Login';
+import Login from './components/AdminComponents/Account/Login';
+import InfoAdmin from './components/AdminComponents/Account/InfoAdmin';
 
-import Dashboard from './admin/Dashboard';
-
-import InfoAdmin from './admin/info-admin/InfoAdmin';
-
-import CustomerPage from './admin/customer/CustomerPage';
-import InfoCustomer from './admin/customer/InfoCustomer';
-
-import ProductPage from './admin/product/ProductPage';
-import InfoProduct from './admin/product/InfoProduct';
-import AddProduct from './admin/product/AddProduct';
-
-import PromotePage from './admin/promote/PromotePage';
-import InfoPromote from './admin/promote/InfoPromote';
-import AddPromote from './admin/promote/AddPromote';
-
-import FeedbackPage from './admin/feedback/FeedbackPage';
+import Dashboard from './components/AdminComponents/Dashboard/Dashboard';
+import { CustomerPage, InfoCustomer } from './components/AdminComponents/Customer';
+import { AddProduct, InfoProduct, ProductPage } from './components/AdminComponents/Product'
+import { AddPromote, InfoPromote, PromotePage } from './components/AdminComponents/Promote';
+import FeedbackPage from './components/AdminComponents/Feedback/FeedbackPage';
 
 // Client components
-import Home from './client/home/Home';
+import Home from './components/ConsumerComponents/Home/Home';
+import { LoginClient, RegisterClient, AccountClient, AccountClientInfo, AccountHistory, AccountOrderDetail, VoteProductInOrder } from './components/ConsumerComponents/AccountClient';
+import { Cart, CartConfirm, CartInfo, Giftcode, Payment } from './components/ConsumerComponents/Cart';
+import { SmartPhone, Laptop, Tablet, Accessories, InfoProductClient } from './components/ConsumerComponents/Product';
 
-import RegisterClient from './client/login-register/RegisterClient';
-import LoginClient from './client/login-register/LoginClient';
-import AccountClient from './client/info-client/AccountClient';
-import AccountClientInfo from './client/info-client/AccountClientInfo';
-import AccountHistory from './client/info-client/AccountHistory';
-import AccountOrderDetail from './client/info-client/AccountOrderDetail';
-import VoteProductInOrder from './client/info-client/VoteProductInOrder';
+import SearchProduct from './components/ConsumerComponents/SearchProduct/SearchProduct';
+import OrderLookup from './components/ConsumerComponents/OrderLookup/OrderLookup';
+import ContactPage from './components/ConsumerComponents/Contact/ContactPage';
 
-import SmartPhone from './client/products/SmartPhone';
-import Laptop from './client/products/Laptop';
-import Tablet from './client/products/Tablet';
-import Accessories from './client/products/Accessories';
-import InfoProductClient from './client/products/InfoProductClient';
+import { ModalLoading, PageNotFound } from './components/Common/';
 
-import ResultSearch from './client/search/ResultSearch';
-
-import Cart from './client/cart/Cart';
-import CartInfo from './client/cart/CartInfo'
-import Giftcode from './client/cart/Giftcode';
-import CartConfirm from './client/cart/CartConfirm'
-import Payment from './client/cart/Payment';
-
-import OrderLookup from './client/order/OrderLookup';
-
-
-import ContactPage from './client/contact/ContactPage';
-
-import PageNotFound from './client/common/PageNotFound';
-
-// const socket = socketIO.connect('https://server-shoptech.onrender.com');
 const socket = socketIO.connect('https://server-shoptech.onrender.com');
 
 function App() {
     return (
-        <Router>
-            <div>
-                {/* <Nav socket={socket} /> */}
-
-                {/* ------------------------------------- Route Admin ------------------------------------- */}
+        <ModalLoading>
+            <Router>
                 <Routes>
+                    {/* ------------------------------------- Route Admin ------------------------------------- */}
                     <Route path="/admin" element={<Login socket={socket} />} />
 
                     <Route path="/admin/dashboard" element={<Dashboard socket={socket} />} />
@@ -83,9 +50,6 @@ function App() {
                     <Route path="/admin/promote/info/:id" element={<InfoPromote socket={socket} />} />
 
                     <Route path="/admin/feedback" element={<FeedbackPage socket={socket} />} />
-
-
-
 
 
                     {/* ------------------------------------- Route Client ------------------------------------- */}
@@ -114,7 +78,7 @@ function App() {
                     <Route path="/account/history/:orderID/:productID" element={<VoteProductInOrder socket={socket} />} />
 
                     {/* Search Product */}
-                    <Route path="/search/:keySearch" element={<ResultSearch socket={socket} />} />
+                    <Route path="/search/:keySearch" element={<SearchProduct socket={socket} />} />
 
 
                     {/* Cart and Payment */}
@@ -130,12 +94,11 @@ function App() {
                     {/* Contact */}
                     <Route path="/contact" element={<ContactPage socket={socket} />} />
 
-                    {/* Page not found */}
-
+                    {/* ----------------------------- Page not found ------------------------------ */}
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
-            </div>
-        </Router>
+            </Router>
+        </ModalLoading>
     );
 }
 

@@ -1,0 +1,48 @@
+/* --------Stylesheet for the Customer component ------*/
+.customer__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.customer__group {
+    margin: 30px 40px;
+    background-color: #fff;
+    padding: 25px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    min-height: 650px;
+    max-height: 650px;
+    border-radius: 20px;
+}
+
+.customer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.customer__header-title {
+    font-size: 2.6rem;
+    font-weight: bold;
+    line-height: 50px;
+    margin: 0;
+}
+
+.customer__header-counting {
+    font-size: 2rem;
+}
+
+.customer__header-counting-number {
+    margin-left: 6px;
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: green;
+}
+
+.customer__table-cover {
+    width: 100%;
+    height: 530px;
+    border: 1px solid #eee;
+    overflow-y: scroll;
+}

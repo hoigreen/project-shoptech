@@ -1,0 +1,424 @@
+/* ----------- Stylesheet for Admin --------------- */
+
+/* --------Stylesheet for the Dashboard component ------*/
+.admin__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+#sidebar {
+    position: fixed;
+    width: 260px;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.08);
+    padding-bottom: 30px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.sidebar__logo {
+    height: 100px;
+    width: 100%;
+    padding: 20px;
+    background-image: url(https://server-shoptech.onrender.com/public/logo-img.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    margin-bottom: 40px;
+    background-position: center;
+}
+
+.sidebar__logo:hover {
+    cursor: pointer;
+}
+
+.sidebar__component {}
+
+.sidebar__component-label {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 40px 0 20px 0;
+    padding: 0 0 0 20px;
+}
+
+.sidebar__component-item {
+    height: 60px;
+    margin: 10px 0 10px -30px;
+    padding-left: 40px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    color: rgb(0, 0, 0, 0.4);
+    background: #fff;
+}
+
+.sidebar__component-item:hover {
+    color: rgb(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.sidebar__component-item-icon {
+    font-size: 2.4rem;
+    margin: 0 10px;
+}
+
+.sidebar__component-item--active {
+    height: 60px;
+    margin: 10px 0 10px -30px;
+    padding-left: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    background: linear-gradient(to right, #8971ea, #7f72ea, #7574ea, #6a75e9, #5f76e8);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.sidebar__component-item--active:hover {
+    color: #fff;
+}
+
+
+#admin-box {
+    display: block;
+    position: fixed;
+    left: 260px;
+    top: 0;
+    width: calc(100% - 260px);
+}
+
+.admin__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin__header-title {
+    padding-left: 40px;
+    font-size: 3.4rem;
+    font-weight: 500;
+    color: var(--button-color);
+    user-select: none;
+}
+
+.admin__header-admin {
+    font-size: 1.8rem;
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.admin__header-info {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.admin__header-avatar {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: auto 0 auto 4px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.admin__header-name:hover {
+    cursor: pointer;
+}
+
+.admin__header-name {
+    color: var(--primary-color);
+    padding: 0 4px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    position: relative;
+    line-height: 2rem;
+    user-select: none;
+
+}
+
+.admin__header-admin:hover .admin__header-option {
+    display: block;
+}
+
+.admin__header-option {
+    position: absolute;
+    width: 160px;
+    top: 9vh;
+    right: 40px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px #ccc;
+    border-radius: 10px;
+    display: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 2;
+    font-size: 1.6rem;
+}
+
+.admin__header-option::before {
+    position: absolute;
+    top: -10px;
+    content: "";
+    right: 2px;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid #fff;
+    z-index: -1;
+}
+
+.admin__header-option::after {
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: transparent;
+    width: 160px;
+    height: 30px;
+    top: -13px;
+    left: 0;
+
+}
+
+
+.admin__header-option-item {
+    padding: 16px 20px;
+    /* border-bottom: 1px solid #ccc; */
+    z-index: 2;
+}
+
+.admin__header-option-item:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.admin__title {
+    padding: 30px 40px 0;
+}
+
+.admin__tilte-label {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 500;
+    padding-bottom: 4px;
+    cursor: text;
+}
+
+.admin__tilte-describe {
+    font-size: 1.8rem;
+    display: block;
+    font-weight: 300;
+    font-style: italic;
+    text-decoration: underline;
+    cursor: text;
+    margin: 10px 0 10px 0;
+}
+
+.admin__group {
+    margin: 30px 40px 10px 40px;
+    background-color: #fff;
+    padding: 25px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    min-height: 510px;
+    max-height: 510px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 29%) 0px 5px 12px -12px;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #000;
+    border-collapse: none;
+    text-indent: initial;
+    border-spacing: 2px;
+    text-align: center;
+}
+
+.table .table__thead-primary {
+    background: rgb(153, 177, 156);
+    color: #fff;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.table .table__thead-primary td {
+    border: none;
+    padding: 20px;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+
+.table .table__tbody-primary {
+    background: #fff;
+    color: #000;
+}
+
+.table__tbody-primary {
+    overflow-y: scroll;
+}
+
+tbody {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.table tbody td {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-image: initial;
+    padding: 20px;
+    font-size: 1.7rem;
+    background: rgb(255, 255, 255);
+    border-bottom: 4px solid rgb(248, 249, 253);
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table__edit-btn {
+    user-select: none;
+}
+
+.table-td-element {
+    display: flex;
+    align-items: center;
+}
+
+.table-td__img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+    object-fit: contain;
+}
+
+.table-td__label {
+    display: block;
+    max-width: 120px;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+.admin__list {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    max-height: 510px;
+    justify-content: flex-start;
+}
+
+.admin__item {
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgb(0, 0, 0, 0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin: 10px 12px 40px;
+    padding-bottom: 30px;
+    position: relative;
+    width: 240px;
+}
+
+.admin__item:hover {
+    transform: translateY(-3px);
+}
+
+.admin__item-id {
+    display: block;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+}
+
+.admin__item-avatar {
+    display: flex;
+    width: 100%;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 20px 0;
+}
+
+.admin__item-img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.admin__item-admin-name {
+    display: block;
+    padding: 10px 20px;
+    margin: 10px 0 10px 0;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.admin__item-info {
+    padding: 0 20px 10px 20px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.admin__item-info-label {
+    font-size: 1.6rem;
+    margin: 0 6px 4px 0;
+    text-align: left;
+    font-weight: 500;
+}
+
+.admin__item-info-content {
+    font-size: 1.6rem;
+}
+
+.admin__item-info--last {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 0 20px 10px 20px;
+}
+
+.admin__item-info-price {}

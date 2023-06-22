@@ -1,0 +1,40 @@
+.page-error__container {
+    display: block;
+    margin: 10px auto;
+    width: 900px;
+}
+
+.page-error__img {
+    display: block;
+    width: 440px;
+    margin: 10px auto 30px;
+}
+
+.page-error__title {
+    display: block;
+    width: 100%;
+    margin: 40px 0 30px;
+    padding: 10px;
+    color: #333;
+    text-align: center;
+    font-weight: 400;
+    font-size: 3.2rem;
+}
+
+.page-error__btn {
+    display: block;
+    margin: 20px 0 50px;
+    color: #fff;
+    background-color: var(--button-color);
+    padding: 12px 20px;
+    font-size: 2rem;
+    font-weight: 400;
+    border-radius: 20px;
+    border: 2px solid #ad5300;
+    margin: 10px auto;
+}
+
+.page-error__btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

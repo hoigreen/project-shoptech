@@ -1,0 +1,81 @@
+/* --------Stylesheet for the Footer component ------*/
+.footer-container {
+    width: 100%;
+    min-height: 260px;
+    background-color: #fff;
+    margin: 40px 0 30px 0;
+}
+
+.app-copyright {
+    display: block;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+}
+
+.footer-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.footer__col {
+    width: 25%;
+}
+
+.footer__col-group {
+    display: block;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 10px 20px 10px 0;
+}
+
+.footer__col-group-cer {
+    display: flex;
+    flex-wrap: wrap;
+} 
+
+.footer__payment-img {
+    margin: 0 4px 4px 0;
+    width: calc(20% - 4px);
+    object-fit: contain;
+}
+
+.footer__label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 10px;
+
+}
+
+.footer__link {
+    display: block;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #333;
+    margin: 4px 0;
+    padding: 4px 0;
+}
+
+.footer__link:hover {
+    color: rgb(89, 89, 246);
+    cursor: pointer;
+}
+
+.footer__text {
+    display: block;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #333;
+    margin: 6px 0;
+    padding: 4px 0;
+}
+
+.footer__text-title {
+    display: inline-block;
+    min-width: 100px;
+    max-width: 100px;
+    margin-right: 6px;
+}
